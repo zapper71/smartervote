@@ -79,6 +79,54 @@ Then **http://localhost:3000/status** should read **2026-09-13.2**, and **/admin
 
 ---
 
+
+## Finding `~/dev/smartervote` in Finder or a file picker
+
+`~` is shorthand for your home folder. The real path is:
+
+```
+/Users/andreaszapletal/dev/smartervote
+```
+
+Finder doesn't always show your home folder in the sidebar, so this folder can feel invisible. Three ways to get to it:
+
+**Open it in Finder from Terminal** — simplest:
+
+```
+open ~/dev
+```
+
+**In any macOS file dialog** (including GitHub Desktop's "Add Local Repository"), press **⌘⇧G**. A box appears where you can paste a path directly:
+
+```
+~/dev/smartervote
+```
+
+**Add it to your Finder sidebar permanently** so you never hunt for it again: run `open ~/dev`, then drag the `smartervote` folder onto the Favourites section of the Finder sidebar.
+
+### If the folder genuinely isn't there
+
+```
+ls ~/dev/smartervote
+```
+
+If that errors, the original copy never completed. Rebuild it:
+
+```
+mkdir -p ~/dev
+cp -R ~/Library/CloudStorage/OneDrive-Personal/SmartVote.ca/smartervote ~/dev/smartervote
+cd ~/dev/smartervote && npm install
+```
+
+### Which folder should you be working in?
+
+- **`~/dev/smartervote`** — where you run `npm run dev`, where git lives, what you publish to GitHub. Your working copy.
+- **OneDrive `…/SmartVote.ca/smartervote`** — where Claude writes. Never run anything here, and `node_modules` must never end up here or OneDrive will try to sync tens of thousands of files.
+
+`update.sh` is the bridge between them. If you're ever unsure which folder a Terminal window is in, type `pwd`.
+
+---
+
 # Part 2 — GitHub and deploying to Vercel
 
 Now that updates are reliable, this gets you version history and a live site.
@@ -124,6 +172,67 @@ git push -u origin main
 
 It'll ask you to sign in to GitHub in a browser window. That's normal.
 
+
+## ⚠️ "Authentication failed" when pushing
+
+**This is expected, and it isn't your password being wrong.** GitHub stopped accepting account passwords for git operations in August 2021. If Terminal asked for a password and you typed your GitHub one, it will fail every time, no matter how many times you retype it.
+
+You have two ways forward. I'd strongly suggest the first.
+
+---
+
+### Option A — GitHub Desktop (recommended)
+
+A free app from GitHub. It signs you in through your browser, and replaces every git command in this runbook with buttons. **You never touch git in Terminal again.**
+
+For what you're doing — reviewing changes I've made to candidate content before they go live — the visual diff is genuinely better than the command line anyway. You see exactly what changed, line by line, with removals in red and additions in green.
+
+1. Download from **https://desktop.github.com** and install it.
+2. Open it and sign in to GitHub. It opens a browser window — that's the correct flow, and it's why this works when the password didn't.
+3. **File → Add Local Repository** → choose `~/dev/smartervote`
+   - If it says the folder isn't a git repository, click **Create a repository** when offered.
+4. **Before publishing, check nothing secret is committed.** In Terminal:
+
+   ```
+   cd ~/dev/smartervote && git ls-files | grep -E "\.env|node_modules" || echo "Clean — safe to push"
+   ```
+
+   It must print **Clean**. If it lists `.env.local`, stop — that would send your Supabase secret key to GitHub, which means rotating keys rather than just deleting a file.
+
+5. Click the button at the top. **You'll see one of two labels, and both are correct:**
+
+   - **"Publish repository"** — you haven't created the repo on GitHub yet. Name it `smartervote` and **tick "Keep this code private"**.
+   - **"Publish branch"** — a remote is already configured (because you ran `git remote add origin` in Terminal earlier). Just click it; it pushes to the repo that's already set up.
+
+   > If "Publish branch" errors saying the repository doesn't exist, you added the remote but never created the repo. Go to **https://github.com/new**, name it `smartervote`, tick **Private**, add no README or .gitignore, click **Create repository**, then click Publish branch again.
+
+6. Done. Your code is on GitHub.
+
+**From then on, your whole routine is:**
+
+```
+cd ~/dev/smartervote && ./update.sh
+```
+
+Then in GitHub Desktop: review the changes shown in the left panel, type a short summary, click **Commit to main**, then **Push origin**. Vercel deploys automatically.
+
+---
+
+### Option B — Personal access token in Terminal
+
+If you'd rather stay in Terminal: GitHub wants a **personal access token** where it says "password".
+
+1. Go to **https://github.com/settings/tokens** → **Generate new token (classic)**
+2. Give it a name like `smartervote-mac`, set an expiry, and tick the **`repo`** scope
+3. Click **Generate token** and copy it — GitHub shows it exactly once
+4. Run `git push -u origin main` again. At the **Password** prompt, paste the **token**, not your password. Your GitHub username stays the same.
+
+macOS will remember it in Keychain, so you only do this once.
+
+**Never paste that token into a chat, a commit, or a file** — including to me. It grants full access to your repositories. If it ever leaks, revoke it on that same settings page.
+
+---
+
 ## Step 3 — Connect Vercel
 
 1. **https://vercel.com/dashboard** → your SmarterVote project → **Settings** → **Git**
@@ -132,16 +241,39 @@ It'll ask you to sign in to GitHub in a browser window. That's normal.
 
 ## Step 4 — Set environment variables in Vercel
 
-**Settings → Environment Variables.** Add exactly these two:
+### Finding the page (this trips people up)
+
+**Vercel has two different Settings pages.** The obvious one is the wrong one:
+
+- **Settings in the top-right avatar menu** = your *account* settings. No environment variables here.
+- **Settings inside a project** = what you want.
+
+**Fastest route — go straight to the URL:**
+
+```
+https://vercel.com/YOUR-USERNAME/smartervote/settings/environment-variables
+```
+
+Not sure of the exact names? Open **vercel.com/dashboard**, click your project, and read the address bar — it shows `vercel.com/<owner>/<project>`. Those are the two parts.
+
+**By clicking:** vercel.com/dashboard → click the project tile → **Settings** tab *along the top of the project page* → **Environment Variables** in the left sidebar.
+
+**If no project tile exists**, the project was never created or sits under a different team. Easiest fix now that the repo is on GitHub: **Add New → Project** → import `smartervote`. Vercel prompts for environment variables during that flow, which skips this navigation entirely.
+
+### What to add
 
 | Name | Value |
 |---|---|
 | `NEXT_PUBLIC_SUPABASE_URL` | same as in your `.env.local` |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | same as in your `.env.local` |
 
-**Do NOT add `ADMIN_PASSWORD`.** Leaving it out means there is no admin area on the public internet at all — you review locally against the same database. That's the safest arrangement and it costs you nothing.
+Apply both to **Production**, **Preview** and **Development** (Vercel usually ticks all three by default).
 
-**Do NOT add the secret key yet.** Nothing public needs it. It'll be needed when the corrections form goes live, and we'll add it then.
+**Do NOT add `ADMIN_PASSWORD`.** Leaving it out means there is no admin area on the public internet at all — you review locally against the same database. Safest arrangement, and it costs you nothing.
+
+**Do NOT add the secret key yet.** Nothing public needs it. It'll be required when the corrections form goes live, and we'll add it then.
+
+> **Environment variables only apply to new deployments.** If you add them after a deploy has already run, go to the **Deployments** tab and **Redeploy** the latest one, or the site will still behave as though the keys are missing.
 
 ## Step 5 — Keep the domain pointed at the preview URL for now
 
