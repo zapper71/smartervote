@@ -14,9 +14,15 @@ const config: Config = {
     extend: {
       colors: {
         ink: {
-          DEFAULT: "#1a2332",
-          soft: "#3d4a5c",
-          faint: "#6b7787",
+          DEFAULT: "#1a2332", // 15.8:1 on white, 15.0:1 on paper-warm
+          soft: "#3d4a5c", //    9.0:1 on white,  8.6:1 on paper-warm
+          // Was #6b7787, which measured 4.55:1 on white — nominally a pass —
+          // but only 4.33:1 on paper-warm, which is the BODY background and
+          // every other row of the comparison table. It failed WCAG 1.4.3 on
+          // most of the site, and it is the colour used for every source
+          // line, date and extent note: the checkable evidence, in the one
+          // shade hardest to read. Darkened to 5.0:1 on warm, 5.3:1 on white.
+          faint: "#616d7c",
         },
         accent: {
           DEFAULT: "#0f5c63",

@@ -52,8 +52,13 @@
     @apply min-h-[44px] min-w-[44px] inline-flex items-center;
   }
 
+  /* The underline is the non-colour cue required by WCAG 1.4.1 (Use of
+     Colour) — without it a link is distinguished from body text only by
+     being teal, which a colour-blind reader may not perceive at all. At 40%
+     opacity it was close to invisible on small text, which made it a cue in
+     name only. 70% is still quieter than the text and actually visible. */
   .link {
-    @apply text-accent underline decoration-accent/40 hover:decoration-accent focus-visible:decoration-accent;
+    @apply text-accent underline decoration-accent/70 hover:decoration-accent focus-visible:decoration-accent;
   }
 
   .card {

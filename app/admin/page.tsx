@@ -7,9 +7,11 @@ import {
   logoutAction,
   loginAction,
   rejectAction,
+  setExtentAction,
   unpublishAction,
 } from "./actions";
 import { formatShortDate } from "@/lib/dates";
+import { allowedExtents, type SourceExtent, type SourceType } from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Review queue",
@@ -26,12 +28,57 @@ type Row = {
   source_url: string | null;
   source_title: string | null;
   source_date: string | null;
+  source_type: SourceType | null;
+  source_extent: SourceExtent | null;
   no_public_position: boolean;
   reviewed_at: string | null;
   candidate_id: string;
   candidates: { name: string; slug: string; races: { name: string; slug: string } | null } | null;
   issues: { name: string; slug: string; sort_order: number } | null;
 };
+
+/**
+ * The "how much did they publish" dropdown.
+ *
+ * The options are scoped to the source type, which is the whole fairness
+ * mechanism: for a newspaper interview the only choices are the ones that
+ * make no length claim, so it is not possible to label a candidate "one
+ * sentence" for something a reporter chose the length of. Re-validated in the
+ * server action and again by a CHECK constraint.
+ */
+function ExtentSelect({ r }: { r: Row }) {
+  const options = allowedExtents(r.source_type);
+  const reported = options[0] === "reported remarks";
+
+  return (
+    <>
+      <label
+        htmlFor={`e-${r.id}`}
+        className="block text-xs font-medium uppercase tracking-wide text-ink-faint"
+      >
+        How much they published on this issue
+      </label>
+      <select
+        id={`e-${r.id}`}
+        name="source_extent"
+        defaultValue={r.source_extent ?? ""}
+        className="mt-1 w-full rounded-md border border-paper-edge px-3 py-2 text-sm"
+      >
+        <option value="">Not recorded — shows nothing on the site</option>
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
+      </select>
+      <p className="mt-1 text-xs text-ink-faint">
+        {reported
+          ? "This came from a reporter, so there is no length option — the reporter chose how much to quote, not the candidate."
+          : "Describe the source, not the quote. A page counts as a page even if we only quoted one line of it."}
+      </p>
+    </>
+  );
+}
 
 function Disabled() {
   return (
@@ -102,7 +149,7 @@ export default async function AdminPage({
   const { data, error } = await db
     .from("positions")
     .select(
-      "id,status,summary_short,summary_bullets,verbatim_quote,source_url,source_title,source_date,no_public_position,reviewed_at,candidate_id," +
+      "id,status,summary_short,summary_bullets,verbatim_quote,source_url,source_title,source_date,source_type,source_extent,no_public_position,reviewed_at,candidate_id," +
         "candidates(name,slug,races(name,slug)),issues(name,slug,sort_order)"
     )
     .in("status", ["in_review", "published", "draft"]);
@@ -151,11 +198,19 @@ export default async function AdminPage({
             {counts.draft} rejected
           </p>
         </div>
-        <form action={logoutAction}>
-          <button className="tap-target rounded-md border border-paper-edge px-3 py-2 text-sm">
-            Sign out
-          </button>
-        </form>
+        <div className="flex gap-2">
+          <a
+            href="/admin/corrections"
+            className="tap-target rounded-md border border-paper-edge px-3 py-2 text-sm no-underline text-ink"
+          >
+            Corrections
+          </a>
+          <form action={logoutAction}>
+            <button className="tap-target rounded-md border border-paper-edge px-3 py-2 text-sm">
+              Sign out
+            </button>
+          </form>
+        </div>
       </div>
 
       <div className="mt-6 flex gap-2 text-sm">
@@ -264,6 +319,11 @@ export default async function AdminPage({
                         defaultValue={r.summary_short ?? ""}
                         className="mt-1 w-full rounded-md border border-paper-edge px-3 py-2 text-sm"
                       />
+
+                      <div className="mt-4">
+                        <ExtentSelect r={r} />
+                      </div>
+
                       <div className="mt-3 flex flex-wrap gap-2">
                         <button className="tap-target rounded-md bg-accent px-4 py-2 text-sm font-medium text-white">
                           Approve &amp; publish
@@ -279,6 +339,19 @@ export default async function AdminPage({
                   ) : (
                     <div className="mt-4">
                       <p className="text-sm font-medium text-ink">{r.summary_short}</p>
+
+                      {/* Settable after publication so the backlog of already
+                          live positions can be worked through here rather than
+                          in the SQL editor. Saving this does not re-review the
+                          row or touch reviewed_at. */}
+                      <form action={setExtentAction} className="mt-4">
+                        <input type="hidden" name="id" value={r.id} />
+                        <ExtentSelect r={r} />
+                        <button className="tap-target mt-2 rounded-md border border-accent px-3 py-1.5 text-sm text-accent">
+                          Save
+                        </button>
+                      </form>
+
                       <form action={unpublishAction} className="mt-3">
                         <input type="hidden" name="id" value={r.id} />
                         <button className="tap-target rounded-md border border-paper-edge px-3 py-1.5 text-sm">

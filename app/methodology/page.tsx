@@ -122,6 +122,108 @@ export default function MethodologyPage() {
         is for, and we will fix it quickly.
       </p>
 
+      <h2>How much they said</h2>
+      <p>
+        Next to the link that reveals a candidate&rsquo;s words, you&rsquo;ll
+        sometimes see a note in brackets &mdash;{" "}
+        <em>(a page or more)</em>, <em>(one sentence)</em>,{" "}
+        <em>(reported remarks)</em>. That describes the source we took the
+        position from, so you can tell a worked-out plan from a passing mention
+        without opening every quote.
+      </p>
+      <p>
+        <strong>It is not a score.</strong> There is no colour, no icon, no
+        rating out of five, and the notes are not ranked against each other. We
+        thought about a filled-in dot or a green-to-amber scale and decided
+        against it: a visual scale is a rating, and this one would rate
+        candidates on how much they wrote &mdash; which says more about who has
+        a web designer than about who has thought hardest. A single clear
+        sentence can be a better answer than five vague paragraphs.
+      </p>
+      <p>
+        Length notes are only ever used for words a candidate published
+        themselves, where they chose how much to write. When a position comes
+        from a news article or a public meeting we say{" "}
+        <em>(reported remarks)</em> and give no length at all, because there the
+        length was a reporter&rsquo;s decision, not the candidate&rsquo;s.
+        Marking a candidate short because a journalist quoted two sentences of
+        them would punish the very candidates who have no website &mdash;
+        precisely the unfairness described below.
+      </p>
+      <p>
+        Where you see no note, it means we haven&rsquo;t recorded one yet. It
+        doesn&rsquo;t mean anything about the candidate.
+      </p>
+
+      <h2>When the source is a news article</h2>
+      <p>
+        A news story mixes two different things: words the candidate actually said,
+        inside quotation marks, and the reporter&rsquo;s summary of what they said.
+        Those are not the same, and we don&rsquo;t treat them as if they were.
+      </p>
+      <p>
+        <strong>
+          Only words a reporter put inside quotation marks and attributed to the
+          candidate ever appear here as that candidate&rsquo;s quote.
+        </strong>{" "}
+        Where an article reports a position but doesn&rsquo;t quote it &mdash;
+        &ldquo;she also said she would review the budget process&rdquo; &mdash; that
+        appears in our summary, plainly as our summary, never in quotation marks
+        beside their name.
+      </p>
+      <p>
+        This is why some candidates have fewer positions here than a full reading of
+        their coverage might suggest. If a position was only ever paraphrased, we have
+        nothing we can honestly print as their words, so we print nothing and keep
+        looking. We also don&rsquo;t stitch two separate quotations together into one
+        sentence the candidate never spoke.
+      </p>
+      <p>
+        Comments posted below news articles are not used, even when the name on the
+        comment matches a candidate&rsquo;s. A name on a comment form isn&rsquo;t
+        verification.
+      </p>
+
+      <h2>Links to candidates&rsquo; own pages</h2>
+      <p>
+        Where we link to a candidate&rsquo;s campaign website, that address comes
+        from the Town&rsquo;s certified candidate list.
+      </p>
+      <p>
+        <strong>We do not guess social media links.</strong> The Town publishes
+        social media as free text &mdash; sometimes a username, sometimes just a
+        page name &mdash; and those are not web addresses. Turning them into
+        addresses means guessing, and a wrong guess doesn&rsquo;t produce a broken
+        link; it points a candidate&rsquo;s name at a stranger who happens to share
+        it. A handle on the Town&rsquo;s list is shown here as plain text, exactly
+        as the Town published it, and never as a link.
+      </p>
+      <p>A social account becomes a link in only two situations:</p>
+      <ul>
+        <li>
+          <strong>The candidate published the address themselves</strong> on their
+          own campaign website. We&rsquo;re then passing along an address they
+          chose to give out, the same as their website &mdash; not inventing one.
+        </li>
+        <li>
+          <strong>A person here opened the page</strong> and confirmed from its
+          content that it belongs to that candidate.
+        </li>
+      </ul>
+      <p>
+        What we never do is build an address out of a name or a handle and assume it
+        lands in the right place.
+      </p>
+      <p>
+        Names repeat, and a page belonging to someone who shares a
+        candidate&rsquo;s name is not that candidate&rsquo;s page. If you ever find
+        a link here that goes somewhere it shouldn&rsquo;t,{" "}
+        <Link href="/corrections" className="link">
+          please tell us
+        </Link>{" "}
+        &mdash; that gets fixed the same day.
+      </p>
+
       <h2>The fairness problem, stated plainly</h2>
       <p>
         Ten of the 28 candidates have campaign websites. Eighteen don&rsquo;t. Nine have

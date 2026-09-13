@@ -40,7 +40,10 @@ export default function RaceCard({ race }: { race: RaceWithCandidates }) {
       )}
 
       <p className="mt-4">
-        <Link href={`/races/${race.slug}`} className="link tap-target text-sm font-medium">
+        <Link
+          href={uncontested ? `/races/${race.slug}` : `/races/${race.slug}/compare`}
+          className="link tap-target text-sm font-medium"
+        >
           {uncontested ? "See who was acclaimed" : `Compare the ${count} candidates`} &rarr;
         </Link>
       </p>

@@ -29,6 +29,9 @@ coverage/
 # vercel
 .vercel
 
+# local tooling artefacts — not part of the project
+.claude/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

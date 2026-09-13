@@ -1,9 +1,11 @@
 import { getPublicClient } from "./supabase";
 import type {
   Candidate,
+  Issue,
   Municipality,
   Position,
   Race,
+  RaceType,
   RaceWithCandidates,
   Ward,
 } from "./types";
@@ -145,6 +147,63 @@ export async function getPositions(candidateId: string): Promise<Position[]> {
     .order("issue_sort", { ascending: true });
   if (error) {
     warn("getPositions", error);
+    return [];
+  }
+  return (data as Position[]) ?? [];
+}
+
+/**
+ * The issues for one kind of race, in display order.
+ *
+ * WHY THIS TAKES A RACE TYPE. Every candidate in a race is measured against
+ * the same list, or comparison means nothing — but a school board trustee and
+ * a mayor are not in the same race. Trustees do not set the municipal levy,
+ * repair roads, or sit at the District table. Listing those against a
+ * trustee's name and marking each one "no public statement found" invents a
+ * scorecard for a job they never stood for, and it would make the least
+ * covered candidates on the site look the most evasive.
+ *
+ * Pass the race's type. Omit it and you get the municipal set, which is the
+ * safe default for anything that isn't a school board seat.
+ */
+export async function getIssues(raceType?: RaceType): Promise<Issue[]> {
+  const db = getPublicClient();
+  if (!db) return [];
+  const municipality = await getMunicipality();
+  if (!municipality) return [];
+  const appliesTo = raceType === "school_board" ? "school_board" : "municipal";
+  const { data, error } = await db
+    .from("issues")
+    .select("*")
+    .eq("municipality_id", municipality.id)
+    .eq("applies_to", appliesTo)
+    .order("sort_order", { ascending: true });
+  if (error) {
+    warn("getIssues", error);
+    return [];
+  }
+  return (data as Issue[]) ?? [];
+}
+
+/**
+ * Every published position for every candidate in one race.
+ *
+ * One query rather than N, because the comparison page needs the whole grid
+ * and doing it per-candidate would mean six round trips to render one table.
+ */
+export async function getPositionsForCandidates(
+  candidateIds: string[]
+): Promise<Position[]> {
+  if (candidateIds.length === 0) return [];
+  const db = getPublicClient();
+  if (!db) return [];
+  const { data, error } = await db
+    .from("public_positions")
+    .select("*")
+    .in("candidate_id", candidateIds)
+    .order("issue_sort", { ascending: true });
+  if (error) {
+    warn("getPositionsForCandidates", error);
     return [];
   }
   return (data as Position[]) ?? [];

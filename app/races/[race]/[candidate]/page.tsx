@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getCandidate, getCandidatesForRace, getPositions, getRaces } from "@/lib/queries";
+import {
+  getCandidate,
+  getCandidatesForRace,
+  getIssues,
+  getPositions,
+  getRaces,
+} from "@/lib/queries";
 import { formatShortDate } from "@/lib/dates";
+import PositionCell from "@/components/PositionCell";
+import WebsiteLink from "@/components/WebsiteLink";
 
 export const revalidate = 300;
 
@@ -44,8 +52,23 @@ export default async function CandidatePage({ params }: Props) {
   if (!result) notFound();
 
   const { race, candidate } = result;
-  const positions = await getPositions(candidate.id);
+  // Scoped to the race type, so a trustee candidate isn't shown twelve
+  // municipal issues they have no authority over. See getIssues().
+  const [positions, issues] = await Promise.all([
+    getPositions(candidate.id),
+    getIssues(race.race_type),
+  ]);
   const socials = Object.entries(candidate.socials ?? {}).filter(([, v]) => Boolean(v));
+
+  // An issue can hold MORE than one position — see components/PositionCell.
+  const byIssue = new Map<string, typeof positions>();
+  for (const p of positions) {
+    if (!byIssue.has(p.issue_id)) byIssue.set(p.issue_id, []);
+    byIssue.get(p.issue_id)!.push(p);
+  }
+  const correctionHref = `/corrections?about=${encodeURIComponent(
+    `${candidate.name} — ${race.name}`
+  )}&page=${encodeURIComponent(`/races/${race.slug}/${candidate.slug}`)}`;
 
   return (
     <div>
@@ -62,35 +85,25 @@ export default async function CandidatePage({ params }: Props) {
       </p>
 
       {candidate.status === "acclaimed" && (
-        <p className="pill mt-3 bg-flag-light text-flag">Acclaimed — no election for this seat</p>
+        <p className="pill mt-3 bg-flag-light text-flag">
+          Acclaimed — no election for this seat
+        </p>
       )}
 
-      {/* Where to hear from them directly. Listed before our summaries on
-          purpose: the candidate's own words outrank ours. */}
+      {/* The candidate's own words come before ours, deliberately. */}
       <section aria-labelledby="contact-heading" className="mt-6 card">
         <h2 id="contact-heading" className="text-base">
           In their own words
         </h2>
         {candidate.website || socials.length > 0 ? (
-          <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            {candidate.website && (
-              <li>
-                <a
-                  href={candidate.website}
-                  className="link tap-target font-medium"
-                  rel="noopener noreferrer nofollow"
-                  target="_blank"
-                >
-                  Campaign website &rarr;
-                </a>
-              </li>
-            )}
-            {socials.map(([k, v]) => (
-              <li key={k} className="text-ink-soft">
-                <span className="text-ink-faint">{SOCIAL_LABELS[k] ?? k}:</span> {v}
-              </li>
-            ))}
-          </ul>
+          <p className="mt-3 text-sm">
+            <WebsiteLink
+              website={candidate.website}
+              socials={candidate.socials}
+              verifiedLinks={candidate.verified_links}
+              candidateName={candidate.name}
+            />
+          </p>
         ) : (
           <p className="mt-2 text-sm leading-relaxed text-ink-soft">
             This candidate hasn&rsquo;t listed a campaign website or social account with
@@ -101,79 +114,55 @@ export default async function CandidatePage({ params }: Props) {
       </section>
 
       <h2 className="mt-10 text-xl">Where they stand</h2>
+      {/* issues.length rather than a hard-coded number. It said "the same ten
+          issues" for a week after the list grew to twelve, and a page that
+          states its own method should not be the thing that is out of date. */}
+      <p className="mt-2 max-w-prose text-sm leading-relaxed text-ink-soft">
+        Every candidate in this race is shown against the same {issues.length} issues, in
+        the same order, whether or not we&rsquo;ve found something for each one.{" "}
+        <Link href="/methodology" className="link">
+          Why we do it this way
+        </Link>
+        .
+      </p>
 
-      {positions.length === 0 ? (
-        <div className="mt-4 card border-flag/30 bg-flag-light">
-          <h3 className="text-base text-ink">Not published yet</h3>
-          <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-            We haven&rsquo;t published positions for this candidate yet. Positions are
-            added once they&rsquo;ve been sourced to something the candidate actually
-            said or wrote, and reviewed by a human. Nothing gets guessed at.
-          </p>
-          <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-            If you&rsquo;re the candidate and you&rsquo;d like your positions here
-            sooner,{" "}
-            <Link href="/corrections" className="link">
-              tell us
-            </Link>{" "}
-            and we&rsquo;ll prioritise it.
+      {issues.length === 0 ? (
+        <div className="mt-4 card">
+          <p className="text-sm text-ink-soft">
+            Issue information isn&rsquo;t available right now.
           </p>
         </div>
       ) : (
         <div className="mt-4 space-y-5">
-          {positions.map((p) => (
-            <article key={p.id} className="card">
-              <h3 className="text-base">{p.issue_name}</h3>
+          {issues.map((issue) => {
+            const forIssue = byIssue.get(issue.id) ?? [];
 
-              {p.no_public_position ? (
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-                  No public position found on this issue
-                  {p.reviewed_at ? ` as of ${formatShortDate(p.reviewed_at)}` : ""}. That
-                  isn&rsquo;t a judgment about the candidate — we simply couldn&rsquo;t
-                  find anything they&rsquo;ve said about it.{" "}
-                  <Link href="/corrections" className="link">
-                    Know otherwise?
-                  </Link>
-                </p>
-              ) : (
-                <>
-                  {p.summary_short && (
-                    <p className="mt-2 font-medium text-ink">{p.summary_short}</p>
-                  )}
-                  {p.summary_bullets && p.summary_bullets.length > 0 && (
-                    <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm text-ink-soft">
-                      {p.summary_bullets.map((b, i) => (
-                        <li key={i}>{b}</li>
-                      ))}
-                    </ul>
-                  )}
-                  {p.verbatim_quote && (
-                    <blockquote className="mt-4 border-l-2 border-accent/40 pl-4 text-sm italic leading-relaxed text-ink-soft">
-                      &ldquo;{p.verbatim_quote}&rdquo;
-                    </blockquote>
-                  )}
-                  {/* Non-negotiable: no position publishes without this. */}
-                  <p className="mt-3 text-xs text-ink-faint">
-                    Source:{" "}
-                    {p.source_url ? (
-                      <a
-                        href={p.source_url}
-                        className="link"
-                        rel="noopener noreferrer nofollow"
-                        target="_blank"
-                      >
-                        {p.source_title ?? p.source_url}
-                      </a>
-                    ) : (
-                      (p.source_title ?? "—")
-                    )}
-                    {p.source_date ? ` · ${formatShortDate(p.source_date)}` : ""}
-                    {p.reviewed_at ? ` · reviewed ${formatShortDate(p.reviewed_at)}` : ""}
+            return (
+              <article key={issue.id} className="card">
+                <h3 className="text-base">{issue.name}</h3>
+                {issue.voter_question && (
+                  <p className="mt-1 text-sm italic text-ink-faint">
+                    {issue.voter_question}
                   </p>
-                </>
-              )}
-            </article>
-          ))}
+                )}
+
+                {/* PositionCell owns every state — not reviewed yet, no public
+                    statement found, a single position, or two conflicting ones.
+                    Keeping that logic in ONE component is what stops the
+                    candidate page and the comparison page drifting apart and
+                    describing the same gap in two different ways. */}
+                <div className="mt-3">
+                  <PositionCell
+                    positions={forIssue}
+                    correctionHref={correctionHref}
+                    contactedAt={candidate.contacted_at}
+                    respondedAt={candidate.responded_at}
+                    lookedAt={candidate.last_reviewed_at}
+                  />
+                </div>
+              </article>
+            );
+          })}
         </div>
       )}
 
@@ -185,8 +174,8 @@ export default async function CandidatePage({ params }: Props) {
           priority.
         </p>
         <p className="mt-3">
-          <Link href="/corrections" className="link tap-target text-sm font-medium">
-            Report a correction &rarr;
+          <Link href={correctionHref} className="link tap-target text-sm font-medium">
+            Report a correction about this page &rarr;
           </Link>
         </p>
       </div>

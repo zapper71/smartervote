@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { INDEXABLE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://smartervote.ca"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "SmarterVote — Huntsville 2026 municipal election",
     template: "%s · SmarterVote",
@@ -16,7 +17,12 @@ export const metadata: Metadata = {
     locale: "en_CA",
     siteName: "SmarterVote",
   },
-  robots: { index: true, follow: true },
+  // Off until SITE_INDEXABLE=true is set in Vercel. See lib/site.ts — the
+  // site is deployed before it is finished, and an unfinished snapshot in
+  // Google is slow to correct and unfair to the candidates in it.
+  robots: INDEXABLE
+    ? { index: true, follow: true }
+    : { index: false, follow: false, nocache: true },
 };
 
 export default function RootLayout({

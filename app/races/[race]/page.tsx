@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import UnavailableNotice from "@/components/UnavailableNotice";
+import WebsiteLink from "@/components/WebsiteLink";
 import { getCandidatesForRace, getRace, getRaces } from "@/lib/queries";
 import { contestLabel } from "@/lib/dates";
 
@@ -78,6 +79,24 @@ export default async function RacePage({ params }: Props) {
         </p>
       )}
 
+      {candidates.length > 1 && (
+        <div className="mt-8 rounded-lg border border-accent/20 bg-accent-light p-5">
+          <h2 className="text-base text-ink">See them side by side</h2>
+          <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+            All {candidates.length} candidates on the same ten issues, in one
+            table. This is the quickest way to see where they actually differ.
+          </p>
+          <p className="mt-3">
+            <Link
+              href={`/races/${race.slug}/compare`}
+              className="tap-target inline-flex rounded-md bg-accent px-5 py-2.5 text-sm font-medium text-white no-underline hover:bg-accent-hover"
+            >
+              Compare all {candidates.length} candidates &rarr;
+            </Link>
+          </p>
+        </div>
+      )}
+
       <h2 className="mt-10 text-xl">
         {uncontested ? "Acclaimed" : `Candidates (${candidates.length})`}
       </h2>
@@ -101,8 +120,13 @@ export default async function RacePage({ params }: Props) {
               {c.status === "acclaimed" && (
                 <span className="pill mt-2 bg-flag-light text-flag">Acclaimed</span>
               )}
-              <p className="mt-3 text-sm text-ink-faint">
-                {c.website ? "Has a campaign website" : "No campaign website listed"}
+              <p className="mt-3 text-sm">
+                <WebsiteLink
+                  website={c.website}
+                  socials={c.socials}
+                  verifiedLinks={c.verified_links}
+                  candidateName={c.name}
+                />
               </p>
               <p className="mt-3">
                 <Link
