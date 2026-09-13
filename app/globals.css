@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  /* WCAG 2.2 respects reduced motion. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-paper-warm text-ink antialiased;
+  }
+
+  /* WCAG 2.2 SC 2.4.11 — focus must be visible and not obscured.
+     A visible focus ring is not optional on a civic site. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper-warm;
+  }
+
+  h1, h2, h3, h4 {
+    @apply text-ink font-semibold tracking-tight;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    @apply underline-offset-2;
+  }
+}
+
+@layer components {
+  /* WCAG 2.2 SC 2.5.8 — 24x24 minimum target size. */
+  .tap-target {
+    @apply min-h-[44px] min-w-[44px] inline-flex items-center;
+  }
+
+  .link {
+    @apply text-accent underline decoration-accent/40 hover:decoration-accent focus-visible:decoration-accent;
+  }
+
+  .card {
+    @apply rounded-lg border border-paper-edge bg-paper p-5 shadow-sm;
+  }
+
+  .pill {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .prose-civic {
+    @apply max-w-prose text-[1.0625rem] leading-relaxed text-ink-soft;
+  }
+
+  .prose-civic p + p {
+    @apply mt-4;
+  }
+
+  .prose-civic h2 {
+    @apply mt-10 mb-3 text-xl;
+  }
+
+  .prose-civic h3 {
+    @apply mt-7 mb-2 text-lg;
+  }
+
+  .prose-civic ul {
+    @apply mt-4 list-disc space-y-2 pl-5;
+  }
+}

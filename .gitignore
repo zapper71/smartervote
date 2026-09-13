@@ -1,0 +1,61 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# next.js
+.next/
+out/
+build/
+dist/
+
+# environment — NEVER commit these
+.env
+.env.local
+.env*.local
+.env.development
+.env.production
+
+# supabase local
+.supabase/
+supabase/.branches
+supabase/.temp
+
+# testing
+coverage/
+.nyc_output/
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.log
+
+# editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# os
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# OneDrive sync artefacts — this project originated in a synced folder
+*.tmp
+~$*
+.~lock.*#
+
+# scratch — working files that should not ship
+/scratch/
+/tmp/
