@@ -38,7 +38,15 @@ export default function Nav() {
               </Link>
             </li>
           ))}
-        </ul>
+                </ul>
+        <a
+          href="https://gofund.me/9b32a40d4"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="tap-target rounded-md bg-accent px-4 py-2 text-sm font-medium text-white no-underline hover:bg-accent-hover"
+        >
+          Donate
+        </a>
       </nav>
     </header>
   );
