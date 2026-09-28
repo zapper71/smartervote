@@ -31,9 +31,14 @@ export default function Footer() {
           <Link href="/privacy" className="link tap-target">
             Privacy
           </Link>
-          <Link href="/about" className="link tap-target">
-            About
-          </Link>
+                    <a
+            href="https://gofund.me/9b32a40d4"
+            className="link tap-target"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Donate to support SmarterVote
+          </a>
           <a
             href="https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/"
             className="link tap-target"
@@ -45,7 +50,8 @@ export default function Footer() {
         </div>
 
         <p className="mt-6 text-xs text-ink-faint">
-          Built and run by one person, for free, with no advertising and no funding.
+                    Built and run by one person, for free, with no advertising. Reader donations
+          help keep it running.
           Candidate information is sourced from the Town of Huntsville&rsquo;s certified
           candidate list. For official information about voting, always check{" "}
           <a
