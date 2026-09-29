@@ -6,6 +6,7 @@ import PositionCell from "@/components/PositionCell";
 import WebsiteLink from "@/components/WebsiteLink";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import {
+  getCandidateResponsesForCandidates,
   getCandidatesForRace,
   getIssues,
   getPositionsForCandidates,
@@ -69,9 +70,37 @@ export default async function ComparePage({ params, searchParams }: Props) {
   const candidates = valid.length > 0 ? allCandidates.filter((c) => valid.includes(c.slug)) : allCandidates;
   const isFiltered = candidates.length !== allCandidates.length;
 
-  const positions = await getPositionsForCandidates(candidates.map((c) => c.id));
+  const positions = await getPositionsForCandidates(candidates.map((c) => c.id));const positions = await getPositionsForCandidates(candidates.map((c) => c.id));
+  const responses = await getCandidateResponsesForCandidates(
+    candidates.map((c) => c.id)
+  );
+  const responseByCandidate = new Map(
+    responses.map((r) => [r.candidate_id, r])
+  );
   const key = (candidateId: string, issueId: string) => `${candidateId}:${issueId}`;
 
+  // The deep link under an email-built cell: to the reply's matching
+  // section on the candidate's page when there is one, else the top of
+  // the reply. Null when the cell holds no email-sourced position.
+  const fullResponseLinkFor = (
+    candidateId: string,
+    candidateSlug: string,
+    issueSlug: string,
+    issueName: string,
+    cellPositions: typeof positions
+  ) => {
+    const resp = responseByCandidate.get(candidateId);
+    if (
+      !resp ||
+      !cellPositions.some((p) => p.source_type === "candidate_submission")
+    )
+      return null;
+    const sec = resp.sections.find((s) => s.issue_slug === issueSlug);
+    return {
+      href: `/races/${race.slug}/${candidateSlug}#${sec ? sec.anchor : `resp-${candidateSlug}-top`}`,
+      label: `Read their full response on ${issueName.toLowerCase()} →`,
+    };
+  };
   // A cell can hold MORE than one position now — a candidate may have said
   // different things in different places, and we show both rather than
   // picking a winner. See components/PositionCell.
@@ -169,6 +198,16 @@ export default async function ComparePage({ params, searchParams }: Props) {
                       candidateName={c.name}
                     />
                   </p>
+                  {responseByCandidate.get(c.id) && (
+                    <p className="mt-1 text-xs font-normal">
+                      <Link
+                        href={`/races/${race.slug}/${c.slug}#resp-${c.slug}-top`}
+                        className="link"
+                      >
+                        Read {c.name.split(" ")[0]}&rsquo;s full response →
+                      </Link>
+                    </p>
+                  )}
                 </th>
               ))}
             </tr>
@@ -187,7 +226,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
                     </span>
                   )}
                 </th>
-                {candidates.map((c) => (
+               {candidates.map((c) => (
                   <td
                     key={c.id}
                     className="border-b border-l border-paper-edge p-3 align-top"
@@ -198,6 +237,13 @@ export default async function ComparePage({ params, searchParams }: Props) {
                       contactedAt={c.contacted_at}
                       respondedAt={c.responded_at}
                       lookedAt={c.last_reviewed_at}
+                      fullResponseLink={fullResponseLinkFor(
+                        c.id,
+                        c.slug,
+                        issue.slug,
+                        issue.name,
+                        byCell.get(key(c.id, issue.id)) ?? []
+                      )}
                     />
                   </td>
                 ))}
@@ -247,14 +293,31 @@ export default async function ComparePage({ params, searchParams }: Props) {
                       candidateName={c.name}
                     />
                     </p>
+                    {responseByCandidate.get(c.id) && (
+                      <p className="mt-1 text-xs">
+                        <Link
+                          href={`/races/${race.slug}/${c.slug}#resp-${c.slug}-top`}
+                          className="link"
+                        >
+                          Read {c.name.split(" ")[0]}&rsquo;s full response →
+                        </Link>
+                      </p>
+                    )}
                   </div>
-                  <div className="mt-2">
+                <div className="mt-2">
                     <PositionCell
                       positions={byCell.get(key(c.id, issue.id)) ?? []}
                       correctionHref={correctionFor(c.name)}
                       contactedAt={c.contacted_at}
                       respondedAt={c.responded_at}
                       lookedAt={c.last_reviewed_at}
+                      fullResponseLink={fullResponseLinkFor(
+                        c.id,
+                        c.slug,
+                        issue.slug,
+                        issue.name,
+                        byCell.get(key(c.id, issue.id)) ?? []
+                      )}
                     />
                   </div>
                 </div>
