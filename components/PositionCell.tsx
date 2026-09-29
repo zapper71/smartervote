@@ -14,7 +14,42 @@ import type { Position } from "@/lib/types";
  * A cell is never silently empty. Every state is labelled.
  */
 
+/**
+ * Deep link to the candidate's full email reply.
+ *
+ * Shown under a cell only when the cell holds a position parsed from that
+ * reply (source_type = 'candidate_submission') — the parent decides that
+ * and passes the link, so this component never has to know what an email
+ * reply is.
+ */
+export interface FullResponseLink {
+  href: string;
+  label: string;
+}
+
+function FullResponseNote({ link }: { link: FullResponseLink }) {
+  // Same-page anchors stay a native <a>: the response component on the
+  // candidate page listens for hashchange to auto-open the expander, and
+  // a Next.js client-side nav would swallow that event. Cross-page links
+  // use Next <Link>; the destination page opens the expander from the
+  // hash on mount instead.
+  return (
+    <p className="mt-2 text-xs">
+      {link.href.startsWith("#") ? (
+        <a href={link.href} className="link">
+          {link.label}
+        </a>
+      ) : (
+        <Link href={link.href} className="link">
+          {link.label}
+        </Link>
+      )}
+    </p>
+  );
+}
+
 function ConflictPill() {
+
   return (
     <span className="pill border border-red-300 bg-red-50 text-red-800">
       Conflicting Position
@@ -68,9 +103,11 @@ function SourceLine({ p }: { p: Position }) {
 function SinglePosition({
   p,
   showQuoteInline,
+  fullResponseLink,
 }: {
   p: Position;
   showQuoteInline: boolean;
+  fullResponseLink?: FullResponseLink | null;
 }) {
   return (
     <div>
@@ -124,6 +161,7 @@ function SinglePosition({
             <SourceLine p={p} />
           </details>
         ))}
+      {fullResponseLink && <FullResponseNote link={fullResponseLink} />}
     </div>
   );
 }
@@ -185,6 +223,8 @@ export default function PositionCell({
   respondedAt?: string | null;
   /** When we last searched the public record for them. */
   lookedAt?: string | null;
+  /** Deep link to their full email reply; shown only under email-built cells. */
+  fullResponseLink?: FullResponseLink | null;
 }) {
   if (positions.length === 0) {
     return (
@@ -229,7 +269,15 @@ export default function PositionCell({
   }
 
   if (real.length === 1) {
-    return <SinglePosition p={real[0]} showQuoteInline={false} />;
+    return <Sif (real.length === 1) {
+    return (
+      <SinglePosition
+        p={real[0]}
+        showQuoteInline={false}
+        fullResponseLink={fullResponseLink}
+      />
+    );
+  }inglePosition p={real[0]} showQuoteInline={false} />;
   }
 
   // MORE THAN ONE STATEMENT ON THE SAME ISSUE.
@@ -273,7 +321,11 @@ export default function PositionCell({
             key={p.id}
             className={i > 0 ? "border-t border-paper-edge pt-3" : undefined}
           >
-            <SinglePosition p={p} showQuoteInline />
+               <SinglePosition
+              p={p}
+              showQuoteInline
+              fullResponseLink={fullResponseLink}
+            />
           </div>
         ))}
       </div>
