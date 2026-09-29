@@ -214,6 +214,7 @@ export default function PositionCell({
   contactedAt,
   respondedAt,
   lookedAt,
+  fullResponseLink,
 }: {
   positions: Position[];
   correctionHref: string;
@@ -269,7 +270,6 @@ export default function PositionCell({
   }
 
   if (real.length === 1) {
-    return <Sif (real.length === 1) {
     return (
       <SinglePosition
         p={real[0]}
@@ -277,7 +277,6 @@ export default function PositionCell({
         fullResponseLink={fullResponseLink}
       />
     );
-  }inglePosition p={real[0]} showQuoteInline={false} />;
   }
 
   // MORE THAN ONE STATEMENT ON THE SAME ISSUE.
