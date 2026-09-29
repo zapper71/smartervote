@@ -70,7 +70,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
   const candidates = valid.length > 0 ? allCandidates.filter((c) => valid.includes(c.slug)) : allCandidates;
   const isFiltered = candidates.length !== allCandidates.length;
 
-  const positions = await getPositionsForCandidates(candidates.map((c) => c.id));const positions = await getPositionsForCandidates(candidates.map((c) => c.id));
+  const positions = await getPositionsForCandidates(candidates.map((c) => c.id));
   const responses = await getCandidateResponsesForCandidates(
     candidates.map((c) => c.id)
   );
