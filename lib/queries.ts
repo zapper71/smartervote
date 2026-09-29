@@ -1,6 +1,7 @@
 import { getPublicClient } from "./supabase";
 import type {
   Candidate,
+  CandidateResponse,
   Issue,
   Municipality,
   Position,
@@ -9,6 +10,7 @@ import type {
   RaceWithCandidates,
   Ward,
 } from "./types";
+
 
 export const MUNICIPALITY_SLUG = "huntsville";
 
@@ -207,4 +209,49 @@ export async function getPositionsForCandidates(
     return [];
   }
   return (data as Position[]) ?? [];
+}
+/**
+ * A candidate's full email reply, if they've sent one and it's published.
+ *
+ * Null is the normal case — most candidates haven't replied. Callers
+ * render nothing when it comes back null.
+ */
+export async function getCandidateResponse(
+  candidateId: string
+): Promise<CandidateResponse | null> {
+  const db = getPublicClient();
+  if (!db) return null;
+  const { data, error } = await db
+    .from("public_candidate_responses")
+    .select("*")
+    .eq("candidate_id", candidateId)
+    .maybeSingle();
+  if (error) {
+    warn("getCandidateResponse", error);
+    return null;
+  }
+  return (data as CandidateResponse) ?? null;
+}
+
+/**
+ * Published email replies for a set of candidates, in one query.
+ *
+ * The comparison page needs every candidate's reply to build the
+ * "Read their full response" deep links; one round trip, not N.
+ */
+export async function getCandidateResponsesForCandidates(
+  candidateIds: string[]
+): Promise<CandidateResponse[]> {
+  if (candidateIds.length === 0) return [];
+  const db = getPublicClient();
+  if (!db) return [];
+  const { data, error } = await db
+    .from("public_candidate_responses")
+    .select("*")
+    .in("candidate_id", candidateIds);
+  if (error) {
+    warn("getCandidateResponsesForCandidates", error);
+    return [];
+  }
+  return (data as CandidateResponse[]) ?? [];
 }
