@@ -3,12 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   getCandidate,
+  getCandidateResponse,
   getCandidatesForRace,
   getIssues,
   getPositions,
   getRaces,
 } from "@/lib/queries";
 import { formatShortDate } from "@/lib/dates";
+import CandidateResponse from "@/components/CandidateResponse";
 import PositionCell from "@/components/PositionCell";
 import WebsiteLink from "@/components/WebsiteLink";
 
@@ -52,12 +54,16 @@ export default async function CandidatePage({ params }: Props) {
   if (!result) notFound();
 
   const { race, candidate } = result;
-  // Scoped to the race type, so a trustee candidate isn't shown twelve
+ // Scoped to the race type, so a trustee candidate isn't shown twelve
   // municipal issues they have no authority over. See getIssues().
-  const [positions, issues] = await Promise.all([
+  const [positions, issues, response] = await Promise.all([
     getPositions(candidate.id),
     getIssues(race.race_type),
+    getCandidateResponse(candidate.id),
   ]);
+  const issueNameBySlug: Record<string, string> = Object.fromEntries(
+    issues.map((i) => [i.slug, i.name])
+  );
   const socials = Object.entries(candidate.socials ?? {}).filter(([, v]) => Boolean(v));
 
   // An issue can hold MORE than one position — see components/PositionCell.
@@ -111,7 +117,19 @@ export default async function CandidatePage({ params }: Props) {
             their material is published online for us to summarise.
           </p>
         )}
-      </section>
+</section>
+
+      {/* The candidate's unedited reply, when they've sent one. Their words
+          before our summaries — same principle as "In their own words". */}
+      {response && (
+        <CandidateResponse
+          response={response}
+          firstName={candidate.name.split(" ")[0]}
+          candidateSlug={candidate.slug}
+          raceSlug={race.slug}
+          issueNameBySlug={issueNameBySlug}
+        />
+      )}
 
       <h2 className="mt-10 text-xl">Where they stand</h2>
       {/* issues.length rather than a hard-coded number. It said "the same ten
@@ -134,8 +152,25 @@ export default async function CandidatePage({ params }: Props) {
         </div>
       ) : (
         <div className="mt-4 space-y-5">
-          {issues.map((issue) => {
+        {issues.map((issue) => {
             const forIssue = byIssue.get(issue.id) ?? [];
+
+            // The "Read their full response" link goes under a cell only
+            // when the cell holds a position parsed from the reply, and
+            // deep-links to the reply's matching section when there is one.
+            const responseSection = response?.sections.find(
+              (s) => s.issue_slug === issue.slug
+            );
+            const fullResponseLink =
+              response &&
+              forIssue.some((p) => p.source_type === "candidate_submission")
+                ? {
+                    href: `#${responseSection ? responseSection.anchor : `resp-${candidate.slug}-top`}`,
+                    label: responseSection
+                      ? `Read their full response on ${issue.name.toLowerCase()} →`
+                      : "Read their full response →",
+                  }
+                : null;
 
             return (
               <article key={issue.id} className="card">
@@ -158,6 +193,7 @@ export default async function CandidatePage({ params }: Props) {
                     contactedAt={candidate.contacted_at}
                     respondedAt={candidate.responded_at}
                     lookedAt={candidate.last_reviewed_at}
+                    fullResponseLink={fullResponseLink}
                   />
                 </div>
               </article>
