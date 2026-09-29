@@ -222,10 +222,42 @@ export interface Position {
    * null means we haven't recorded it, and the UI shows nothing.
    */
   source_extent: SourceExtent | null;
-  reviewed_at: string | null;
+ reviewed_at: string | null;
   issue_name: string;
   issue_slug: string;
   issue_sort: number;
+}
+
+/**
+ * One section of a candidate's email reply, for deep links.
+ *
+ * Stored in candidate_responses.sections. `heading` is an exact line from
+ * the reply's body text; `anchor` is resp-<candidate-slug>-<slugified
+ * heading> and must match what the migration generated. `issue_slug` is
+ * null for sections that restate rather than answer (e.g. campaign
+ * slogans) — they appear in the full reply but get no comparison cell.
+ */
+export interface ResponseSection {
+  heading: string;
+  anchor: string;
+  issue_slug: string | null;
+}
+
+/**
+ * A candidate's full, unedited reply to the review email.
+ *
+ * Read from public_candidate_responses (published only). The parsed
+ * per-issue summaries live in positions with
+ * source_type = 'candidate_submission'; this is the complete text behind
+ * them, shown in the "What [Name] told us" expander.
+ */
+export interface CandidateResponse {
+  id: string;
+  candidate_id: string;
+  received_at: string;
+  subject: string | null;
+  body_text: string;
+  sections: ResponseSection[];
 }
 
 /** A race with its candidates attached. */
