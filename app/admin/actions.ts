@@ -261,6 +261,7 @@ const SOURCE_TYPES = [
   "local_news",
   "all_candidates_meeting",
   "candidate_submission",
+  "candidate_questionnaire",
 ] as const;
 
 function isRecord(v: unknown): v is Record<string, unknown> {
