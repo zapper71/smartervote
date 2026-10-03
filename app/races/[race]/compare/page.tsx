@@ -166,7 +166,13 @@ export default async function ComparePage({ params, searchParams }: Props) {
           when it scrolls a focused element into view, so this keeps the
           focused thing clear of the column rather than under it. */}
       <div className="mt-8 hidden overflow-x-auto scroll-pl-48 md:block">
-        <table className="w-full border-collapse text-left">
+        {/* table-fixed: every candidate column gets exactly the same width.
+            (auto layout sized columns by content volume, which looked like
+            favouritism.) The w-48 issue column keeps its width; candidates
+            split the rest equally. min-w-[16rem] stays as the floor — with
+            many candidates the table scrolls horizontally instead of
+            squeezing columns. */}
+        <table className="w-full table-fixed border-collapse text-left">
           <caption className="sr-only">
             Candidate positions for {race.name}, by issue
           </caption>
@@ -183,6 +189,9 @@ export default async function ComparePage({ params, searchParams }: Props) {
                   key={c.id}
                   scope="col"
                   className="min-w-[16rem] border-b-2 border-paper-edge p-3 align-bottom"
+                  style={{
+                    width: `calc((100% - 12rem) / ${candidates.length})`,
+                  }}
                 >
                   <Link
                     href={`/races/${race.slug}/${c.slug}`}
@@ -229,7 +238,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
                {candidates.map((c) => (
                   <td
                     key={c.id}
-                    className="border-b border-l border-paper-edge p-3 align-top"
+                    className="break-words border-b border-l border-paper-edge p-3 align-top"
                   >
                     <PositionCell
                       positions={byCell.get(key(c.id, issue.id)) ?? []}
