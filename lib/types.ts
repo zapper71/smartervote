@@ -64,7 +64,8 @@ export type SourceType =
   | "candidate_social"
   | "local_news"
   | "all_candidates_meeting"
-  | "candidate_submission";
+  | "candidate_submission"
+  | "candidate_questionnaire";
 
 export interface Municipality {
   id: string;

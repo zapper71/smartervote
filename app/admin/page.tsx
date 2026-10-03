@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import { getServiceClient } from "@/lib/supabase";
 import { adminEnabled, isSignedIn } from "@/lib/admin-auth";
+import { AdminDisabled, AdminLogin } from "./gate";
 import {
   approveAction,
+  approveResponseAction,
   bulkApproveCandidateAction,
   logoutAction,
-  loginAction,
   rejectAction,
+  rejectResponseAction,
   setExtentAction,
   unpublishAction,
+  unpublishResponseAction,
 } from "./actions";
 import { formatShortDate } from "@/lib/dates";
 import { allowedExtents, type SourceExtent, type SourceType } from "@/lib/types";
@@ -80,58 +83,17 @@ function ExtentSelect({ r }: { r: Row }) {
   );
 }
 
-function Disabled() {
-  return (
-    <div className="prose-civic">
-      <h1 className="text-3xl text-ink">Admin is off in this environment</h1>
-      <p className="mt-4">
-        No <code className="rounded bg-paper-warm px-1">ADMIN_PASSWORD</code> is set, so
-        there is no admin area here at all — not a locked door, no door.
-      </p>
-      <p>
-        This is the intended default for production. Review positions locally instead:
-        set <code className="rounded bg-paper-warm px-1">ADMIN_PASSWORD</code> in your{" "}
-        <code className="rounded bg-paper-warm px-1">.env.local</code>, restart{" "}
-        <code className="rounded bg-paper-warm px-1">npm run dev</code>, and work against
-        the same database. Nothing about publishing requires the admin area to be exposed
-        on the internet.
-      </p>
-    </div>
-  );
-}
-
-function Login({ error }: { error: boolean }) {
-  return (
-    <div className="mx-auto max-w-sm">
-      <h1 className="text-2xl">Review queue</h1>
-      <p className="mt-2 text-sm text-ink-soft">Sign in to review drafts.</p>
-      {error && (
-        <p className="mt-4 rounded-md border border-flag/40 bg-flag-light px-3 py-2 text-sm text-ink">
-          That password didn&rsquo;t match.
-        </p>
-      )}
-      <form action={loginAction} className="mt-6 space-y-3">
-        <label htmlFor="password" className="block text-sm font-medium">
-          Password
-        </label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          required
-          className="w-full rounded-md border border-paper-edge px-3 py-2"
-        />
-        <button
-          type="submit"
-          className="tap-target w-full justify-center rounded-md bg-accent px-4 py-2.5 font-medium text-white"
-        >
-          Sign in
-        </button>
-      </form>
-    </div>
-  );
-}
+type ResponseRow = {
+  id: string;
+  status: string;
+  subject: string | null;
+  received_at: string;
+  body_text: string;
+  sections: { heading: string; anchor: string; issue_slug: string | null }[] | null;
+  reviewed_at: string | null;
+  candidate_id: string;
+  candidates: { name: string; slug: string; races: { name: string; slug: string } | null } | null;
+};
 
 export default async function AdminPage({
   searchParams,
@@ -140,8 +102,8 @@ export default async function AdminPage({
 }) {
   const sp = await searchParams;
 
-  if (!adminEnabled()) return <Disabled />;
-  if (!(await isSignedIn())) return <Login error={sp.error === "1"} />;
+  if (!adminEnabled()) return <AdminDisabled />;
+  if (!(await isSignedIn())) return <AdminLogin error={sp.error === "1"} next="/admin" />;
 
   const show = sp.show === "published" ? "published" : "in_review";
 
@@ -170,6 +132,35 @@ export default async function AdminPage({
     draft: rows.filter((r) => r.status === "draft").length,
   };
 
+  const { data: respData, error: respError } = await db
+    .from("candidate_responses")
+    .select(
+      "id,status,subject,received_at,body_text,sections,reviewed_at,candidate_id," +
+        "candidates(name,slug,races(name,slug))"
+    )
+    .in("status", ["in_review", "published", "draft"]);
+
+  if (respError) {
+    return (
+      <div className="card border-flag/40 bg-flag-light">
+        <h1 className="text-xl">Couldn&rsquo;t load the responses</h1>
+        <p className="mt-2 text-sm text-ink-soft">{respError.message}</p>
+      </div>
+    );
+  }
+
+  const responses = (respData ?? []) as unknown as ResponseRow[];
+  const respCounts = {
+    in_review: responses.filter((r) => r.status === "in_review").length,
+    published: responses.filter((r) => r.status === "published").length,
+  };
+  const responsesByCandidate = new Map<string, ResponseRow[]>();
+  for (const r of responses.filter((r) => r.status === show)) {
+    const key = r.candidate_id;
+    if (!responsesByCandidate.has(key)) responsesByCandidate.set(key, []);
+    responsesByCandidate.get(key)!.push(r);
+  }
+
   const visible = rows
     .filter((r) => r.status === show)
     .sort((a, b) => {
@@ -194,11 +185,18 @@ export default async function AdminPage({
         <div>
           <h1 className="text-3xl">Review queue</h1>
           <p className="mt-1 text-sm text-ink-soft">
-            {counts.in_review} awaiting review · {counts.published} published ·{" "}
-            {counts.draft} rejected
+            {counts.in_review} positions awaiting review · {respCounts.in_review} full
+            responses awaiting review · {counts.published} published · {counts.draft}{" "}
+            rejected
           </p>
         </div>
         <div className="flex gap-2">
+          <a
+            href="/admin/import"
+            className="tap-target rounded-md border border-paper-edge px-3 py-2 text-sm no-underline text-ink"
+          >
+            Import
+          </a>
           <a
             href="/admin/corrections"
             className="tap-target rounded-md border border-paper-edge px-3 py-2 text-sm no-underline text-ink"
@@ -228,15 +226,16 @@ export default async function AdminPage({
         </a>
       </div>
 
-      {show === "in_review" && counts.in_review > 0 && (
+      {show === "in_review" && (counts.in_review > 0 || respCounts.in_review > 0) && (
         <p className="mt-6 rounded-md border border-accent/20 bg-accent-light px-4 py-3 text-sm text-ink-soft">
           <strong>Read the quote first, then the summary.</strong> The question is whether
           the summary says anything the quote doesn&rsquo;t. If it does, edit it in the box
-          and approve — your edit is saved with the approval.
+          and approve — your edit is saved with the approval. A candidate&rsquo;s full
+          response publishes <em>verbatim</em>; approving it means you read the whole thing.
         </p>
       )}
 
-      {visible.length === 0 && (
+      {visible.length === 0 && responsesByCandidate.size === 0 && (
         <p className="mt-8 text-ink-soft">
           {show === "in_review"
             ? "Nothing waiting. The queue is clear."
@@ -244,29 +243,82 @@ export default async function AdminPage({
         </p>
       )}
 
-      {[...groups.entries()].map(([candidateId, items]) => {
-        const first = items[0];
-        return (
-          <section key={candidateId} className="mt-10">
-            <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-paper-edge pb-2">
-              <h2 className="text-xl">
-                {first.candidates?.name}{" "}
-                <span className="text-sm font-normal text-ink-faint">
-                  {first.candidates?.races?.name}
-                </span>
-              </h2>
-              {show === "in_review" && items.length > 1 && (
-                <form action={bulkApproveCandidateAction}>
-                  <input type="hidden" name="candidate_id" value={candidateId} />
-                  <button className="tap-target rounded-md border border-accent px-3 py-1.5 text-sm text-accent">
-                    Approve all {items.length} for this candidate
-                  </button>
-                </form>
-              )}
-            </div>
+      {[...new Set([...groups.keys(), ...responsesByCandidate.keys()])].map(
+        (candidateId) => {
+          const items = groups.get(candidateId) ?? [];
+          const respItems = responsesByCandidate.get(candidateId) ?? [];
+          const first = items[0] ?? respItems[0];
+          const total = items.length + respItems.length;
+          return (
+            <section key={candidateId} className="mt-10">
+              <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-paper-edge pb-2">
+                <h2 className="text-xl">
+                  {first.candidates?.name}{" "}
+                  <span className="text-sm font-normal text-ink-faint">
+                    {first.candidates?.races?.name}
+                  </span>
+                </h2>
+                {show === "in_review" && total > 1 && (
+                  <form action={bulkApproveCandidateAction}>
+                    <input type="hidden" name="candidate_id" value={candidateId} />
+                    <button className="tap-target rounded-md border border-accent px-3 py-1.5 text-sm text-accent">
+                      Approve all {total} for this candidate
+                    </button>
+                  </form>
+                )}
+              </div>
 
-            <div className="mt-4 space-y-5">
-              {items.map((r) => (
+              <div className="mt-4 space-y-5">
+                {respItems.map((resp) => (
+                  <article key={resp.id} className="card border-accent/30">
+                    <h3 className="text-base">
+                      Full response{" "}
+                      <span className="text-sm font-normal text-ink-faint">
+                        · received {formatShortDate(resp.received_at)}
+                        {resp.reviewed_at
+                          ? ` · reviewed ${formatShortDate(resp.reviewed_at)}`
+                          : ""}
+                      </span>
+                    </h3>
+                    {resp.subject && (
+                      <p className="mt-1 text-sm text-ink-soft">{resp.subject}</p>
+                    )}
+                    {/* The whole reply, verbatim — it publishes exactly as
+                        written, so this is what you're checking. Scrollable
+                        rather than shortened: shortening a candidate's own
+                        words in the review screen would be its own kind of
+                        editing. */}
+                    <div className="mt-3 max-h-96 overflow-y-auto rounded-md border border-paper-edge bg-paper-warm px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap text-ink-soft">
+                      {resp.body_text}
+                    </div>
+                    <p className="mt-2 text-xs text-ink-faint">
+                      {resp.sections?.length ?? 0} sections · deep links are
+                      generated from the headings
+                    </p>
+                    {show === "in_review" ? (
+                      <form action={approveResponseAction} className="mt-3 flex flex-wrap gap-2">
+                        <input type="hidden" name="id" value={resp.id} />
+                        <button className="tap-target rounded-md bg-accent px-4 py-2 text-sm font-medium text-white">
+                          Approve &amp; publish
+                        </button>
+                        <button
+                          formAction={rejectResponseAction}
+                          className="tap-target rounded-md border border-paper-edge px-4 py-2 text-sm"
+                        >
+                          Reject
+                        </button>
+                      </form>
+                    ) : (
+                      <form action={unpublishResponseAction} className="mt-3">
+                        <input type="hidden" name="id" value={resp.id} />
+                        <button className="tap-target rounded-md border border-paper-edge px-3 py-1.5 text-sm">
+                          Unpublish
+                        </button>
+                      </form>
+                    )}
+                  </article>
+                ))}
+                {items.map((r) => (
                 <article key={r.id} className="card">
                   <h3 className="text-base">{r.issues?.name}</h3>
 
