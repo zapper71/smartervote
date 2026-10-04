@@ -89,3 +89,21 @@
     @apply mt-4 list-disc space-y-2 pl-5;
   }
 }
+
+/* Compare table: direction-aware horizontal scroll cue.
+   A soft shadow appears only on the edge(s) with more columns to reveal.
+   Pure CSS, no JS: the opaque "cover" layers scroll with the content
+   (background-attachment: local) and hide each shadow exactly when that
+   edge is reached; the shadow layers stay fixed to the container (scroll).
+   Cover colour must match the page background (paper-warm #faf9f7). */
+.compare-scroll-x {
+  background-image:
+    linear-gradient(to right, #faf9f7, #faf9f7),
+    linear-gradient(to left, #faf9f7, #faf9f7),
+    linear-gradient(to right, rgb(26 35 50 / 0.14), transparent),
+    linear-gradient(to left, rgb(26 35 50 / 0.14), transparent);
+  background-position: left center, right center, left center, right center;
+  background-repeat: no-repeat;
+  background-size: 3rem 100%, 3rem 100%, 2rem 100%, 2rem 100%;
+  background-attachment: local, local, scroll, scroll;
+}
