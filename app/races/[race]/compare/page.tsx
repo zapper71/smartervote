@@ -165,13 +165,14 @@ export default async function ComparePage({ params, searchParams }: Props) {
           which then sits on top of it. The browser honours scroll-padding
           when it scrolls a focused element into view, so this keeps the
           focused thing clear of the column rather than under it. */}
-      <div className="mt-8 hidden overflow-x-auto scroll-pl-48 md:block">
-        {/* table-fixed: every candidate column gets exactly the same width.
-            (auto layout sized columns by content volume, which looked like
-            favouritism.) The w-48 issue column keeps its width; candidates
-            split the rest equally. min-w-[16rem] stays as the floor — with
-            many candidates the table scrolls horizontally instead of
-            squeezing columns. */}
+      <div className="compare-scroll-x mt-8 hidden overflow-x-auto scroll-pl-48 md:block">
+        {/* table-fixed + w-80: every candidate column is exactly 20rem wide,
+            whatever its content holds. (auto layout sized columns by content
+            volume, which looked like favouritism; equal fluid shares turned
+            out too narrow to read.) The table runs wider than the viewport in
+            crowded races and scrolls instead — .compare-scroll-x paints a
+            soft shadow on whichever edge still has columns to reveal. The
+            w-48 issue column stays sticky on the left as the scroll anchor. */}
         <table className="w-full table-fixed border-collapse text-left">
           <caption className="sr-only">
             Candidate positions for {race.name}, by issue
@@ -188,10 +189,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
                 <th
                   key={c.id}
                   scope="col"
-                  className="min-w-[16rem] border-b-2 border-paper-edge p-3 align-bottom"
-                  style={{
-                    width: `calc((100% - 12rem) / ${candidates.length})`,
-                  }}
+                  className="w-80 border-b-2 border-paper-edge p-3 align-bottom"
                 >
                   <Link
                     href={`/races/${race.slug}/${c.slug}`}
