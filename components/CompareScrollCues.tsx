@@ -86,18 +86,25 @@ export function CompareFloatingBar() {
     ro.observe(bar);
     window.addEventListener("resize", fitSpacer);
 
-    // Two-way sync. The epsilon guard is the whole trick: a programmatic
-    // set that lands within half a pixel of the current position is a
-    // no-op, so the echo of our own write never fights an active drag.
-    // (A lock flag + rAF was tried first; it dropped events mid-drag and
-    // felt choppy.)
+    // Two-way sync. lastBarWrite remembers the exact position the pill
+    // set, so when the table's echo of that write arrives we recognize it
+    // and don't yank the pill back mid-drag. (That yank is what felt
+    // choppy: a fast drag outran the echo, and every echo shoved the
+    // thumb backwards.) Writes from anywhere else — step buttons,
+    // keyboard, the table's own scrollbar — never match lastBarWrite,
+    // so they sync through to the pill normally.
+    const lastBarWrite = { current: -1 };
     const onTableScroll = () => {
+      if (Math.abs(table.scrollLeft - lastBarWrite.current) < 1) return;
       const target = table.scrollLeft;
       if (Math.abs(bar.scrollLeft - target) > 0.5) bar.scrollLeft = target;
     };
     const onBarScroll = () => {
       const target = bar.scrollLeft;
-      if (Math.abs(table.scrollLeft - target) > 0.5) table.scrollLeft = target;
+      if (Math.abs(table.scrollLeft - target) > 0.5) {
+        lastBarWrite.current = target;
+        table.scrollLeft = target;
+      }
     };
     table.addEventListener("scroll", onTableScroll, { passive: true });
     bar.addEventListener("scroll", onBarScroll, { passive: true });
@@ -168,8 +175,6 @@ export function StickyCompareHead() {
     bar.style.cssText =
       "position:fixed;top:0;left:0;z-index:40;display:none;" +
       "box-shadow:0 2px 10px rgb(26 35 50 / 0.10);";
-    const view = document.createElement("div");
-    view.style.overflow = "hidden";
     const clone = document.createElement("table");
     clone.className = table.className;
     const headClone = thead.cloneNode(true) as HTMLElement;
@@ -177,13 +182,14 @@ export function StickyCompareHead() {
       .querySelectorAll("a,button")
       .forEach((el) => el.setAttribute("tabindex", "-1"));
     clone.appendChild(headClone);
-    view.appendChild(clone);
-    bar.appendChild(view);
+    bar.appendChild(clone);
     document.body.appendChild(bar);
 
-    let ticking = false;
-    const update = () => {
-      ticking = false;
+    // Positions the bar exactly over the table. Must run on the table's
+    // own horizontal scrolls too: tableRect.left moves as the table
+    // scrolls sideways, and a stale left is precisely a visible
+    // header/column misalignment.
+    const position = () => {
       const r = table.getBoundingClientRect();
       const headH = thead.getBoundingClientRect().height || 0;
       // The desktop table is hidden below md, so its rects are zero there
@@ -194,25 +200,25 @@ export function StickyCompareHead() {
       bar.style.left = `${r.left}px`;
       bar.style.width = `${r.width}px`;
       clone.style.width = `${r.width}px`;
-      view.scrollLeft = scroller.scrollLeft;
     };
+    let ticking = false;
     const onScroll = () => {
       if (!ticking) {
         ticking = true;
-        requestAnimationFrame(update);
+        requestAnimationFrame(() => {
+          ticking = false;
+          position();
+        });
       }
     };
-    const onScrollerScroll = () => {
-      view.scrollLeft = scroller.scrollLeft;
-    };
-    update();
+    position();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    scroller.addEventListener("scroll", onScrollerScroll, { passive: true });
+    scroller.addEventListener("scroll", position, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      scroller.removeEventListener("scroll", onScrollerScroll);
+      scroller.removeEventListener("scroll", position);
       bar.remove();
     };
   }, []);
