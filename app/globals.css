@@ -107,3 +107,20 @@
   background-size: 3rem 100%, 3rem 100%, 2rem 100%, 2rem 100%;
   background-attachment: local, local, scroll, scroll;
 }
+
+/* Floating scroll bar (see components/CompareScrollCues.tsx): a slim,
+   teal native scrollbar inside the sticky pill. */
+.compare-floatbar {
+  scrollbar-width: thin;
+  scrollbar-color: #0f5c63 transparent;
+}
+.compare-floatbar::-webkit-scrollbar {
+  height: 10px;
+}
+.compare-floatbar::-webkit-scrollbar-thumb {
+  background: #0f5c63;
+  border-radius: 999px;
+}
+.compare-floatbar::-webkit-scrollbar-track {
+  background: transparent;
+}
