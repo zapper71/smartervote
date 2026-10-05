@@ -74,40 +74,36 @@ export function CompareFloatingBar() {
     const spacer = spacerRef.current;
     if (!overflows || !table || !bar || !spacer) return;
 
-    spacer.style.width = `${table.scrollWidth}px`;
-    const ro = new ResizeObserver(() => {
-      spacer.style.width = `${table.scrollWidth}px`;
-    });
-    ro.observe(table);
-
-    // The pill is narrower than the table, so map positions proportionally.
-    const ratio = () => {
+    // Size the spacer so the pill's scroll range exactly matches the
+    // table's: then positions map 1:1 with no ratio math to drift.
+    const fitSpacer = () => {
       const tableRange = table.scrollWidth - table.clientWidth;
-      const barRange = bar.scrollWidth - bar.clientWidth;
-      return tableRange > 0 ? barRange / tableRange : 1;
+      spacer.style.width = `${Math.max(0, bar.clientWidth + tableRange)}px`;
     };
-    let lock = false;
+    fitSpacer();
+    const ro = new ResizeObserver(fitSpacer);
+    ro.observe(table);
+    ro.observe(bar);
+    window.addEventListener("resize", fitSpacer);
+
+    // Two-way sync. The epsilon guard is the whole trick: a programmatic
+    // set that lands within half a pixel of the current position is a
+    // no-op, so the echo of our own write never fights an active drag.
+    // (A lock flag + rAF was tried first; it dropped events mid-drag and
+    // felt choppy.)
     const onTableScroll = () => {
-      if (lock) return;
-      lock = true;
-      bar.scrollLeft = table.scrollLeft * ratio();
-      requestAnimationFrame(() => {
-        lock = false;
-      });
+      const target = table.scrollLeft;
+      if (Math.abs(bar.scrollLeft - target) > 0.5) bar.scrollLeft = target;
     };
     const onBarScroll = () => {
-      if (lock) return;
-      lock = true;
-      const r = ratio();
-      table.scrollLeft = r > 0 ? bar.scrollLeft / r : 0;
-      requestAnimationFrame(() => {
-        lock = false;
-      });
+      const target = bar.scrollLeft;
+      if (Math.abs(table.scrollLeft - target) > 0.5) table.scrollLeft = target;
     };
     table.addEventListener("scroll", onTableScroll, { passive: true });
     bar.addEventListener("scroll", onBarScroll, { passive: true });
     return () => {
       ro.disconnect();
+      window.removeEventListener("resize", fitSpacer);
       table.removeEventListener("scroll", onTableScroll);
       bar.removeEventListener("scroll", onBarScroll);
     };
@@ -134,7 +130,7 @@ export function CompareFloatingBar() {
           ref={barRef}
           className="compare-floatbar w-[min(24rem,40vw)] overflow-x-auto overflow-y-hidden"
         >
-          <div ref={spacerRef} className="h-2" />
+          <div ref={spacerRef} className="h-2.5" />
         </div>
         <button type="button" className={btn} aria-label="Scroll table right" onClick={() => step(1)}>
           <span aria-hidden="true">›</span>
