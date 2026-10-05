@@ -202,7 +202,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
                 <th
                   key={c.id}
                   scope="col"
-                  className="w-80 border-b-2 border-paper-edge p-3 align-bottom"
+                  className="w-80 border-b-2 border-paper-edge bg-paper-warm p-3 align-bottom"
                 >
                   <Link
                     href={`/races/${race.slug}/${c.slug}`}
