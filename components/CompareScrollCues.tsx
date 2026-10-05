@@ -86,25 +86,32 @@ export function CompareFloatingBar() {
     ro.observe(bar);
     window.addEventListener("resize", fitSpacer);
 
-    // Two-way sync. lastBarWrite remembers the exact position the pill
-    // set, so when the table's echo of that write arrives we recognize it
-    // and don't yank the pill back mid-drag. (That yank is what felt
-    // choppy: a fast drag outran the echo, and every echo shoved the
-    // thumb backwards.) Writes from anywhere else — step buttons,
-    // keyboard, the table's own scrollbar — never match lastBarWrite,
-    // so they sync through to the pill normally.
-    const lastBarWrite = { current: -1 };
-    const onTableScroll = () => {
-      if (Math.abs(table.scrollLeft - lastBarWrite.current) < 1) return;
-      const target = table.scrollLeft;
-      if (Math.abs(bar.scrollLeft - target) > 0.5) bar.scrollLeft = target;
+    // Two-way sync with mutual exclusion: at any moment exactly one side
+    // drives. While the pill drives, the table's echo events are ignored
+    // outright; while the table drives (step buttons, keyboard, its own
+    // scrollbar), the pill follows. `driving` clears ~120ms after the last
+    // event so control can switch sides. Earlier attempts — a lock flag,
+    // then matching the echo by value — both let a fast drag's stale
+    // echoes shove the thumb backwards, which is what felt choppy.
+    let driving: "bar" | "table" | null = null;
+    let settleTimer = 0;
+    const settle = () => {
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(() => {
+        driving = null;
+      }, 120);
     };
     const onBarScroll = () => {
-      const target = bar.scrollLeft;
-      if (Math.abs(table.scrollLeft - target) > 0.5) {
-        lastBarWrite.current = target;
-        table.scrollLeft = target;
-      }
+      if (driving === "table") return;
+      driving = "bar";
+      settle();
+      table.scrollLeft = bar.scrollLeft; // 1:1 ranges (see fitSpacer)
+    };
+    const onTableScroll = () => {
+      if (driving === "bar") return;
+      driving = "table";
+      settle();
+      bar.scrollLeft = table.scrollLeft; // 1:1
     };
     table.addEventListener("scroll", onTableScroll, { passive: true });
     bar.addEventListener("scroll", onBarScroll, { passive: true });
@@ -121,7 +128,7 @@ export function CompareFloatingBar() {
   const step = (dir: 1 | -1) =>
     table?.scrollBy({ left: dir * COLUMN_STEP_PX, behavior: "smooth" });
   const btn =
-    "tap-target flex h-8 w-8 items-center justify-center rounded-full text-base text-ink-soft hover:bg-accent-light hover:text-accent";
+    "tap-target flex h-9 w-9 items-center justify-center rounded-full text-xl leading-none text-accent hover:bg-accent hover:text-white";
 
   return (
     <div
@@ -129,7 +136,7 @@ export function CompareFloatingBar() {
       aria-label="Scroll the candidate table sideways"
       className="sticky bottom-3 z-30 hidden justify-center md:flex"
     >
-      <div className="flex items-center gap-1 rounded-full border border-paper-edge bg-paper-warm/95 py-1 pl-1 pr-2 shadow-lg backdrop-blur">
+      <div className="flex items-center gap-1 rounded-full border border-accent/40 bg-accent-light px-1.5 py-1 shadow-lg">
         <button type="button" className={btn} aria-label="Scroll table left" onClick={() => step(-1)}>
           <span aria-hidden="true">‹</span>
         </button>
@@ -185,11 +192,14 @@ export function StickyCompareHead() {
     bar.appendChild(clone);
     document.body.appendChild(bar);
 
-    // Positions the bar exactly over the table. Must run on the table's
-    // own horizontal scrolls too: tableRect.left moves as the table
-    // scrolls sideways, and a stale left is precisely a visible
-    // header/column misalignment.
-    const position = () => {
+    // One rAF-throttled update serves window scrolls, resizes, AND the
+    // table's own horizontal scrolls: a single getBoundingClientRect pair
+    // per frame at most. Reading layout directly inside the scroller's
+    // scroll handler stacked a forced reflow onto every scroll event,
+    // which is what made sideways dragging feel choppy.
+    let ticking = false;
+    const update = () => {
+      ticking = false;
       const r = table.getBoundingClientRect();
       const headH = thead.getBoundingClientRect().height || 0;
       // The desktop table is hidden below md, so its rects are zero there
@@ -201,24 +211,20 @@ export function StickyCompareHead() {
       bar.style.width = `${r.width}px`;
       clone.style.width = `${r.width}px`;
     };
-    let ticking = false;
-    const onScroll = () => {
+    const schedule = () => {
       if (!ticking) {
         ticking = true;
-        requestAnimationFrame(() => {
-          ticking = false;
-          position();
-        });
+        requestAnimationFrame(update);
       }
     };
-    position();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    scroller.addEventListener("scroll", position, { passive: true });
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    scroller.addEventListener("scroll", schedule, { passive: true });
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      scroller.removeEventListener("scroll", position);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      scroller.removeEventListener("scroll", schedule);
       bar.remove();
     };
   }, []);
