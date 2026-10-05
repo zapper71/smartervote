@@ -6,6 +6,11 @@ import PositionCell from "@/components/PositionCell";
 import WebsiteLink from "@/components/WebsiteLink";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import {
+  CompareFloatingBar,
+  CompareScrollHint,
+  StickyCompareHead,
+} from "@/components/CompareScrollCues";
+import {
   getCandidateResponsesForCandidates,
   getCandidatesForRace,
   getIssues,
@@ -165,7 +170,15 @@ export default async function ComparePage({ params, searchParams }: Props) {
           which then sits on top of it. The browser honours scroll-padding
           when it scrolls a focused element into view, so this keeps the
           focused thing clear of the column rather than under it. */}
-      <div className="compare-scroll-x mt-8 hidden overflow-x-auto scroll-pl-48 md:block">
+      {/* Wrapper constrains the floating scroll bar: the pill pins to the
+          viewport bottom only while this comparison section is on screen,
+          then scrolls away with it. */}
+      <div className="mt-8">
+      <CompareScrollHint candidateCount={candidates.length} />
+      <div
+        id="compare-scroll"
+        className="compare-scroll-x hidden overflow-x-auto scroll-pl-48 md:block"
+      >
         {/* table-fixed + w-80: every candidate column is exactly 20rem wide,
             whatever its content holds. (auto layout sized columns by content
             volume, which looked like favouritism; equal fluid shares turned
@@ -258,6 +271,9 @@ export default async function ComparePage({ params, searchParams }: Props) {
             ))}
           </tbody>
         </table>
+      </div>
+        <CompareFloatingBar />
+        <StickyCompareHead />
       </div>
 
       {/* ---------- MOBILE: grouped by issue, not by candidate ----------
