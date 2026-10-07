@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import PageViewBeacon from "@/components/PageViewBeacon";
 import { INDEXABLE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -38,6 +40,8 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <Analytics />
+        <PageViewBeacon />
       </body>
     </html>
   );
