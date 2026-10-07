@@ -18,11 +18,13 @@ export default function PrivacyPage() {
         are no accounts.
       </p>
 
-      <h2>No cookies, no tracking</h2>
+      <h2>No cookies, no ad trackers</h2>
       <p>
-        SmarterVote sets no cookies, uses no advertising trackers, and loads no
-        third-party scripts that follow you around. That&rsquo;s also why you aren&rsquo;t
-        being asked to dismiss a cookie banner — there&rsquo;s nothing to consent to.
+        SmarterVote sets no cookies and uses no advertising trackers. Our hosting
+        provider, Vercel, collects anonymous aggregate analytics — which pages are
+        viewed and which sites referred visitors — with no cookies and nothing that
+        identifies you. That&rsquo;s also why you aren&rsquo;t being asked to dismiss
+        a cookie banner — there&rsquo;s nothing to consent to.
       </p>
 
       <h2>What we do count</h2>
