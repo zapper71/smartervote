@@ -231,8 +231,8 @@ export default function MethodologyPage() {
       </p>
       <p>
         A site that only summarises what candidates published would quietly punish whoever
-        didn&rsquo;t build a website — which in practice tends to mean first-time,
-        older and less-resourced candidates. That would be a real bias, introduced by a
+        didn&rsquo;t build a website — which in practice tends to mean first-time
+        and less-resourced candidates. That would be a real bias, introduced by a
         tool claiming to remove bias. So:
       </p>
       <ul>
