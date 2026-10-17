@@ -5,7 +5,8 @@ export type RaceType =
   | "mayor"
   | "council_at_large"
   | "council_ward"
-  | "school_board";
+  | "school_board"
+  | "provincial_district";
 
 export type CandidateStatus = "certified" | "withdrawn" | "acclaimed";
 
@@ -215,6 +216,15 @@ export interface Candidate {
   bio: string | null;
   incumbent: boolean;
   last_reviewed_at: string | null;
+  /**
+   * Party affiliation, for provincial district races (BC).
+   *
+   * Optional, not absent-by-design: the column is new (migration 24), so
+   * rows read before it runs come back without it. Consumers must treat a
+   * missing value as "unknown" and never crash the render — same pattern
+   * as Position.confidence.
+   */
+  party?: string | null;
   /**
    * When we emailed this candidate inviting them to correct or add.
    *

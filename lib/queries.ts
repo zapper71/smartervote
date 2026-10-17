@@ -28,41 +28,109 @@ function warn(where: string, error: unknown) {
   console.warn(`[smartervote] ${where}:`, error);
 }
 
-export async function getMunicipality(): Promise<Municipality | null> {
+export async function getMunicipalityBySlug(
+  slug: string
+): Promise<Municipality | null> {
   const db = getPublicClient();
   if (!db) return null;
   const { data, error } = await db
     .from("municipalities")
     .select("*")
-    .eq("slug", MUNICIPALITY_SLUG)
+    .eq("slug", slug)
     .maybeSingle();
   if (error) {
-    warn("getMunicipality", error);
+    warn("getMunicipalityBySlug", error);
     return null;
   }
   return (data as Municipality) ?? null;
 }
 
-export async function getRaces(): Promise<Race[]> {
+export async function getMunicipalityById(
+  id: string
+): Promise<Municipality | null> {
   const db = getPublicClient();
-  if (!db) return [];
+  if (!db) return null;
+  const { data, error } = await db
+    .from("municipalities")
+    .select("*")
+    .eq("id", id)
+    .maybeSingle();
+  if (error) {
+    warn("getMunicipalityById", error);
+    return null;
+  }
+  return (data as Municipality) ?? null;
+}
+
+export async function getMunicipality(): Promise<Municipality | null> {
+  return getMunicipalityBySlug(MUNICIPALITY_SLUG);
+}
+
+/**
+ * Huntsville's races, in display order.
+ *
+ * Stays Huntsville-scoped on purpose: the /races index, the sitemap and the
+ * build-time static params are the Huntsville site, and expansion races
+ * render on demand once their database rows exist.
+ */
+export async function getRaces(): Promise<Race[]> {
   const municipality = await getMunicipality();
   if (!municipality) return [];
+  return getRacesForMunicipality(municipality.id);
+}
+
+export async function getRacesForMunicipality(
+  municipalityId: string
+): Promise<Race[]> {
+  const db = getPublicClient();
+  if (!db) return [];
   const { data, error } = await db
     .from("races")
     .select("*")
-    .eq("municipality_id", municipality.id)
+    .eq("municipality_id", municipalityId)
     .order("sort_order", { ascending: true });
   if (error) {
-    warn("getRaces", error);
+    warn("getRacesForMunicipality", error);
     return [];
   }
   return (data as Race[]) ?? [];
 }
 
+/**
+ * A race by slug, looked up GLOBALLY — across all municipalities — with its
+ * municipality attached.
+ *
+ * Race slugs are globally unique by construction (new slugs are
+ * "{municipality-slug}-{race}"; Huntsville keeps its existing unprefixed
+ * ones), so a slug identifies one race everywhere. Pages use the returned
+ * municipality for the name, election dates and voting method instead of
+ * assuming Huntsville.
+ */
+export async function getRaceBySlugGlobal(
+  slug: string
+): Promise<{ race: Race; municipality: Municipality | null } | null> {
+  const db = getPublicClient();
+  if (!db) return null;
+  const { data, error } = await db
+    .from("races")
+    .select("*, municipalities(*)")
+    .eq("slug", slug)
+    .limit(1)
+    .maybeSingle();
+  if (error) {
+    warn("getRaceBySlugGlobal", error);
+    return null;
+  }
+  if (!data) return null;
+  const { municipalities: municipality, ...race } = data as Race & {
+    municipalities: Municipality | null;
+  };
+  return { race: race as Race, municipality };
+}
+
 export async function getRace(slug: string): Promise<Race | null> {
-  const races = await getRaces();
-  return races.find((r) => r.slug === slug) ?? null;
+  const found = await getRaceBySlugGlobal(slug);
+  return found?.race ?? null;
 }
 
 export async function getCandidatesForRace(raceId: string): Promise<Candidate[]> {
@@ -166,18 +234,29 @@ export async function getPositions(candidateId: string): Promise<Position[]> {
  * covered candidates on the site look the most evasive.
  *
  * Pass the race's type. Omit it and you get the municipal set, which is the
- * safe default for anything that isn't a school board seat.
+ * safe default for anything that isn't a school board seat — including
+ * provincial districts, which have no school-board-style split.
+ *
+ * Pass the race's municipality id. Omit it and you get Huntsville's, which
+ * keeps every existing caller working exactly as before.
  */
-export async function getIssues(raceType?: RaceType): Promise<Issue[]> {
+export async function getIssues(
+  raceType?: RaceType,
+  municipalityId?: string
+): Promise<Issue[]> {
   const db = getPublicClient();
   if (!db) return [];
-  const municipality = await getMunicipality();
-  if (!municipality) return [];
+  let muniId = municipalityId;
+  if (!muniId) {
+    const municipality = await getMunicipality();
+    if (!municipality) return [];
+    muniId = municipality.id;
+  }
   const appliesTo = raceType === "school_board" ? "school_board" : "municipal";
   const { data, error } = await db
     .from("issues")
     .select("*")
-    .eq("municipality_id", municipality.id)
+    .eq("municipality_id", muniId)
     .eq("applies_to", appliesTo)
     .order("sort_order", { ascending: true });
   if (error) {
@@ -185,6 +264,33 @@ export async function getIssues(raceType?: RaceType): Promise<Issue[]> {
     return [];
   }
   return (data as Issue[]) ?? [];
+}
+
+/**
+ * Which of these race slugs actually have rows in the database.
+ *
+ * Used by the municipality pages to tag races "positions loaded" vs
+ * "candidate list only". Returns null (not an empty set) when the check
+ * itself fails, so callers can render WITHOUT the tags instead of
+ * mislabelling everything as pending.
+ */
+export async function getExistingRaceSlugs(
+  slugs: string[]
+): Promise<Set<string> | null> {
+  if (slugs.length === 0) return new Set();
+  const db = getPublicClient();
+  if (!db) return null;
+  try {
+    const { data, error } = await db.from("races").select("slug").in("slug", slugs);
+    if (error) {
+      warn("getExistingRaceSlugs", error);
+      return null;
+    }
+    return new Set(((data ?? []) as { slug: string }[]).map((r) => r.slug));
+  } catch (e) {
+    warn("getExistingRaceSlugs", e);
+    return null;
+  }
 }
 
 /**

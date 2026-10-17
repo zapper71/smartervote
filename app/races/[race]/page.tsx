@@ -3,8 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import WebsiteLink from "@/components/WebsiteLink";
-import { getCandidatesForRace, getRace, getRaces } from "@/lib/queries";
-import { contestLabel } from "@/lib/dates";
+import {
+  getCandidatesForRace,
+  getRaceBySlugGlobal,
+  getRaces,
+  MUNICIPALITY_SLUG,
+} from "@/lib/queries";
+import { contestLabel, formatDate } from "@/lib/dates";
 
 export const revalidate = 300;
 
@@ -23,26 +28,38 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { race: slug } = await params;
-  const race = await getRace(slug);
-  if (!race) return { title: "Race not found" };
+  const found = await getRaceBySlugGlobal(slug);
+  if (!found) return { title: "Race not found" };
+  const { race, municipality } = found;
+  // Huntsville keeps its exact long-standing description; everywhere else
+  // gets the same shape with its own municipality's name.
+  const place =
+    municipality?.slug === MUNICIPALITY_SLUG
+      ? "the Town of Huntsville 2026 municipal election"
+      : `the ${municipality?.name ?? "Huntsville"} 2026 election`;
   return {
     title: race.name,
     description:
-      race.description ??
-      `Candidates for ${race.name} in the Town of Huntsville 2026 municipal election.`,
+      race.description ?? `Candidates for ${race.name} in ${place}.`,
   };
 }
 
 export default async function RacePage({ params }: Props) {
   const { race: slug } = await params;
-  const race = await getRace(slug);
+  const found = await getRaceBySlugGlobal(slug);
 
-  if (!race) {
+  if (!found) {
     const anyRaces = await getRaces();
     // Distinguish "this race doesn't exist" from "the database is down".
     if (anyRaces.length === 0) return <UnavailableNotice what="This race" />;
     notFound();
   }
+
+  const { race, municipality } = found;
+  // Expansion races use their own municipality's context — name, election
+  // dates, voting method — instead of assuming Huntsville. Huntsville's
+  // page renders exactly as before: no election-info line is added for it.
+  const isExpansion = municipality?.slug !== MUNICIPALITY_SLUG;
 
   const candidates = await getCandidatesForRace(race.id);
   const uncontested = candidates.length > 0 && candidates.length <= race.seats;
@@ -50,9 +67,15 @@ export default async function RacePage({ params }: Props) {
   return (
     <div>
       <p className="text-sm">
-        <Link href="/races" className="link">
-          &larr; All races
-        </Link>
+        {isExpansion && municipality ? (
+          <Link href={`/municipalities/${municipality.slug}`} className="link">
+            &larr; {municipality.name} races
+          </Link>
+        ) : (
+          <Link href="/races" className="link">
+            &larr; All races
+          </Link>
+        )}
       </p>
 
       <h1 className="mt-3 text-3xl">{race.name}</h1>
@@ -60,6 +83,15 @@ export default async function RacePage({ params }: Props) {
         <p className="mt-1 text-ink-faint">{race.ward_group_label}</p>
       )}
       <p className="mt-3 text-ink-soft">{contestLabel(candidates.length, race.seats)}</p>
+      {isExpansion && municipality && (
+        <p className="mt-2 text-sm text-ink-soft">
+          {municipality.name}
+          {municipality.election_date
+            ? ` · Election day ${formatDate(municipality.election_date)}`
+            : ""}
+          {municipality.voting_method ? ` · ${municipality.voting_method}` : ""}
+        </p>
+      )}
       {race.description && <p className="prose-civic mt-3">{race.description}</p>}
 
       {uncontested && (
@@ -116,6 +148,15 @@ export default async function RacePage({ params }: Props) {
                 >
                   {c.name}
                 </Link>
+                {/* Party is a provincial-ballot fact (BC districts). Shown in
+                    the site's neutral accent, never a party colour. The
+                    column is new (migration 24): a missing value renders
+                    nothing, never a crash. */}
+                {race.race_type === "provincial_district" && c.party && (
+                  <span className="pill ml-2 bg-accent-light align-middle text-accent">
+                    {c.party}
+                  </span>
+                )}
               </h3>
               {c.status === "acclaimed" && (
                 <span className="pill mt-2 bg-flag-light text-flag">Acclaimed</span>

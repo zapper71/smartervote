@@ -48,7 +48,15 @@ type Row = {
   no_public_position: boolean;
   reviewed_at: string | null;
   candidate_id: string;
-  candidates: { name: string; slug: string; races: { name: string; slug: string } | null } | null;
+  candidates: {
+    name: string;
+    slug: string;
+    races: {
+      name: string;
+      slug: string;
+      municipalities: { name: string; slug: string } | null;
+    } | null;
+  } | null;
   issues: { name: string; slug: string; sort_order: number } | null;
 };
 
@@ -145,13 +153,21 @@ type ResponseRow = {
   sections: { heading: string; anchor: string; issue_slug: string | null }[] | null;
   reviewed_at: string | null;
   candidate_id: string;
-  candidates: { name: string; slug: string; races: { name: string; slug: string } | null } | null;
+  candidates: {
+    name: string;
+    slug: string;
+    races: {
+      name: string;
+      slug: string;
+      municipalities: { name: string; slug: string } | null;
+    } | null;
+  } | null;
 };
 
 export default async function AdminPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; show?: string; conf?: string }>;
+  searchParams: Promise<{ error?: string; show?: string; conf?: string; muni?: string }>;
 }) {
   const sp = await searchParams;
 
@@ -164,6 +180,9 @@ export default async function AdminPage({
   )
     ? (sp.conf as Confidence)
     : "all";
+  // Municipality filter for the expansion queue. Empty = everything, which
+  // is exactly today's default view — Huntsville rows included.
+  const muniFilter = typeof sp.muni === "string" ? sp.muni.trim() : "";
 
   const db = getServiceClient();
   // The confidence column is new (migration 22): if it hasn't been run yet
@@ -171,7 +190,7 @@ export default async function AdminPage({
   // 'medium' rather than breaking the whole queue.
   const SELECT_BASE =
     "id,status,summary_short,summary_bullets,verbatim_quote,source_url,source_title,source_date,source_type,source_extent,no_public_position,reviewed_at,candidate_id," +
-    "candidates(name,slug,races(name,slug)),issues(name,slug,sort_order)";
+    "candidates(name,slug,races(name,slug,municipalities(name,slug))),issues(name,slug,sort_order)";
   // The two queries select different column sets, so give them one
   // structural type instead of letting inference lock the shape.
   type PositionRows = {
@@ -220,7 +239,7 @@ export default async function AdminPage({
     .from("candidate_responses")
     .select(
       "id,status,subject,received_at,body_text,sections,reviewed_at,candidate_id," +
-        "candidates(name,slug,races(name,slug))"
+        "candidates(name,slug,races(name,slug,municipalities(name,slug)))"
     )
     .in("status", ["in_review", "published", "draft"]);
 
@@ -238,8 +257,27 @@ export default async function AdminPage({
     in_review: responses.filter((r) => r.status === "in_review").length,
     published: responses.filter((r) => r.status === "published").length,
   };
+
+  // Municipality filter options, built from what's actually in this tab.
+  // positions -> candidates -> races -> municipalities.
+  const muniSlugOf = (r: Row | ResponseRow): string =>
+    r.candidates?.races?.municipalities?.slug ?? "";
+  const muniOptions = new Map<string, string>();
+  for (const r of [...rows, ...responses].filter((r) => r.status === show)) {
+    const m = (r as Row).candidates?.races?.municipalities;
+    if (m && !muniOptions.has(m.slug)) muniOptions.set(m.slug, m.name);
+  }
+  const muniList = [...muniOptions.entries()].sort((a, b) =>
+    a[1].localeCompare(b[1])
+  );
+  // A stale or hand-typed slug falls back to everything — a bad filter
+  // value must never hide the queue.
+  const activeMuni = muniOptions.has(muniFilter) ? muniFilter : "";
+  const inMuni = (r: Row | ResponseRow) =>
+    activeMuni === "" || muniSlugOf(r) === activeMuni;
+
   const responsesByCandidate = new Map<string, ResponseRow[]>();
-  for (const r of responses.filter((r) => r.status === show)) {
+  for (const r of responses.filter((r) => r.status === show && inMuni(r))) {
     const key = r.candidate_id;
     if (!responsesByCandidate.has(key)) responsesByCandidate.set(key, []);
     responsesByCandidate.get(key)!.push(r);
@@ -247,6 +285,7 @@ export default async function AdminPage({
 
   const visible = rows
     .filter((r) => r.status === show)
+    .filter((r) => inMuni(r))
     .filter(
       (r) => confFilter === "all" || resolveConfidence(r.confidence) === confFilter
     )
@@ -342,6 +381,55 @@ export default async function AdminPage({
         })}
       </div>
 
+      {/* Municipality filter — the expansion queue lands here (18 in-depth
+          municipalities, ~789 positions). Plain GET form, no client JS: the
+          review screen is server-rendered throughout. */}
+      {muniList.length > 1 && (
+        <form
+          method="get"
+          className="mt-3 flex flex-wrap items-center gap-2 text-sm"
+        >
+          {show === "published" && (
+            <input type="hidden" name="show" value="published" />
+          )}
+          {confFilter !== "all" && (
+            <input type="hidden" name="conf" value={confFilter} />
+          )}
+          <label
+            htmlFor="muni-filter"
+            className="text-xs text-ink-faint"
+          >
+            Municipality:
+          </label>
+          <select
+            id="muni-filter"
+            name="muni"
+            defaultValue={activeMuni}
+            className="tap-target rounded-md border border-paper-edge bg-paper px-3 py-2 text-sm"
+          >
+            <option value="">
+              All municipalities ({muniList.length})
+            </option>
+            {muniList.map(([slug, name]) => (
+              <option key={slug} value={slug}>
+                {name}
+              </option>
+            ))}
+          </select>
+          <button className="tap-target rounded-md border border-paper-edge px-3 py-2 text-sm">
+            Filter
+          </button>
+          {activeMuni !== "" && (
+            <a
+              href={`/admin${show === "published" ? "?show=published" : ""}${confFilter !== "all" ? `${show === "published" ? "&" : "?"}conf=${confFilter}` : ""}`}
+              className="link tap-target text-sm"
+            >
+              Clear
+            </a>
+          )}
+        </form>
+      )}
+
       {!confidenceColumn && (
         <p className="mt-6 rounded-md border border-flag/40 bg-flag-light px-4 py-3 text-sm text-ink-soft">
           The <code>confidence</code> column isn&rsquo;t in the database yet — every
@@ -382,6 +470,10 @@ export default async function AdminPage({
                   {first.candidates?.name}{" "}
                   <span className="text-sm font-normal text-ink-faint">
                     {first.candidates?.races?.name}
+                    {/* Only shown once expansion rows exist — the default
+                        Huntsville view renders exactly as before. */}
+                    {muniList.length > 1 &&
+                      ` · ${first.candidates?.races?.municipalities?.name ?? ""}`}
                   </span>
                 </h2>
                 {show === "in_review" && total > 1 && (

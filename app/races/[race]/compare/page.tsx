@@ -17,8 +17,9 @@ import {
   getCandidatesForRace,
   getIssues,
   getPositionsForCandidates,
-  getRace,
+  getRaceBySlugGlobal,
   getRaces,
+  MUNICIPALITY_SLUG,
 } from "@/lib/queries";
 import { contestLabel } from "@/lib/dates";
 
@@ -40,30 +41,41 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { race: slug } = await params;
-  const race = await getRace(slug);
-  if (!race) return { title: "Race not found" };
+  const found = await getRaceBySlugGlobal(slug);
+  if (!found) return { title: "Race not found" };
+  const { race } = found;
+  // The count is read, not hard-coded — expansion municipalities won't
+  // necessarily have ten issues, and the old text would lie about them.
+  // Falls back to the long-standing wording when the database is down.
+  const issues = await getIssues(race.race_type, race.municipality_id);
+  const issuePhrase =
+    issues.length > 0 ? `the same ${issues.length} issues` : "the same ten issues";
   return {
     title: `Compare candidates — ${race.name}`,
-    description: `Every candidate for ${race.name} side by side on the same ten issues, with a source for every claim.`,
+    description: `Every candidate for ${race.name} side by side on ${issuePhrase}, with a source for every claim.`,
   };
 }
 
 export default async function ComparePage({ params, searchParams }: Props) {
   const { race: raceSlug } = await params;
   const sp = await searchParams;
-  const race = await getRace(raceSlug);
+  const found = await getRaceBySlugGlobal(raceSlug);
 
-  if (!race) {
+  if (!found) {
     const anyRaces = await getRaces();
     if (anyRaces.length === 0) return <UnavailableNotice what="This comparison" />;
     notFound();
   }
 
-  // Scoped to the race type: a school board ballot gets the trustee issues,
-  // everything else gets the municipal ones. See getIssues().
+  const { race, municipality } = found;
+  const isExpansion = municipality?.slug !== MUNICIPALITY_SLUG;
+
+  // Scoped to the race type AND its municipality: a school board ballot gets
+  // the trustee issues, everything else gets the municipal ones — from the
+  // race's own municipality, never Huntsville's by assumption. See getIssues().
   const [allCandidates, issues] = await Promise.all([
     getCandidatesForRace(race.id),
-    getIssues(race.race_type),
+    getIssues(race.race_type, race.municipality_id),
   ]);
 
   if (allCandidates.length === 0 || issues.length === 0) {
@@ -133,6 +145,8 @@ export default async function ComparePage({ params, searchParams }: Props) {
       <p className="mt-1 text-ink-soft">
         {race.name}
         {race.ward_group_label ? ` · ${race.ward_group_label}` : ""}
+        {/* The race's own municipality, not Huntsville by assumption. */}
+        {isExpansion && municipality ? ` · ${municipality.name}` : ""}
       </p>
       <p className="mt-2 text-sm text-ink-soft">
         {contestLabel(allCandidates.length, race.seats)}

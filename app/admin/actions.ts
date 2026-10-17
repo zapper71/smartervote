@@ -426,18 +426,53 @@ export async function importJsonAction(
   const db = getServiceClient();
 
   // Resolve slugs once, up front — every row then validates against maps.
+  //
+  // Issue slugs repeat per municipality (the province-wide issue set is
+  // cloned for each of the 265+ municipalities), so a global issue lookup
+  // is ambiguous. Issues are resolved scoped to the CANDIDATE's
+  // municipality: candidate -> race -> municipality_id, then issue by
+  // (municipality_id, slug). Huntsville resolves exactly as before — its
+  // candidates map to its own municipality.
   const { data: candRows, error: candErr } = await db
     .from("candidates")
-    .select("id,slug");
+    .select("id,slug,race_id");
   if (candErr)
     return { ...report, errors: [`Could not read candidates: ${candErr.message}`] };
+  const { data: raceRows, error: raceErr } = await db
+    .from("races")
+    .select("id,municipality_id");
+  if (raceErr)
+    return { ...report, errors: [`Could not read races: ${raceErr.message}`] };
   const { data: issueRows, error: issueErr } = await db
     .from("issues")
-    .select("id,slug");
+    .select("id,slug,municipality_id");
   if (issueErr)
     return { ...report, errors: [`Could not read issues: ${issueErr.message}`] };
-  const candBySlug = new Map((candRows ?? []).map((c) => [c.slug, c.id] as const));
-  const issueBySlug = new Map((issueRows ?? []).map((i) => [i.slug, i.id] as const));
+  const muniByRaceId = new Map(
+    (raceRows ?? []).map((r) => [r.id, r.municipality_id] as const)
+  );
+  const candBySlug = new Map(
+    (candRows ?? []).map(
+      (c) =>
+        [
+          c.slug,
+          { id: c.id, municipality_id: muniByRaceId.get(c.race_id) ?? null },
+        ] as const
+    )
+  );
+  const issueByMuniSlug = new Map(
+    (issueRows ?? []).map(
+      (i) => [`${i.municipality_id}|${i.slug}`, i.id] as const
+    )
+  );
+  /** The issue id for this slug within the candidate's municipality. */
+  const issueForCandidate = (
+    cand: { municipality_id: string | null },
+    issueSlug: string | null
+  ): string | undefined =>
+    cand.municipality_id && issueSlug
+      ? issueByMuniSlug.get(`${cand.municipality_id}|${issueSlug}`)
+      : undefined;
 
   // ---- positions: validate everything before touching the table ----
   type StagedPosition = {
@@ -466,14 +501,23 @@ export async function importJsonAction(
     }
     const candSlug = asString(p.candidate);
     const issueSlug = asString(p.issue);
-    const candidate_id = candSlug ? candBySlug.get(candSlug) : undefined;
-    const issue_id = issueSlug ? issueBySlug.get(issueSlug) : undefined;
-    if (!candidate_id) {
+    const cand = candSlug ? candBySlug.get(candSlug) : undefined;
+    if (!cand) {
       report.errors.push(`${label}: unknown candidate slug ${JSON.stringify(candSlug)}.`);
       return;
     }
+    const candidate_id = cand.id;
+    if (!cand.municipality_id) {
+      report.errors.push(
+        `${label}: candidate ${JSON.stringify(candSlug)} has no municipality — the issue can't be scoped.`
+      );
+      return;
+    }
+    const issue_id = issueForCandidate(cand, issueSlug);
     if (!issue_id) {
-      report.errors.push(`${label}: unknown issue slug ${JSON.stringify(issueSlug)}.`);
+      report.errors.push(
+        `${label}: unknown issue slug ${JSON.stringify(issueSlug)} for this candidate's municipality.`
+      );
       return;
     }
     const source_type = asString(p.source_type);
@@ -641,11 +685,12 @@ export async function importJsonAction(
       return;
     }
     const candSlug = asString(r.candidate);
-    const candidate_id = candSlug ? candBySlug.get(candSlug) : undefined;
-    if (!candidate_id || !candSlug) {
+    const cand = candSlug ? candBySlug.get(candSlug) : undefined;
+    if (!cand || !candSlug) {
       report.errors.push(`${label}: unknown candidate slug ${JSON.stringify(candSlug)}.`);
       return;
     }
+    const candidate_id = cand.id;
     const body_text = asString(r.body_text);
     if (!body_text || body_text.trim().length === 0) {
       report.errors.push(`${label}: body_text is required.`);
@@ -677,9 +722,9 @@ export async function importJsonAction(
           return;
         }
         const isl = asString(s.issue_slug);
-        if (isl !== null && !issueBySlug.has(isl)) {
+        if (isl !== null && !issueForCandidate(cand, isl)) {
           report.errors.push(
-            `${label}.sections[${si}]: unknown issue_slug ${JSON.stringify(isl)}.`
+            `${label}.sections[${si}]: unknown issue_slug ${JSON.stringify(isl)} for this candidate's municipality.`
           );
           return;
         }

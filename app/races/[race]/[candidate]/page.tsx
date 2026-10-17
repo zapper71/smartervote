@@ -7,7 +7,9 @@ import {
   getCandidatesForRace,
   getIssues,
   getPositions,
+  getRaceBySlugGlobal,
   getRaces,
+  MUNICIPALITY_SLUG,
 } from "@/lib/queries";
 import { formatShortDate } from "@/lib/dates";
 import CandidateResponse from "@/components/CandidateResponse";
@@ -36,9 +38,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { race, candidate } = await params;
   const result = await getCandidate(race, candidate);
   if (!result) return { title: "Candidate not found" };
+  // The race's own municipality, not Huntsville by assumption. Huntsville
+  // keeps its exact long-standing description.
+  const found = await getRaceBySlugGlobal(race);
+  const municipality = found?.municipality;
+  const place =
+    !municipality || municipality.slug === MUNICIPALITY_SLUG
+      ? "the Town of Huntsville 2026 municipal election"
+      : `the ${municipality.name} 2026 election`;
   return {
     title: `${result.candidate.name} — ${result.race.name}`,
-    description: `Where ${result.candidate.name} stands on the issues in the Town of Huntsville 2026 municipal election, with a source for every claim.`,
+    description: `Where ${result.candidate.name} stands on the issues in ${place}, with a source for every claim.`,
   };
 }
 
@@ -54,11 +64,13 @@ export default async function CandidatePage({ params }: Props) {
   if (!result) notFound();
 
   const { race, candidate } = result;
- // Scoped to the race type, so a trustee candidate isn't shown twelve
-  // municipal issues they have no authority over. See getIssues().
+ // Scoped to the race type AND its municipality, so a trustee candidate
+  // isn't shown twelve municipal issues they have no authority over — and so
+  // an expansion candidate isn't measured against Huntsville's issues.
+  // See getIssues().
   const [positions, issues, response] = await Promise.all([
     getPositions(candidate.id),
-    getIssues(race.race_type),
+    getIssues(race.race_type, race.municipality_id),
     getCandidateResponse(candidate.id),
   ]);
   const issueNameBySlug: Record<string, string> = Object.fromEntries(
