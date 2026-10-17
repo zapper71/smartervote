@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import BioCell from "@/components/BioCell";
 import CandidatePicker from "@/components/CandidatePicker";
+import Clampable from "@/components/Clampable";
 import PositionCell from "@/components/PositionCell";
 import WebsiteLink from "@/components/WebsiteLink";
 import UnavailableNotice from "@/components/UnavailableNotice";
@@ -141,7 +143,8 @@ export default async function ComparePage({ params, searchParams }: Props) {
       <p className="prose-civic mt-4 text-sm">
         Everyone is compared on the same {issues.length} issues, in the same
         order. Candidates are listed alphabetically, and the order of issues is
-        not a ranking.{" "}
+        not a ranking. Each candidate&apos;s bio appears at the top, above the
+        issues.{" "}
         <Link href="/methodology" className="link">
           How this works
         </Link>
@@ -233,6 +236,25 @@ export default async function ComparePage({ params, searchParams }: Props) {
             </tr>
           </thead>
           <tbody>
+            {/* Bio sits above the issues, one cell per candidate, clamped
+                exactly like the issue cells. The row is bg-paper so the
+                zebra striping of the issue rows below it still alternates. */}
+            <tr className="bg-paper">
+              <th
+                scope="row"
+                className="sticky left-0 z-10 border-b border-paper-edge bg-paper p-3 align-top text-sm font-semibold text-ink"
+              >
+                Bio
+              </th>
+              {candidates.map((c) => (
+                <td
+                  key={c.id}
+                  className="break-words border-b border-l border-paper-edge p-3 align-top"
+                >
+                  <BioCell bio={c.bio} correctionHref={correctionFor(c.name)} />
+                </td>
+              ))}
+            </tr>
             {issues.map((issue, i) => (
               <tr key={issue.id} className={i % 2 === 1 ? "bg-paper" : undefined}>
                 <th
@@ -251,20 +273,22 @@ export default async function ComparePage({ params, searchParams }: Props) {
                     key={c.id}
                     className="break-words border-b border-l border-paper-edge p-3 align-top"
                   >
-                    <PositionCell
-                      positions={byCell.get(key(c.id, issue.id)) ?? []}
-                      correctionHref={correctionFor(c.name)}
-                      contactedAt={c.contacted_at}
-                      respondedAt={c.responded_at}
-                      lookedAt={c.last_reviewed_at}
-                      fullResponseLink={fullResponseLinkFor(
-                        c.id,
-                        c.slug,
-                        issue.slug,
-                        issue.name,
-                        byCell.get(key(c.id, issue.id)) ?? []
-                      )}
-                    />
+                    <Clampable>
+                      <PositionCell
+                        positions={byCell.get(key(c.id, issue.id)) ?? []}
+                        correctionHref={correctionFor(c.name)}
+                        contactedAt={c.contacted_at}
+                        respondedAt={c.responded_at}
+                        lookedAt={c.last_reviewed_at}
+                        fullResponseLink={fullResponseLinkFor(
+                          c.id,
+                          c.slug,
+                          issue.slug,
+                          issue.name,
+                          byCell.get(key(c.id, issue.id)) ?? []
+                        )}
+                      />
+                    </Clampable>
                   </td>
                 ))}
               </tr>
@@ -283,6 +307,31 @@ export default async function ComparePage({ params, searchParams }: Props) {
           issue. Grouping by candidate would turn this back into six separate
           profiles, which is the thing the page exists to replace. */}
       <div className="mt-8 space-y-8 md:hidden">
+        <section aria-labelledby="m-bio">
+          <h2
+            id="m-bio"
+            className="border-b-2 border-paper-edge pb-2 text-lg"
+          >
+            Bio
+          </h2>
+          <div className="mt-3 space-y-3">
+            {candidates.map((c) => (
+              <div key={c.id} className="card">
+                <h3 className="text-sm">
+                  <Link
+                    href={`/races/${race.slug}/${c.slug}`}
+                    className="font-semibold text-ink no-underline hover:text-accent"
+                  >
+                    {c.name}
+                  </Link>
+                </h3>
+                <div className="mt-2">
+                  <BioCell bio={c.bio} correctionHref={correctionFor(c.name)} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
         {issues.map((issue) => (
           <section key={issue.id} aria-labelledby={`m-${issue.slug}`}>
             <h2
@@ -328,20 +377,22 @@ export default async function ComparePage({ params, searchParams }: Props) {
                     )}
                   </div>
                 <div className="mt-2">
-                    <PositionCell
-                      positions={byCell.get(key(c.id, issue.id)) ?? []}
-                      correctionHref={correctionFor(c.name)}
-                      contactedAt={c.contacted_at}
-                      respondedAt={c.responded_at}
-                      lookedAt={c.last_reviewed_at}
-                      fullResponseLink={fullResponseLinkFor(
-                        c.id,
-                        c.slug,
-                        issue.slug,
-                        issue.name,
-                        byCell.get(key(c.id, issue.id)) ?? []
-                      )}
-                    />
+                    <Clampable>
+                      <PositionCell
+                        positions={byCell.get(key(c.id, issue.id)) ?? []}
+                        correctionHref={correctionFor(c.name)}
+                        contactedAt={c.contacted_at}
+                        respondedAt={c.responded_at}
+                        lookedAt={c.last_reviewed_at}
+                        fullResponseLink={fullResponseLinkFor(
+                          c.id,
+                          c.slug,
+                          issue.slug,
+                          issue.name,
+                          byCell.get(key(c.id, issue.id)) ?? []
+                        )}
+                      />
+                    </Clampable>
                   </div>
                 </div>
               ))}
