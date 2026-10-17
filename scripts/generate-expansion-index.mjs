@@ -5,6 +5,8 @@
  * Reads:
  *   ~/workspace/goals/smartervote-national-scale-up-planning/files/expansion/ontario-names-races.json
  *   ~/workspace/goals/smartervote-national-scale-up-planning/files/bc-2026-candidates.json
+ *   ~/workspace/goals/smartervote-national-scale-up-planning/files/expansion/listing-websites.json
+ *     (optional; candidate_slug -> own website, from the listings harvest)
  * Emits:
  *   lib/expansion-index.ts    (full index — server components only)
  *   lib/expansion-finder.ts   (lightweight finder lists — safe for the client bundle)
@@ -67,6 +69,21 @@ function tsString(s) {
 // ---------------------------------------------------------------- Ontario
 const ontarioRows = loadJson(join(filesDir, "expansion/ontario-names-races.json"));
 
+// Own-website harvest (Andreas's listings-tier rule): candidate_slug -> URL.
+// Only the candidate's own site, harvested from already-staged sources.
+// Missing file = no websites in the index; never a crash.
+let websiteBySlug = {};
+try {
+  for (const w of loadJson(
+    join(filesDir, "expansion/listing-websites.json")
+  )) {
+    if (w.candidate_slug && w.website)
+      websiteBySlug[w.candidate_slug] = w.website;
+  }
+} catch {
+  websiteBySlug = {};
+}
+
 // municipality -> race label -> { candidates: [], sources: Set }
 const ontario = new Map();
 for (const row of ontarioRows) {
@@ -110,9 +127,12 @@ for (const muniName of [...ontario.keys()].sort((a, b) => a.localeCompare(b))) {
   )) {
     const r = muni.races.get(raceLabel);
     const raceType = classifyOntarioRaceType(raceLabel);
-    const candidates = [...r.candidates.values()].sort((a, b) =>
-      a.name.localeCompare(b.name)
-    );
+    const candidates = [...r.candidates.values()]
+      .map((c) => ({
+        ...c,
+        website: websiteBySlug[`${muniSlug}-${slugify(c.name)}`] ?? undefined,
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name));
     candidateCount += candidates.length;
     races.push({
       slug: `${muniSlug}-${slugify(raceLabel)}`,
@@ -211,6 +231,9 @@ export interface ExpansionCandidate {
   /** null = unknown (not yet researched), not "not acclaimed". */
   acclaimed: boolean | null;
   party?: string;
+  /** The candidate's own website, from the listings harvest. Andreas's rule:
+      where a race is listing-only, the candidate's name links to it. */
+  website?: string;
 }
 
 export interface ExpansionRace {

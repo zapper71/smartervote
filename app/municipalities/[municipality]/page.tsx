@@ -94,7 +94,30 @@ function RaceEntry({
               key={c.name}
               className="rounded-md border border-paper-edge bg-paper-warm px-2.5 py-1 text-sm"
             >
-              <span className="text-ink">{c.name}</span>
+              {/* Andreas's listings-tier rule: where a race is listing-only,
+                  the candidate's name links to their own website when one is
+                  on file. The race heading above still links to the internal
+                  race page, so candidates with researched positions lose
+                  nothing. Candidates with no website on file stay plain text. */}
+              {c.website ? (
+                <a
+                  href={c.website}
+                  className="link"
+                  rel="noopener noreferrer nofollow"
+                  target="_blank"
+                >
+                  {c.name}
+                  <span aria-hidden="true" className="ml-0.5 text-xs">
+                    ↗
+                  </span>
+                  <span className="sr-only">
+                    {" "}
+                    — {c.name}&rsquo;s campaign website, opens in a new tab
+                  </span>
+                </a>
+              ) : (
+                <span className="text-ink">{c.name}</span>
+              )}
               {c.party && (
                 <span className="text-ink-faint"> · {c.party}</span>
               )}

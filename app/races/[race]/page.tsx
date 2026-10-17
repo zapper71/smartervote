@@ -5,6 +5,7 @@ import UnavailableNotice from "@/components/UnavailableNotice";
 import WebsiteLink from "@/components/WebsiteLink";
 import {
   getCandidatesForRace,
+  getPositionsForCandidates,
   getRaceBySlugGlobal,
   getRaces,
   MUNICIPALITY_SLUG,
@@ -63,6 +64,20 @@ export default async function RacePage({ params }: Props) {
 
   const candidates = await getCandidatesForRace(race.id);
   const uncontested = candidates.length > 0 && candidates.length <= race.seats;
+
+  // Andreas's listings-tier rule, applied per candidate: a name links out to
+  // the candidate's own website ONLY when the candidate has no researched
+  // positions. Anyone with content keeps the internal candidate page as the
+  // name link — the website stays visible in the WebsiteLink block below.
+  // One query for the whole race, not N. Degrades to "no positions" (and
+  // therefore to website links) only if the positions read fails; the card
+  // still renders either way.
+  const positionsForRace = await getPositionsForCandidates(
+    candidates.map((c) => c.id)
+  );
+  const candidatesWithPositions = new Set(
+    positionsForRace.map((p) => p.candidate_id)
+  );
 
   return (
     <div>
@@ -142,12 +157,30 @@ export default async function RacePage({ params }: Props) {
           {candidates.map((c) => (
             <li key={c.id} className="card">
               <h3 className="text-base">
-                <Link
-                  href={`/races/${race.slug}/${c.slug}`}
-                  className="text-ink no-underline hover:text-accent"
-                >
-                  {c.name}
-                </Link>
+                {c.website && !candidatesWithPositions.has(c.id) ? (
+                  <a
+                    href={c.website}
+                    className="text-ink no-underline hover:text-accent"
+                    rel="noopener noreferrer nofollow"
+                    target="_blank"
+                  >
+                    {c.name}
+                    <span aria-hidden="true" className="ml-0.5 text-xs">
+                      ↗
+                    </span>
+                    <span className="sr-only">
+                      {" "}
+                      — {c.name}&rsquo;s campaign website, opens in a new tab
+                    </span>
+                  </a>
+                ) : (
+                  <Link
+                    href={`/races/${race.slug}/${c.slug}`}
+                    className="text-ink no-underline hover:text-accent"
+                  >
+                    {c.name}
+                  </Link>
+                )}
                 {/* Party is a provincial-ballot fact (BC districts). Shown in
                     the site's neutral accent, never a party colour. The
                     column is new (migration 24): a missing value renders
