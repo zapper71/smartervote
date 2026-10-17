@@ -26,6 +26,34 @@ the **last** statement, which is why the checks are written as one query.
 | 16 | `16_social_and_school_board.sql` | Scopes issues to race type; 3 positions from public Facebook pages — **needs 11** | ⬜ |
 | 17 | `17_candidate_contact.sql` | Records who we've written to, so blanks stop implying silence | ⬜ |
 | 18 | `18_french.sql` | French for the CSC MonAvenir trustee race | ⬜ |
+<!-- EXPANSION-24-28-START -->
+| 24 | `24_expansion_schema.sql` | `candidates.party` column + widen `races_race_type_check` for `provincial_district` | ⬜ |
+| 25 | `25_expansion_municipalities.sql` | 265 Ontario municipalities + British Columbia (listings tier, `partial`) — **needs 24** | ⬜ |
+| 26 | `26_expansion_races.sql` | 2,216 races (2,123 ON + 93 BC districts) — **needs 24, 25** | ⬜ |
+| 27 | `27_expansion_candidates.sql` | 6,831 candidates (6,848 staged rows; 17 same-race dupes deduped) — **needs 24, 26** | ⬜ |
+| 28 | `28_expansion_issues.sql` | Final 18-issue taxonomy × 18 in-depth municipalities (324 rows) — **needs 25** | ⬜ |
+| 30 | `30_allow_multiple_positions_same_source.sql` | Relaxes the dedupe index so distinct statements from one source page import as separate rows — **run before any /admin/import paste** (matches the importer dedupe) | ⬜ |
+
+## Expansion (24–28)
+
+Staged for the Ontario 265-municipality + BC 93-district expansion. Every
+file is idempotent (`on conflict … do nothing`) and touches no Huntsville
+rows. Run 24 → 25 → 26 → 27 → 28; 26 needs 24's widened `race_type` check,
+27 needs 24's `party` column.
+
+After 28, expect **266 municipalities** (265 ON + BC), **2,216 races**,
+**6,831 candidates**, and **324 issues** (18 × 18) — all with
+`coverage_status='partial'`. The 18-issue taxonomy is Andreas's final set
+(2026-10-17): Huntsville's live issue rows keep the old slugs
+(`how-council-works`, `economy-and-downtown`, `healthcare-and-hospital`,
+`parks-and-trails`) — renaming those is a separate decision, not done here.
+
+Positions for the 18 in-depth municipalities import via `/admin/import`
+from `files/expansion/import-ready/indepth-positions-<slug>.json` (staged
+as `in_review`, never published by the import). Candidate bios are
+review-staged in `files/expansion/expansion-bios-update.sql` — not a
+migration, do not run until approved.
+<!-- EXPANSION-24-28-END -->
 | 99 | `99_health_check.sql` | Read-only. Run any time to see the state of the data | — |
 
 After 16, expect **111 positions**, 47 published and 64 awaiting approval, and

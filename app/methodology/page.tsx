@@ -155,6 +155,54 @@ export default function MethodologyPage() {
         doesn&rsquo;t mean anything about the candidate.
       </p>
 
+      <h2>How confident we are</h2>
+      <p>
+        Under every position you&rsquo;ll see a small{" "}
+        <strong>Confidence</strong> label &mdash; Low, Medium or High. It
+        answers one question: <em>do we know these are really the
+        candidate&rsquo;s words?</em>
+      </p>
+      <ul>
+        <li>
+          <strong>High</strong> &mdash; the quote comes from an approved
+          source: the candidate&rsquo;s own website, their own public social
+          media, a direct media quote, remarks at an all-candidates meeting,
+          their answers to a candidate questionnaire, or an email they sent
+          us. Or the candidate has confirmed the position themselves.
+        </li>
+        <li>
+          <strong>Medium</strong> &mdash; the position was submitted through
+          the site by someone who said they were the candidate, but it
+          hasn&rsquo;t been verified yet.
+        </li>
+        <li>
+          <strong>Low</strong> &mdash; the position was submitted through the
+          site by someone other than the candidate, and we haven&rsquo;t found
+          anything to back it up.
+        </li>
+      </ul>
+      <p>
+        When we aren&rsquo;t sure, the answer is Medium. It&rsquo;s the
+        default, not a demotion.
+      </p>
+      <p>
+        <strong>Like everything else here, this is not a score.</strong> High
+        doesn&rsquo;t mean a position is good and Low doesn&rsquo;t mean
+        it&rsquo;s wrong. It describes where the words came from &mdash; not
+        how many of them there are, which is why it&rsquo;s separate from the
+        length notes above. A Low-confidence position deserves a closer look
+        before you act on it, and that&rsquo;s the point of saying so
+        openly.
+      </p>
+      <p>
+        If you think a confidence label is wrong &mdash; especially if you
+        are the candidate &mdash; that&rsquo;s exactly what the{" "}
+        <Link href="/corrections" className="link">
+          corrections process
+        </Link>{" "}
+        is for, and we will fix it quickly.
+      </p>
+
       <h2>When the source is a news article</h2>
       <p>
         A news story mixes two different things: words the candidate actually said,

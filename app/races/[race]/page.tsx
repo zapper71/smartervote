@@ -3,8 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import WebsiteLink from "@/components/WebsiteLink";
-import { getCandidatesForRace, getRace, getRaces } from "@/lib/queries";
-import { contestLabel } from "@/lib/dates";
+import {
+  getCandidatesForRace,
+  getPositionsForCandidates,
+  getRaceBySlugGlobal,
+  getRaces,
+  MUNICIPALITY_SLUG,
+} from "@/lib/queries";
+import { contestLabel, formatDate } from "@/lib/dates";
 
 export const revalidate = 300;
 
@@ -23,36 +29,68 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { race: slug } = await params;
-  const race = await getRace(slug);
-  if (!race) return { title: "Race not found" };
+  const found = await getRaceBySlugGlobal(slug);
+  if (!found) return { title: "Race not found" };
+  const { race, municipality } = found;
+  // Huntsville keeps its exact long-standing description; everywhere else
+  // gets the same shape with its own municipality's name.
+  const place =
+    municipality?.slug === MUNICIPALITY_SLUG
+      ? "the Town of Huntsville 2026 municipal election"
+      : `the ${municipality?.name ?? "Huntsville"} 2026 election`;
   return {
     title: race.name,
     description:
-      race.description ??
-      `Candidates for ${race.name} in the Town of Huntsville 2026 municipal election.`,
+      race.description ?? `Candidates for ${race.name} in ${place}.`,
   };
 }
 
 export default async function RacePage({ params }: Props) {
   const { race: slug } = await params;
-  const race = await getRace(slug);
+  const found = await getRaceBySlugGlobal(slug);
 
-  if (!race) {
+  if (!found) {
     const anyRaces = await getRaces();
     // Distinguish "this race doesn't exist" from "the database is down".
     if (anyRaces.length === 0) return <UnavailableNotice what="This race" />;
     notFound();
   }
 
+  const { race, municipality } = found;
+  // Expansion races use their own municipality's context — name, election
+  // dates, voting method — instead of assuming Huntsville. Huntsville's
+  // page renders exactly as before: no election-info line is added for it.
+  const isExpansion = municipality?.slug !== MUNICIPALITY_SLUG;
+
   const candidates = await getCandidatesForRace(race.id);
   const uncontested = candidates.length > 0 && candidates.length <= race.seats;
+
+  // Andreas's listings-tier rule, applied per candidate: a name links out to
+  // the candidate's own website ONLY when the candidate has no researched
+  // positions. Anyone with content keeps the internal candidate page as the
+  // name link — the website stays visible in the WebsiteLink block below.
+  // One query for the whole race, not N. Degrades to "no positions" (and
+  // therefore to website links) only if the positions read fails; the card
+  // still renders either way.
+  const positionsForRace = await getPositionsForCandidates(
+    candidates.map((c) => c.id)
+  );
+  const candidatesWithPositions = new Set(
+    positionsForRace.map((p) => p.candidate_id)
+  );
 
   return (
     <div>
       <p className="text-sm">
-        <Link href="/races" className="link">
-          &larr; All races
-        </Link>
+        {isExpansion && municipality ? (
+          <Link href={`/municipalities/${municipality.slug}`} className="link">
+            &larr; {municipality.name} races
+          </Link>
+        ) : (
+          <Link href="/races" className="link">
+            &larr; All races
+          </Link>
+        )}
       </p>
 
       <h1 className="mt-3 text-3xl">{race.name}</h1>
@@ -60,6 +98,15 @@ export default async function RacePage({ params }: Props) {
         <p className="mt-1 text-ink-faint">{race.ward_group_label}</p>
       )}
       <p className="mt-3 text-ink-soft">{contestLabel(candidates.length, race.seats)}</p>
+      {isExpansion && municipality && (
+        <p className="mt-2 text-sm text-ink-soft">
+          {municipality.name}
+          {municipality.election_date
+            ? ` · Election day ${formatDate(municipality.election_date)}`
+            : ""}
+          {municipality.voting_method ? ` · ${municipality.voting_method}` : ""}
+        </p>
+      )}
       {race.description && <p className="prose-civic mt-3">{race.description}</p>}
 
       {uncontested && (
@@ -110,12 +157,39 @@ export default async function RacePage({ params }: Props) {
           {candidates.map((c) => (
             <li key={c.id} className="card">
               <h3 className="text-base">
-                <Link
-                  href={`/races/${race.slug}/${c.slug}`}
-                  className="text-ink no-underline hover:text-accent"
-                >
-                  {c.name}
-                </Link>
+                {c.website && !candidatesWithPositions.has(c.id) ? (
+                  <a
+                    href={c.website}
+                    className="text-ink no-underline hover:text-accent"
+                    rel="noopener noreferrer nofollow"
+                    target="_blank"
+                  >
+                    {c.name}
+                    <span aria-hidden="true" className="ml-0.5 text-xs">
+                      ↗
+                    </span>
+                    <span className="sr-only">
+                      {" "}
+                      — {c.name}&rsquo;s campaign website, opens in a new tab
+                    </span>
+                  </a>
+                ) : (
+                  <Link
+                    href={`/races/${race.slug}/${c.slug}`}
+                    className="text-ink no-underline hover:text-accent"
+                  >
+                    {c.name}
+                  </Link>
+                )}
+                {/* Party is a provincial-ballot fact (BC districts). Shown in
+                    the site's neutral accent, never a party colour. The
+                    column is new (migration 24): a missing value renders
+                    nothing, never a crash. */}
+                {race.race_type === "provincial_district" && c.party && (
+                  <span className="pill ml-2 bg-accent-light align-middle text-accent">
+                    {c.party}
+                  </span>
+                )}
               </h3>
               {c.status === "acclaimed" && (
                 <span className="pill mt-2 bg-flag-light text-flag">Acclaimed</span>

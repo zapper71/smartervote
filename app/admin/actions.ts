@@ -4,7 +4,14 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getServiceClient } from "@/lib/supabase";
 import { passwordMatches, requireAdmin, signIn, signOut } from "@/lib/admin-auth";
-import { allowedExtents, type SourceExtent, type SourceType } from "@/lib/types";
+import {
+  allowedExtents,
+  CONFIDENCE_LEVELS,
+  confidenceForSourceType,
+  type Confidence,
+  type SourceExtent,
+  type SourceType,
+} from "@/lib/types";
 
 const REVIEWER = "Andreas";
 
@@ -90,8 +97,21 @@ export async function approveAction(formData: FormData) {
     patch.source_extent = await validatedExtent(db, id, formData.get("source_extent"));
   }
 
+  // Confidence in the position. Same "only when sent" rule; validated
+  // against the fixed vocabulary rather than trusted from the form.
+  if (formData.has("confidence")) {
+    const raw = String(formData.get("confidence") ?? "");
+    if (!(CONFIDENCE_LEVELS as readonly string[]).includes(raw)) {
+      throw new Error(`"${raw}" is not a confidence level. Use low, medium or high.`);
+    }
+    patch.confidence = raw as Confidence;
+  }
+
   const { error } = await db.from("positions").update(patch).eq("id", id);
-  if (error) throw new Error(`Could not publish: ${error.message}`);
+  if (error) {
+    if (/confidence/i.test(error.message)) throw missingConfidenceColumnError();
+    throw new Error(`Could not publish: ${error.message}`);
+  }
 
   revalidatePath("/admin");
   revalidatePath("/races", "layout");
@@ -135,6 +155,48 @@ export async function setExtentAction(formData: FormData) {
     .update({ source_extent: extent })
     .eq("id", id);
   if (error) throw new Error(`Could not save: ${error.message}`);
+
+  revalidatePath("/admin");
+  revalidatePath("/races", "layout");
+}
+
+/**
+ * The readable error when a confidence write lands on a database that does
+ * not have the column yet (migration 22 not run). Failing here with words
+ * beats silently succeeding without writing — and beats a raw Postgres
+ * error nobody should have to decode.
+ */
+function missingConfidenceColumnError(): Error {
+  return new Error(
+    "The confidence column isn't in the database yet — run supabase/22_position_confidence.sql first. Nothing was saved."
+  );
+}
+
+/**
+ * Set or change confidence on a single position.
+ *
+ * Mirrors setExtentAction: one field, nothing else about the row changes,
+ * no re-review. Available both on the in-review form (saved with approval)
+ * and on published rows below.
+ */
+export async function setConfidenceAction(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id"));
+
+  const db = getServiceClient();
+  const raw = String(formData.get("confidence") ?? "");
+  if (!(CONFIDENCE_LEVELS as readonly string[]).includes(raw)) {
+    throw new Error(`"${raw}" is not a confidence level. Use low, medium or high.`);
+  }
+
+  const { error } = await db
+    .from("positions")
+    .update({ confidence: raw as Confidence })
+    .eq("id", id);
+  if (error) {
+    if (/confidence/i.test(error.message)) throw missingConfidenceColumnError();
+    throw new Error(`Could not save: ${error.message}`);
+  }
 
   revalidatePath("/admin");
   revalidatePath("/races", "layout");
@@ -364,18 +426,53 @@ export async function importJsonAction(
   const db = getServiceClient();
 
   // Resolve slugs once, up front — every row then validates against maps.
+  //
+  // Issue slugs repeat per municipality (the province-wide issue set is
+  // cloned for each of the 265+ municipalities), so a global issue lookup
+  // is ambiguous. Issues are resolved scoped to the CANDIDATE's
+  // municipality: candidate -> race -> municipality_id, then issue by
+  // (municipality_id, slug). Huntsville resolves exactly as before — its
+  // candidates map to its own municipality.
   const { data: candRows, error: candErr } = await db
     .from("candidates")
-    .select("id,slug");
+    .select("id,slug,race_id");
   if (candErr)
     return { ...report, errors: [`Could not read candidates: ${candErr.message}`] };
+  const { data: raceRows, error: raceErr } = await db
+    .from("races")
+    .select("id,municipality_id");
+  if (raceErr)
+    return { ...report, errors: [`Could not read races: ${raceErr.message}`] };
   const { data: issueRows, error: issueErr } = await db
     .from("issues")
-    .select("id,slug");
+    .select("id,slug,municipality_id");
   if (issueErr)
     return { ...report, errors: [`Could not read issues: ${issueErr.message}`] };
-  const candBySlug = new Map((candRows ?? []).map((c) => [c.slug, c.id] as const));
-  const issueBySlug = new Map((issueRows ?? []).map((i) => [i.slug, i.id] as const));
+  const muniByRaceId = new Map(
+    (raceRows ?? []).map((r) => [r.id, r.municipality_id] as const)
+  );
+  const candBySlug = new Map(
+    (candRows ?? []).map(
+      (c) =>
+        [
+          c.slug,
+          { id: c.id, municipality_id: muniByRaceId.get(c.race_id) ?? null },
+        ] as const
+    )
+  );
+  const issueByMuniSlug = new Map(
+    (issueRows ?? []).map(
+      (i) => [`${i.municipality_id}|${i.slug}`, i.id] as const
+    )
+  );
+  /** The issue id for this slug within the candidate's municipality. */
+  const issueForCandidate = (
+    cand: { municipality_id: string | null },
+    issueSlug: string | null
+  ): string | undefined =>
+    cand.municipality_id && issueSlug
+      ? issueByMuniSlug.get(`${cand.municipality_id}|${issueSlug}`)
+      : undefined;
 
   // ---- positions: validate everything before touching the table ----
   type StagedPosition = {
@@ -392,6 +489,7 @@ export async function importJsonAction(
     source_extent: string | null;
     model_confidence: number | null;
     no_public_position: boolean;
+    confidence: Confidence;
   };
   const staged: StagedPosition[] = [];
 
@@ -403,14 +501,23 @@ export async function importJsonAction(
     }
     const candSlug = asString(p.candidate);
     const issueSlug = asString(p.issue);
-    const candidate_id = candSlug ? candBySlug.get(candSlug) : undefined;
-    const issue_id = issueSlug ? issueBySlug.get(issueSlug) : undefined;
-    if (!candidate_id) {
+    const cand = candSlug ? candBySlug.get(candSlug) : undefined;
+    if (!cand) {
       report.errors.push(`${label}: unknown candidate slug ${JSON.stringify(candSlug)}.`);
       return;
     }
+    const candidate_id = cand.id;
+    if (!cand.municipality_id) {
+      report.errors.push(
+        `${label}: candidate ${JSON.stringify(candSlug)} has no municipality — the issue can't be scoped.`
+      );
+      return;
+    }
+    const issue_id = issueForCandidate(cand, issueSlug);
     if (!issue_id) {
-      report.errors.push(`${label}: unknown issue slug ${JSON.stringify(issueSlug)}.`);
+      report.errors.push(
+        `${label}: unknown issue slug ${JSON.stringify(issueSlug)} for this candidate's municipality.`
+      );
       return;
     }
     const source_type = asString(p.source_type);
@@ -492,16 +599,51 @@ export async function importJsonAction(
       model_confidence:
         typeof model_confidence === "number" ? model_confidence : null,
       no_public_position,
+      // Confidence starts from the source type: approved-source quotes
+      // enter as high, everything else at medium — the default when
+      // uncertain — for Andreas to review in the queue.
+      confidence: confidenceForSourceType(source_type as SourceType),
     });
   });
 
-  // Dedupe against the unique index (candidate, issue, source_url) before
+  // Dedupe key matches the database unique index from migration 30:
+  // (candidate_id, issue_id, source_url, verbatim_quote, summary_short).
+  // Distinct statements sharing one source page differ by quote/summary,
+  // so only re-importing the same statement hits the same key.
+  const dedupeKey = (
+    candidate_id: string,
+    issue_id: string,
+    source_url: string | null,
+    verbatim_quote: string | null,
+    summary_short: string | null
+  ): string =>
+    [candidate_id, issue_id, source_url ?? "", verbatim_quote ?? "", summary_short ?? ""].join("|");
+
+  // Dedupe against the unique index
+  // (candidate_id, issue_id, source_url, quote hash, summary hash) before
   // inserting, so a double-pasted import is a no-op with a clear report.
+  //
+  // Distinct statements that share one source page — e.g. several survey
+  // answers from the same questionnaire, or several bullet points from one
+  // platform page — now import as SEPARATE rows. Only a true re-import of
+  // the same statement (same verbatim quote AND same summary) is skipped.
+  //
+  // The confidence column is new (migration 22): probe for it first and
+  // leave it out of the insert when it isn't there yet, rather than
+  // failing the whole import on an unknown column.
+  let confidenceColumn = true;
+  if (staged.length > 0) {
+    const { error: probeErr } = await db
+      .from("positions")
+      .select("confidence")
+      .limit(0);
+    if (probeErr && /confidence/i.test(probeErr.message)) confidenceColumn = false;
+  }
   const seenKeys = new Set<string>();
   if (staged.length > 0) {
     const { data: existing, error: existErr } = await db
       .from("positions")
-      .select("candidate_id,issue_id,source_url")
+      .select("candidate_id,issue_id,source_url,verbatim_quote,summary_short")
       .in(
         "candidate_id",
         [...new Set(staged.map((s) => s.candidate_id))]
@@ -510,11 +652,11 @@ export async function importJsonAction(
       return { ...report, errors: [`Could not check for duplicates: ${existErr.message}`] };
     }
     for (const e of existing ?? []) {
-      seenKeys.add(`${e.candidate_id}|${e.issue_id}|${e.source_url ?? ""}`);
+      seenKeys.add(dedupeKey(e.candidate_id, e.issue_id, e.source_url, e.verbatim_quote, e.summary_short));
     }
   }
   for (const s of staged) {
-    const key = `${s.candidate_id}|${s.issue_id}|${s.source_url ?? ""}`;
+    const key = dedupeKey(s.candidate_id, s.issue_id, s.source_url, s.verbatim_quote, s.summary_short);
     if (seenKeys.has(key)) {
       report.positionsSkipped.push(`${s.label}: already in the database.`);
       continue;
@@ -533,6 +675,7 @@ export async function importJsonAction(
       model_confidence: s.model_confidence,
       no_public_position: s.no_public_position,
       status: "in_review",
+      ...(confidenceColumn ? { confidence: s.confidence } : {}),
     });
     if (error) {
       report.errors.push(`${s.label}: ${error.message}`);
@@ -561,11 +704,12 @@ export async function importJsonAction(
       return;
     }
     const candSlug = asString(r.candidate);
-    const candidate_id = candSlug ? candBySlug.get(candSlug) : undefined;
-    if (!candidate_id || !candSlug) {
+    const cand = candSlug ? candBySlug.get(candSlug) : undefined;
+    if (!cand || !candSlug) {
       report.errors.push(`${label}: unknown candidate slug ${JSON.stringify(candSlug)}.`);
       return;
     }
+    const candidate_id = cand.id;
     const body_text = asString(r.body_text);
     if (!body_text || body_text.trim().length === 0) {
       report.errors.push(`${label}: body_text is required.`);
@@ -597,9 +741,9 @@ export async function importJsonAction(
           return;
         }
         const isl = asString(s.issue_slug);
-        if (isl !== null && !issueBySlug.has(isl)) {
+        if (isl !== null && !issueForCandidate(cand, isl)) {
           report.errors.push(
-            `${label}.sections[${si}]: unknown issue_slug ${JSON.stringify(isl)}.`
+            `${label}.sections[${si}]: unknown issue_slug ${JSON.stringify(isl)} for this candidate's municipality.`
           );
           return;
         }

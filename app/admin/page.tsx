@@ -9,12 +9,21 @@ import {
   logoutAction,
   rejectAction,
   rejectResponseAction,
+  setConfidenceAction,
   setExtentAction,
   unpublishAction,
   unpublishResponseAction,
 } from "./actions";
 import { formatShortDate } from "@/lib/dates";
-import { allowedExtents, type SourceExtent, type SourceType } from "@/lib/types";
+import ConfidencePill from "@/components/ConfidencePill";
+import {
+  allowedExtents,
+  CONFIDENCE_LEVELS,
+  resolveConfidence,
+  type Confidence,
+  type SourceExtent,
+  type SourceType,
+} from "@/lib/types";
 
 export const metadata: Metadata = {
   title: "Review queue",
@@ -33,10 +42,21 @@ type Row = {
   source_date: string | null;
   source_type: SourceType | null;
   source_extent: SourceExtent | null;
+  /** May be absent when the confidence column hasn't been added to the
+      database yet (migration 22) — every consumer resolves to 'medium'. */
+  confidence?: Confidence | null;
   no_public_position: boolean;
   reviewed_at: string | null;
   candidate_id: string;
-  candidates: { name: string; slug: string; races: { name: string; slug: string } | null } | null;
+  candidates: {
+    name: string;
+    slug: string;
+    races: {
+      name: string;
+      slug: string;
+      municipalities: { name: string; slug: string } | null;
+    } | null;
+  } | null;
   issues: { name: string; slug: string; sort_order: number } | null;
 };
 
@@ -83,6 +103,47 @@ function ExtentSelect({ r }: { r: Row }) {
   );
 }
 
+/**
+ * The confidence dropdown.
+ *
+ * Definitions, in Andreas's words: HIGH = a quote we found from an approved
+ * source, or the candidate's own feedback on the position. MEDIUM = claimed
+ * by someone who said they were the candidate via the site, not yet
+ * verified — the default when uncertain. LOW = submitted by someone else,
+ * with no corroboration found. When in doubt, leave MEDIUM.
+ */
+function ConfidenceSelect({ r }: { r: Row }) {
+  const current = resolveConfidence(r.confidence);
+  return (
+    <>
+      <label
+        htmlFor={`c-${r.id}`}
+        className="block text-xs font-medium uppercase tracking-wide text-ink-faint"
+      >
+        Confidence that these are really their words
+      </label>
+      <select
+        id={`c-${r.id}`}
+        name="confidence"
+        defaultValue={current}
+        className="mt-1 w-full rounded-md border border-paper-edge px-3 py-2 text-sm"
+      >
+        {CONFIDENCE_LEVELS.map((level) => (
+          <option key={level} value={level}>
+            {level === "low" ? "Low — someone else submitted it, uncorroborated"
+              : level === "medium" ? "Medium — unverified, claimed by the candidate"
+              : "High — approved source, or the candidate confirmed it"}
+          </option>
+        ))}
+      </select>
+      <p className="mt-1 text-xs text-ink-faint">
+        When uncertain, leave Medium. Newly imported content from an approved
+        source enters as High automatically.
+      </p>
+    </>
+  );
+}
+
 type ResponseRow = {
   id: string;
   status: string;
@@ -92,13 +153,21 @@ type ResponseRow = {
   sections: { heading: string; anchor: string; issue_slug: string | null }[] | null;
   reviewed_at: string | null;
   candidate_id: string;
-  candidates: { name: string; slug: string; races: { name: string; slug: string } | null } | null;
+  candidates: {
+    name: string;
+    slug: string;
+    races: {
+      name: string;
+      slug: string;
+      municipalities: { name: string; slug: string } | null;
+    } | null;
+  } | null;
 };
 
 export default async function AdminPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; show?: string }>;
+  searchParams: Promise<{ error?: string; show?: string; conf?: string; muni?: string }>;
 }) {
   const sp = await searchParams;
 
@@ -106,15 +175,41 @@ export default async function AdminPage({
   if (!(await isSignedIn())) return <AdminLogin error={sp.error === "1"} next="/admin" />;
 
   const show = sp.show === "published" ? "published" : "in_review";
+  const confFilter: Confidence | "all" = CONFIDENCE_LEVELS.includes(
+    sp.conf as Confidence
+  )
+    ? (sp.conf as Confidence)
+    : "all";
+  // Municipality filter for the expansion queue. Empty = everything, which
+  // is exactly today's default view — Huntsville rows included.
+  const muniFilter = typeof sp.muni === "string" ? sp.muni.trim() : "";
 
   const db = getServiceClient();
-  const { data, error } = await db
+  // The confidence column is new (migration 22): if it hasn't been run yet
+  // the select fails, so retry without it and let every row resolve to
+  // 'medium' rather than breaking the whole queue.
+  const SELECT_BASE =
+    "id,status,summary_short,summary_bullets,verbatim_quote,source_url,source_title,source_date,source_type,source_extent,no_public_position,reviewed_at,candidate_id," +
+    "candidates(name,slug,races(name,slug,municipalities(name,slug))),issues(name,slug,sort_order)";
+  // The two queries select different column sets, so give them one
+  // structural type instead of letting inference lock the shape.
+  type PositionRows = {
+    data: unknown[] | null;
+    error: { message: string } | null;
+  };
+  let confidenceColumn = true;
+  let positionsResult: PositionRows = await db
     .from("positions")
-    .select(
-      "id,status,summary_short,summary_bullets,verbatim_quote,source_url,source_title,source_date,source_type,source_extent,no_public_position,reviewed_at,candidate_id," +
-        "candidates(name,slug,races(name,slug)),issues(name,slug,sort_order)"
-    )
+    .select(`${SELECT_BASE},confidence`)
     .in("status", ["in_review", "published", "draft"]);
+  if (positionsResult.error && /confidence/i.test(positionsResult.error.message)) {
+    confidenceColumn = false;
+    positionsResult = await db
+      .from("positions")
+      .select(SELECT_BASE)
+      .in("status", ["in_review", "published", "draft"]);
+  }
+  const { data, error } = positionsResult;
 
   if (error) {
     return (
@@ -131,12 +226,20 @@ export default async function AdminPage({
     published: rows.filter((r) => r.status === "published").length,
     draft: rows.filter((r) => r.status === "draft").length,
   };
+  const confCounts: Record<Confidence, number> = {
+    low: 0,
+    medium: 0,
+    high: 0,
+  };
+  for (const r of rows) {
+    if (r.status === show) confCounts[resolveConfidence(r.confidence)] += 1;
+  }
 
   const { data: respData, error: respError } = await db
     .from("candidate_responses")
     .select(
       "id,status,subject,received_at,body_text,sections,reviewed_at,candidate_id," +
-        "candidates(name,slug,races(name,slug))"
+        "candidates(name,slug,races(name,slug,municipalities(name,slug)))"
     )
     .in("status", ["in_review", "published", "draft"]);
 
@@ -154,8 +257,27 @@ export default async function AdminPage({
     in_review: responses.filter((r) => r.status === "in_review").length,
     published: responses.filter((r) => r.status === "published").length,
   };
+
+  // Municipality filter options, built from what's actually in this tab.
+  // positions -> candidates -> races -> municipalities.
+  const muniSlugOf = (r: Row | ResponseRow): string =>
+    r.candidates?.races?.municipalities?.slug ?? "";
+  const muniOptions = new Map<string, string>();
+  for (const r of [...rows, ...responses].filter((r) => r.status === show)) {
+    const m = (r as Row).candidates?.races?.municipalities;
+    if (m && !muniOptions.has(m.slug)) muniOptions.set(m.slug, m.name);
+  }
+  const muniList = [...muniOptions.entries()].sort((a, b) =>
+    a[1].localeCompare(b[1])
+  );
+  // A stale or hand-typed slug falls back to everything — a bad filter
+  // value must never hide the queue.
+  const activeMuni = muniOptions.has(muniFilter) ? muniFilter : "";
+  const inMuni = (r: Row | ResponseRow) =>
+    activeMuni === "" || muniSlugOf(r) === activeMuni;
+
   const responsesByCandidate = new Map<string, ResponseRow[]>();
-  for (const r of responses.filter((r) => r.status === show)) {
+  for (const r of responses.filter((r) => r.status === show && inMuni(r))) {
     const key = r.candidate_id;
     if (!responsesByCandidate.has(key)) responsesByCandidate.set(key, []);
     responsesByCandidate.get(key)!.push(r);
@@ -163,6 +285,10 @@ export default async function AdminPage({
 
   const visible = rows
     .filter((r) => r.status === show)
+    .filter((r) => inMuni(r))
+    .filter(
+      (r) => confFilter === "all" || resolveConfidence(r.confidence) === confFilter
+    )
     .sort((a, b) => {
       const an = a.candidates?.name ?? "";
       const bn = b.candidates?.name ?? "";
@@ -211,7 +337,7 @@ export default async function AdminPage({
         </div>
       </div>
 
-      <div className="mt-6 flex gap-2 text-sm">
+      <div className="mt-6 flex flex-wrap gap-2 text-sm">
         <a
           href="/admin"
           className={`tap-target rounded-md px-3 py-2 no-underline ${show === "in_review" ? "bg-accent text-white" : "border border-paper-edge text-ink"}`}
@@ -225,6 +351,94 @@ export default async function AdminPage({
           Published ({counts.published})
         </a>
       </div>
+
+      {/* Confidence filter — surfaces the low and medium rows that most
+          need a human eye, without disturbing the review/publish flow. */}
+      <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
+        <span className="text-xs text-ink-faint">Confidence:</span>
+        {(
+          [
+            ["all", "All"],
+            ["low", `Low (${confCounts.low})`],
+            ["medium", `Medium (${confCounts.medium})`],
+            ["high", `High (${confCounts.high})`],
+          ] as const
+        ).map(([value, label]) => {
+          const href =
+            value === "all"
+              ? `/admin${show === "published" ? "?show=published" : ""}`
+              : `/admin?${show === "published" ? "show=published&" : ""}conf=${value}`;
+          const active = confFilter === value;
+          return (
+            <a
+              key={value}
+              href={href}
+              className={`tap-target rounded-md px-3 py-1.5 no-underline ${active ? "bg-ink text-paper-warm" : "border border-paper-edge text-ink"}`}
+            >
+              {label}
+            </a>
+          );
+        })}
+      </div>
+
+      {/* Municipality filter — the expansion queue lands here (18 in-depth
+          municipalities, ~789 positions). Plain GET form, no client JS: the
+          review screen is server-rendered throughout. */}
+      {muniList.length > 1 && (
+        <form
+          method="get"
+          className="mt-3 flex flex-wrap items-center gap-2 text-sm"
+        >
+          {show === "published" && (
+            <input type="hidden" name="show" value="published" />
+          )}
+          {confFilter !== "all" && (
+            <input type="hidden" name="conf" value={confFilter} />
+          )}
+          <label
+            htmlFor="muni-filter"
+            className="text-xs text-ink-faint"
+          >
+            Municipality:
+          </label>
+          <select
+            id="muni-filter"
+            name="muni"
+            defaultValue={activeMuni}
+            className="tap-target rounded-md border border-paper-edge bg-paper px-3 py-2 text-sm"
+          >
+            <option value="">
+              All municipalities ({muniList.length})
+            </option>
+            {muniList.map(([slug, name]) => (
+              <option key={slug} value={slug}>
+                {name}
+              </option>
+            ))}
+          </select>
+          <button className="tap-target rounded-md border border-paper-edge px-3 py-2 text-sm">
+            Filter
+          </button>
+          {activeMuni !== "" && (
+            <a
+              href={`/admin${show === "published" ? "?show=published" : ""}${confFilter !== "all" ? `${show === "published" ? "&" : "?"}conf=${confFilter}` : ""}`}
+              className="link tap-target text-sm"
+            >
+              Clear
+            </a>
+          )}
+        </form>
+      )}
+
+      {!confidenceColumn && (
+        <p className="mt-6 rounded-md border border-flag/40 bg-flag-light px-4 py-3 text-sm text-ink-soft">
+          The <code>confidence</code> column isn&rsquo;t in the database yet — every
+          row below shows the default, Medium. Run{" "}
+          <code>supabase/22_position_confidence.sql</code> to enable per-row
+          confidence. Saving a confidence change before then will fail with an
+          explanation rather than silently.
+        </p>
+      )}
 
       {show === "in_review" && (counts.in_review > 0 || respCounts.in_review > 0) && (
         <p className="mt-6 rounded-md border border-accent/20 bg-accent-light px-4 py-3 text-sm text-ink-soft">
@@ -256,6 +470,10 @@ export default async function AdminPage({
                   {first.candidates?.name}{" "}
                   <span className="text-sm font-normal text-ink-faint">
                     {first.candidates?.races?.name}
+                    {/* Only shown once expansion rows exist — the default
+                        Huntsville view renders exactly as before. */}
+                    {muniList.length > 1 &&
+                      ` · ${first.candidates?.races?.municipalities?.name ?? ""}`}
                   </span>
                 </h2>
                 {show === "in_review" && total > 1 && (
@@ -320,7 +538,12 @@ export default async function AdminPage({
                 ))}
                 {items.map((r) => (
                 <article key={r.id} className="card">
-                  <h3 className="text-base">{r.issues?.name}</h3>
+                  <h3 className="text-base">
+                    {r.issues?.name}{" "}
+                    <span className="ml-1 align-middle">
+                      <ConfidencePill level={r.confidence} />
+                    </span>
+                  </h3>
 
                   {/* Quote first, deliberately — it's the thing being checked
                       against, and putting the summary first invites you to
@@ -376,6 +599,10 @@ export default async function AdminPage({
                         <ExtentSelect r={r} />
                       </div>
 
+                      <div className="mt-4">
+                        <ConfidenceSelect r={r} />
+                      </div>
+
                       <div className="mt-3 flex flex-wrap gap-2">
                         <button className="tap-target rounded-md bg-accent px-4 py-2 text-sm font-medium text-white">
                           Approve &amp; publish
@@ -399,6 +626,17 @@ export default async function AdminPage({
                       <form action={setExtentAction} className="mt-4">
                         <input type="hidden" name="id" value={r.id} />
                         <ExtentSelect r={r} />
+                        <button className="tap-target mt-2 rounded-md border border-accent px-3 py-1.5 text-sm text-accent">
+                          Save
+                        </button>
+                      </form>
+
+                      {/* Confidence can change on an already published row —
+                          same shape as the extent control: it only rewrites
+                          this one field, nothing else about the row. */}
+                      <form action={setConfidenceAction} className="mt-4">
+                        <input type="hidden" name="id" value={r.id} />
+                        <ConfidenceSelect r={r} />
                         <button className="tap-target mt-2 rounded-md border border-accent px-3 py-1.5 text-sm text-accent">
                           Save
                         </button>

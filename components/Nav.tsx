@@ -24,7 +24,7 @@ export default function Nav() {
           <span className="text-lg">Smarter</span>
           <span className="text-lg text-accent">Vote</span>
           <span className="ml-2 hidden text-xs font-normal text-ink-faint sm:inline">
-            Huntsville 2026
+            Ontario &amp; BC · 2026
           </span>
         </Link>
         <ul className="flex flex-wrap items-center gap-1 text-sm">
