@@ -1,0 +1,335 @@
+{
+ "positions": [
+  {
+   "candidate": "waterloo-jamie-hari",
+   "issue": "housing",
+   "summary_short": "Hari would create a rent registry and landlord licensing, mandate 25-50% of new units be affordable, and build a city-owned housing corporation targeting 10% of the housing stock.",
+   "summary_bullets": [
+    "Mandatory rent registry and landlord licensing bylaw: landlords publicly disclose global rental holdings and monthly rents, pay an annual registration fee scaling with total units owned.",
+    "Bylaw mandating 25% of all new-built units be 'affordable for singles' (under 30% of average individual income, approx $1,500/mo) and 50% 'affordable for families' (under 30% of average household income, approx $2,350/mo).",
+    "Create a city-owned municipal housing corporation to build and operate non-market housing, targeting 10% of the city's entire housing stock within 20 years."
+   ],
+   "verbatim_quote": "Create a city-owned municipal housing corporation to build and operate non-market housing, with a goal of operating 10% of the city's entire housing stock within 20 years.",
+   "source_url": "https://mayorofwaterloo.ca/platform/",
+   "source_title": "Jamie Hari campaign platform: Shelter",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a page or more",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-jamie-hari",
+   "issue": "emergency-services",
+   "summary_short": "Hari would cut Waterloo's funding to the regional police, ban license-plate and facial-recognition cameras, and transition toward a community security service.",
+   "summary_bullets": [
+    "Significantly cut the City of Waterloo's contribution to the Waterloo Regional Police Service annual budget.",
+    "Ban Automatic License Plate Recognition and facial recognition cameras in the City of Waterloo.",
+    "Long-term: transition from a 'militarized regional police service' to a community security service."
+   ],
+   "verbatim_quote": "Significantly cut the City of Waterloo's contribution to the Waterloo Regional Police Service (WRPS) annual budget. Introduce a bylaw prohibiting the use of Automatic License Plate Recognition (ALPR) and facial recognition cameras in the City of Waterloo.",
+   "source_url": "https://mayorofwaterloo.ca/platform/",
+   "source_title": "Jamie Hari campaign platform: Justice",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-jamie-hari",
+   "issue": "taxes-and-spending",
+   "summary_short": "Hari proposes a scaling property tax making the first $250,000 of owned residential property tax-free, shifting the burden to higher-valued homes.",
+   "summary_bullets": [
+    "Create a scaling residential property tax scheme where the first $250,000 of owned residential property is tax-free.",
+    "Total residential property tax collected in 2027 exactly 2% higher than 2026, then growing with CPI.",
+    "Homes worth significantly more than the average (approx $700,000) would see significant tax increases; below-average homes may see decreases."
+   ],
+   "verbatim_quote": "Create a new scaling residential property tax scheme, where the first $250,000 of owned residential property is tax-free and the total residential property tax collected in 2027 is exactly 2% higher than in 2026 and then grows inline with the consumer price index (CPI).",
+   "source_url": "https://mayorofwaterloo.ca/platform/",
+   "source_title": "Jamie Hari campaign platform: Tax",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-jamie-hari",
+   "issue": "environment",
+   "summary_short": "Hari would create a mandatory polluter registry with an environmental resilience fund, ban water privatization, and set strict water availability standards.",
+   "summary_bullets": [
+    "Mandatory polluter registry and licensing bylaw: businesses publicly disclose local pollution emissions and pay annually into a local environmental resilience fund for emissions above standards.",
+    "Bylaw irrevocably prohibiting the privatization of water within the City of Waterloo.",
+    "Water service standard: 99.9% availability with a 24-hour restore time objective; automatic state of emergency if not met; landlord licenses revoked for failures."
+   ],
+   "verbatim_quote": "I believe that human needs are human rights. This means food, water, shelter, healthcare, education, transit, a livable environment, and everything else someone needs to thrive in modern society should be guaranteed to everyone living in so-called Canada.",
+   "source_url": "https://mayorofwaterloo.ca/platform/",
+   "source_title": "Jamie Hari campaign platform: Environment and Water",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-jamie-hari",
+   "issue": "roads-and-infrastructure",
+   "summary_short": "Hari would make Grand River Transit free, starting with seniors and students, and create a publicly funded city-wide snow removal service.",
+   "summary_bullets": [
+    "Fully subsidize (free) Grand River Transit passes for seniors and students first, then for every Waterluvian.",
+    "Introduce a new city-wide snow removal service: publicly funded, unionized Region employees, electric snow removal equipment where practicable."
+   ],
+   "verbatim_quote": "Fully subsidize (free) Grand River Transit passes for every Waterluvian. (Currently $88/month for Travelwise member company employees and $104/month for everyone else.)",
+   "source_url": "https://mayorofwaterloo.ca/platform/",
+   "source_title": "Jamie Hari campaign platform: Transit",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-jamie-hari",
+   "issue": "social-and-community-services",
+   "summary_short": "Hari would fully fund food banks, launch a city-owned union-operated grocery store, and incentivize community food gardens and cooperatives.",
+   "summary_bullets": [
+    "Supplement food banks with enough resources to entirely meet all Waterluvians' current needs.",
+    "Launch at least one city-owned not-for-profit, fully union-operated grocery store.",
+    "Bylaws holding corporate grocers accountable for using real estate contracts to eliminate small business competition; programs to incentivize community food gardens and co-ops."
+   ],
+   "verbatim_quote": "Launch at least one city-owned not-for-profit grocery store which is fully union-operated.",
+   "source_url": "https://mayorofwaterloo.ca/platform/",
+   "source_title": "Jamie Hari campaign platform: Food",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-jamie-hari",
+   "issue": "government",
+   "summary_short": "Hari would advocate for ranked-choice municipal elections and free tuition at Waterloo's post-secondary institutions for Waterluvians.",
+   "summary_bullets": [
+    "Advocate for Elections Ontario to replace First Past the Post with a ranked choice (or similar) electoral system.",
+    "Advocate for the city's post-secondary institutions to fully subsidize (free) tuition for Waterluvians."
+   ],
+   "verbatim_quote": "Unfortunately, the municipal electoral system is largely out of the City of Waterloo's control. As such, the best we can do is aggressively advocate for Elections Ontario to replace the First Past the Post electoral system with a ranked choice (or similar) electoral system.",
+   "source_url": "https://mayorofwaterloo.ca/platform/",
+   "source_title": "Jamie Hari campaign platform: Electoral Reform and Education",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-dorothy-mccabe",
+   "issue": "housing",
+   "summary_short": "McCabe's housing plan moves housing projects forward and uses City-owned land to create more affordable homes.",
+   "summary_bullets": [
+    "Moving housing projects forward.",
+    "Using City-owned land to help create more affordable homes.",
+    "Next term priority: build more housing and keep taxes responsible."
+   ],
+   "verbatim_quote": "Moving housing projects forward and using City-owned land to help create more affordable homes.",
+   "source_url": "https://www.dorothymccabe.ca/",
+   "source_title": "Dorothy McCabe campaign site: Delivering for Waterloo - More Housing",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-dorothy-mccabe",
+   "issue": "healthcare",
+   "summary_short": "McCabe is campaigning on securing Waterloo's first hospital and supporting the health and innovation ecosystem around it.",
+   "summary_bullets": [
+    "Helping secure the new hospital in Waterloo.",
+    "Supporting the health and innovation ecosystem around it."
+   ],
+   "verbatim_quote": "Helping secure the new hospital in Waterloo and supporting the health and innovation ecosystem around it.",
+   "source_url": "https://www.dorothymccabe.ca/",
+   "source_title": "Dorothy McCabe campaign site: Delivering for Waterloo - Waterloo's First Hospital",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "one sentence",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-dorothy-mccabe",
+   "issue": "active-transportation",
+   "summary_short": "McCabe would invest in parks, trees, recreation and public spaces for stronger neighbourhoods.",
+   "summary_bullets": [
+    "Investing in parks, trees, recreation and public spaces that make Waterloo a better place to live."
+   ],
+   "verbatim_quote": "Investing in parks, trees, recreation and public spaces that make Waterloo a better place to live.",
+   "source_url": "https://www.dorothymccabe.ca/",
+   "source_title": "Dorothy McCabe campaign site: Delivering for Waterloo - Stronger Neighbourhoods",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "one sentence",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-dorothy-mccabe",
+   "issue": "economy",
+   "summary_short": "McCabe would work with businesses and universities to attract investment, streamline approvals, support jobs and keep talent in Waterloo.",
+   "summary_bullets": [
+    "Working with businesses, universities and community partners to attract investment.",
+    "Supporting jobs and keeping talent in Waterloo; streamlining approvals."
+   ],
+   "verbatim_quote": "Working with businesses, universities and community partners to attract investment, support jobs and keep talent in Waterloo.",
+   "source_url": "https://www.dorothymccabe.ca/",
+   "source_title": "Dorothy McCabe campaign site: Delivering for Waterloo - A Stronger Local Economy",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "one sentence",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-dorothy-mccabe",
+   "issue": "government",
+   "summary_short": "McCabe commits to continued investment in 2SLGBTQIA+ inclusion: the READI equity plan, staff training, clear hate-incident reporting, and welcoming City spaces.",
+   "summary_bullets": [
+    "Says she has been clear throughout her term that queer and trans people belong in Waterloo and must access public services without discrimination.",
+    "City's Get READI Plan commits to proactively respond to identity-based discrimination; Council committed $303,000 to inclusive programming, youth supports and fee assistance.",
+    "Worked with SPECTRUM on Trans Swim and inclusive yoga; advancing all-gender and barrier-free washrooms.",
+    "Priorities: council/staff training, clear reporting pathways, visibly welcoming City spaces, ongoing relationships with 2SLGBTQIA+ organizations."
+   ],
+   "verbatim_quote": "Municipal leaders and municipal governments must not be neutral when people's safety, dignity and equal access to public life are at stake.",
+   "source_url": "https://ourspectrum.com/2026-municipal-election-waterloo/",
+   "source_title": "SPECTRUM 2026 election questionnaire: McCabe response on 2SLGBTQIA+ inclusion",
+   "source_type": "candidate_questionnaire",
+   "source_date": "2026-10-15",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-jerry-jiang",
+   "issue": "economy",
+   "summary_short": "Jiang is running on an entrepreneurship-driven vision: make Waterloo Canada's home for ambition, use its engineering culture to solve everyday problems.",
+   "summary_bullets": [
+    "Wants Waterloo to be 'Canada's home for ambition' where people can start something of their own and have a good life.",
+    "Founded Akatos, a Waterloo startup community and hacker house for young builders.",
+    "Philosophy: 'See a problem. Decide it matters. Make something useful.'",
+    "Would use Waterloo's engineering culture to make ordinary life work better and let more people help."
+   ],
+   "verbatim_quote": "I want Waterloo to be Canada's home for ambition. Somewhere you can start something of your own—and have a good life here, too.",
+   "source_url": "https://www.jerryjiang.com/",
+   "source_title": "Jerry Jiang campaign site: vision and philosophy",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-jerry-jiang",
+   "issue": "growth-and-development",
+   "summary_short": "Jiang would reduce barriers to development for housing and commerce while building a city with beauty, businesses and third places.",
+   "summary_bullets": [
+    "Build a city worth loving: beauty, businesses, third places and a full life after school are not extras – 'they are why people choose a place'.",
+    "Reduce guard-rails that get in the way of development for housing and commerce/job creation."
+   ],
+   "verbatim_quote": "Beauty, businesses, third places and a full life after school are not extras. They are why people choose a place.",
+   "source_url": "https://www.jerryjiang.com/",
+   "source_title": "Jerry Jiang campaign site: Build a city worth loving",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-jeyas-balaskanthan",
+   "issue": "economy",
+   "summary_short": "Balaskanthan's vision is to make Waterloo the safest, most entrepreneurial and most customer-focused city in Canada, with less red tape at City Hall.",
+   "summary_bullets": [
+    "Vision: make Waterloo the safest, most entrepreneurial and most customer-focused city in Canada.",
+    "Build a dynamic, inclusive economy where local businesses can grow, entrepreneurs can take risks, and opportunity reaches every neighbourhood.",
+    "Make City Hall work better with less red tape, faster answers, focused on delivering results."
+   ],
+   "verbatim_quote": "My vision is simple: make Waterloo the safest, most entrepreneurial and most customer-focused city in Canada.",
+   "source_url": "https://www.jeyasforwaterloo.ca/",
+   "source_title": "Jeyas Balaskanthan campaign site and launch post",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-jeyas-balaskanthan",
+   "issue": "government",
+   "summary_short": "Balaskanthan promises to break City Hall complacency by challenging the status quo and testing new ideas.",
+   "summary_bullets": [
+    "Break the culture of complacency by challenging the status quo, testing new ideas and keeping the city moving forward.",
+    "He shows up, he listens and he builds bridges to solve problems."
+   ],
+   "verbatim_quote": "Breaking the culture of complacency by challenging the status quo, testing new ideas and making sure our city keeps moving forward.",
+   "source_url": "https://www.linkedin.com/posts/jeyas-balaskanthan-b37b0a1b2_loveyouwaterloo-waterloo-waterlooelection2026-activity-7516502232004149249-6uJn",
+   "source_title": "Jeyas Balaskanthan mayoral launch post",
+   "source_type": "candidate_social",
+   "source_date": "2026-10-15",
+   "source_extent": "one sentence",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-shannon-weber",
+   "issue": "taxes-and-spending",
+   "summary_short": "Weber centres her campaign on affordability and value: property taxes rose 27% since the last election and every dollar spent must create real value.",
+   "summary_bullets": [
+    "Property taxes have climbed 27% in the City of Waterloo since the last election, outpacing inflation.",
+    "Residents want a city that listens, makes transparent decisions, and ensures every dollar spent creates real value."
+   ],
+   "verbatim_quote": "Property taxes have climbed sharply since the last election — 27% in the City of Waterloo, outpacing inflation — while many residents continue to raise concerns about the basics like road & trail maintenance, snow clearing, & neighbourhood parks.",
+   "source_url": "https://www.shannonweber.ca/",
+   "source_title": "Shannon Weber campaign site: home page",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-shannon-weber",
+   "issue": "roads-and-infrastructure",
+   "summary_short": "Weber emphasizes getting the basics right: road and trail maintenance, snow clearing and neighbourhood parks.",
+   "summary_bullets": [
+    "Focus on the basics: road and trail maintenance, snow clearing, and neighbourhood parks.",
+    "An 'ambitious and affordable Waterloo working for you'."
+   ],
+   "verbatim_quote": "An ambitious and affordable Waterloo working for you.",
+   "source_url": "https://www.shannonweber.ca/",
+   "source_title": "Shannon Weber campaign site: home page",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-jim-erb",
+   "issue": "government",
+   "summary_short": "Erb commits to being a voice for 2SLGBTQIA+ residents with safe spaces and gender-neutral washrooms across the region.",
+   "summary_bullets": [
+    "Commits to 'be a voice for those who are often forgotten' and 'create an environment where all feel welcome and included'.",
+    "Supports safe spaces for 2SLGBTQIA+ people and gender-neutral washrooms throughout Waterloo Region.",
+    "Will work with Spectrum, community partners and allies in a second term of council."
+   ],
+   "verbatim_quote": "be a voice for those who are often forgotten",
+   "source_url": "https://ourspectrum.com/2026-municipal-election-waterloo/",
+   "source_title": "SPECTRUM 2026 election questionnaire: Jim Erb response on 2SLGBTQIA+ inclusion",
+   "source_type": "candidate_questionnaire",
+   "source_date": "2026-10-15",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "waterloo-lindsay-manary",
+   "issue": "social-and-community-services",
+   "summary_short": "Manary pledged to protect public services, oppose water privatization, and stand up for worker rights (CUPE 1883 endorsement).",
+   "summary_bullets": [
+    "CUPE 1883 endorsed Manary for Regional Councillor.",
+    "Every endorsed candidate committed to: speak up and protect public services; oppose water privatization; stand up for worker rights."
+   ],
+   "verbatim_quote": null,
+   "source_url": "https://cupe1883.ca/vote2026/",
+   "source_title": "CUPE 1883 2026 municipal election endorsements (pledge commitments)",
+   "source_type": "candidate_questionnaire",
+   "source_date": "2026-10-16",
+   "source_extent": "one sentence",
+   "no_public_position": false
+  }
+ ]
+}

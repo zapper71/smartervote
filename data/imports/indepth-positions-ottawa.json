@@ -1,0 +1,417 @@
+{
+ "positions": [
+  {
+   "candidate": "ottawa-mark-sutcliffe",
+   "issue": "taxes-and-spending",
+   "summary_short": "Sutcliffe pledges a 2-2.5% property tax cap for the first two years, $250M more in savings via a hiring freeze and program review, and a multi-year budget.",
+   "summary_bullets": [
+    "Renews his promise to keep taxes as low as possible, with a tax limit of 2-2.5% for the first two years of the term",
+    "Pledges to find another $250 million in savings and efficiencies over four years, on top of $252 million he says was found in his first term",
+    "Savings measures: maintain a hiring freeze for non-frontline, non-priority positions for at least two years; freeze general operating spending so it only grows with assessment; expanded program review with City staff and independent third-party experts; peer benchmarking against other municipalities",
+    "Pledges a multi-year budget for predictability and to continue securing provincial/federal investment to reduce pressure on local taxpayers"
+   ],
+   "verbatim_quote": "I will renew my promise and keep taxes as low as possible, including a tax limit of 2-2.5% for the first two years.",
+   "source_url": "https://marksutcliffe.ca/plan",
+   "source_title": "A vision for Ottawa (My plan for...)",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-15",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-mark-sutcliffe",
+   "issue": "transit",
+   "summary_short": "Sutcliffe would cut the monthly OC Transpo pass to $95 and leans on the $4B provincial LRT upload to strengthen transit.",
+   "summary_bullets": [
+    "Would cut the monthly transit pass from $138.50 to $95, which he calls the lowest price of any major city in Canada, saving regular riders over $500 a year",
+    "Points to a $4 billion deal with the province to 'upload' the LRT as the single largest transit infrastructure investment in Ottawa's history",
+    "Cites the purchase of 500 new buses (mostly zero-emission) and a ~30% increase in transit investment over four years"
+   ],
+   "verbatim_quote": "I will dramatically lower the price of a monthly transit pass from $138.50 to $95 in order to make life more affordable for residents and welcome riders back to transit.",
+   "source_url": "https://marksutcliffe.ca/plan",
+   "source_title": "A vision for Ottawa (My plan for...)",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-15",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-mark-sutcliffe",
+   "issue": "emergency-services",
+   "summary_short": "Sutcliffe pledges 350 more first responders (200 police, 100 paramedics, 50 firefighters), a public safety dashboard, and a Downtown Safety Plan.",
+   "summary_bullets": [
+    "Would hire 350 more first responders: 200 more police officers (with body cameras), 100 more paramedics and 50 more firefighters",
+    "Would create a public dashboard reporting key public safety performance indicators",
+    "Would fully implement the district policing model and work with the province on municipal ambulance offload centres to cut ER wait times",
+    "Would advance a Downtown Safety Plan, supported by more policing, alternative response and new response teams, including activating the Emergency Coordination Centre"
+   ],
+   "verbatim_quote": "Hire 350 more police officers, firefighters, and paramedics — Hire 200 more police officers, equip the police service with body cameras, and ensure safety in communities across Ottawa.",
+   "source_url": "https://marksutcliffe.ca/priorities/safety",
+   "source_title": "Making Ottawa safer, together",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-15",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-mark-sutcliffe",
+   "issue": "housing",
+   "summary_short": "Sutcliffe targets 10,000 affordable homes by 2030, backed by a $400M federal deal and his Housing Action Plan's red-tape cuts.",
+   "summary_bullets": [
+    "Would 'secure the funding necessary' to build 10,000 affordable, supportive and transitional housing units by 2030 (measured against 2020 levels)",
+    "Cites a $400 million deal with the federal government to build 3,000 new affordable and mixed-income homes, including supportive units",
+    "Points to a Housing Action Plan that cut 13 housing studies, reduced municipal fees on new homes, and led to a 38% rise in 2025 housing starts",
+    "Separately pledged 650 more supportive housing units in an Ottawa Citizen op-ed (reported Oct 2026)"
+   ],
+   "verbatim_quote": "I will secure the funding necessary to build a total of 10,000 affordable, supportive, and transitional housing units in Ottawa by 2030, when compared to 2020 levels.",
+   "source_url": "https://marksutcliffe.ca/plan",
+   "source_title": "A vision for Ottawa (My plan for...)",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-15",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-mark-sutcliffe",
+   "issue": "economy",
+   "summary_short": "Sutcliffe's downtown plan covers the ByWard Market Action Plan, 40,000 new downtown residents and 50,000 jobs, defence-sector growth, and an Ottawa-Gatineau economic zone.",
+   "summary_bullets": [
+    "Would complete the ByWard Market Action Plan (renovate major properties, new attractions) ahead of the Market's 200th anniversary",
+    "Would continue the downtown revitalization plan aimed at bringing 40,000 new residents, 50,000 jobs and hundreds of new businesses downtown",
+    "Would fully implement the Defence Innovation Strategy (citing a $90M Defence Aerospace hangar investment at the airport), host a 2027 Ottawa-Gatineau investment summit, and pursue a 'free trade' special economic zone with Gatineau",
+    "Would address vacant storefronts with a pop-up/short-term-lease matchmaking program, storefront improvement grants, public art on vacant storefronts, and fast-tracked approvals for conversions"
+   ],
+   "verbatim_quote": "Ottawa's economy depends on a strong and vibrant downtown. I will continue to implement the downtown revitalization plan to support bringing 40,000 new residents, 50,000 new jobs, and hundreds of new businesses to downtown Ottawa.",
+   "source_url": "https://marksutcliffe.ca/plan",
+   "source_title": "A vision for Ottawa (My plan for...)",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-15",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-jeff-leiper",
+   "issue": "transit",
+   "summary_short": "Leiper would reverse the 2024 bus service cuts, expand dedicated bus lanes, and introduce a public Transit Service Guarantee with published performance standards.",
+   "summary_bullets": [
+    "Would reverse service cuts made under the 2024 'New Ways to Bus' plan (roughly 70,000 hours of service, ~$10M in savings), prioritizing funding toward core routes",
+    "Would expand dedicated bus lanes and transit-priority measures to improve reliability and reduce congestion",
+    "Proposes a Transit Service Guarantee: published on-time performance and frequency standards with regular public reporting on results",
+    "Would restore a citizen seat on the Transit Commission and open bus routes to rider accountability; frames transit reliability as an affordability issue"
+   ],
+   "verbatim_quote": "Sutcliffe has taken us in a direction on public transit that's less convenient, it's less reliable. As a result, fewer people are taking transit and our roads are more congested.",
+   "source_url": "http://compassnews.ca/jeff-leiper-is-ready-to-get-the-city-back-on-track-starting-with-transit/",
+   "source_title": "Jeff Leiper is ready to get the city 'back on track,' starting with transit (iPolitics / Ottawa Compass)",
+   "source_type": "local_news",
+   "source_date": "2026-09-01",
+   "source_extent": "reported remarks",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-jeff-leiper",
+   "issue": "housing",
+   "summary_short": "Leiper targets 1,500 non-profit homes a year and an acquisition fund with the Ottawa Community Land Trust to preserve affordable rentals and stop demovictions.",
+   "summary_bullets": [
+    "Commits to a target of 1,500 new non-profit homes per year, requiring federal, provincial and municipal cooperation",
+    "Commits to partnering with non-profits and the Ottawa Community Land Trust on an acquisition fund to preserve affordable rental housing and prevent demovictions",
+    "Development charge relief should not apply to market units; property tax exemptions reserved for housing meeting a strict affordability definition or non-profit ownership",
+    "Pushes for a fairer federal partnership: a 50/50 cost split with the federal government 'is not fair' given city pressure on transit and infrastructure"
+   ],
+   "verbatim_quote": "Campaign Commitment: Partner with non-profits and the Ottawa Community Land Trust to build an acquisition fund that preserves affordable rental housing and prevents demovictions.",
+   "source_url": "https://jeffleiper.substack.com/p/housing-that-works",
+   "source_title": "Housing That Works (campaign Substack)",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-jeff-leiper",
+   "issue": "taxes-and-spending",
+   "summary_short": "Leiper proposes a 1% infrastructure levy (~$28/year per household) to close the infrastructure repair gap, with otherwise 'affordable and predictable' tax increases.",
+   "summary_bullets": [
+    "Would impose a 1% infrastructure levy to fund repairs on aging roads, sewers and other city assets, estimated at about $28 per year for the average homeowner",
+    "Levy would sit on top of whatever property tax rate council passes; he rejects claims he would raise taxes 7-9%",
+    "Has cited a $10.8B infrastructure funding gap, arguing avoidance of tax increases worsens the gap and leaves the city less leverage with federal/provincial funders"
+   ],
+   "verbatim_quote": "I can assure residents that I'm not looking at tax increases of seven or eight or nine per cent.",
+   "source_url": "https://www.ottown.ca/articles/ottawa-leiper-one-percent-infrastructure-levy-mayor",
+   "source_title": "Jeff Leiper Pitches 1% Property Tax Levy for Ottawa Infrastructure",
+   "source_type": "local_news",
+   "source_date": "2026-09-17",
+   "source_extent": "one sentence",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-jeff-leiper",
+   "issue": "government",
+   "summary_short": "Leiper would overturn the city staff five-day return-to-office mandate, push back on the federal four-day rule, and expand suburban shared workplaces.",
+   "summary_bullets": [
+    "Would reverse the blanket five-day return-to-office mandate for Ottawa city staff, allowing flexible work where possible without compromising public services",
+    "Would call on the federal government to reverse its four-day in-office mandate and base workplace decisions on operational needs",
+    "Would work with the federal government to expand shared workplaces in Kanata, Orleans, Barrhaven and the south end, bringing offices closer to where employees live",
+    "Would require the City to assess transportation, financial and environmental consequences before major workplace-policy changes"
+   ],
+   "verbatim_quote": "Sutcliffe's back-to-office orders are costing people time and money. Higher child care, gas, transit, parking and coffee costs hurt people.",
+   "source_url": "https://www.leiper2026.ca/rto",
+   "source_title": "Leiper Commits to Overturn Return-to-Office Mandates",
+   "source_type": "candidate_website",
+   "source_date": "2026-08-24",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-jeff-leiper",
+   "issue": "economy",
+   "summary_short": "Leiper would bring a Fair Wage Policy to city construction contracts over $1.5M by end-2027, with a Fair Wage Office and a skilled-trades development plan.",
+   "summary_bullets": [
+    "Would introduce a Fair Wage Policy for all City of Ottawa construction projects over $1.5M, in force no later than end of 2027",
+    "Would create a City Fair Wage Office, led by a Manager, by end of 2027 to administer and enforce the policy",
+    "Would add Community Employment Benefits Agreements and a Skilled Trades Workforce Development Plan to create apprenticeships, especially for communities facing barriers",
+    "Would seek council support for Ottawa to become a signatory contractor with the 20 affiliated unions of the Building and Construction Trades Council"
+   ],
+   "verbatim_quote": "Providing good-paying jobs for local people is an investment in Ottawa's future. The City should ensure its construction spending supports fair wages, skilled workers, and a strong local construction industry.",
+   "source_url": "https://www.leiper2026.ca/fair_wage",
+   "source_title": "Jeff Leiper Commits to a Fair Wage Policy for City Construction Projects",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-jeff-leiper",
+   "issue": "government",
+   "summary_short": "Leiper refuses all developer donations and pledges not to use strong-mayor powers.",
+   "summary_bullets": [
+    "Has pledged not to take a single donation from developers, 'so there is no question about whose interests come first'",
+    "Has pledged not to use the 'strong mayor' powers under the Strong Mayors, Building Homes Act"
+   ],
+   "verbatim_quote": "It also means I will not take a single donation from developers, so there is no question about whose interests come first.",
+   "source_url": "https://jeffleiper.substack.com/p/ottawa-are-you-in",
+   "source_title": "Ottawa, are you in? (campaign Substack)",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-alex-lawson",
+   "issue": "taxes-and-spending",
+   "summary_short": "Lawson's Back to Basics Budget promises a 0% tax year in 2027 then 1/2/2, funded by named savings on consultants, overtime and hiring discipline.",
+   "summary_bullets": [
+    "Zero per cent property tax increase in 2027, then 1%, 2% and 2% — a 5% four-year total vs 10% under Sutcliffe's cap and ~16% under Leiper, by his math",
+    "Claims $77M-$148M in potential annual savings from 'six leaks': hiring discipline (not refilling 1 in 4 office departures), cutting consultant spend (~$95M/yr on road/sewer/inspection engineering), overtime, year-end spending",
+    "Pledges no bus routes cut, no reserves drained, no fee hikes, and no new spending without a named saving; a public savings ledger with every budget",
+    "Says the average urban home (2026 tax $4,590) would save about $760 over four years vs Sutcliffe's plan"
+   ],
+   "verbatim_quote": "I build houses for a living. Every job starts with a number, and the number has to be right.",
+   "source_url": "https://votealex.ca/policy/back-to-basics-budget/",
+   "source_title": "Back to Basics Budget",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-alex-lawson",
+   "issue": "housing",
+   "summary_short": "Lawson would repeal the vacant unit tax on day one and cut development charges by half to get more homes built.",
+   "summary_bullets": [
+    "Would repeal the vacant unit tax at the first council meeting; argues three years of city data show it did not cut rents ($291/month average two-bedroom rise) while burdening seniors, estates and renovators",
+    "Would cut development charges in half to spur construction, arguing builders respond to fees and that lost revenue is offset by growth",
+    "Five first-year actions for family-sized rentals and stopping the slide into homelessness (platform plan 01)"
+   ],
+   "verbatim_quote": "In 2023, Sutcliffe seconded the motion to keep this tax. In 2024, the City made it harsher, raising the top rate to five percent. He measured the revenue. Alex measures the result.",
+   "source_url": "https://votealex.ca/policy/vacant-unit-tax/",
+   "source_title": "End the Vacant Unit Tax",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-alex-lawson",
+   "issue": "emergency-services",
+   "summary_short": "Lawson would raise the minimum patrol-car level from 42 to 64 tied to population, with the extra policing cost billed to senior governments, not the police levy.",
+   "summary_bullets": [
+    "Would raise Ottawa's minimum number of patrol cars from 42 (a standard set in 1995 for a city of 721,000) to 64, tied to population",
+    "Would guarantee coverage for every zone of the city",
+    "Would send the capital's policing bill to the senior governments that should pay it, without adding to the police levy"
+   ],
+   "verbatim_quote": "Ottawa still runs on a minimum of 42 patrol cars, set in 1995 for a city of 721,000. Raise it to 64 and tie it to population, guarantee coverage for every zone of the city, and send the capital's policing bill to the governments that should pay it, without adding to the police levy.",
+   "source_url": "https://votealex.ca/policy/",
+   "source_title": "The Lawson Platform: Every Plan, Published in Full",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-alex-lawson",
+   "issue": "social-and-community-services",
+   "summary_short": "Lawson would build a 200-bed Greenbelt recovery campus with same-day detox-to-treatment, trades training, a job and housing at exit, all province-funded.",
+   "summary_bullets": [
+    "Would build HopeWorks, a 200-bed recovery campus on leased Greenbelt land (with the NCC) in two phases of 100 beds; residents stay up to ten months, train in food/agriculture, building maintenance or construction trades, and leave with a job, a place to live and a year of aftercare",
+    "Detox on request with same-day transfer to treatment; would press Ontario to put real withdrawal-management beds behind the HART hubs' promises",
+    "Would make long-acting monthly buprenorphine (Sublocade) the standard offer after detox, available in clinics, pharmacies and family practices citywide",
+    "Treatment paid for by the province and free to residents; city covers fast-tracked approvals, transit access and results-based funding of addiction contracts — 'No new property tax'"
+   ],
+   "verbatim_quote": "Detox when someone asks for it, treatment the same day, up to ten months at a 200-bed Greenbelt recovery campus learning a trade, and a job and a home at the end. Treatment paid for by the province, free to residents.",
+   "source_url": "https://votealex.ca/policy/recovery-first/",
+   "source_title": "Recovery First Ottawa",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a page or more",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-alex-lawson",
+   "issue": "transit",
+   "summary_short": "Lawson would restore rush-hour BRT until the LRT meets its reliability standard, redesign routes around trip times, and publish transit performance publicly.",
+   "summary_bullets": [
+    "Twelve commitments on transit management; argues the system is 'short on management,' not money",
+    "Would bring back rush-hour bus rapid transit until the LRT meets the operating reliability standard it was supposed to clear before launch",
+    "Would make trip times the primary metric for designing routes, require realistic bus schedules, move school trips back to OSTA yellow buses, and replace double-decker buses with articulated 60-footers",
+    "Promises public reporting against every metric"
+   ],
+   "verbatim_quote": "Ottawa's transit system is not short on money. It is short on management.",
+   "source_url": "https://votealex.ca/policy/",
+   "source_title": "The Lawson Platform: Every Plan, Published in Full (plan 02)",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-alex-lawson",
+   "issue": "government",
+   "summary_short": "Lawson would bar campaign insiders from lobbying for four years and publish every city contract in a live searchable plain-language list.",
+   "summary_bullets": [
+    "Would impose a four-year bar on campaign insiders lobbying the officials they helped elect — 'no new cost, no new department'",
+    "Would put every city contract in a live, searchable, plain-language list with no minimum dollar amount, updated as work is awarded"
+   ],
+   "verbatim_quote": "Every city contract in a live, searchable, plain-language list, no minimum dollar amount, updated as work is awarded.",
+   "source_url": "https://votealex.ca/policy/",
+   "source_title": "The Lawson Platform: Every Plan, Published in Full (plans 03, 04)",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-alex-lawson",
+   "issue": "roads-and-infrastructure",
+   "summary_short": "Lawson wants a southern ring road built as a provincial 400-series highway, plus smarter signals and a per-metre, per-day lane-closure fee.",
+   "summary_bullets": [
+    "Would pursue a southern ring road as a provincial 400-series highway so 1,000 trucks a day stop rolling through Manotick and the 417 isn't the only way across",
+    "Would bring smarter traffic lights (free app in first 100 days, smart signals on worst corridors) and a lane-closure fee charged by the metre and by the day, like Toronto"
+   ],
+   "verbatim_quote": "A southern ring road as a provincial 400-series highway, so 1,000 trucks a day stop rolling through Manotick and the 417 isn't the only way across.",
+   "source_url": "https://votealex.ca/policy/",
+   "source_title": "The Lawson Platform: Every Plan, Published in Full (plans 05, 11)",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-neil-saravanamuttoo",
+   "issue": "transit",
+   "summary_short": "Saravanamuttoo's 'Buck a ride' would cut fares to $1 (capped at $40/month) at no new tax cost, funded by LRT-upload savings and a transit land agency.",
+   "summary_bullets": [
+    "'Buck a ride': a $1 transit fare citywide, capped at $40 a month, 'at no new cost to taxpayers'; forecasts up to 47% ridership growth",
+    "Funds the estimated $82.2M/year cost from the province's planned LRT upload savings, operational savings, and revenue from a future real estate transit development agency",
+    "Four-point plan: (1) Buck a ride, (2) 'truth in transit' — honesty about the LRT's state and fixed real-time GPS data, (3) a proper bus-network redesign with riders and operators, (4) a transit development agency monetizing land around stations"
+   ],
+   "verbatim_quote": "Fixing OC Transpo requires we find a way to get ridership back up. In the near term, that means pulling the one lever we can control: affordability.",
+   "source_url": "https://the613.substack.com/p/4-point-transit-recovery-plan-plan",
+   "source_title": "4-Point Transit Recovery Plan",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "several paragraphs",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-neil-saravanamuttoo",
+   "issue": "housing",
+   "summary_short": "Saravanamuttoo would scale up a public homebuilder to add 25,000-30,000 affordable units and double non-market housing to 10%.",
+   "summary_bullets": [
+    "Would scale up a public homebuilder to build 25,000-30,000 new affordable units and double Ottawa's share of non-market housing from 5% to 10%",
+    "Points to Paris and Vienna, where roughly a quarter of the population lives in city-owned housing, as the scale Ottawa should aim for",
+    "Argues Ottawa should build in existing neighbourhoods rather than continue expanding the suburban footprint"
+   ],
+   "verbatim_quote": "In Paris and Vienna, roughly one-quarter of the population lives in city-owned housing, often for their entire lives.",
+   "source_url": "https://www.ottown.ca/articles/ottawa-saravanamuttoo-defence-tech-housing-platform",
+   "source_title": "Saravanamuttoo Talks Defence, Tech and Housing in Ottawa Bid",
+   "source_type": "local_news",
+   "source_date": "2026-10-17",
+   "source_extent": "reported remarks",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-neil-saravanamuttoo",
+   "issue": "taxes-and-spending",
+   "summary_short": "Saravanamuttoo promises 100 days of open books and an independent financial responsibility office before locking in any tax target.",
+   "summary_bullets": [
+    "Promises '100 days of open books' to show residents how the city spends money, and a 'fiscal strategy' reviewing city spending within his first 100 days",
+    "Has not committed to a property tax target until he conducts a comprehensive spending review and eliminates city programs that don't work (CTV, Sept 2026)",
+    "Proposes an independent Office for Financial Responsibility to hunt for municipal efficiencies"
+   ],
+   "verbatim_quote": "He also unveiled a fiscal strategy last week, promising to 'open the books' at city hall and take a closer look at Ottawa's spending within his first 100 days in office if elected.",
+   "source_url": "https://www.ottown.ca/articles/ottawa-mayoral-campaign-roundup-week-promises-september-2026",
+   "source_title": "What You May Have Missed in Ottawa's Mayoral Race Last Week",
+   "source_type": "local_news",
+   "source_date": "2026-09-21",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-neil-saravanamuttoo",
+   "issue": "growth-and-development",
+   "summary_short": "Saravanamuttoo led the fight against the $418.8M Lansdowne 2.0 project, calling it a terrible use of public money.",
+   "summary_bullets": [
+    "Has called the $418.8 million Lansdowne 2.0 project a 'terrible use of public money'",
+    "Was a champion leader against Lansdowne 2.0, arguing the half-billion dollars should go to community projects instead",
+    "His platform includes an 'Accountability on Lansdowne' plank"
+   ],
+   "verbatim_quote": "Saravanamuttoo has called the $418.8 million Lansdowne 2.0 project a 'terrible use of public money.'",
+   "source_url": "https://www.ottown.ca/articles/ottawa-neil-saravanamuttoo-finance-economist-mayor-bid",
+   "source_title": "Who Is Neil Saravanamuttoo? The Finance Veteran Running for Ottawa Mayor",
+   "source_type": "local_news",
+   "source_date": "2026-10-16",
+   "source_extent": "one sentence",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-suraj-harish",
+   "issue": "roads-and-infrastructure",
+   "summary_short": "Harish would prioritize fixing potholes and faded pavement markings across Ottawa's roads.",
+   "summary_bullets": [
+    "Would repair Ottawa's deteriorating road surfaces and potholes before they become larger, more dangerous and more expensive to fix",
+    "Would improve the quality and visibility of pavement markings so they stay bright, reflective and visible in all weather"
+   ],
+   "verbatim_quote": "Our roads should be safe, smooth, and properly maintained. Ottawa residents deserve better road infrastructure.",
+   "source_url": "https://surajharishformayor.ca/",
+   "source_title": "Home (campaign platform)",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "a few sentences",
+   "no_public_position": false
+  },
+  {
+   "candidate": "ottawa-suraj-harish",
+   "issue": "taxes-and-spending",
+   "summary_short": "Harish promises a four-year freeze on Ottawa property taxes.",
+   "summary_bullets": [
+    "Would implement a four-year freeze on property taxes if elected, committing to find responsible solutions to protect residents from rising costs"
+   ],
+   "verbatim_quote": "If elected, I will implement a four-year freeze on property taxes.",
+   "source_url": "https://surajharishformayor.ca/",
+   "source_title": "Home (campaign platform)",
+   "source_type": "candidate_website",
+   "source_date": "2026-10-17",
+   "source_extent": "one sentence",
+   "no_public_position": false
+  }
+ ]
+}
