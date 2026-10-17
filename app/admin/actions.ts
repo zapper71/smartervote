@@ -606,8 +606,27 @@ export async function importJsonAction(
     });
   });
 
-  // Dedupe against the unique index (candidate, issue, source_url) before
+  // Dedupe key matches the database unique index from migration 30:
+  // (candidate_id, issue_id, source_url, verbatim_quote, summary_short).
+  // Distinct statements sharing one source page differ by quote/summary,
+  // so only re-importing the same statement hits the same key.
+  const dedupeKey = (
+    candidate_id: string,
+    issue_id: string,
+    source_url: string | null,
+    verbatim_quote: string | null,
+    summary_short: string | null
+  ): string =>
+    [candidate_id, issue_id, source_url ?? "", verbatim_quote ?? "", summary_short ?? ""].join("|");
+
+  // Dedupe against the unique index
+  // (candidate_id, issue_id, source_url, quote hash, summary hash) before
   // inserting, so a double-pasted import is a no-op with a clear report.
+  //
+  // Distinct statements that share one source page — e.g. several survey
+  // answers from the same questionnaire, or several bullet points from one
+  // platform page — now import as SEPARATE rows. Only a true re-import of
+  // the same statement (same verbatim quote AND same summary) is skipped.
   //
   // The confidence column is new (migration 22): probe for it first and
   // leave it out of the insert when it isn't there yet, rather than
@@ -624,7 +643,7 @@ export async function importJsonAction(
   if (staged.length > 0) {
     const { data: existing, error: existErr } = await db
       .from("positions")
-      .select("candidate_id,issue_id,source_url")
+      .select("candidate_id,issue_id,source_url,verbatim_quote,summary_short")
       .in(
         "candidate_id",
         [...new Set(staged.map((s) => s.candidate_id))]
@@ -633,11 +652,11 @@ export async function importJsonAction(
       return { ...report, errors: [`Could not check for duplicates: ${existErr.message}`] };
     }
     for (const e of existing ?? []) {
-      seenKeys.add(`${e.candidate_id}|${e.issue_id}|${e.source_url ?? ""}`);
+      seenKeys.add(dedupeKey(e.candidate_id, e.issue_id, e.source_url, e.verbatim_quote, e.summary_short));
     }
   }
   for (const s of staged) {
-    const key = `${s.candidate_id}|${s.issue_id}|${s.source_url ?? ""}`;
+    const key = dedupeKey(s.candidate_id, s.issue_id, s.source_url, s.verbatim_quote, s.summary_short);
     if (seenKeys.has(key)) {
       report.positionsSkipped.push(`${s.label}: already in the database.`);
       continue;

@@ -32,6 +32,7 @@ the **last** statement, which is why the checks are written as one query.
 | 26 | `26_expansion_races.sql` | 2,216 races (2,123 ON + 93 BC districts) — **needs 24, 25** | ⬜ |
 | 27 | `27_expansion_candidates.sql` | 6,831 candidates (6,848 staged rows; 17 same-race dupes deduped) — **needs 24, 26** | ⬜ |
 | 28 | `28_expansion_issues.sql` | Final 18-issue taxonomy × 18 in-depth municipalities (324 rows) — **needs 25** | ⬜ |
+| 30 | `30_allow_multiple_positions_same_source.sql` | Relaxes the dedupe index so distinct statements from one source page import as separate rows — **run before any /admin/import paste** (matches the importer dedupe) | ⬜ |
 
 ## Expansion (24–28)
 
