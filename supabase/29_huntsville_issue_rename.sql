@@ -1,9 +1,11 @@
 -- =====================================================================
 -- SmarterVote.ca — Huntsville issue-slug rename to the final 18-slug taxonomy
 --
--- DRAFT, committed 2026-10-17, updated same day with Andreas's district-table
--- decision. Andreas to run in its launch slot (after the Phase 2 compares,
--- before the Phase 3 wave cities); nothing here runs or publishes by itself.
+-- FINAL, 2026-10-17: both fold decisions are Andreas's (district-table ->
+-- government; school-services -> student-wellbeing). Sequencing per
+-- Andreas: after the Phase 2 compares (done Oct 17), before the Phase 3
+-- wave cities. Andreas runs this in the Supabase SQL Editor; nothing here
+-- runs or publishes by itself.
 --
 -- WHAT THIS DOES
 -- Huntsville's issue rows were created with the old taxonomy (migrations
@@ -11,11 +13,13 @@
 -- The rest of the site now uses the final taxonomy (migration 28). This
 -- migration brings Huntsville in line, scoped to Huntsville only:
 --   * four pure renames (below), and
---   * one FOLD: district-table -> government (Andreas's decision,
---     2026-10-17), because Huntsville already has a government-bound row
---     (how-council-works), and issues are unique per (municipality, slug).
--- The other ten Huntsville slugs already match the final taxonomy and are
--- untouched. After this runs, Huntsville has 14 issue rows.
+--   * two FOLDs: district-table -> government and school-services ->
+--     student-wellbeing (Andreas's decisions, 2026-10-17), because
+--     Huntsville already has both target rows (government via the
+--     how-council-works rename; student-wellbeing from migration 16), and
+--     issues are unique per (municipality, slug).
+-- The other nine Huntsville slugs already match the final taxonomy and are
+-- untouched. After this runs, Huntsville has 13 issue rows.
 --
 -- KEYING (verified against 01_schema.sql)
 -- issues is MUNICIPALITY-scoped: unique (municipality_id, slug). Huntsville
@@ -52,12 +56,14 @@
 --       deleted (guarded — the delete only happens at zero positions,
 --       because positions.issue_id cascades on issue delete).
 --
--- STILL UNMAPPED — left untouched, needs Andreas's decision:
---   school-services  Huntsville trustee issue (programs, busing, before/
---                    after-school care). The final taxonomy has trustee-role
---                    and student-wellbeing but nothing covering "services".
---                    Renaming this to either would mislabel published rows,
---                    so it is left alone deliberately.
+-- THE school-services FOLD (step 3)
+-- school-services (trustee issue: programs, busing, before/after-school
+-- care) folds into student-wellbeing with exactly the step-2 mechanics:
+-- a status-mismatch guard that aborts rather than merging silently,
+-- re-pointing of non-colliding rows, merge of same-candidate/same-source
+-- collisions (bullets unioned, quote appended if new, student-wellbeing
+-- headline kept), and the issue row deleted only behind a guard that
+-- confirms zero positions still point at it.
 --
 -- IDEMPOTENT: renames match OLD slugs, the fold matches the district-table
 -- slug; re-running after a successful run is a no-op.
@@ -187,12 +193,118 @@ where i.municipality_id = m.id
   and m.slug = 'huntsville'
   and i.slug = 'district-table';
 
+-- ---------------------------------------------------------------------
+-- Step 3 — fold school-services into student-wellbeing (same mechanics
+-- as step 2: guard, re-point, merge, guarded delete).
+-- ---------------------------------------------------------------------
+
+-- Guard: refuse to merge a school-services row into a student-wellbeing
+-- row whose status differs.
+do $$
+declare n int;
+begin
+    select count(*) into n
+    from positions d
+    join issues di on di.id = d.issue_id and di.slug = 'school-services'
+    join municipalities m on m.id = di.municipality_id and m.slug = 'huntsville'
+    join issues wi on wi.municipality_id = m.id and wi.slug = 'student-wellbeing'
+    join positions g on g.candidate_id = d.candidate_id
+                    and g.issue_id = wi.id
+                    and coalesce(g.source_url, '') = coalesce(d.source_url, '')
+    where d.status <> g.status;
+    if n > 0 then
+        raise exception 'school-services fold: % colliding position(s) have a different status under student-wellbeing — resolve manually in /admin before running migration 29', n;
+    end if;
+end $$;
+
+-- 3a. Re-point school-services positions with no same-source
+-- student-wellbeing row.
+with m as (select id from municipalities where slug = 'huntsville'),
+     well as (select i.id from issues i, m where i.municipality_id = m.id and i.slug = 'student-wellbeing'),
+     sch as (select i.id from issues i, m where i.municipality_id = m.id and i.slug = 'school-services')
+update positions p set issue_id = (select id from well)
+from sch
+where p.issue_id = sch.id
+  and not exists (
+      select 1 from positions g
+      where g.candidate_id = p.candidate_id
+        and g.issue_id = (select id from well)
+        and coalesce(g.source_url, '') = coalesce(p.source_url, '')
+  );
+
+-- 3b. Merge the remaining school-services positions (same candidate,
+-- same source already under student-wellbeing) into the wellbeing row.
+with m as (select id from municipalities where slug = 'huntsville'),
+     well as (select i.id from issues i, m where i.municipality_id = m.id and i.slug = 'student-wellbeing'),
+     sch as (select i.id from issues i, m where i.municipality_id = m.id and i.slug = 'school-services')
+update positions g set
+    summary_bullets = coalesce((
+        select jsonb_agg(val order by first_ord)
+        from (
+            select val, min(ord) as first_ord
+            from (
+                select elem as val, ord
+                from jsonb_array_elements(coalesce(g.summary_bullets, '[]'::jsonb)) with ordinality as t(elem, ord)
+                union all
+                select elem, 10000 + ord
+                from jsonb_array_elements(coalesce(d.summary_bullets, '[]'::jsonb)) with ordinality as t(elem, ord)
+            ) u
+            group by val
+        ) s
+    ), g.summary_bullets),
+    verbatim_quote = case
+        when d.verbatim_quote is null then g.verbatim_quote
+        when g.verbatim_quote is null then d.verbatim_quote
+        when position(d.verbatim_quote in g.verbatim_quote) > 0 then g.verbatim_quote
+        else g.verbatim_quote || E'\n' || d.verbatim_quote
+    end,
+    summary_short = coalesce(g.summary_short, d.summary_short),
+    updated_at = now()
+from positions d, well, sch
+where d.issue_id = sch.id
+  and g.candidate_id = d.candidate_id
+  and g.issue_id = well.id
+  and coalesce(g.source_url, '') = coalesce(d.source_url, '');
+
+-- 3c. Delete the merged school-services rows, then the issue row —
+-- only once nothing points at it.
+with m as (select id from municipalities where slug = 'huntsville'),
+     well as (select i.id from issues i, m where i.municipality_id = m.id and i.slug = 'student-wellbeing'),
+     sch as (select i.id from issues i, m where i.municipality_id = m.id and i.slug = 'school-services')
+delete from positions p
+using sch
+where p.issue_id = sch.id
+  and exists (
+      select 1 from positions g
+      where g.candidate_id = p.candidate_id
+        and g.issue_id = (select id from well)
+        and coalesce(g.source_url, '') = coalesce(p.source_url, '')
+  );
+
+do $$
+declare n int;
+begin
+    select count(*) into n
+    from positions p
+    join issues i on i.id = p.issue_id and i.slug = 'school-services'
+    join municipalities m on m.id = i.municipality_id and m.slug = 'huntsville';
+    if n > 0 then
+        raise exception 'school-services fold: % position(s) still point at school-services — aborting before the issue row is deleted', n;
+    end if;
+end $$;
+
+delete from issues i
+using municipalities m
+where i.municipality_id = m.id
+  and m.slug = 'huntsville'
+  and i.slug = 'school-services';
+
 commit;
 
 -- ---------------------------------------------------------------------
--- VERIFY — expect: 14 Huntsville issues; government, healthcare, economy
--- and active-transportation present; district-table GONE; school-services
--- still present (unmapped); zero orphaned positions.
+-- VERIFY — expect: 13 Huntsville issues; government, healthcare, economy
+-- and active-transportation present; district-table AND school-services
+-- GONE (both folded); zero orphaned positions.
 -- ---------------------------------------------------------------------
 select i.sort_order as "#",
        i.slug,
@@ -213,4 +325,10 @@ where i.id is null;
 select count(*) as huntsville_government_positions
 from positions p
 join issues i on i.id = p.issue_id and i.slug = 'government'
+join municipalities m on m.id = i.municipality_id and m.slug = 'huntsville';
+
+-- sanity: Huntsville positions now under student-wellbeing (both facets)
+select count(*) as huntsville_student_wellbeing_positions
+from positions p
+join issues i on i.id = p.issue_id and i.slug = 'student-wellbeing'
 join municipalities m on m.id = i.municipality_id and m.slug = 'huntsville';

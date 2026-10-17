@@ -33,6 +33,7 @@ the **last** statement, which is why the checks are written as one query.
 | 27 | `27_expansion_candidates.sql` | 6,831 candidates (6,848 staged rows; 17 same-race dupes deduped) — **needs 24, 26** | ⬜ |
 | 28 | `28_expansion_issues.sql` | Final 18-issue taxonomy × 18 in-depth municipalities (324 rows) — **needs 25** | ⬜ |
 | 30 | `30_allow_multiple_positions_same_source.sql` | Relaxes the dedupe index so distinct statements from one source page import as separate rows — **run before any /admin/import paste** (matches the importer dedupe) | ⬜ |
+| 29 | `29_huntsville_issue_rename.sql` | Huntsville-only: 4 slug renames to the final taxonomy + district-table folds into government + school-services folds into student-wellbeing (Andreas's decisions, Oct 17) — run AFTER the Phase 2 compares, before Phase 3 waves. Huntsville ends at 13 issues. | ⬜ |
 
 ## Expansion (24–28)
 
