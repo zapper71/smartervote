@@ -1,1009 +1,838 @@
 {
- "positions": [
-  {
-   "candidate": "windsor-danyluk-benjamin",
-   "issue": "housing",
-   "summary_short": "Danyluk wants to move homeless residents out of downtown and repurpose abandoned schools as service hubs.",
-   "summary_bullets": [
-    "Supports moving the homeless population out of downtown Windsor.",
-    "Proposes repurposing abandoned schools as possible homelessness service hubs."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://windsornewsdesk.ca/stories/2026-10-08-mayoral-housing-roundup/",
-   "source_title": "Where Windsor's 11 mayoral candidates stand on housing (citing CBC News, Aug. 13, 2026)",
-   "source_type": "local_news",
-   "source_date": "2026-08-13",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-dilkens-drew",
-   "issue": "housing",
-   "summary_short": "Dilkens pledged to facilitate 5,000 more homes over four years, including two named affordable/co-op projects, while keeping the 70% development-charge cut.",
-   "summary_bullets": [
-    "Pledged on Oct. 7 to facilitate 5,000 more homes over four years if re-elected.",
-    "Includes 'Solidarity Towers 2.0,' a co-operative housing development on the city-owned former St. Michael's school site on Detroit Street.",
-    "Includes a 'Meadowbrook 2.0' affordable housing project.",
-    "Would keep the 70 per cent development charge cut council approved in June."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://windsornewsdesk.ca/stories/2026-10-08-mayoral-housing-roundup/",
-   "source_title": "Where Windsor's 11 mayoral candidates stand on housing (citing CBC News, Oct. 7, 2026)",
-   "source_type": "local_news",
-   "source_date": "2026-10-08",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-dilkens-drew",
-   "issue": "economy",
-   "summary_short": "Dilkens promised a downtown economic development area, a new central library branch, H4 upgrades, and relocating the Downtown Mission off Ouellette Avenue.",
-   "summary_bullets": [
-    "Promised a new economic development area for the downtown.",
-    "Promised a new central downtown library branch.",
-    "Promised to move the Downtown Mission off Ouellette Avenue in his next term.",
-    "Promised to complete upgrades to Windsor's Homelessness and Housing Help Hub (H4)."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://www.newslocker.com/en-ca/region/windsor-ontario/curbing-homelessness-for-less-than-a-monthly-cup-of-coffee-windsor-council-candidate-urges-action/",
-   "source_title": "Dilkens and Francis pitch plans for downtown revitalization, affordable housing",
-   "source_type": "local_news",
-   "source_date": "2026-10-07",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-dilkens-drew",
-   "issue": "economy",
-   "summary_short": "Dilkens set a 2,500-job target over four years as the centrepiece of his economic plan.",
-   "summary_bullets": [
-    "Set a target of creating another 2,500 jobs over the next four years.",
-    "Pitched the plan outside the NextStar Energy battery plant, building on what he calls the city's recent manufacturing investment successes."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://www.newslocker.com/en-ca/region/windsor-ontario/dilkens-pitches-2500-job-target-targets-francis-as-windsor-mayoral-race-turns-to-economy/",
-   "source_title": "Dilkens pitches 2,500-job target, targets Francis as Windsor mayoral race turns to economy",
-   "source_type": "local_news",
-   "source_date": "2026-09-17",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-dilkens-drew",
-   "issue": "housing",
-   "summary_short": "At the CBC debate, Dilkens defended the 'Village at the Barn' project as transitional housing rather than a shelter.",
-   "summary_bullets": [
-    "Defended the proposed 'Village at the Barn' as transitional housing, not a shelter.",
-    "The project would include 102 private pod-style units with counselling, medical services and a safer-use space."
-   ],
-   "verbatim_quote": "It's not a shelter. It's transitional housing",
-   "source_url": "https://windsornewsdesk.ca/stories/2026-10-07-in-their-words-closing-pitches-from-tuesdays-cbc/",
-   "source_title": "In their words: closing pitches from Tuesday's CBC Windsor mayoral debate",
-   "source_type": "local_news",
-   "source_date": "2026-10-06",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-dilkens-drew",
-   "issue": "taxes-and-spending",
-   "summary_short": "Dilkens claimed Windsor had the lowest tax increases of any Ontario city over the past four years.",
-   "summary_bullets": [
-    "Pointed to what he called 'the lowest tax increase of any city in Ontario' over the last four years.",
-    "Made affordability-through-low-taxes the core of his cost-of-living pitch."
-   ],
-   "verbatim_quote": "the lowest tax increase of any city in Ontario",
-   "source_url": "https://windsornewsdesk.ca/stories/2026-10-07-in-their-words-closing-pitches-from-tuesdays-cbc/",
-   "source_title": "In their words: closing pitches from Tuesday's CBC Windsor mayoral debate",
-   "source_type": "local_news",
-   "source_date": "2026-10-06",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-dilkens-drew",
-   "issue": "arts-and-culture",
-   "summary_short": "Dilkens committed to continued funding for arts facilities, festivals and grants, plus a review of the 15-year-old Municipal Cultural Master Plan.",
-   "summary_bullets": [
-    "Would continue funding city arts, culture and heritage facilities (Capitol Theatre, Mackenzie Hall, Willistead Manor, Art Windsor-Essex, Chimczuk Museum).",
-    "Would continue funding Bright Lights Windsor, Open Streets Windsor, Experience Windsor, Neighbourhood Nights and LIVE at the Square, all of which pay local musicians and artists.",
-    "Would continue funding the Arts, Culture & Heritage Fund grant program ($1.3M to 529 projects since 2014; increased 13% to $133,000 annually in 2025-2026).",
-    "Committed to reviewing and updating the 15+ year old Municipal Cultural Master Plan in the coming term with full consultation of the arts community.",
-    "Measures success by more public art, more arts/culture spaces, expanded Museum Windsor resources, and arts as a main element of the Strengthen the Core downtown plan."
-   ],
-   "verbatim_quote": "I will continue to support our arts, culture and heritage facilities like the Capitol Theatre, Mackenzie Hall, Willistead Manor, the building that houses Art Windsor-Essex and the Chimczuk Museum.",
-   "source_url": "https://acwr.net/what-are-windsors-mayoral-candidates-saying-about-arts-culture/",
-   "source_title": "What Are Windsor's Mayoral Candidates Saying About Arts & Culture - Arts Council Windsor & Region questionnaire",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-francis-fred",
-   "issue": "government",
-   "summary_short": "Francis would eliminate Strong Mayor Powers and overhaul council transparency, including in-camera meeting disclosure and published voting records.",
-   "summary_bullets": [
-    "Would eliminate Strong Mayor Powers.",
-    "Would establish a Blue-Ribbon Committee of residents, community organizations, businesses and labour to review the city's committee and board structures.",
-    "Would publish detailed in-camera meeting agendas, audit them annually against the Municipal Act, and report all in-camera decisions publicly.",
-    "Would publish all council voting results online, hold monthly councillor meetings and monthly City Hall news conferences, and hold an annual free public State of the City Address."
-   ],
-   "verbatim_quote": "Eliminate Strong Mayor Powers.",
-   "source_url": "https://www.francisformayor.ca/platform/",
-   "source_title": "Platform - Fred Francis for Mayor of Windsor: Open, Accountable & Responsible City Hall",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-francis-fred",
-   "issue": "taxes-and-spending",
-   "summary_short": "Francis pledges no new taxes, pay-as-you-go financing, debt reduction, and an end to over-budget legacy capital projects.",
-   "summary_bullets": [
-    "'No New Taxes': would fund the Asset Management Plan with existing capital dollars plus senior-government grants, reversing the 1.1% Asset Management Tax (2020) plus 0.25% (2023) that added $41M to the base budget.",
-    "Would hold the line on taxes by measuring spending at the rate of inflation, not a blended rate.",
-    "Would use a pay-as-you-go strategy to avoid debt, reduce city debt from $130M (2026) back down, and increase financial reserves.",
-    "Would end costly legacy capital projects, citing the ~$10M trolley beacon project and ~$15M City Hall ice rink as over-budget examples.",
-    "Would replace Strong-Mayor budgeting with people-based budgeting that puts councillors back into the budget process."
-   ],
-   "verbatim_quote": "Use a Pay-As-You-Go Strategy to avoid unnecessary debt and high interest costs that put additional pressure on property taxes and reduce capital funding.",
-   "source_url": "https://www.francisformayor.ca/platform/",
-   "source_title": "Platform - Fred Francis for Mayor of Windsor: Jobs, Taxes, & Economic Growth",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-francis-fred",
-   "issue": "economy",
-   "summary_short": "Francis pitches a buy-local, low-business-tax economic plan with high-speed rail advocacy, airport expansion, and a downtown office-to-residential conversion program.",
-   "summary_bullets": [
-    "Would launch a Buy Windsor Local initiative weighting local job benefits in city procurement, and create a Windsor-Essex business registry.",
-    "Would reduce the tax burden on commercial and industrial businesses and offer tax incentive programs for growth.",
-    "Would diversify the economy into renewable energy, technology, health sciences, aerospace and tourism, and support workforce skills development.",
-    "Would expand air, sea and rail transportation and build a 401-corridor mayors' coalition to champion high-speed rail Windsor-Toronto.",
-    "Would improve Windsor International Airport with more direct flights including Toronto connections, and invest in Transit Windsor.",
-    "Would create a Chief Innovation Officer overseeing digital improvements, AI policy and entrepreneurial growth.",
-    "Downtown: would maintain downtown as a development-charge-free zone, launch an office-to-residential conversion program, and establish a dedicated Downtown Development Concierge with set permit timeframes."
-   ],
-   "verbatim_quote": "Support a Buy Windsor Local Initiative by ensuring local job market benefits are considered when evaluating requests for proposals to the city.",
-   "source_url": "https://www.francisformayor.ca/platform/",
-   "source_title": "Platform - Fred Francis for Mayor of Windsor: Jobs, Taxes, & Economic Growth / Downtown Revitalization",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-francis-fred",
-   "issue": "transit",
-   "summary_short": "Francis would bring back the Tunnel Bus, cap transit fares for two years, and re-establish the Transit Board of Directors.",
-   "summary_bullets": [
-    "Would re-establish the Transit Board of Directors.",
-    "Would maintain Windsor's connection to Detroit and bring back the Tunnel Bus.",
-    "Would extend Transit Route 1000 into 2027 for Vincent Massey and Holy Names students and negotiate a permanent deal with both school boards.",
-    "Would cap Transit Windsor fees for at least two years.",
-    "Would review the Transit Master Plan with more public consultation and align it with the Canadian Public Transit Fund for greater senior-government funding."
-   ],
-   "verbatim_quote": "Maintaining Windsor's connection to Detroit and bringing back the Tunnel Bus.",
-   "source_url": "https://www.francisformayor.ca/platform/",
-   "source_title": "Platform - Fred Francis for Mayor of Windsor: Windsor and Region Transit Service Enhancements",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-francis-fred",
-   "issue": "housing",
-   "summary_short": "Francis would pre-zone downtown for as-of-right density with no parking minimums, waive affordable-housing permit fees, and expand Housing First.",
-   "summary_bullets": [
-    "Would expand Housing First initiatives through more affordable housing with wraparound and treatment supports.",
-    "Would pre-zone the downtown core for as-of-right density, end parking minimums, and create a Downtown Development Concierge.",
-    "Would waive permit fees for affordable housing developments and offer tax incentive programs for housing.",
-    "Would keep downtown free of development charges and extend that to Ford City and historic Sandwich Town.",
-    "Would launch an office-to-residential conversion program and set clear permit timelines with fully online building and planning services."
-   ],
-   "verbatim_quote": "Expand Housing First Initiatives through more affordable housing with wraparound and treatment supports to help individuals experiencing homelessness secure stable housing and build a path toward long-term stability.",
-   "source_url": "https://www.francisformayor.ca/platform/",
-   "source_title": "Platform - Fred Francis for Mayor of Windsor: Downtown Revitalization Plan",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-francis-fred",
-   "issue": "housing",
-   "summary_short": "Francis unveiled a housing plan targeting 6,000 affordable homes by 2035 via city land, rent supplements and subsidized housing.",
-   "summary_bullets": [
-    "Unveiled a housing plan Oct. 13 at the former Grace Hospital site on Crawford Avenue.",
-    "Said Windsor needs about 6,000 affordable homes by 2035 and that the city is 'nowhere near that target.'",
-    "Would package city-owned properties for competitive mixed-use proposals, with nearby residents ranking the public benefits.",
-    "Would bring in rent supplements and subsidized housing (per the Chamber debate)."
-   ],
-   "verbatim_quote": "We are nowhere near that target, and we're losing time every single day",
-   "source_url": "https://windsornewsdesk.ca/stories/2026-10-15-what-fred-franciss-housing-plan-promises/",
-   "source_title": "What Fred Francis's housing plan promises",
-   "source_type": "local_news",
-   "source_date": "2026-10-13",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-francis-fred",
-   "issue": "emergency-services",
-   "summary_short": "Francis would create a mayor-reporting downtown safety and outreach command unit with crisis teams, HART Hub treatment capacity, and no-street-discharge protocols.",
-   "summary_bullets": [
-    "Would establish a Downtown Safety and Outreach Command Unit led by a Director reporting weekly to the Mayor, coordinating with Mobile Crisis Response Teams (police, mental health workers, Essex-Windsor EMS).",
-    "Would designate downtown and the riverfront a priority enforcement zone.",
-    "Would launch a Clean and Safe Streets Ambassadors Program and a 311-to-response guarantee for crisis reports.",
-    "Would increase mental health and addiction treatment capacity via the HART Hubs model and add treatment beds with wraparound supports.",
-    "Would facilitate 'no discharge to the street' protocols with hospitals, corrections and the province, and a voluntary Reconnection Program for return to home communities."
-   ],
-   "verbatim_quote": "Establish a Downtown Safety and Outreach Command Unit, led by a Director who reports weekly to the Mayor.",
-   "source_url": "https://www.francisformayor.ca/platform/",
-   "source_title": "Platform - Fred Francis for Mayor of Windsor: Downtown Revitalization Plan - Safer Streets",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-francis-fred",
-   "issue": "arts-and-culture",
-   "summary_short": "Francis committed to updating the Municipal Cultural Master Plan and evaluating arts funding against inflation.",
-   "summary_bullets": [
-    "Would commit to reviewing and updating the 15+ year old Municipal Cultural Master Plan, plus a Blue Ribbon Panel to modernize all City Hall committee structures.",
-    "Would evaluate arts funding against inflation so budget decisions reflect real costs.",
-    "Wants Windsor to become a considered destination for arts and culture, tied to downtown revitalization and affordability (including housing).",
-    "Sees returning the Tunnel Bus as important for Detroit arts, music and cultural connections, and would leverage University of Windsor and St. Clair College for professional development."
-   ],
-   "verbatim_quote": "Reviewing the Municipal Cultural Master Plan is past due, and I commit to review and update the plan.",
-   "source_url": "https://acwr.net/what-are-windsors-mayoral-candidates-saying-about-arts-culture/",
-   "source_title": "What Are Windsor's Mayoral Candidates Saying About Arts & Culture - Arts Council Windsor & Region questionnaire",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-graves-dylon",
-   "issue": "housing",
-   "summary_short": "Graves proposes converting abandoned spaces into temporary housing (later regular rentals), arguing Housing First reduces downstream public costs.",
-   "summary_bullets": [
-    "Campaign states 'Housing first is the solution.'",
-    "Proposes converting Windsor's abandoned spaces into large-scale temporary housing that could later be converted to regular rental units.",
-    "Argues housing the bottom of the economic pyramid reduces spending on hospitals, police encounters, encampment removals and street trash.",
-    "Says keeping people at risk of homelessness housed is as important as housing the already-unhoused."
-   ],
-   "verbatim_quote": "Housing first is the solution.",
-   "source_url": "https://mayorgraves.com/",
-   "source_title": "Mayor Graves - campaign site",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-grayer-tara",
-   "issue": "housing",
-   "summary_short": "Grayer's platform centres on three homelessness goals: identifying individual needs, removing housing obstacles, and ensuring funding reaches recipients.",
-   "summary_bullets": [
-    "Her campaign platform lists three homelessness goals: identify individuals' needs to reintegrate them into housing.",
-    "Identify obstacles to housing and how to overcome them.",
-    "Ensure funding reaches the intended recipients."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://windsornewsdesk.ca/stories/2026-10-08-mayoral-housing-roundup/",
-   "source_title": "Where Windsor's 11 mayoral candidates stand on housing (citing her campaign platform)",
-   "source_type": "local_news",
-   "source_date": "2026-10-08",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-kolasky-nick",
-   "issue": "housing",
-   "summary_short": "Kolasky wants permanent small-home housing modelled on Peterborough, smaller out-of-core homeless hubs, and keeping the supervised injection site open.",
-   "summary_bullets": [
-    "His top priority is homelessness: permanent housing, not overnight shelters that eject people in the morning.",
-    "Would follow the Peterborough model of building small homes at about $5,000 per person, versus the $50,000-per-person cost he attributes to the Village at the Barn plan.",
-    "Would create smaller homeless hubs outside the downtown (near transit, not in food deserts), possibly in vacant factories, with offices for counselling and a mobile outreach van.",
-    "Said he would not have closed the supervised injection site, arguing public drug use has become more rampant.",
-    "Argued moving homeless residents into smaller hubs out of the core would reduce crime, policing costs, open drug use and panhandling, and revive downtown business."
-   ],
-   "verbatim_quote": "Permanent housing, not an overnight shelter, followed by kicking them out first thing in the morning.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Nick Kolasky",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-morencie-tristan-ty",
-   "issue": "housing",
-   "summary_short": "Morencie said he would restore a 1950s-style housing market affordable to middle-class families.",
-   "summary_bullets": [
-    "In an email to Windsor News on Oct. 8, said he would bring back a 1950s-style housing market in which middle-class families could afford homes."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://windsornewsdesk.ca/stories/2026-10-08-mayoral-housing-roundup/",
-   "source_title": "Where Windsor's 11 mayoral candidates stand on housing (candidate email to Windsor News)",
-   "source_type": "local_news",
-   "source_date": "2026-10-08",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-pasquach-kat",
-   "issue": "taxes-and-spending",
-   "summary_short": "Pasquach pledges a year-one 0% tax freeze, an end to vanity projects, and fines on landlords who leave properties vacant or derelict.",
-   "summary_bullets": [
-    "Would commit to a 0% property tax increase in the first year.",
-    "Would stop 'vanity projects' and overspending, citing $10M streetcar displays while housing and shelter needs are dire.",
-    "Would explore grants, sponsorships and advertising revenue to fund Transit and Libraries before asking residents for more.",
-    "Would pursue aggressive fines and increased taxation on residential and commercial landlords who leave properties abandoned or in disrepair."
-   ],
-   "verbatim_quote": "We will commit to a 0% property tax increase in our first year to help residents weather economic uncertainty.",
-   "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
-   "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Fiscal Responsibility and Property Taxes",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-pasquach-kat",
-   "issue": "economy",
-   "summary_short": "Pasquach would leverage the Gordie Howe Bridge for Sandwich Town investment, fill vacant downtown storefronts, and make Windsor the easiest Ontario city to start a business.",
-   "summary_bullets": [
-    "Would leverage the Gordie Howe International Bridge by expanding infrastructure to it and driving investment into Sandwich Town.",
-    "Would foster the creative sector, integrate arts into economic strategy, and expand supports for social enterprises that hire locally.",
-    "Downtown: would install self-cleaning public washrooms, fill vacant storefronts via strict by-law enforcement and escalating fines, and demand demolition/redevelopment of long-neglected buildings.",
-    "Would pivot away from centralized models like the proposed Barn and the H4 model toward distributed daytime resources across the city.",
-    "Small business: would expand the 'Bright Lights' hut model year-round along the riverfront, open permits for food trucks/vendors/artists, streamline permitting, maximize local procurement, and create construction-relief grants for businesses hit by long-term road projects."
-   ],
-   "verbatim_quote": "We will make Windsor the easiest place in Ontario to start and grow a business.",
-   "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
-   "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Economic Development and Jobs / Downtown Windsor / Small Business",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-pasquach-kat",
-   "issue": "housing",
-   "summary_short": "Pasquach would use city land on long leases for affordable/co-op housing, revive rental licensing, and push the province to limit corporate ownership of single-family homes.",
-   "summary_bullets": [
-    "As CEO of a non-profit housing provider, states 'housing is a human right, not merely an opportunity for investment.'",
-    "Would use city-owned land and long-term leases for affordable and co-operative housing rather than selling public assets.",
-    "Would support community land trusts and incentivize co-op housing via development-charge exemptions, city land, favourable leases and financing partnerships.",
-    "Would revisit the scrapped citywide rental licensing program and hold landlords accountable for living conditions.",
-    "Would advocate to the province to prevent or limit corporate ownership of single-family homes.",
-    "Would focus density increases in the lowest-density neighbourhoods with infrastructure upgrades approved first."
-   ],
-   "verbatim_quote": "housing is a human right, not merely an opportunity for investment.",
-   "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
-   "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Housing",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-pasquach-kat",
-   "issue": "emergency-services",
-   "summary_short": "Pasquach would fund decentralized daytime hubs and supervised consumption sites, prioritize crisis teams over police-budget growth, and end mass-surveillance programs.",
-   "summary_bullets": [
-    "Would fund decentralized daytime hubs (bathrooms, showers, laundry, meals) and better fund lifelines like the Welcome Centre Shelter for Women and Families.",
-    "Would advocate for provincial/federal approvals for evidence-based supervised consumption services across the city.",
-    "Would stop punishing the unhoused and focus on wrap-around supports for encampments.",
-    "Crime: would implement volunteer youth mentorship programs as the primary crime prevention strategy.",
-    "Would prioritize investment in multidisciplinary mental-health crisis response teams (social workers, nurses) before further discretionary police-budget expansion.",
-    "Would embrace Vision Zero, focus police deployment on traffic enforcement, and terminate Project Greenlight and Flock-like surveillance cameras."
-   ],
-   "verbatim_quote": "We will not attempt to mask the homelessness crisis by simply pushing people out.",
-   "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
-   "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Homelessness, Addiction, and Mental Health / Crime and Public Safety",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-pasquach-kat",
-   "issue": "government",
-   "summary_short": "Pasquach would govern by consensus, use Strong Mayor powers only in emergencies, and require a full week's agenda notice with transparent procurement.",
-   "summary_bullets": [
-    "Would lead through consensus and treat social service providers as partners, not just audited contractors.",
-    "Would keep Strong Mayor powers only as a last resort: if council ignored substantiated evidence-based data to residents' severe detriment, or in emergencies.",
-    "Would give councillors and the public at least one full week's notice on agendas to allow delegations and informed debate.",
-    "Would make capital spending and procurement fully transparent and end unjustified sole-source contracts.",
-    "Would publish neighbourhood data dashboards and run recurring third-party and resident-driven service feedback (e.g., pothole response times)."
-   ],
-   "verbatim_quote": "Strong Mayor powers suppress local democracy when used incorrectly.",
-   "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
-   "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Governing Philosophy / Strong Mayor Powers and Governance",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-pasquach-kat",
-   "issue": "transit",
-   "summary_short": "Pasquach would restore the Tunnel Bus, expand evening/Sunday service, and connect cycling and transit links between commercial districts.",
-   "summary_bullets": [
-    "Would bring back the Tunnel Bus, citing its role in cross-border tourism.",
-    "Would prioritize creating more efficient bus routes, expanded evening and Sunday service, and additional school routes.",
-    "Would prioritize transit operators' working conditions to ensure reliable service.",
-    "Would run rider satisfaction surveys and fix real-time tracking, optimizing routes around major hubs.",
-    "Her 'Connected Windsor' plan (backed by Bike Windsor Essex) would work with all nine BIAs to connect cycling, transit, pedestrian and tourism links between commercial districts, building on the Gordie Howe Bridge pedestrian/cycling link."
-   ],
-   "verbatim_quote": "We will bring back the Tunnel Bus, recognizing its vital role in cross-border tourism.",
-   "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
-   "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Transit / Connected Windsor",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-pasquach-kat",
-   "issue": "roads-and-infrastructure",
-   "summary_short": "Pasquach would set strict pothole repair targets, publish clear 10-year infrastructure schedules, and restore sidewalk snow clearing.",
-   "summary_bullets": [
-    "Would set strict response targets for pothole repairs.",
-    "Would dramatically improve communication of the 10-year infrastructure plan so residents know when roads and sewers are scheduled for upgrades.",
-    "Would aggressively enforce snow removal for pedestrians and bring back sidewalk cleaners to keep the city walkable year-round."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
-   "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Roads, Sewers, Flooding, and Infrastructure",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-pasquach-kat",
-   "issue": "growth-and-development",
-   "summary_short": "Pasquach would block Sandwich South and airport-lands sprawl until infrastructure is built, and enforce mixed-use development.",
-   "summary_bullets": [
-    "Would not approve major outward sprawl such as Sandwich South or Airport lands developments until underlying infrastructure (roads, sewers, transit) is built.",
-    "Would enforce the Official Plan to promote mixed-use development blending residential, commercial and institutional space.",
-    "Would invite residents of affected areas into committee meetings early in the planning process."
-   ],
-   "verbatim_quote": "We will not approve major outward sprawl such as developments in Sandwich South or the Airport lands until the underlying infrastructure (roads, sewers, transit capacity) is built to support it.",
-   "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
-   "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Growth and Development",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-pasquach-kat",
-   "issue": "environment",
-   "summary_short": "Pasquach would make climate resilience and environmental impact mandatory criteria in municipal decisions and capital tenders.",
-   "summary_bullets": [
-    "Would build climate resilience into every municipal decision.",
-    "Would enhance stormwater management and snow removal protocols for extreme weather.",
-    "Would make environmental impact a mandatory criterion when tendering all large capital projects.",
-    "Runs the campaign itself as low-waste as a proof of concept for City Hall."
-   ],
-   "verbatim_quote": "Windsor must prepare for the future by building climate resilience into every municipal decision.",
-   "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
-   "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Environment and Climate Resilience",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-pasquach-kat",
-   "issue": "arts-and-culture",
-   "summary_short": "Pasquach would integrate arts into economic strategy, reallocate city arts-department resources to ACWR, and renew the cultural master plan.",
-   "summary_bullets": [
-    "Would integrate arts into the economic strategy, using innovative architecture and public spaces like Festival Plaza to attract a creative class.",
-    "Would make the Bright Lights huts at Jackson Park available year-round and open public spaces to artists and musicians.",
-    "Would review the City's Arts and Culture department structure and reallocate those resources to the Arts Council Windsor & Region (ACWR).",
-    "Would renew the outdated Municipal Cultural Master Plan via a steering committee, and use buskers, art kiosks and public displays as quick wins.",
-    "Would measure success by new master-plan objectives, artist feedback on new programs, and increased arts-and-culture tourism."
-   ],
-   "verbatim_quote": "I want to integrate arts into our economic strategy, utilizing innovative architecture and public spaces like the Festival Plaza to attract a vibrant creative class.",
-   "source_url": "https://acwr.net/what-are-windsors-mayoral-candidates-saying-about-arts-culture/",
-   "source_title": "What Are Windsor's Mayoral Candidates Saying About Arts & Culture - Arts Council Windsor & Region questionnaire",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-pasquach-kat",
-   "issue": "housing",
-   "summary_short": "At the CBC debate, Pasquach called for a human-centred homelessness response, new city revenue tools, and small-business-led job creation.",
-   "summary_bullets": [
-    "At the CBC debate she said homelessness requires 'a human-centered approach.'",
-    "On cost of living, said the city should look at different ways to generate revenue.",
-    "On jobs, said 'job creation really does start in our communities with small businesses.'"
-   ],
-   "verbatim_quote": "You need to have a human-centered approach",
-   "source_url": "https://windsornewsdesk.ca/stories/2026-10-07-in-their-words-closing-pitches-from-tuesdays-cbc/",
-   "source_title": "In their words: closing pitches from Tuesday's CBC Windsor mayoral debate",
-   "source_type": "local_news",
-   "source_date": "2026-10-06",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-sutherland-patrick",
-   "issue": "housing",
-   "summary_short": "Sutherland would adopt Helsinki's Housing First model, fund it with a local lottery, and donate 20% of his mayoral salary to homeless housing.",
-   "summary_bullets": [
-    "Would introduce the Housing First model used in Helsinki, Finland, calling it the most successful in the world, with a mandatory affordable housing component.",
-    "Houseless people would be provided homes 'no questions asked' and dispersed across the county with supports; a share of rental units citywide would be deemed affordable.",
-    "Would create a 'Freedom 60/40 Local Lottery' to fund housing for the homeless and supply food banks (winner gets 40%), topped up with provincial/federal assistance.",
-    "Would donate 20% of his mayor's salary directly to housing the homeless."
-   ],
-   "verbatim_quote": "Introduce the Housing First Model implemented in Helsinki, Finland—still the most successful in the world.",
-   "source_url": "https://vote4patrick.ca/platform",
-   "source_title": "Vote for Patrick Sutherland - PLATFORM",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-sutherland-patrick",
-   "issue": "government",
-   "summary_short": "Sutherland would renounce Strong Mayor powers, wear a body camera in office, and hire an outside Auditor General.",
-   "summary_bullets": [
-    "Would not utilize Strong Mayor powers; all council decisions would be made 'the democratic way.'",
-    "Would wear a video camera for his term as mayor (except in-camera meetings) and make in-camera meeting reports accessible to the public.",
-    "Would work with council to hire an independent, objective Auditor General with no connection to the city."
-   ],
-   "verbatim_quote": "Not utilize Strong Mayor powers. All City Council decisions will be made the democratic way.",
-   "source_url": "https://vote4patrick.ca/platform",
-   "source_title": "Vote for Patrick Sutherland - PLATFORM",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-sutherland-patrick",
-   "issue": "economy",
-   "summary_short": "Sutherland would cut small-business commercial taxes 10% and build riverfront attractions including a Ferris wheel, aquarium and museums.",
-   "summary_bullets": [
-    "Would introduce a 10% reduction in commercial property taxes for small brick-and-mortar businesses.",
-    "Would restore the Jackson Park Bandshell ('The Jockey') and the Windsor Arena ('The Barn') for indoor events, concerts and sports.",
-    "Would build a Ferris wheel and amusement rides at the riverfront, turn the trolley enclosure into a public aquarium (trolley becomes a riverside restaurant), and turn the old jail into a wax/historical museum of the Underground Railroad.",
-    "Would continue partnerships to fast-track Quebec City-Windsor speed rail."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://vote4patrick.ca/platform",
-   "source_title": "Vote for Patrick Sutherland - PLATFORM",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-sutherland-patrick",
-   "issue": "roads-and-infrastructure",
-   "summary_short": "Sutherland would upload E.C. Row to the province and roll out solar motion-sensor street lighting.",
-   "summary_bullets": [
-    "Would upload the E.C. Row Expressway to the province and spend the savings on city roads and infrastructure.",
-    "Would install solar-powered motion-sensor street lights on all new subdivisions and gradually across the city, projecting millions in savings over a decade."
-   ],
-   "verbatim_quote": "Upload the E.C. Row Expressway to the Province, allowing the savings to be spent on roads and infrastructure within our city.",
-   "source_url": "https://vote4patrick.ca/platform",
-   "source_title": "Vote for Patrick Sutherland - PLATFORM",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-sutherland-patrick",
-   "issue": "emergency-services",
-   "summary_short": "Sutherland proposes 'S.A.D.D.' (Seniors Against Drug Dealers) to fully eradicate drug dealers in Windsor.",
-   "summary_bullets": [
-    "Would initiate 'S.A.D.D.' (Seniors Against Drug Dealers) for the 'full eradication of drug dealers in Windsor.'"
-   ],
-   "verbatim_quote": "Initiate S.A.D.D. (Seniors Against Drug Dealers) Full eradication of drug dealers in Windsor.",
-   "source_url": "https://vote4patrick.ca/platform",
-   "source_title": "Vote for Patrick Sutherland - PLATFORM",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "one sentence",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-sutherland-patrick",
-   "issue": "arts-and-culture",
-   "summary_short": "Sutherland would nearly double the arts budget, double the festival count, and make the cultural master plan update a first priority.",
-   "summary_bullets": [
-    "Would increase the arts budget (says it should be 'close to doubled') and offer twice as many summer-to-winter festivals in city parks.",
-    "Would market and promote all county artists globally, starting on the City website.",
-    "Would make updating the 15-year-old Municipal Cultural Master Plan one of his first priorities, possibly via a commission to ensure artists are paid more fairly.",
-    "Vision: dancing and singing in the streets, artists featured at the art museum, poets in parks, daily live performances on the Jackson Park Bandshell, plays in every school."
-   ],
-   "verbatim_quote": "The budget set aside for this has to be close to doubled.",
-   "source_url": "https://acwr.net/what-are-windsors-mayoral-candidates-saying-about-arts-culture/",
-   "source_title": "What Are Windsor's Mayoral Candidates Saying About Arts & Culture - Arts Council Windsor & Region questionnaire",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-vaupotic-louis",
-   "issue": "transit",
-   "summary_short": "Vaupotic opposes the Amtrak plan and instead proposes a gondola/vertiport/ferry multimodal hub tied to the Gordie Howe Bridge.",
-   "summary_bullets": [
-    "Opposes a once-daily Amtrak train to Windsor, arguing it would weaken the anticipated result for the city.",
-    "Proposes a multimodal international transportation hub consisting of a gondola, a vertiport and a ferry, calling it 'the hands down correct path for Windsor.'",
-    "Envisions a pedestrian pathway starting downtown, crossing the new Gordie Howe bridge and back, with the $2.24B redeveloped Detroit Ren Cen enabling the project.",
-    "Says the vertiport would connect industry and educational institutions on both sides of the border."
-   ],
-   "verbatim_quote": "I will go against the wisdom of Dilkens and firmly indicate that the once daily Amtrak train to Windsor will weaken the anticipated result for Windsor, and suggest my multimodal international transportation hub consisting of a gondola and vertiport and ferry is the hands down correct path for Windsor.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Louis Vaupotic",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-vaupotic-louis",
-   "issue": "housing",
-   "summary_short": "Vaupotic proposed a City bridge-loan program for 4-8 unit buildings with owner-occupancy and below-market rents.",
-   "summary_bullets": [
-    "Proposed a trial City bridge loan for new multi-unit housing: the City would pay trusted contractors as work is done on 4-8 unit buildings.",
-    "The owner would have to live in one unit and rent a share below market rate, repaying the City after securing a bank loan.",
-    "If no bank loan materialized, the other units would go to geared-to-income tenants and the City would repay itself from social services, with strict tenant rules as a condition."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://windsornewsdesk.ca/stories/2026-10-08-mayoral-housing-roundup/",
-   "source_title": "Where Windsor's 11 mayoral candidates stand on housing (candidate email to Windsor News)",
-   "source_type": "local_news",
-   "source_date": "2026-10-08",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-vaupotic-louis",
-   "issue": "economy",
-   "summary_short": "Vaupotic says his cross-border transit hub is the only plan that will revitalize downtown Windsor.",
-   "summary_bullets": [
-    "Claims he is 'the only person that will revitalize downtown Windsor,' just as the bridge has started to revitalize Sandwich.",
-    "Argues Caesars Windsor struggles to fill shows and the solution is widening its geographic drawing area via his cross-border transit proposal.",
-    "Frames the choice as gondola versus observation Ferris wheel, noting both would cost tens to hundreds of millions, and says income generated could be redirected to other city uses."
-   ],
-   "verbatim_quote": "I am the only person that will revitalize downtown Windsor, just as the bridge has started to revitalize Sandwich.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Louis Vaupotic",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-guttmann-geoffrey-d",
-   "issue": "housing",
-   "summary_short": "Guttmann would impose performance standards on new housing for safety, energy efficiency, affordability and neighbourhood fit, targeting land speculators.",
-   "summary_bullets": [
-    "Says neighbourhoods are growing faster than the City has planned, straining the housing market and demand for affordable living space.",
-    "Would set performance goals and standards for safe, energy-efficient, affordable homes that fit neighbourhood character, with financial requirements ensuring timely project completion.",
-    "Criticizes speculators who buy land and leave it empty for years, and 8-plexes built beside detached single-family homes or homes split into multiple units stressing infrastructure."
-   ],
-   "verbatim_quote": "We need performance goals and standards to ensure safe, energy efficient, affordable homes that fit within our growing Windsor community.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Geoffrey D. Guttmann",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-guttmann-geoffrey-d",
-   "issue": "economy",
-   "summary_short": "Guttmann proposes converting an abandoned downtown office building into a dignified housing-and-recovery facility.",
-   "summary_bullets": [
-    "Says downtown should feel safe for residents and visitors enjoying the riverfront and theatres.",
-    "Proposes seriously considering converting an abandoned office building into a dignified facility giving homeless and economically disadvantaged residents living space, recovery supports and a path to independence."
-   ],
-   "verbatim_quote": "we should seriously consider converting an abandoned office building into a proper facility for giving the homeless and economically disadvantaged a place of dignity, living space, and recovery.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Geoffrey D. Guttmann",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-fathers-frazier",
-   "issue": "housing",
-   "summary_short": "Fathers would tackle interconnected housing, homelessness, transit and safety issues with strategic investment and traffic calming.",
-   "summary_bullets": [
-    "Frames affordability, housing, homelessness, transit, parks, infrastructure and traffic safety as interconnected challenges needing a balanced approach.",
-    "Would increase housing options, better support residents experiencing homelessness, improve transit accessibility, invest in parks and recreation, and make streets safer through traffic calming.",
-    "Says municipal government must bring partners together, make strategic investments and deliver services effectively."
-   ],
-   "verbatim_quote": "We need to increase housing options, better support residents experiencing homelessness, improve transit accessibility, invest in parks and recreation, and make our streets safer through traffic calming.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Frazier Fathers",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-fathers-frazier",
-   "issue": "economy",
-   "summary_short": "Fathers wants a coordinated downtown approach blending enforcement, cleanliness, residential development and events.",
-   "summary_bullets": [
-    "Says there is no silver bullet for downtown: it needs a coordinated approach bringing people, investment and activity back while supporting those already downtown.",
-    "Would address real and perceived safety through proactive enforcement, improved cleanliness and active street presence, alongside supports for vulnerable residents.",
-    "Would encourage more residential development, support local businesses, activate public spaces, and attract day-and-evening events downtown."
-   ],
-   "verbatim_quote": "There is no silver bullet to revitalizing Downtown Windsor.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Frazier Fathers",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-spiliadis-spiro-s",
-   "issue": "housing",
-   "summary_short": "Spiliadis would apply systems thinking to interconnected housing, homelessness and safety issues, with measurable outcomes.",
-   "summary_bullets": [
-    "Says Windsor's biggest challenge is managing interconnected issues (housing affordability, homelessness, mental health, substance use, public safety) as a system rather than in silos.",
-    "Would bring a systems-thinking approach: collaboration between organizations, listening to lived experience, identifying gaps, and measuring whether efforts make a difference.",
-    "Emphasizes using public resources responsibly and holding decision-makers accountable for results."
-   ],
-   "verbatim_quote": "Are organizations working toward common outcomes? Are we addressing the actual needs of residents? Are we measuring whether our efforts are making a difference?",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Spiro S. Spiliadis",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-spiliadis-spiro-s",
-   "issue": "economy",
-   "summary_short": "Spiliadis says downtown must be rehabilitated before it is revitalized, with shared goals and measurable outcomes.",
-   "summary_bullets": [
-    "His downtown approach is 'rehabilitate before we revitalize': first understand what is happening, what isn't working, and why.",
-    "Says revitalization must create a downtown where residents, businesses, visitors and vulnerable community members coexist safely.",
-    "Would push the City, businesses, community organizations and residents toward shared goals with clear responsibilities and measurable outcomes."
-   ],
-   "verbatim_quote": "My approach to downtown is to rehabilitate before we revitalize.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Spiro S. Spiliadis",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-zaid-rasha",
-   "issue": "housing",
-   "summary_short": "Zaid backs Housing First with wraparound supports and monthly community meetings for accountable representation.",
-   "summary_bullets": [
-    "Supports a Housing First approach pairing stable housing with mental health, addiction and other essential support services.",
-    "Says community well-being means cleaner neighbourhoods, safer streets, accessible transportation and youth opportunities beyond the virtual world.",
-    "Would hold monthly community meetings with transparent, evidence-informed communication so community voices shape council decisions."
-   ],
-   "verbatim_quote": "I support a Housing First approach that prioritizes stable housing alongside mental health, addiction, and other essential support services.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Rasha Zaid",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-zaid-rasha",
-   "issue": "economy",
-   "summary_short": "Zaid envisions a safe, accessible downtown driven by local entrepreneurs, pedestrian safety, arts and diverse businesses.",
-   "summary_bullets": [
-    "Envisions downtown as vibrant, welcoming, accessible and economically thriving, where people feel safe and diverse communities belong.",
-    "Would address homelessness, public safety, vacant storefronts, accessibility and transportation together rather than in isolation.",
-    "Would support local entrepreneurs, diverse businesses, pedestrian and cyclist safety, inviting public spaces, and arts and culture celebrating Windsor's diversity.",
-    "Says downtown revitalization must involve business owners, residents, service providers and community organizations firsthand."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Rasha Zaid",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-acton-ken",
-   "issue": "housing",
-   "summary_short": "Acton declares a housing crisis and wants transit-corridor in-fill housing that does not displace working-class residents.",
-   "summary_bullets": [
-    "Declares 'WE ARE IN A HOUSING CRISIS': homes should be well-designed, safe, energy-efficient and affordable, encouraging long-term residency.",
-    "Would develop downtown and transportation corridors with mixed-use, mixed-demographic housing supporting mass transit and the tax base.",
-    "Insists in-fill development be carefully planned so gentrification does not displace long-term working-class residents and minority families."
-   ],
-   "verbatim_quote": "WE ARE IN A HOUSING CRISIS",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Ken Acton",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-acton-ken",
-   "issue": "economy",
-   "summary_short": "Acton wants a walkable, human-scale downtown that serves daily life and becomes the city's most vibrant neighbourhood.",
-   "summary_bullets": [
-    "Says a healthy urban core is the key to any city's success: it must be a destination, not a drive-through.",
-    "Downtown must be safe, walkable (narrow lanes, two-way streets, slower speeds), comfortable (human-scale architecture, shade trees), interesting (no blank walls or parking lots breaking the street wall) and useful (essential services, shopping, schools).",
-    "Says downtown must be the most vibrant neighbourhood in the city, supporting daily life rather than just an entertainment district."
-   ],
-   "verbatim_quote": "the downtown must be the most vibrant neighbourhood in our city.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Ken Acton",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-potvin-shane",
-   "issue": "housing",
-   "summary_short": "Potvin wants core density, less red tape for homeowners and developers, and Vision Zero road safety.",
-   "summary_bullets": [
-    "Would add density to the core to attract businesses and residents and build vibrant neighbourhoods.",
-    "Wants efficient city processes and less red tape so residents can add value to homes (e.g., additional dwelling units) and developers want to build.",
-    "Supports a proactive approach to safety, investment in addiction and homelessness services, and Vision Zero to reduce pedestrian and cyclist deaths."
-   ],
-   "verbatim_quote": "We need to add density to our core that will attract businesses and residents to develop vibrant neighbourhoods that we can be proud to visit and live in.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Shane Potvin",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-potvin-shane",
-   "issue": "economy",
-   "summary_short": "Potvin points to his Ford City BIA record of cutting crime and growing business as a model for downtown revitalization.",
-   "summary_bullets": [
-    "As Ford City BIA president, says he catalyzed change on Drouillard Road via Community Improvement Grants, safety, business incentives, placemaking and inclusive marketing.",
-    "Says those changes cut crime, grew new business and brought a new generation of residents to Ford City.",
-    "Believes he could apply the same approach at larger scale to revitalize downtown Windsor."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Shane Potvin",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-marier-denis",
-   "issue": "housing",
-   "summary_short": "Marier would expand affordable and supportive housing with senior-government partners and help Riverside seniors age at home.",
-   "summary_bullets": [
-    "Calls housing insecurity and homelessness among Windsor's most urgent municipal challenges.",
-    "Would work with councillors, housing providers, agencies and provincial/federal partners to expand affordable and supportive housing.",
-    "Would connect people with mental health and addiction services and strengthen homelessness prevention.",
-    "In Riverside, would help seniors age safely at home and improve access to services and transportation."
-   ],
-   "verbatim_quote": "I believe housing insecurity and homelessness are among Windsor's most urgent municipal challenges.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Denis Marier",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-munim-hiral",
-   "issue": "emergency-services",
-   "summary_short": "Munim would install flashing crosswalks and speed bumps, expand foot patrols, and keep bringing events downtown.",
-   "summary_bullets": [
-    "Names safe neighbourhoods the most critical municipal issue: visible streets and sensible traffic flow based on resident input.",
-    "Would install high-visibility flashing crosswalks near schools, shopping centres and key intersections to protect children, cyclists and seniors.",
-    "Would install speed bumps and/or auxiliary police foot patrols in sensitive areas.",
-    "Downtown: would continue police foot patrolling, bring events downtown to boost the economy, and make more housing accessible to attract residents."
-   ],
-   "verbatim_quote": "I will work to install high-visibility flashing crosswalks near schools, shopping centers, and key intersections to safeguard school children, cyclists, and seniors.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Hiral Munim",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-saka-khassan",
-   "issue": "housing",
-   "summary_short": "Saka supports the Village at the Barn and senior-government partnerships for housing, mental health and addiction funding.",
-   "summary_bullets": [
-    "Says homelessness requires compassion, practical solutions and accountability.",
-    "Supports the Village at the Barn initiative and stronger provincial/federal partnerships to fund housing, mental health and addiction services.",
-    "Says new housing developments must respect existing neighbourhoods."
-   ],
-   "verbatim_quote": "I support initiatives such as the Village at The Barn, along with stronger partnerships with provincial and federal governments to secure funding for housing, mental health, and addiction services.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Khassan Saka",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-saka-khassan",
-   "issue": "taxes-and-spending",
-   "summary_short": "Saka wants property tax increases kept below inflation through better financial management.",
-   "summary_bullets": [
-    "Believes property tax increases should be kept below inflation whenever possible through better financial management and efficient operations.",
-    "Wants council to listen to residents before major decisions."
-   ],
-   "verbatim_quote": "I believe property tax increases should be kept below inflation whenever possible through better financial management and efficient municipal operations.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Khassan Saka",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-soluade-victoria",
-   "issue": "active-transportation",
-   "summary_short": "Soluade would expand affordable youth programming in existing parks and community centres, with youth helping shape decisions.",
-   "summary_bullets": [
-    "Her first priority: young people need more affordable, accessible places to belong, gather, learn, build friendships and contribute.",
-    "Would start by listening to youth, parents, schools and community organizations across Ward 7 to map what works and where gaps are.",
-    "Would examine how existing parks, community centres and public spaces could support more recreation, arts, mentoring and skills programs before proposing costly new buildings.",
-    "Says investments should have clear goals, regular review, and youth should help shape decisions."
-   ],
-   "verbatim_quote": "My first priority is ensuring that young people have more places to belong.",
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Victoria Soluade",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "windsor-soluade-victoria",
-   "issue": "economy",
-   "summary_short": "Soluade would review Strengthen the Core results and target spending on clean streets, lighting, small business and vacant storefronts.",
-   "summary_bullets": [
-    "Wants downtown to be welcoming with reasons to spend time there day and evening.",
-    "Would review the results of the Strengthen the Core program and direct resources to measures that show progress.",
-    "Priorities: clean streets, lighting, accessible sidewalks, reliable transit, small business support, bringing vacant storefronts into use, and housing as part of the discussion.",
-    "Says spending must be transparent with progress reported publicly and plans adjusted when needed."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
-   "source_title": "CFUW Windsor Municipal Election Candidate Responses - Victoria Soluade",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-17",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  }
- ]
+  "positions": [
+    {
+      "candidate": "windsor-dilkens-drew",
+      "issue": "housing",
+      "summary_short": "At the CBC debate, Dilkens defended the 'Village at the Barn' project as transitional housing rather than a shelter.",
+      "summary_bullets": [
+        "Defended the proposed 'Village at the Barn' as transitional housing, not a shelter.",
+        "The project would include 102 private pod-style units with counselling, medical services and a safer-use space."
+      ],
+      "verbatim_quote": "It's not a shelter. It's transitional housing",
+      "source_url": "https://windsornewsdesk.ca/stories/2026-10-07-in-their-words-closing-pitches-from-tuesdays-cbc/",
+      "source_title": "In their words: closing pitches from Tuesday's CBC Windsor mayoral debate",
+      "source_type": "local_news",
+      "source_date": "2026-10-06",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-dilkens-drew",
+      "issue": "taxes-and-spending",
+      "summary_short": "Dilkens claimed Windsor had the lowest tax increases of any Ontario city over the past four years.",
+      "summary_bullets": [
+        "Pointed to what he called 'the lowest tax increase of any city in Ontario' over the last four years.",
+        "Made affordability-through-low-taxes the core of his cost-of-living pitch."
+      ],
+      "verbatim_quote": "the lowest tax increase of any city in Ontario",
+      "source_url": "https://windsornewsdesk.ca/stories/2026-10-07-in-their-words-closing-pitches-from-tuesdays-cbc/",
+      "source_title": "In their words: closing pitches from Tuesday's CBC Windsor mayoral debate",
+      "source_type": "local_news",
+      "source_date": "2026-10-06",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-dilkens-drew",
+      "issue": "arts-and-culture",
+      "summary_short": "Dilkens committed to continued funding for arts facilities, festivals and grants, plus a review of the 15-year-old Municipal Cultural Master Plan.",
+      "summary_bullets": [
+        "Would continue funding city arts, culture and heritage facilities (Capitol Theatre, Mackenzie Hall, Willistead Manor, Art Windsor-Essex, Chimczuk Museum).",
+        "Would continue funding Bright Lights Windsor, Open Streets Windsor, Experience Windsor, Neighbourhood Nights and LIVE at the Square, all of which pay local musicians and artists.",
+        "Would continue funding the Arts, Culture & Heritage Fund grant program ($1.3M to 529 projects since 2014; increased 13% to $133,000 annually in 2025-2026).",
+        "Committed to reviewing and updating the 15+ year old Municipal Cultural Master Plan in the coming term with full consultation of the arts community.",
+        "Measures success by more public art, more arts/culture spaces, expanded Museum Windsor resources, and arts as a main element of the Strengthen the Core downtown plan."
+      ],
+      "verbatim_quote": "I will continue to support our arts, culture and heritage facilities like the Capitol Theatre, Mackenzie Hall, Willistead Manor, the building that houses Art Windsor-Essex and the Chimczuk Museum.",
+      "source_url": "https://acwr.net/what-are-windsors-mayoral-candidates-saying-about-arts-culture/",
+      "source_title": "What Are Windsor's Mayoral Candidates Saying About Arts & Culture - Arts Council Windsor & Region questionnaire",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-francis-fred",
+      "issue": "government",
+      "summary_short": "Francis would eliminate Strong Mayor Powers and overhaul council transparency, including in-camera meeting disclosure and published voting records.",
+      "summary_bullets": [
+        "Would eliminate Strong Mayor Powers.",
+        "Would establish a Blue-Ribbon Committee of residents, community organizations, businesses and labour to review the city's committee and board structures.",
+        "Would publish detailed in-camera meeting agendas, audit them annually against the Municipal Act, and report all in-camera decisions publicly.",
+        "Would publish all council voting results online, hold monthly councillor meetings and monthly City Hall news conferences, and hold an annual free public State of the City Address."
+      ],
+      "verbatim_quote": "Eliminate Strong Mayor Powers.",
+      "source_url": "https://www.francisformayor.ca/platform/",
+      "source_title": "Platform - Fred Francis for Mayor of Windsor: Open, Accountable & Responsible City Hall",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-francis-fred",
+      "issue": "taxes-and-spending",
+      "summary_short": "Francis pledges no new taxes, pay-as-you-go financing, debt reduction, and an end to over-budget legacy capital projects.",
+      "summary_bullets": [
+        "'No New Taxes': would fund the Asset Management Plan with existing capital dollars plus senior-government grants, reversing the 1.1% Asset Management Tax (2020) plus 0.25% (2023) that added $41M to the base budget.",
+        "Would hold the line on taxes by measuring spending at the rate of inflation, not a blended rate.",
+        "Would use a pay-as-you-go strategy to avoid debt, reduce city debt from $130M (2026) back down, and increase financial reserves.",
+        "Would end costly legacy capital projects, citing the ~$10M trolley beacon project and ~$15M City Hall ice rink as over-budget examples.",
+        "Would replace Strong-Mayor budgeting with people-based budgeting that puts councillors back into the budget process."
+      ],
+      "verbatim_quote": "Use a Pay-As-You-Go Strategy to avoid unnecessary debt and high interest costs that put additional pressure on property taxes and reduce capital funding.",
+      "source_url": "https://www.francisformayor.ca/platform/",
+      "source_title": "Platform - Fred Francis for Mayor of Windsor: Jobs, Taxes, & Economic Growth",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-francis-fred",
+      "issue": "economy",
+      "summary_short": "Francis pitches a buy-local, low-business-tax economic plan with high-speed rail advocacy, airport expansion, and a downtown office-to-residential conversion program.",
+      "summary_bullets": [
+        "Would launch a Buy Windsor Local initiative weighting local job benefits in city procurement, and create a Windsor-Essex business registry.",
+        "Would reduce the tax burden on commercial and industrial businesses and offer tax incentive programs for growth.",
+        "Would diversify the economy into renewable energy, technology, health sciences, aerospace and tourism, and support workforce skills development.",
+        "Would expand air, sea and rail transportation and build a 401-corridor mayors' coalition to champion high-speed rail Windsor-Toronto.",
+        "Would improve Windsor International Airport with more direct flights including Toronto connections, and invest in Transit Windsor.",
+        "Would create a Chief Innovation Officer overseeing digital improvements, AI policy and entrepreneurial growth.",
+        "Downtown: would maintain downtown as a development-charge-free zone, launch an office-to-residential conversion program, and establish a dedicated Downtown Development Concierge with set permit timeframes."
+      ],
+      "verbatim_quote": "Support a Buy Windsor Local Initiative by ensuring local job market benefits are considered when evaluating requests for proposals to the city.",
+      "source_url": "https://www.francisformayor.ca/platform/",
+      "source_title": "Platform - Fred Francis for Mayor of Windsor: Jobs, Taxes, & Economic Growth / Downtown Revitalization",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-francis-fred",
+      "issue": "transit",
+      "summary_short": "Francis would bring back the Tunnel Bus, cap transit fares for two years, and re-establish the Transit Board of Directors.",
+      "summary_bullets": [
+        "Would re-establish the Transit Board of Directors.",
+        "Would maintain Windsor's connection to Detroit and bring back the Tunnel Bus.",
+        "Would extend Transit Route 1000 into 2027 for Vincent Massey and Holy Names students and negotiate a permanent deal with both school boards.",
+        "Would cap Transit Windsor fees for at least two years.",
+        "Would review the Transit Master Plan with more public consultation and align it with the Canadian Public Transit Fund for greater senior-government funding."
+      ],
+      "verbatim_quote": "Maintaining Windsor's connection to Detroit and bringing back the Tunnel Bus.",
+      "source_url": "https://www.francisformayor.ca/platform/",
+      "source_title": "Platform - Fred Francis for Mayor of Windsor: Windsor and Region Transit Service Enhancements",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-francis-fred",
+      "issue": "housing",
+      "summary_short": "Francis would pre-zone downtown for as-of-right density with no parking minimums, waive affordable-housing permit fees, and expand Housing First.",
+      "summary_bullets": [
+        "Would expand Housing First initiatives through more affordable housing with wraparound and treatment supports.",
+        "Would pre-zone the downtown core for as-of-right density, end parking minimums, and create a Downtown Development Concierge.",
+        "Would waive permit fees for affordable housing developments and offer tax incentive programs for housing.",
+        "Would keep downtown free of development charges and extend that to Ford City and historic Sandwich Town.",
+        "Would launch an office-to-residential conversion program and set clear permit timelines with fully online building and planning services."
+      ],
+      "verbatim_quote": "Expand Housing First Initiatives through more affordable housing with wraparound and treatment supports to help individuals experiencing homelessness secure stable housing and build a path toward long-term stability.",
+      "source_url": "https://www.francisformayor.ca/platform/",
+      "source_title": "Platform - Fred Francis for Mayor of Windsor: Downtown Revitalization Plan",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-francis-fred",
+      "issue": "housing",
+      "summary_short": "Francis unveiled a housing plan targeting 6,000 affordable homes by 2035 via city land, rent supplements and subsidized housing.",
+      "summary_bullets": [
+        "Unveiled a housing plan Oct. 13 at the former Grace Hospital site on Crawford Avenue.",
+        "Said Windsor needs about 6,000 affordable homes by 2035 and that the city is 'nowhere near that target.'",
+        "Would package city-owned properties for competitive mixed-use proposals, with nearby residents ranking the public benefits.",
+        "Would bring in rent supplements and subsidized housing (per the Chamber debate)."
+      ],
+      "verbatim_quote": "We are nowhere near that target, and we're losing time every single day",
+      "source_url": "https://windsornewsdesk.ca/stories/2026-10-15-what-fred-franciss-housing-plan-promises/",
+      "source_title": "What Fred Francis's housing plan promises",
+      "source_type": "local_news",
+      "source_date": "2026-10-13",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-francis-fred",
+      "issue": "emergency-services",
+      "summary_short": "Francis would create a mayor-reporting downtown safety and outreach command unit with crisis teams, HART Hub treatment capacity, and no-street-discharge protocols.",
+      "summary_bullets": [
+        "Would establish a Downtown Safety and Outreach Command Unit led by a Director reporting weekly to the Mayor, coordinating with Mobile Crisis Response Teams (police, mental health workers, Essex-Windsor EMS).",
+        "Would designate downtown and the riverfront a priority enforcement zone.",
+        "Would launch a Clean and Safe Streets Ambassadors Program and a 311-to-response guarantee for crisis reports.",
+        "Would increase mental health and addiction treatment capacity via the HART Hubs model and add treatment beds with wraparound supports.",
+        "Would facilitate 'no discharge to the street' protocols with hospitals, corrections and the province, and a voluntary Reconnection Program for return to home communities."
+      ],
+      "verbatim_quote": "Establish a Downtown Safety and Outreach Command Unit, led by a Director who reports weekly to the Mayor.",
+      "source_url": "https://www.francisformayor.ca/platform/",
+      "source_title": "Platform - Fred Francis for Mayor of Windsor: Downtown Revitalization Plan - Safer Streets",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-francis-fred",
+      "issue": "arts-and-culture",
+      "summary_short": "Francis committed to updating the Municipal Cultural Master Plan and evaluating arts funding against inflation.",
+      "summary_bullets": [
+        "Would commit to reviewing and updating the 15+ year old Municipal Cultural Master Plan, plus a Blue Ribbon Panel to modernize all City Hall committee structures.",
+        "Would evaluate arts funding against inflation so budget decisions reflect real costs.",
+        "Wants Windsor to become a considered destination for arts and culture, tied to downtown revitalization and affordability (including housing).",
+        "Sees returning the Tunnel Bus as important for Detroit arts, music and cultural connections, and would leverage University of Windsor and St. Clair College for professional development."
+      ],
+      "verbatim_quote": "Reviewing the Municipal Cultural Master Plan is past due, and I commit to review and update the plan.",
+      "source_url": "https://acwr.net/what-are-windsors-mayoral-candidates-saying-about-arts-culture/",
+      "source_title": "What Are Windsor's Mayoral Candidates Saying About Arts & Culture - Arts Council Windsor & Region questionnaire",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-graves-dylon",
+      "issue": "housing",
+      "summary_short": "Graves proposes converting abandoned spaces into temporary housing (later regular rentals), arguing Housing First reduces downstream public costs.",
+      "summary_bullets": [
+        "Campaign states 'Housing first is the solution.'",
+        "Proposes converting Windsor's abandoned spaces into large-scale temporary housing that could later be converted to regular rental units.",
+        "Argues housing the bottom of the economic pyramid reduces spending on hospitals, police encounters, encampment removals and street trash.",
+        "Says keeping people at risk of homelessness housed is as important as housing the already-unhoused."
+      ],
+      "verbatim_quote": "Housing first is the solution.",
+      "source_url": "https://mayorgraves.com/",
+      "source_title": "Mayor Graves - campaign site",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-kolasky-nick",
+      "issue": "housing",
+      "summary_short": "Kolasky wants permanent small-home housing modelled on Peterborough, smaller out-of-core homeless hubs, and keeping the supervised injection site open.",
+      "summary_bullets": [
+        "His top priority is homelessness: permanent housing, not overnight shelters that eject people in the morning.",
+        "Would follow the Peterborough model of building small homes at about $5,000 per person, versus the $50,000-per-person cost he attributes to the Village at the Barn plan.",
+        "Would create smaller homeless hubs outside the downtown (near transit, not in food deserts), possibly in vacant factories, with offices for counselling and a mobile outreach van.",
+        "Said he would not have closed the supervised injection site, arguing public drug use has become more rampant.",
+        "Argued moving homeless residents into smaller hubs out of the core would reduce crime, policing costs, open drug use and panhandling, and revive downtown business."
+      ],
+      "verbatim_quote": "Permanent housing, not an overnight shelter, followed by kicking them out first thing in the morning.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Nick Kolasky",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-pasquach-kat",
+      "issue": "taxes-and-spending",
+      "summary_short": "Pasquach pledges a year-one 0% tax freeze, an end to vanity projects, and fines on landlords who leave properties vacant or derelict.",
+      "summary_bullets": [
+        "Would commit to a 0% property tax increase in the first year.",
+        "Would stop 'vanity projects' and overspending, citing $10M streetcar displays while housing and shelter needs are dire.",
+        "Would explore grants, sponsorships and advertising revenue to fund Transit and Libraries before asking residents for more.",
+        "Would pursue aggressive fines and increased taxation on residential and commercial landlords who leave properties abandoned or in disrepair."
+      ],
+      "verbatim_quote": "We will commit to a 0% property tax increase in our first year to help residents weather economic uncertainty.",
+      "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
+      "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Fiscal Responsibility and Property Taxes",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-pasquach-kat",
+      "issue": "economy",
+      "summary_short": "Pasquach would leverage the Gordie Howe Bridge for Sandwich Town investment, fill vacant downtown storefronts, and make Windsor the easiest Ontario city to start a business.",
+      "summary_bullets": [
+        "Would leverage the Gordie Howe International Bridge by expanding infrastructure to it and driving investment into Sandwich Town.",
+        "Would foster the creative sector, integrate arts into economic strategy, and expand supports for social enterprises that hire locally.",
+        "Downtown: would install self-cleaning public washrooms, fill vacant storefronts via strict by-law enforcement and escalating fines, and demand demolition/redevelopment of long-neglected buildings.",
+        "Would pivot away from centralized models like the proposed Barn and the H4 model toward distributed daytime resources across the city.",
+        "Small business: would expand the 'Bright Lights' hut model year-round along the riverfront, open permits for food trucks/vendors/artists, streamline permitting, maximize local procurement, and create construction-relief grants for businesses hit by long-term road projects."
+      ],
+      "verbatim_quote": "We will make Windsor the easiest place in Ontario to start and grow a business.",
+      "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
+      "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Economic Development and Jobs / Downtown Windsor / Small Business",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-pasquach-kat",
+      "issue": "housing",
+      "summary_short": "Pasquach would use city land on long leases for affordable/co-op housing, revive rental licensing, and push the province to limit corporate ownership of single-family homes.",
+      "summary_bullets": [
+        "As CEO of a non-profit housing provider, states 'housing is a human right, not merely an opportunity for investment.'",
+        "Would use city-owned land and long-term leases for affordable and co-operative housing rather than selling public assets.",
+        "Would support community land trusts and incentivize co-op housing via development-charge exemptions, city land, favourable leases and financing partnerships.",
+        "Would revisit the scrapped citywide rental licensing program and hold landlords accountable for living conditions.",
+        "Would advocate to the province to prevent or limit corporate ownership of single-family homes.",
+        "Would focus density increases in the lowest-density neighbourhoods with infrastructure upgrades approved first."
+      ],
+      "verbatim_quote": "housing is a human right, not merely an opportunity for investment.",
+      "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
+      "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Housing",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-pasquach-kat",
+      "issue": "emergency-services",
+      "summary_short": "Pasquach would fund decentralized daytime hubs and supervised consumption sites, prioritize crisis teams over police-budget growth, and end mass-surveillance programs.",
+      "summary_bullets": [
+        "Would fund decentralized daytime hubs (bathrooms, showers, laundry, meals) and better fund lifelines like the Welcome Centre Shelter for Women and Families.",
+        "Would advocate for provincial/federal approvals for evidence-based supervised consumption services across the city.",
+        "Would stop punishing the unhoused and focus on wrap-around supports for encampments.",
+        "Crime: would implement volunteer youth mentorship programs as the primary crime prevention strategy.",
+        "Would prioritize investment in multidisciplinary mental-health crisis response teams (social workers, nurses) before further discretionary police-budget expansion.",
+        "Would embrace Vision Zero, focus police deployment on traffic enforcement, and terminate Project Greenlight and Flock-like surveillance cameras."
+      ],
+      "verbatim_quote": "We will not attempt to mask the homelessness crisis by simply pushing people out.",
+      "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
+      "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Homelessness, Addiction, and Mental Health / Crime and Public Safety",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-pasquach-kat",
+      "issue": "government",
+      "summary_short": "Pasquach would govern by consensus, use Strong Mayor powers only in emergencies, and require a full week's agenda notice with transparent procurement.",
+      "summary_bullets": [
+        "Would lead through consensus and treat social service providers as partners, not just audited contractors.",
+        "Would keep Strong Mayor powers only as a last resort: if council ignored substantiated evidence-based data to residents' severe detriment, or in emergencies.",
+        "Would give councillors and the public at least one full week's notice on agendas to allow delegations and informed debate.",
+        "Would make capital spending and procurement fully transparent and end unjustified sole-source contracts.",
+        "Would publish neighbourhood data dashboards and run recurring third-party and resident-driven service feedback (e.g., pothole response times)."
+      ],
+      "verbatim_quote": "Strong Mayor powers suppress local democracy when used incorrectly.",
+      "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
+      "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Governing Philosophy / Strong Mayor Powers and Governance",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-pasquach-kat",
+      "issue": "transit",
+      "summary_short": "Pasquach would restore the Tunnel Bus, expand evening/Sunday service, and connect cycling and transit links between commercial districts.",
+      "summary_bullets": [
+        "Would bring back the Tunnel Bus, citing its role in cross-border tourism.",
+        "Would prioritize creating more efficient bus routes, expanded evening and Sunday service, and additional school routes.",
+        "Would prioritize transit operators' working conditions to ensure reliable service.",
+        "Would run rider satisfaction surveys and fix real-time tracking, optimizing routes around major hubs.",
+        "Her 'Connected Windsor' plan (backed by Bike Windsor Essex) would work with all nine BIAs to connect cycling, transit, pedestrian and tourism links between commercial districts, building on the Gordie Howe Bridge pedestrian/cycling link."
+      ],
+      "verbatim_quote": "We will bring back the Tunnel Bus, recognizing its vital role in cross-border tourism.",
+      "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
+      "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Transit / Connected Windsor",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-pasquach-kat",
+      "issue": "growth-and-development",
+      "summary_short": "Pasquach would block Sandwich South and airport-lands sprawl until infrastructure is built, and enforce mixed-use development.",
+      "summary_bullets": [
+        "Would not approve major outward sprawl such as Sandwich South or Airport lands developments until underlying infrastructure (roads, sewers, transit) is built.",
+        "Would enforce the Official Plan to promote mixed-use development blending residential, commercial and institutional space.",
+        "Would invite residents of affected areas into committee meetings early in the planning process."
+      ],
+      "verbatim_quote": "We will not approve major outward sprawl such as developments in Sandwich South or the Airport lands until the underlying infrastructure (roads, sewers, transit capacity) is built to support it.",
+      "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
+      "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Growth and Development",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-pasquach-kat",
+      "issue": "environment",
+      "summary_short": "Pasquach would make climate resilience and environmental impact mandatory criteria in municipal decisions and capital tenders.",
+      "summary_bullets": [
+        "Would build climate resilience into every municipal decision.",
+        "Would enhance stormwater management and snow removal protocols for extreme weather.",
+        "Would make environmental impact a mandatory criterion when tendering all large capital projects.",
+        "Runs the campaign itself as low-waste as a proof of concept for City Hall."
+      ],
+      "verbatim_quote": "Windsor must prepare for the future by building climate resilience into every municipal decision.",
+      "source_url": "https://www.votekatformayor.ca/kat-pasquach-full-platform.pdf",
+      "source_title": "Kat Pasquach - A Vision to Put People First (full platform PDF): Environment and Climate Resilience",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-pasquach-kat",
+      "issue": "arts-and-culture",
+      "summary_short": "Pasquach would integrate arts into economic strategy, reallocate city arts-department resources to ACWR, and renew the cultural master plan.",
+      "summary_bullets": [
+        "Would integrate arts into the economic strategy, using innovative architecture and public spaces like Festival Plaza to attract a creative class.",
+        "Would make the Bright Lights huts at Jackson Park available year-round and open public spaces to artists and musicians.",
+        "Would review the City's Arts and Culture department structure and reallocate those resources to the Arts Council Windsor & Region (ACWR).",
+        "Would renew the outdated Municipal Cultural Master Plan via a steering committee, and use buskers, art kiosks and public displays as quick wins.",
+        "Would measure success by new master-plan objectives, artist feedback on new programs, and increased arts-and-culture tourism."
+      ],
+      "verbatim_quote": "I want to integrate arts into our economic strategy, utilizing innovative architecture and public spaces like the Festival Plaza to attract a vibrant creative class.",
+      "source_url": "https://acwr.net/what-are-windsors-mayoral-candidates-saying-about-arts-culture/",
+      "source_title": "What Are Windsor's Mayoral Candidates Saying About Arts & Culture - Arts Council Windsor & Region questionnaire",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-pasquach-kat",
+      "issue": "housing",
+      "summary_short": "At the CBC debate, Pasquach called for a human-centred homelessness response, new city revenue tools, and small-business-led job creation.",
+      "summary_bullets": [
+        "At the CBC debate she said homelessness requires 'a human-centered approach.'",
+        "On cost of living, said the city should look at different ways to generate revenue.",
+        "On jobs, said 'job creation really does start in our communities with small businesses.'"
+      ],
+      "verbatim_quote": "You need to have a human-centered approach",
+      "source_url": "https://windsornewsdesk.ca/stories/2026-10-07-in-their-words-closing-pitches-from-tuesdays-cbc/",
+      "source_title": "In their words: closing pitches from Tuesday's CBC Windsor mayoral debate",
+      "source_type": "local_news",
+      "source_date": "2026-10-06",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-sutherland-patrick",
+      "issue": "housing",
+      "summary_short": "Sutherland would adopt Helsinki's Housing First model, fund it with a local lottery, and donate 20% of his mayoral salary to homeless housing.",
+      "summary_bullets": [
+        "Would introduce the Housing First model used in Helsinki, Finland, calling it the most successful in the world, with a mandatory affordable housing component.",
+        "Houseless people would be provided homes 'no questions asked' and dispersed across the county with supports; a share of rental units citywide would be deemed affordable.",
+        "Would create a 'Freedom 60/40 Local Lottery' to fund housing for the homeless and supply food banks (winner gets 40%), topped up with provincial/federal assistance.",
+        "Would donate 20% of his mayor's salary directly to housing the homeless."
+      ],
+      "verbatim_quote": "Introduce the Housing First Model implemented in Helsinki, Finland—still the most successful in the world.",
+      "source_url": "https://vote4patrick.ca/platform",
+      "source_title": "Vote for Patrick Sutherland - PLATFORM",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-sutherland-patrick",
+      "issue": "government",
+      "summary_short": "Sutherland would renounce Strong Mayor powers, wear a body camera in office, and hire an outside Auditor General.",
+      "summary_bullets": [
+        "Would not utilize Strong Mayor powers; all council decisions would be made 'the democratic way.'",
+        "Would wear a video camera for his term as mayor (except in-camera meetings) and make in-camera meeting reports accessible to the public.",
+        "Would work with council to hire an independent, objective Auditor General with no connection to the city."
+      ],
+      "verbatim_quote": "Not utilize Strong Mayor powers. All City Council decisions will be made the democratic way.",
+      "source_url": "https://vote4patrick.ca/platform",
+      "source_title": "Vote for Patrick Sutherland - PLATFORM",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-sutherland-patrick",
+      "issue": "roads-and-infrastructure",
+      "summary_short": "Sutherland would upload E.C. Row to the province and roll out solar motion-sensor street lighting.",
+      "summary_bullets": [
+        "Would upload the E.C. Row Expressway to the province and spend the savings on city roads and infrastructure.",
+        "Would install solar-powered motion-sensor street lights on all new subdivisions and gradually across the city, projecting millions in savings over a decade."
+      ],
+      "verbatim_quote": "Upload the E.C. Row Expressway to the Province, allowing the savings to be spent on roads and infrastructure within our city.",
+      "source_url": "https://vote4patrick.ca/platform",
+      "source_title": "Vote for Patrick Sutherland - PLATFORM",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-sutherland-patrick",
+      "issue": "emergency-services",
+      "summary_short": "Sutherland proposes 'S.A.D.D.' (Seniors Against Drug Dealers) to fully eradicate drug dealers in Windsor.",
+      "summary_bullets": [
+        "Would initiate 'S.A.D.D.' (Seniors Against Drug Dealers) for the 'full eradication of drug dealers in Windsor.'"
+      ],
+      "verbatim_quote": "Initiate S.A.D.D. (Seniors Against Drug Dealers) Full eradication of drug dealers in Windsor.",
+      "source_url": "https://vote4patrick.ca/platform",
+      "source_title": "Vote for Patrick Sutherland - PLATFORM",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "one sentence",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-sutherland-patrick",
+      "issue": "arts-and-culture",
+      "summary_short": "Sutherland would nearly double the arts budget, double the festival count, and make the cultural master plan update a first priority.",
+      "summary_bullets": [
+        "Would increase the arts budget (says it should be 'close to doubled') and offer twice as many summer-to-winter festivals in city parks.",
+        "Would market and promote all county artists globally, starting on the City website.",
+        "Would make updating the 15-year-old Municipal Cultural Master Plan one of his first priorities, possibly via a commission to ensure artists are paid more fairly.",
+        "Vision: dancing and singing in the streets, artists featured at the art museum, poets in parks, daily live performances on the Jackson Park Bandshell, plays in every school."
+      ],
+      "verbatim_quote": "The budget set aside for this has to be close to doubled.",
+      "source_url": "https://acwr.net/what-are-windsors-mayoral-candidates-saying-about-arts-culture/",
+      "source_title": "What Are Windsor's Mayoral Candidates Saying About Arts & Culture - Arts Council Windsor & Region questionnaire",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-vaupotic-louis",
+      "issue": "transit",
+      "summary_short": "Vaupotic opposes the Amtrak plan and instead proposes a gondola/vertiport/ferry multimodal hub tied to the Gordie Howe Bridge.",
+      "summary_bullets": [
+        "Opposes a once-daily Amtrak train to Windsor, arguing it would weaken the anticipated result for the city.",
+        "Proposes a multimodal international transportation hub consisting of a gondola, a vertiport and a ferry, calling it 'the hands down correct path for Windsor.'",
+        "Envisions a pedestrian pathway starting downtown, crossing the new Gordie Howe bridge and back, with the $2.24B redeveloped Detroit Ren Cen enabling the project.",
+        "Says the vertiport would connect industry and educational institutions on both sides of the border."
+      ],
+      "verbatim_quote": "I will go against the wisdom of Dilkens and firmly indicate that the once daily Amtrak train to Windsor will weaken the anticipated result for Windsor, and suggest my multimodal international transportation hub consisting of a gondola and vertiport and ferry is the hands down correct path for Windsor.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Louis Vaupotic",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-vaupotic-louis",
+      "issue": "economy",
+      "summary_short": "Vaupotic says his cross-border transit hub is the only plan that will revitalize downtown Windsor.",
+      "summary_bullets": [
+        "Claims he is 'the only person that will revitalize downtown Windsor,' just as the bridge has started to revitalize Sandwich.",
+        "Argues Caesars Windsor struggles to fill shows and the solution is widening its geographic drawing area via his cross-border transit proposal.",
+        "Frames the choice as gondola versus observation Ferris wheel, noting both would cost tens to hundreds of millions, and says income generated could be redirected to other city uses."
+      ],
+      "verbatim_quote": "I am the only person that will revitalize downtown Windsor, just as the bridge has started to revitalize Sandwich.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Louis Vaupotic",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-guttmann-geoffrey-d",
+      "issue": "housing",
+      "summary_short": "Guttmann would impose performance standards on new housing for safety, energy efficiency, affordability and neighbourhood fit, targeting land speculators.",
+      "summary_bullets": [
+        "Says neighbourhoods are growing faster than the City has planned, straining the housing market and demand for affordable living space.",
+        "Would set performance goals and standards for safe, energy-efficient, affordable homes that fit neighbourhood character, with financial requirements ensuring timely project completion.",
+        "Criticizes speculators who buy land and leave it empty for years, and 8-plexes built beside detached single-family homes or homes split into multiple units stressing infrastructure."
+      ],
+      "verbatim_quote": "We need performance goals and standards to ensure safe, energy efficient, affordable homes that fit within our growing Windsor community.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Geoffrey D. Guttmann",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-guttmann-geoffrey-d",
+      "issue": "economy",
+      "summary_short": "Guttmann proposes converting an abandoned downtown office building into a dignified housing-and-recovery facility.",
+      "summary_bullets": [
+        "Says downtown should feel safe for residents and visitors enjoying the riverfront and theatres.",
+        "Proposes seriously considering converting an abandoned office building into a dignified facility giving homeless and economically disadvantaged residents living space, recovery supports and a path to independence."
+      ],
+      "verbatim_quote": "we should seriously consider converting an abandoned office building into a proper facility for giving the homeless and economically disadvantaged a place of dignity, living space, and recovery.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Geoffrey D. Guttmann",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-fathers-frazier",
+      "issue": "housing",
+      "summary_short": "Fathers would tackle interconnected housing, homelessness, transit and safety issues with strategic investment and traffic calming.",
+      "summary_bullets": [
+        "Frames affordability, housing, homelessness, transit, parks, infrastructure and traffic safety as interconnected challenges needing a balanced approach.",
+        "Would increase housing options, better support residents experiencing homelessness, improve transit accessibility, invest in parks and recreation, and make streets safer through traffic calming.",
+        "Says municipal government must bring partners together, make strategic investments and deliver services effectively."
+      ],
+      "verbatim_quote": "We need to increase housing options, better support residents experiencing homelessness, improve transit accessibility, invest in parks and recreation, and make our streets safer through traffic calming.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Frazier Fathers",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-fathers-frazier",
+      "issue": "economy",
+      "summary_short": "Fathers wants a coordinated downtown approach blending enforcement, cleanliness, residential development and events.",
+      "summary_bullets": [
+        "Says there is no silver bullet for downtown: it needs a coordinated approach bringing people, investment and activity back while supporting those already downtown.",
+        "Would address real and perceived safety through proactive enforcement, improved cleanliness and active street presence, alongside supports for vulnerable residents.",
+        "Would encourage more residential development, support local businesses, activate public spaces, and attract day-and-evening events downtown."
+      ],
+      "verbatim_quote": "There is no silver bullet to revitalizing Downtown Windsor.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Frazier Fathers",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-spiliadis-spiro-s",
+      "issue": "housing",
+      "summary_short": "Spiliadis would apply systems thinking to interconnected housing, homelessness and safety issues, with measurable outcomes.",
+      "summary_bullets": [
+        "Says Windsor's biggest challenge is managing interconnected issues (housing affordability, homelessness, mental health, substance use, public safety) as a system rather than in silos.",
+        "Would bring a systems-thinking approach: collaboration between organizations, listening to lived experience, identifying gaps, and measuring whether efforts make a difference.",
+        "Emphasizes using public resources responsibly and holding decision-makers accountable for results."
+      ],
+      "verbatim_quote": "Are organizations working toward common outcomes? Are we addressing the actual needs of residents? Are we measuring whether our efforts are making a difference?",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Spiro S. Spiliadis",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-spiliadis-spiro-s",
+      "issue": "economy",
+      "summary_short": "Spiliadis says downtown must be rehabilitated before it is revitalized, with shared goals and measurable outcomes.",
+      "summary_bullets": [
+        "His downtown approach is 'rehabilitate before we revitalize': first understand what is happening, what isn't working, and why.",
+        "Says revitalization must create a downtown where residents, businesses, visitors and vulnerable community members coexist safely.",
+        "Would push the City, businesses, community organizations and residents toward shared goals with clear responsibilities and measurable outcomes."
+      ],
+      "verbatim_quote": "My approach to downtown is to rehabilitate before we revitalize.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Spiro S. Spiliadis",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-zaid-rasha",
+      "issue": "housing",
+      "summary_short": "Zaid backs Housing First with wraparound supports and monthly community meetings for accountable representation.",
+      "summary_bullets": [
+        "Supports a Housing First approach pairing stable housing with mental health, addiction and other essential support services.",
+        "Says community well-being means cleaner neighbourhoods, safer streets, accessible transportation and youth opportunities beyond the virtual world.",
+        "Would hold monthly community meetings with transparent, evidence-informed communication so community voices shape council decisions."
+      ],
+      "verbatim_quote": "I support a Housing First approach that prioritizes stable housing alongside mental health, addiction, and other essential support services.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Rasha Zaid",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-acton-ken",
+      "issue": "housing",
+      "summary_short": "Acton declares a housing crisis and wants transit-corridor in-fill housing that does not displace working-class residents.",
+      "summary_bullets": [
+        "Declares 'WE ARE IN A HOUSING CRISIS': homes should be well-designed, safe, energy-efficient and affordable, encouraging long-term residency.",
+        "Would develop downtown and transportation corridors with mixed-use, mixed-demographic housing supporting mass transit and the tax base.",
+        "Insists in-fill development be carefully planned so gentrification does not displace long-term working-class residents and minority families."
+      ],
+      "verbatim_quote": "WE ARE IN A HOUSING CRISIS",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Ken Acton",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-acton-ken",
+      "issue": "economy",
+      "summary_short": "Acton wants a walkable, human-scale downtown that serves daily life and becomes the city's most vibrant neighbourhood.",
+      "summary_bullets": [
+        "Says a healthy urban core is the key to any city's success: it must be a destination, not a drive-through.",
+        "Downtown must be safe, walkable (narrow lanes, two-way streets, slower speeds), comfortable (human-scale architecture, shade trees), interesting (no blank walls or parking lots breaking the street wall) and useful (essential services, shopping, schools).",
+        "Says downtown must be the most vibrant neighbourhood in the city, supporting daily life rather than just an entertainment district."
+      ],
+      "verbatim_quote": "the downtown must be the most vibrant neighbourhood in our city.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Ken Acton",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-potvin-shane",
+      "issue": "housing",
+      "summary_short": "Potvin wants core density, less red tape for homeowners and developers, and Vision Zero road safety.",
+      "summary_bullets": [
+        "Would add density to the core to attract businesses and residents and build vibrant neighbourhoods.",
+        "Wants efficient city processes and less red tape so residents can add value to homes (e.g., additional dwelling units) and developers want to build.",
+        "Supports a proactive approach to safety, investment in addiction and homelessness services, and Vision Zero to reduce pedestrian and cyclist deaths."
+      ],
+      "verbatim_quote": "We need to add density to our core that will attract businesses and residents to develop vibrant neighbourhoods that we can be proud to visit and live in.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Shane Potvin",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-marier-denis",
+      "issue": "housing",
+      "summary_short": "Marier would expand affordable and supportive housing with senior-government partners and help Riverside seniors age at home.",
+      "summary_bullets": [
+        "Calls housing insecurity and homelessness among Windsor's most urgent municipal challenges.",
+        "Would work with councillors, housing providers, agencies and provincial/federal partners to expand affordable and supportive housing.",
+        "Would connect people with mental health and addiction services and strengthen homelessness prevention.",
+        "In Riverside, would help seniors age safely at home and improve access to services and transportation."
+      ],
+      "verbatim_quote": "I believe housing insecurity and homelessness are among Windsor's most urgent municipal challenges.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Denis Marier",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-munim-hiral",
+      "issue": "emergency-services",
+      "summary_short": "Munim would install flashing crosswalks and speed bumps, expand foot patrols, and keep bringing events downtown.",
+      "summary_bullets": [
+        "Names safe neighbourhoods the most critical municipal issue: visible streets and sensible traffic flow based on resident input.",
+        "Would install high-visibility flashing crosswalks near schools, shopping centres and key intersections to protect children, cyclists and seniors.",
+        "Would install speed bumps and/or auxiliary police foot patrols in sensitive areas.",
+        "Downtown: would continue police foot patrolling, bring events downtown to boost the economy, and make more housing accessible to attract residents."
+      ],
+      "verbatim_quote": "I will work to install high-visibility flashing crosswalks near schools, shopping centers, and key intersections to safeguard school children, cyclists, and seniors.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Hiral Munim",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-saka-khassan",
+      "issue": "housing",
+      "summary_short": "Saka supports the Village at the Barn and senior-government partnerships for housing, mental health and addiction funding.",
+      "summary_bullets": [
+        "Says homelessness requires compassion, practical solutions and accountability.",
+        "Supports the Village at the Barn initiative and stronger provincial/federal partnerships to fund housing, mental health and addiction services.",
+        "Says new housing developments must respect existing neighbourhoods."
+      ],
+      "verbatim_quote": "I support initiatives such as the Village at The Barn, along with stronger partnerships with provincial and federal governments to secure funding for housing, mental health, and addiction services.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Khassan Saka",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-saka-khassan",
+      "issue": "taxes-and-spending",
+      "summary_short": "Saka wants property tax increases kept below inflation through better financial management.",
+      "summary_bullets": [
+        "Believes property tax increases should be kept below inflation whenever possible through better financial management and efficient operations.",
+        "Wants council to listen to residents before major decisions."
+      ],
+      "verbatim_quote": "I believe property tax increases should be kept below inflation whenever possible through better financial management and efficient municipal operations.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Khassan Saka",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-soluade-victoria",
+      "issue": "active-transportation",
+      "summary_short": "Soluade would expand affordable youth programming in existing parks and community centres, with youth helping shape decisions.",
+      "summary_bullets": [
+        "Her first priority: young people need more affordable, accessible places to belong, gather, learn, build friendships and contribute.",
+        "Would start by listening to youth, parents, schools and community organizations across Ward 7 to map what works and where gaps are.",
+        "Would examine how existing parks, community centres and public spaces could support more recreation, arts, mentoring and skills programs before proposing costly new buildings.",
+        "Says investments should have clear goals, regular review, and youth should help shape decisions."
+      ],
+      "verbatim_quote": "My first priority is ensuring that young people have more places to belong.",
+      "source_url": "https://www.cfuwwindsor.ca/windsor-municipal-election-2026/",
+      "source_title": "CFUW Windsor Municipal Election Candidate Responses - Victoria Soluade",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-10-17",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "windsor-dilkens-drew",
+      "issue": "growth-and-development",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "several paragraphs",
+      "source_title": "About | Mayor Drew Dilkens",
+      "source_type": "candidate_website",
+      "source_url": "https://www.mayordrewdilkens.ca/about",
+      "summary_bullets": [
+        "Credits his 'Windsor Works' economic strategy with securing the $5B NextStar EV battery manufacturing facility — 'the largest investment in Canada's auto industry, and one of the largest investments in Windsor in a century.'",
+        "Points to the Gordie Howe International Bridge and the new Windsor-Essex Acute Care Hospital as major infrastructure projects tied to the plan.",
+        "Frames his program around economic diversification and 'positioning Windsor as a destination of choice' for homes, careers and families."
+      ],
+      "summary_short": "Dilkens credits his 'Windsor Works' plan with landing the $5B NextStar EV battery plant, plus the Gordie Howe Bridge and new hospital.",
+      "verbatim_quote": "helped secure a monumental investment of $5B for the first domestic EV battery manufacturing facility (NextStar) – the largest investment in Canada's auto industry, and one of the largest investments in Windsor in a century."
+    },
+    {
+      "candidate": "windsor-dilkens-drew",
+      "issue": "roads-and-infrastructure",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "several paragraphs",
+      "source_title": "About | Mayor Drew Dilkens",
+      "source_type": "candidate_website",
+      "source_url": "https://www.mayordrewdilkens.ca/about",
+      "summary_bullets": [
+        "In 2017 presented an 8-Point Plan to address flooding, including expediting the City's Sewer Master Plan.",
+        "The $5B plan for 50 years of sewer investments received Council approval in 2020.",
+        "Lists master plans approved under his leadership for roadways, public transit, active transportation, parks, recreation and culture."
+      ],
+      "summary_short": "Dilkens points to his 8-Point flooding plan and the $5B, 50-year Sewer Master Plan (approved 2020) as his infrastructure record.",
+      "verbatim_quote": "In 2017, Mayor Dilkens presented an 8-Point Plan to address flooding – including a push to expedite completion of the City's Sewer Master Plan; the $5B plan for the next 50 years of sewer investments received Council approval in 2020."
+    }
+  ]
 }

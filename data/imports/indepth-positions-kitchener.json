@@ -1,392 +1,504 @@
 {
- "positions": [
-  {
-   "candidate": "kitchener-berry-vrbanovic",
-   "issue": "housing",
-   "summary_short": "Vrbanovic's 2026 vision centres on housing, infrastructure and planning: over 17,000 homes approved since 2023, with faster processes and affordable-housing priority.",
-   "summary_bullets": [
-    "Three pillars: housing, infrastructure, future-focused planning.",
-    "More than 17,000 homes approved since 2023; city advancing development despite market challenges.",
-    "Focus on what municipalities can control: aligning planning policy and infrastructure readiness, improving processes to accelerate housing construction, especially affordable housing.",
-    "Growing Together Plan enables 100,000+ new homes; Inclusionary Zoning bylaw secures affordable units near major transit stations."
-   ],
-   "verbatim_quote": "Made in Kitchener is not just a reflection of our past — it is how we move forward. It means focusing on what we can control, working together, and turning ideas into action right here in our community.",
-   "source_url": "https://www.kitchener.ca/news/posts/mayor-berry-vrbanovic-highlights-three-pillars-of-progress-and-announces-new-community-partnership-at-2026-state-of-the-city/",
-   "source_title": "Mayor Vrbanovic's 2026 State of the City address (city news release)",
-   "source_type": "local_news",
-   "source_date": "2026-02-01",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-berry-vrbanovic",
-   "issue": "economy",
-   "summary_short": "Vrbanovic backs the downtown innovation ecosystem and a new Make It Kitchener 2.1 economic strategy targeting health innovation and AI.",
-   "summary_bullets": [
-    "Investments in the Innovation Arena and the downtown innovation ecosystem.",
-    "Forthcoming updated economic development strategy 'Make It Kitchener 2.1' focuses on supporting businesses, attracting investment, and expanding into health innovation and artificial intelligence."
-   ],
-   "verbatim_quote": "The Mayor highlighted investments in the Innovation Arena and the broader downtown innovation ecosystem, alongside the City's forthcoming updated economic development strategy, Make It Kitchener 2.1, which focuses on supporting businesses, attracting investment, and expanding into emerging sectors such as health innovation and artificial intelligence.",
-   "source_url": "https://www.kitchener.ca/news/posts/mayor-berry-vrbanovic-highlights-three-pillars-of-progress-and-announces-new-community-partnership-at-2026-state-of-the-city/",
-   "source_title": "Mayor Vrbanovic's 2026 State of the City address (city news release)",
-   "source_type": "local_news",
-   "source_date": "2026-02-01",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-berry-vrbanovic",
-   "issue": "taxes-and-spending",
-   "summary_short": "Vrbanovic delivered a 2.2% 2026 budget increase, described as likely the lowest in Waterloo Region, funding parks, trails, trees and over $45M in road construction.",
-   "summary_bullets": [
-    "2026 budget: 2.2% property tax increase, or $29 for the average household; 'likely the lowest rate increase in Waterloo Region'.",
-    "Budgets averaging below Ontario inflation both during this term of Council and over the past decade.",
-    "Includes $1.5M for new community parks, $2.4M for trail upgrades, $3.3M for the tree canopy plan, over $45M in full road construction."
-   ],
-   "verbatim_quote": "This budget once again delivers what will likely be the lowest rate increase in Waterloo Region, without sacrificing necessary investments that will allow us to meet the needs of a growing community.",
-   "source_url": "https://www.kitchener.ca/news/posts/kitchener-council-finalizes-affordability-budget-at-22-for-2026/",
-   "source_title": "Kitchener Council Finalizes Affordability Budget at 2.2% for 2026 (city news release)",
-   "source_type": "local_news",
-   "source_date": "2026-10-01",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-berry-vrbanovic",
-   "issue": "roads-and-infrastructure",
-   "summary_short": "Vrbanovic is lobbying Ottawa for predictable, long-term infrastructure funding and faster-flowing housing dollars for cities.",
-   "summary_bullets": [
-    "Pushing for predictable, long-term federal funding for housing, infrastructure, transportation and trade diversification.",
-    "Expediting federal funding programs so budgeted dollars flow faster for housing and infrastructure projects."
-   ],
-   "verbatim_quote": "Canada's big-city mayors are united in our priorities as we look to be partners in prosperity with Ottawa to build strong cities and a strong, resilient Canada.",
-   "source_url": "https://www.kitchener.ca/news/posts/mayor-vrbanovic-joins-canada-s-big-city-mayors-in-ottawa-cities-critical-partners-in-canada-s-prosperity/",
-   "source_title": "Mayor Vrbanovic at Canada's Big City Mayors Caucus, Ottawa (city news release)",
-   "source_type": "local_news",
-   "source_date": "2026-10-01",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-george-trihenea",
-   "issue": "housing",
-   "summary_short": "Trihenea would fast-track missing-middle housing approvals, cut red tape for secondary suites and laneway homes, and partner on truly affordable units.",
-   "summary_bullets": [
-    "Fast-track municipal approvals for 'missing middle' housing like townhomes and multiplexes.",
-    "Cut red tape for secondary suites and laneway homes to empower local homeowners.",
-    "Partner with non-profits and developers to secure truly affordable units in new builds."
-   ],
-   "verbatim_quote": "Building a Kitchener where families, workers, and seniors can afford to live.",
-   "source_url": "https://www.georgetrihenea.ca/",
-   "source_title": "George Trihenea campaign site: Eight Commitments - Attainable Housing",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-george-trihenea",
-   "issue": "government",
-   "summary_short": "Trihenea would limit closed council sessions to the legal minimum and improve public access to information and decision-making.",
-   "summary_bullets": [
-    "Limit closed-session meetings to only what is legally required.",
-    "Improve public access to information and decision-making.",
-    "Restore trust through openness and accountability."
-   ],
-   "verbatim_quote": "Transparent. Efficient. Innovative. A proven business leader ready to put Kitchener residents first.",
-   "source_url": "https://www.georgetrihenea.ca/",
-   "source_title": "George Trihenea campaign site: Eight Commitments - Transparent Government",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-george-trihenea",
-   "issue": "taxes-and-spending",
-   "summary_short": "Trihenea would launch an independent City Hall efficiency review and improve snow, pothole and maintenance response times.",
-   "summary_bullets": [
-    "Launch an independent efficiency review of City Hall.",
-    "Improve response times for snow removal, potholes and neighbourhood maintenance.",
-    "Modernize city operations through innovation and better management."
-   ],
-   "verbatim_quote": "Taxpayers deserve value for every dollar.",
-   "source_url": "https://www.georgetrihenea.ca/",
-   "source_title": "George Trihenea campaign site: Eight Commitments - Efficient City Services",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-george-trihenea",
-   "issue": "emergency-services",
-   "summary_short": "Trihenea would strengthen renoviction protections, create a snow-clearing assistance registry for seniors, and expand affordable daycare.",
-   "summary_bullets": [
-    "Introduce stronger protections against unfair renovictions.",
-    "Create a snow-clearing assistance registry for seniors and residents with disabilities.",
-    "Expand licensed, affordable daycare spaces in high-need neighbourhoods."
-   ],
-   "verbatim_quote": "Every resident deserves dignity, support, and access to care.",
-   "source_url": "https://www.georgetrihenea.ca/",
-   "source_title": "George Trihenea campaign site: Eight Commitments - Helping and Protecting Our Communities",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-george-trihenea",
-   "issue": "roads-and-infrastructure",
-   "summary_short": "Trihenea would push the Province on Highway 7/8 safety, reduce congestion, and modernize City Hall with fast-tracked digital permits and open data.",
-   "summary_bullets": [
-    "Work with the Province to improve safety at the Highway 7/8 Stratford West interchange.",
-    "Advocate for transportation solutions that reduce congestion and protect residents.",
-    "Partner with local startups and universities; fast-track digital permits, licensing and service requests; implement open data and real-time public reporting."
-   ],
-   "verbatim_quote": "Traffic safety cannot wait.",
-   "source_url": "https://www.georgetrihenea.ca/",
-   "source_title": "George Trihenea campaign site: Eight Commitments - Safer Transportation and Innovation",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-manikantan-nair",
-   "issue": "environment",
-   "summary_short": "Nair would make water, wastewater, roads and transit capacity keep pace with approved growth, flagging water-capacity risks in the Mannheim Service Area.",
-   "summary_bullets": [
-    "Warns the Region of Waterloo faces future water-capacity challenges in the Mannheim Service Area affecting Kitchener, Waterloo and parts of Cambridge, Woolwich and Wilmot.",
-    "'Kitchener should not have to choose between housing growth and reliable infrastructure.'",
-    "Ensure water, wastewater, roads and transit capacity keep pace with the growth approved."
-   ],
-   "verbatim_quote": "Kitchener should not have to choose between housing growth and reliable infrastructure.",
-   "source_url": "https://www.votefornair.ca/mattersathand",
-   "source_title": "Manikantan Nair campaign site: Water Security & Responsible Growth",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-manikantan-nair",
-   "issue": "data-centres",
-   "summary_short": "Nair wants a Digital Kitchener: 24/7 online services and responsible AI use with human oversight and stronger cybersecurity.",
-   "summary_bullets": [
-    "Make more City services accessible online, 24/7.",
-    "Use AI responsibly: improve customer service, reduce paperwork, identify infrastructure problems earlier.",
-    "Protect privacy: strengthen cybersecurity and ensure human oversight of important decisions."
-   ],
-   "verbatim_quote": "Smarter Government. Faster Services. Stronger Privacy. Kitchener should use technology and responsible AI to make City Hall easier, faster and more transparent.",
-   "source_url": "https://www.votefornair.ca/mattersathand",
-   "source_title": "Manikantan Nair campaign site: Digital Kitchener & AI",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-manikantan-nair",
-   "issue": "taxes-and-spending",
-   "summary_short": "Nair would grow the tax base with business investment and underused city land instead of raising taxes, with a public 'Value for Taxpayers' dashboard.",
-   "summary_bullets": [
-    "Attract new businesses and investment to expand the commercial and industrial tax base.",
-    "Develop underused City-owned land to create long-term revenue.",
-    "Grow downtown with more businesses, housing, entertainment and events.",
-    "Proposes a 'Value for Taxpayers' dashboard requiring every major budget increase to show what problem it solves, cost, measurable improvement and how success will be measured."
-   ],
-   "verbatim_quote": "My plan would focus on: Attracting new businesses and investment to expand Kitchener's commercial and industrial tax base.",
-   "source_url": "https://www.votefornair.ca/mattersathand",
-   "source_title": "Manikantan Nair campaign site: A Stronger Kitchener Without Higher Taxes",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-manikantan-nair",
-   "issue": "government",
-   "summary_short": "Nair backs two-consecutive-term limits for municipal office and a public online inventory of all City-owned land.",
-   "summary_bullets": [
-    "Supports a two-consecutive-term limit for municipal elected positions.",
-    "'Leadership should be an opportunity to serve, not a position to hold indefinitely.'",
-    "Would also push for a public City-Owned Land Inventory: an online map of every city-owned property, its use, vacant/underutilized status, zoning and annual holding cost."
-   ],
-   "verbatim_quote": "Two Terms, Then New Leadership. I support a two-consecutive-term limit for municipal elected positions. Leadership should be an opportunity to serve, not a position to hold indefinitely.",
-   "source_url": "https://www.votefornair.ca/mattersathand",
-   "source_title": "Manikantan Nair campaign site: Leadership Renewal and Accountability",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-manikantan-nair",
-   "issue": "economy",
-   "summary_short": "Nair would create an Industrial Innovation Zone with tax incentives for advanced manufacturing and robotics, and promote the regional airport as a jobs engine.",
-   "summary_bullets": [
-    "Says Kitchener's economic strategy hasn't evolved since the early tech boom; cites fewer mid-career opportunities, young people leaving for Toronto, wage stagnation.",
-    "Create a Kitchener Industrial Innovation Zone with tax incentives for advanced manufacturing, robotics, clean tech and food processing.",
-    "Promote YKF airport as an engine for jobs, investment, tourism and international trade; attract new routes and airlines, develop the aerospace sector."
-   ],
-   "verbatim_quote": "Create a Kitchener Industrial Innovation Zone with tax incentives for advanced manufacturing, robotics, clean tech, and food processing.",
-   "source_url": "https://www.votefornair.ca/mattersathand",
-   "source_title": "Manikantan Nair campaign site: The 6 Biggest Challenges & Solutions",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-manikantan-nair",
-   "issue": "roads-and-infrastructure",
-   "summary_short": "Nair would prioritize road safety with fixed high-risk intersections, protected pedestrians and cyclists, and better road design against speeding.",
-   "summary_bullets": [
-    "Make road safety a priority: fix high-risk intersections and improve crossings.",
-    "Protect pedestrians, cyclists and school zones.",
-    "Address dangerous speeding through better road design and enforcement."
-   ],
-   "verbatim_quote": "A safer Kitchener starts with streets designed for people.",
-   "source_url": "https://www.votefornair.ca/mattersathand",
-   "source_title": "Manikantan Nair campaign site: A safer Kitchener starts with streets designed for people",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-david-alton",
-   "issue": "housing",
-   "summary_short": "Alton's 18-point Right to Housing platform includes a vacancy tax, multiplied social housing, landlord licensing, tenant supports, safe tenting zones, and reallocating police surpluses to housing.",
-   "summary_bullets": [
-    "Launch a vacancy tax and acquisition strategy to turn vacant buildings, parking lots, brownfields and golf courses into social housing sites.",
-    "Multiply Kitchener Housing and Region of Waterloo Housing stock; expand non-market partnerships for co-ops, affordable family housing and rent-geared-to-income.",
-    "Consolidate a tenant rights hub: rent bank, property standards, eviction prevention, legal aid, tenant organizing.",
-    "Require landlord licensing/rent registry; use renoviction and rental replacement tools.",
-    "Ensure safe tenting zones: review bylaws for human-rights compliance; use public land for stability and healing.",
-    "Reallocate police surpluses to the housing stability system; litigate the right to housing."
-   ],
-   "verbatim_quote": "I am committing to championing these ideas.",
-   "source_url": "https://www.davidalton.org/right-to-housing.html",
-   "source_title": "David Alton campaign site: Right to Housing platform (from July 25, 2026 town hall)",
-   "source_type": "candidate_website",
-   "source_date": "2026-07-25",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-david-alton",
-   "issue": "emergency-services",
-   "summary_short": "Alton would reclaim police surplus funding for the housing stability system instead of policing.",
-   "summary_bullets": [
-    "Police surpluses are leading to cuts in the housing stability system, including cancelling three social housing projects in 2026.",
-    "'We need to reclaim that funding for the sector trained for care not criminalization.'"
-   ],
-   "verbatim_quote": "We need to reclaim that funding for the sector trained for care not criminalization.",
-   "source_url": "https://www.davidalton.org/right-to-housing.html",
-   "source_title": "David Alton campaign site: Right to Housing platform - Reallocate Police Surplus",
-   "source_type": "candidate_website",
-   "source_date": "2026-07-25",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-david-alton",
-   "issue": "taxes-and-spending",
-   "summary_short": "Alton would explore progressive property tax reform targeting multiple-property owners and removing loopholes.",
-   "summary_bullets": [
-    "Explore property tax reform with progressive taxation targeting multiple properties and removing loopholes.",
-    "Make visible how much of the tax levy is due to federal and provincial neglect, via tax bills."
-   ],
-   "verbatim_quote": "Explore changes to property tax code to incorporate progressive taxation, targeting multiple properties, and removing loopholes.",
-   "source_url": "https://www.davidalton.org/right-to-housing.html",
-   "source_title": "David Alton campaign site: Right to Housing platform - Property Tax Reform",
-   "source_type": "candidate_website",
-   "source_date": "2026-07-25",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-mohamed-askalany",
-   "issue": "government",
-   "summary_short": "Askalany runs on diplomatic governance and fiscal precision with a 99-point action plan for Ward 9.",
-   "summary_bullets": [
-    "Running on 'Diplomatic governance. Fiscal precision. Unyielding advocacy.'",
-    "Promises a direct, active pipeline to City Hall and decisions grounded in facts and fiscal responsibility.",
-    "Has a detailed 99-point action plan under nine strategic pillars for Ward 9 and Kitchener."
-   ],
-   "verbatim_quote": "Diplomatic governance. Fiscal precision. Unyielding advocacy.",
-   "source_url": "https://voteaskalany.ca/",
-   "source_title": "Mohamed Askalany campaign site: home page",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-joe-gowing",
-   "issue": "social-and-community-services",
-   "summary_short": "Gowing pledged to protect public services, oppose water privatization, and stand up for worker rights (CUPE 1883 endorsement).",
-   "summary_bullets": [
-    "CUPE 1883 endorsed Gowing for Kitchener Regional Councillor.",
-    "Every endorsed candidate committed to: speak up and protect public services; oppose water privatization; stand up for worker rights."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://cupe1883.ca/vote2026/",
-   "source_title": "CUPE 1883 2026 municipal election endorsements (pledge commitments)",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-16",
-   "source_extent": "one sentence",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-colleen-james",
-   "issue": "social-and-community-services",
-   "summary_short": "James pledged to protect public services, oppose water privatization, and stand up for worker rights (CUPE 1883 endorsement).",
-   "summary_bullets": [
-    "CUPE 1883 endorsed James for Kitchener Regional Councillor.",
-    "Every endorsed candidate committed to: speak up and protect public services; oppose water privatization; stand up for worker rights."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://cupe1883.ca/vote2026/",
-   "source_title": "CUPE 1883 2026 municipal election endorsements (pledge commitments)",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-16",
-   "source_extent": "one sentence",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-anna-meksavanh",
-   "issue": "social-and-community-services",
-   "summary_short": "Meksavanh pledged to protect public services, oppose water privatization, and stand up for worker rights (CUPE 1883 endorsement).",
-   "summary_bullets": [
-    "CUPE 1883 endorsed Meksavanh for Kitchener Regional Councillor.",
-    "Every endorsed candidate committed to: speak up and protect public services; oppose water privatization; stand up for worker rights."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://cupe1883.ca/vote2026/",
-   "source_title": "CUPE 1883 2026 municipal election endorsements (pledge commitments)",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-16",
-   "source_extent": "one sentence",
-   "no_public_position": false
-  },
-  {
-   "candidate": "kitchener-matt-rodrigues",
-   "issue": "social-and-community-services",
-   "summary_short": "Rodrigues pledged to protect public services, oppose water privatization, and stand up for worker rights (CUPE 1883 endorsement).",
-   "summary_bullets": [
-    "CUPE 1883 endorsed Rodrigues for Kitchener Regional Councillor.",
-    "Every endorsed candidate committed to: speak up and protect public services; oppose water privatization; stand up for worker rights."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://cupe1883.ca/vote2026/",
-   "source_title": "CUPE 1883 2026 municipal election endorsements (pledge commitments)",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-10-16",
-   "source_extent": "one sentence",
-   "no_public_position": false
-  }
- ]
+  "positions": [
+    {
+      "candidate": "kitchener-berry-vrbanovic",
+      "issue": "housing",
+      "summary_short": "Vrbanovic's 2026 vision centres on housing, infrastructure and planning: over 17,000 homes approved since 2023, with faster processes and affordable-housing priority.",
+      "summary_bullets": [
+        "Three pillars: housing, infrastructure, future-focused planning.",
+        "More than 17,000 homes approved since 2023; city advancing development despite market challenges.",
+        "Focus on what municipalities can control: aligning planning policy and infrastructure readiness, improving processes to accelerate housing construction, especially affordable housing.",
+        "Growing Together Plan enables 100,000+ new homes; Inclusionary Zoning bylaw secures affordable units near major transit stations."
+      ],
+      "verbatim_quote": "Made in Kitchener is not just a reflection of our past — it is how we move forward. It means focusing on what we can control, working together, and turning ideas into action right here in our community.",
+      "source_url": "https://www.kitchener.ca/news/posts/mayor-berry-vrbanovic-highlights-three-pillars-of-progress-and-announces-new-community-partnership-at-2026-state-of-the-city/",
+      "source_title": "Mayor Vrbanovic's 2026 State of the City address (city news release)",
+      "source_type": "local_news",
+      "source_date": "2026-02-01",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-berry-vrbanovic",
+      "issue": "economy",
+      "summary_short": "Vrbanovic backs the downtown innovation ecosystem and a new Make It Kitchener 2.1 economic strategy targeting health innovation and AI.",
+      "summary_bullets": [
+        "Investments in the Innovation Arena and the downtown innovation ecosystem.",
+        "Forthcoming updated economic development strategy 'Make It Kitchener 2.1' focuses on supporting businesses, attracting investment, and expanding into health innovation and artificial intelligence."
+      ],
+      "verbatim_quote": "The Mayor highlighted investments in the Innovation Arena and the broader downtown innovation ecosystem, alongside the City's forthcoming updated economic development strategy, Make It Kitchener 2.1, which focuses on supporting businesses, attracting investment, and expanding into emerging sectors such as health innovation and artificial intelligence.",
+      "source_url": "https://www.kitchener.ca/news/posts/mayor-berry-vrbanovic-highlights-three-pillars-of-progress-and-announces-new-community-partnership-at-2026-state-of-the-city/",
+      "source_title": "Mayor Vrbanovic's 2026 State of the City address (city news release)",
+      "source_type": "local_news",
+      "source_date": "2026-02-01",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-berry-vrbanovic",
+      "issue": "taxes-and-spending",
+      "summary_short": "Vrbanovic delivered a 2.2% 2026 budget increase, described as likely the lowest in Waterloo Region, funding parks, trails, trees and over $45M in road construction.",
+      "summary_bullets": [
+        "2026 budget: 2.2% property tax increase, or $29 for the average household; 'likely the lowest rate increase in Waterloo Region'.",
+        "Budgets averaging below Ontario inflation both during this term of Council and over the past decade.",
+        "Includes $1.5M for new community parks, $2.4M for trail upgrades, $3.3M for the tree canopy plan, over $45M in full road construction."
+      ],
+      "verbatim_quote": "This budget once again delivers what will likely be the lowest rate increase in Waterloo Region, without sacrificing necessary investments that will allow us to meet the needs of a growing community.",
+      "source_url": "https://www.kitchener.ca/news/posts/kitchener-council-finalizes-affordability-budget-at-22-for-2026/",
+      "source_title": "Kitchener Council Finalizes Affordability Budget at 2.2% for 2026 (city news release)",
+      "source_type": "local_news",
+      "source_date": "2026-10-01",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-berry-vrbanovic",
+      "issue": "roads-and-infrastructure",
+      "summary_short": "Vrbanovic is lobbying Ottawa for predictable, long-term infrastructure funding and faster-flowing housing dollars for cities.",
+      "summary_bullets": [
+        "Pushing for predictable, long-term federal funding for housing, infrastructure, transportation and trade diversification.",
+        "Expediting federal funding programs so budgeted dollars flow faster for housing and infrastructure projects."
+      ],
+      "verbatim_quote": "Canada's big-city mayors are united in our priorities as we look to be partners in prosperity with Ottawa to build strong cities and a strong, resilient Canada.",
+      "source_url": "https://www.kitchener.ca/news/posts/mayor-vrbanovic-joins-canada-s-big-city-mayors-in-ottawa-cities-critical-partners-in-canada-s-prosperity/",
+      "source_title": "Mayor Vrbanovic at Canada's Big City Mayors Caucus, Ottawa (city news release)",
+      "source_type": "local_news",
+      "source_date": "2026-10-01",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-george-trihenea",
+      "issue": "housing",
+      "summary_short": "Trihenea would fast-track missing-middle housing approvals, cut red tape for secondary suites and laneway homes, and partner on truly affordable units.",
+      "summary_bullets": [
+        "Fast-track municipal approvals for 'missing middle' housing like townhomes and multiplexes.",
+        "Cut red tape for secondary suites and laneway homes to empower local homeowners.",
+        "Partner with non-profits and developers to secure truly affordable units in new builds."
+      ],
+      "verbatim_quote": "Building a Kitchener where families, workers, and seniors can afford to live.",
+      "source_url": "https://www.georgetrihenea.ca/",
+      "source_title": "George Trihenea campaign site: Eight Commitments - Attainable Housing",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-george-trihenea",
+      "issue": "government",
+      "summary_short": "Trihenea would limit closed council sessions to the legal minimum and improve public access to information and decision-making.",
+      "summary_bullets": [
+        "Limit closed-session meetings to only what is legally required.",
+        "Improve public access to information and decision-making.",
+        "Restore trust through openness and accountability."
+      ],
+      "verbatim_quote": "Transparent. Efficient. Innovative. A proven business leader ready to put Kitchener residents first.",
+      "source_url": "https://www.georgetrihenea.ca/",
+      "source_title": "George Trihenea campaign site: Eight Commitments - Transparent Government",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-george-trihenea",
+      "issue": "taxes-and-spending",
+      "summary_short": "Trihenea would launch an independent City Hall efficiency review and improve snow, pothole and maintenance response times.",
+      "summary_bullets": [
+        "Launch an independent efficiency review of City Hall.",
+        "Improve response times for snow removal, potholes and neighbourhood maintenance.",
+        "Modernize city operations through innovation and better management."
+      ],
+      "verbatim_quote": "Taxpayers deserve value for every dollar.",
+      "source_url": "https://www.georgetrihenea.ca/",
+      "source_title": "George Trihenea campaign site: Eight Commitments - Efficient City Services",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-george-trihenea",
+      "issue": "emergency-services",
+      "summary_short": "Trihenea would strengthen renoviction protections, create a snow-clearing assistance registry for seniors, and expand affordable daycare.",
+      "summary_bullets": [
+        "Introduce stronger protections against unfair renovictions.",
+        "Create a snow-clearing assistance registry for seniors and residents with disabilities.",
+        "Expand licensed, affordable daycare spaces in high-need neighbourhoods."
+      ],
+      "verbatim_quote": "Every resident deserves dignity, support, and access to care.",
+      "source_url": "https://www.georgetrihenea.ca/",
+      "source_title": "George Trihenea campaign site: Eight Commitments - Helping and Protecting Our Communities",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-george-trihenea",
+      "issue": "roads-and-infrastructure",
+      "summary_short": "Trihenea would push the Province on Highway 7/8 safety, reduce congestion, and modernize City Hall with fast-tracked digital permits and open data.",
+      "summary_bullets": [
+        "Work with the Province to improve safety at the Highway 7/8 Stratford West interchange.",
+        "Advocate for transportation solutions that reduce congestion and protect residents.",
+        "Partner with local startups and universities; fast-track digital permits, licensing and service requests; implement open data and real-time public reporting."
+      ],
+      "verbatim_quote": "Traffic safety cannot wait.",
+      "source_url": "https://www.georgetrihenea.ca/",
+      "source_title": "George Trihenea campaign site: Eight Commitments - Safer Transportation and Innovation",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-manikantan-nair",
+      "issue": "environment",
+      "summary_short": "Nair would make water, wastewater, roads and transit capacity keep pace with approved growth, flagging water-capacity risks in the Mannheim Service Area.",
+      "summary_bullets": [
+        "Warns the Region of Waterloo faces future water-capacity challenges in the Mannheim Service Area affecting Kitchener, Waterloo and parts of Cambridge, Woolwich and Wilmot.",
+        "'Kitchener should not have to choose between housing growth and reliable infrastructure.'",
+        "Ensure water, wastewater, roads and transit capacity keep pace with the growth approved."
+      ],
+      "verbatim_quote": "Kitchener should not have to choose between housing growth and reliable infrastructure.",
+      "source_url": "https://www.votefornair.ca/mattersathand",
+      "source_title": "Manikantan Nair campaign site: Water Security & Responsible Growth",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-manikantan-nair",
+      "issue": "data-centres",
+      "summary_short": "Nair wants a Digital Kitchener: 24/7 online services and responsible AI use with human oversight and stronger cybersecurity.",
+      "summary_bullets": [
+        "Make more City services accessible online, 24/7.",
+        "Use AI responsibly: improve customer service, reduce paperwork, identify infrastructure problems earlier.",
+        "Protect privacy: strengthen cybersecurity and ensure human oversight of important decisions."
+      ],
+      "verbatim_quote": "Smarter Government. Faster Services. Stronger Privacy. Kitchener should use technology and responsible AI to make City Hall easier, faster and more transparent.",
+      "source_url": "https://www.votefornair.ca/mattersathand",
+      "source_title": "Manikantan Nair campaign site: Digital Kitchener & AI",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-manikantan-nair",
+      "issue": "taxes-and-spending",
+      "summary_short": "Nair would grow the tax base with business investment and underused city land instead of raising taxes, with a public 'Value for Taxpayers' dashboard.",
+      "summary_bullets": [
+        "Attract new businesses and investment to expand the commercial and industrial tax base.",
+        "Develop underused City-owned land to create long-term revenue.",
+        "Grow downtown with more businesses, housing, entertainment and events.",
+        "Proposes a 'Value for Taxpayers' dashboard requiring every major budget increase to show what problem it solves, cost, measurable improvement and how success will be measured."
+      ],
+      "verbatim_quote": "My plan would focus on: Attracting new businesses and investment to expand Kitchener's commercial and industrial tax base.",
+      "source_url": "https://www.votefornair.ca/mattersathand",
+      "source_title": "Manikantan Nair campaign site: A Stronger Kitchener Without Higher Taxes",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-manikantan-nair",
+      "issue": "government",
+      "summary_short": "Nair backs two-consecutive-term limits for municipal office and a public online inventory of all City-owned land.",
+      "summary_bullets": [
+        "Supports a two-consecutive-term limit for municipal elected positions.",
+        "'Leadership should be an opportunity to serve, not a position to hold indefinitely.'",
+        "Would also push for a public City-Owned Land Inventory: an online map of every city-owned property, its use, vacant/underutilized status, zoning and annual holding cost."
+      ],
+      "verbatim_quote": "Two Terms, Then New Leadership. I support a two-consecutive-term limit for municipal elected positions. Leadership should be an opportunity to serve, not a position to hold indefinitely.",
+      "source_url": "https://www.votefornair.ca/mattersathand",
+      "source_title": "Manikantan Nair campaign site: Leadership Renewal and Accountability",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-manikantan-nair",
+      "issue": "economy",
+      "summary_short": "Nair would create an Industrial Innovation Zone with tax incentives for advanced manufacturing and robotics, and promote the regional airport as a jobs engine.",
+      "summary_bullets": [
+        "Says Kitchener's economic strategy hasn't evolved since the early tech boom; cites fewer mid-career opportunities, young people leaving for Toronto, wage stagnation.",
+        "Create a Kitchener Industrial Innovation Zone with tax incentives for advanced manufacturing, robotics, clean tech and food processing.",
+        "Promote YKF airport as an engine for jobs, investment, tourism and international trade; attract new routes and airlines, develop the aerospace sector."
+      ],
+      "verbatim_quote": "Create a Kitchener Industrial Innovation Zone with tax incentives for advanced manufacturing, robotics, clean tech, and food processing.",
+      "source_url": "https://www.votefornair.ca/mattersathand",
+      "source_title": "Manikantan Nair campaign site: The 6 Biggest Challenges & Solutions",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-manikantan-nair",
+      "issue": "roads-and-infrastructure",
+      "summary_short": "Nair would prioritize road safety with fixed high-risk intersections, protected pedestrians and cyclists, and better road design against speeding.",
+      "summary_bullets": [
+        "Make road safety a priority: fix high-risk intersections and improve crossings.",
+        "Protect pedestrians, cyclists and school zones.",
+        "Address dangerous speeding through better road design and enforcement."
+      ],
+      "verbatim_quote": "A safer Kitchener starts with streets designed for people.",
+      "source_url": "https://www.votefornair.ca/mattersathand",
+      "source_title": "Manikantan Nair campaign site: A safer Kitchener starts with streets designed for people",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-david-alton",
+      "issue": "housing",
+      "summary_short": "Alton's 18-point Right to Housing platform includes a vacancy tax, multiplied social housing, landlord licensing, tenant supports, safe tenting zones, and reallocating police surpluses to housing.",
+      "summary_bullets": [
+        "Launch a vacancy tax and acquisition strategy to turn vacant buildings, parking lots, brownfields and golf courses into social housing sites.",
+        "Multiply Kitchener Housing and Region of Waterloo Housing stock; expand non-market partnerships for co-ops, affordable family housing and rent-geared-to-income.",
+        "Consolidate a tenant rights hub: rent bank, property standards, eviction prevention, legal aid, tenant organizing.",
+        "Require landlord licensing/rent registry; use renoviction and rental replacement tools.",
+        "Ensure safe tenting zones: review bylaws for human-rights compliance; use public land for stability and healing.",
+        "Reallocate police surpluses to the housing stability system; litigate the right to housing."
+      ],
+      "verbatim_quote": "I am committing to championing these ideas.",
+      "source_url": "https://www.davidalton.org/right-to-housing.html",
+      "source_title": "David Alton campaign site: Right to Housing platform (from July 25, 2026 town hall)",
+      "source_type": "candidate_website",
+      "source_date": "2026-07-25",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-david-alton",
+      "issue": "emergency-services",
+      "summary_short": "Alton would reclaim police surplus funding for the housing stability system instead of policing.",
+      "summary_bullets": [
+        "Police surpluses are leading to cuts in the housing stability system, including cancelling three social housing projects in 2026.",
+        "'We need to reclaim that funding for the sector trained for care not criminalization.'"
+      ],
+      "verbatim_quote": "We need to reclaim that funding for the sector trained for care not criminalization.",
+      "source_url": "https://www.davidalton.org/right-to-housing.html",
+      "source_title": "David Alton campaign site: Right to Housing platform - Reallocate Police Surplus",
+      "source_type": "candidate_website",
+      "source_date": "2026-07-25",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-david-alton",
+      "issue": "taxes-and-spending",
+      "summary_short": "Alton would explore progressive property tax reform targeting multiple-property owners and removing loopholes.",
+      "summary_bullets": [
+        "Explore property tax reform with progressive taxation targeting multiple properties and removing loopholes.",
+        "Make visible how much of the tax levy is due to federal and provincial neglect, via tax bills."
+      ],
+      "verbatim_quote": "Explore changes to property tax code to incorporate progressive taxation, targeting multiple properties, and removing loopholes.",
+      "source_url": "https://www.davidalton.org/right-to-housing.html",
+      "source_title": "David Alton campaign site: Right to Housing platform - Property Tax Reform",
+      "source_type": "candidate_website",
+      "source_date": "2026-07-25",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-mohamed-askalany",
+      "issue": "government",
+      "summary_short": "Askalany runs on diplomatic governance and fiscal precision with a 99-point action plan for Ward 9.",
+      "summary_bullets": [
+        "Running on 'Diplomatic governance. Fiscal precision. Unyielding advocacy.'",
+        "Promises a direct, active pipeline to City Hall and decisions grounded in facts and fiscal responsibility.",
+        "Has a detailed 99-point action plan under nine strategic pillars for Ward 9 and Kitchener."
+      ],
+      "verbatim_quote": "Diplomatic governance. Fiscal precision. Unyielding advocacy.",
+      "source_url": "https://voteaskalany.ca/",
+      "source_title": "Mohamed Askalany campaign site: home page",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "kitchener-berry-vrbanovic",
+      "issue": "taxes-and-spending",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Berry Vrbanovic for Mayor of Kitchener (campaign homepage)",
+      "source_type": "candidate_website",
+      "source_url": "https://berryonline.com/",
+      "summary_bullets": [
+        "Delivered the lowest cumulative tax rate increase of any area municipality",
+        "Keep costs down while investing in the services residents depend on"
+      ],
+      "summary_short": "Vrbanovic cites Kitchener's lowest cumulative tax-rate increase of any area municipality.",
+      "verbatim_quote": "I've worked tirelessly with Council to ensure Kitchener has had the lowest cumulative tax rate increase of any area municipality, helping keep your costs down while investing in the services you depend on."
+    },
+    {
+      "candidate": "kitchener-berry-vrbanovic",
+      "issue": "housing",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Berry Vrbanovic for Mayor of Kitchener (campaign homepage)",
+      "source_type": "candidate_website",
+      "source_url": "https://berryonline.com/",
+      "summary_bullets": [
+        "Build more housing over the next four years",
+        "Keep Kitchener affordable"
+      ],
+      "summary_short": "Vrbanovic's campaign focus: keep Kitchener affordable and build more housing.",
+      "verbatim_quote": "My focus for the next four years is straightforward: keep Kitchener affordable, build more housing, improve the roads and infrastructure you rely on, protect local jobs, strengthen neighbourhoods, and ensure our transforming city continues to deliver the services and quality of life you expect."
+    },
+    {
+      "candidate": "kitchener-berry-vrbanovic",
+      "issue": "roads-and-infrastructure",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Berry Vrbanovic for Mayor of Kitchener (campaign homepage)",
+      "source_type": "candidate_website",
+      "source_url": "https://berryonline.com/",
+      "summary_bullets": [
+        "Invested in roads, parks, trails and recreation",
+        "Improve the roads and infrastructure residents rely on"
+      ],
+      "summary_short": "Vrbanovic cites investment in roads, parks, trails and recreation.",
+      "verbatim_quote": "We've accelerated housing, invested in roads, parks, trails and recreation, supported local businesses and jobs, strengthened our downtown, and worked to build safe and welcoming neighbourhoods where everyone can belong."
+    },
+    {
+      "candidate": "kitchener-berry-vrbanovic",
+      "issue": "economy",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Berry Vrbanovic for Mayor of Kitchener (campaign homepage)",
+      "source_type": "candidate_website",
+      "source_url": "https://berryonline.com/",
+      "summary_bullets": [
+        "Protect local jobs",
+        "Support local businesses and jobs"
+      ],
+      "summary_short": "Vrbanovic pledges to protect local jobs and support local businesses.",
+      "verbatim_quote": "supported local businesses and jobs"
+    },
+    {
+      "candidate": "kitchener-joe-gowing",
+      "issue": "housing",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Joe Gowing | Regional Council, Kitchener",
+      "source_type": "candidate_website",
+      "source_url": "https://www.joe-gowing.com/",
+      "summary_bullets": [
+        "Advance a Municipal Housing Corporation for Waterloo Region",
+        "Housing options reflecting different needs, incomes and stages of life"
+      ],
+      "summary_short": "Gowing is advancing work on a Municipal Housing Corporation as a practical housing tool.",
+      "verbatim_quote": "Waterloo Region needs practical new tools to help address housing challenges, and I believe a Municipal Housing Corporation can be part of that solution."
+    },
+    {
+      "candidate": "kitchener-joe-gowing",
+      "issue": "taxes-and-spending",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Joe Gowing | Regional Council, Kitchener",
+      "source_type": "candidate_website",
+      "source_url": "https://www.joe-gowing.com/",
+      "summary_bullets": [
+        "Plan ahead and spend responsibly at the Region",
+        "Ensure every dollar spent benefits neighbourhoods"
+      ],
+      "summary_short": "Gowing centres his campaign on fiscal responsibility and accountable spending.",
+      "verbatim_quote": "I believe Regional government works best when it plans ahead, spends responsibly, and stays focused on the needs of residents."
+    },
+    {
+      "candidate": "kitchener-joe-gowing",
+      "issue": "water-and-waste",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Joe Gowing | Regional Council, Kitchener",
+      "source_type": "candidate_website",
+      "source_url": "https://www.joe-gowing.com/",
+      "summary_bullets": [
+        "Stronger water protection and groundwater oversight",
+        "Protect the long-term health of drinking water"
+      ],
+      "summary_short": "Gowing pushed for stronger water protection and groundwater oversight.",
+      "verbatim_quote": "Pushed for stronger water protection and groundwater oversight"
+    },
+    {
+      "candidate": "kitchener-joe-gowing",
+      "issue": "healthcare",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Joe Gowing | Regional Council, Kitchener",
+      "source_type": "candidate_website",
+      "source_url": "https://www.joe-gowing.com/",
+      "summary_bullets": [
+        "Accessible healthcare and mental health services",
+        "Stronger community supports"
+      ],
+      "summary_short": "Gowing prioritizes accessible healthcare, mental health services and community supports.",
+      "verbatim_quote": "The importance of accessible healthcare, mental health services, and community supports."
+    },
+    {
+      "candidate": "kitchener-joe-gowing",
+      "issue": "social-and-community-services",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Joe Gowing | Regional Council, Kitchener",
+      "source_type": "candidate_website",
+      "source_url": "https://www.joe-gowing.com/",
+      "summary_bullets": [
+        "A compassionate approach to homelessness and vulnerable residents",
+        "Advocate to the province for a Basic Income Guarantee to reduce poverty"
+      ],
+      "summary_short": "Gowing backs a compassionate approach to homelessness and a Basic Income Guarantee.",
+      "verbatim_quote": "A compassionate approach to homelessness and the challenges facing vulnerable residents."
+    },
+    {
+      "candidate": "kitchener-joe-gowing",
+      "issue": "transit",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Joe Gowing | Regional Council, Kitchener",
+      "source_type": "candidate_website",
+      "source_url": "https://www.joe-gowing.com/",
+      "summary_bullets": [
+        "Safe, accessible and practical regional transportation",
+        "Better connectivity across the region"
+      ],
+      "summary_short": "Gowing wants safe, accessible, practical transportation and connectivity across the region.",
+      "verbatim_quote": "Safe, accessible, and practical ways for people to move throughout the region."
+    },
+    {
+      "candidate": "kitchener-joe-gowing",
+      "issue": "government",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Joe Gowing | Regional Council, Kitchener",
+      "source_type": "candidate_website",
+      "source_url": "https://www.joe-gowing.com/",
+      "summary_bullets": [
+        "Transparent decision-making at the Region",
+        "Local voices and opportunities for residents to shape their community"
+      ],
+      "summary_short": "Gowing prioritizes transparent decision-making and local public participation.",
+      "verbatim_quote": "Transparent decision-making, local voices, and opportunities for residents to help shape their community."
+    }
+  ]
 }

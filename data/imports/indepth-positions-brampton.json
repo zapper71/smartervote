@@ -1,417 +1,448 @@
 {
- "positions": [
-  {
-   "candidate": "brampton-patrick-brown",
-   "issue": "healthcare",
-   "summary_short": "Brown's campaign centres on a $3B second hospital breaking ground this fall, a $900M cancer care centre, and the TMU medical school that opened in 2025.",
-   "summary_bullets": [
-    "$3 billion second hospital at the former Peel Memorial site — new inpatient tower, 24-hour emergency department, expanded outpatient services; construction begins fall 2026.",
-    "Estimated $900 million Comprehensive Cancer Care Centre at Brampton Civic Hospital ($3M approved for planning) to bring radiation and specialized cancer treatment closer to home.",
-    "$225 million TMU School of Medicine opened in 2025 — GTA's first new medical school in more than a century, with clinics connecting 14,000 residents to a family doctor."
-   ],
-   "verbatim_quote": "For too long Brampton didn't get its fair share. Today, we are witnessing the largest infrastructure investment in our city's history.",
-   "source_url": "https://votepatrickbrown.com/wp-content/uploads/2026/09/pb-media-release-2026-09-17-campaign-launch.pdf",
-   "source_title": "Patrick Brown Files Nomination for Third Term as Mayor of Brampton (campaign launch release)",
-   "source_type": "candidate_website",
-   "source_date": "2026-09-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-patrick-brown",
-   "issue": "roads-and-infrastructure",
-   "summary_short": "Brown backs the $2.8B Hazel McCallion LRT extension with a downtown tunnel and a $298M third transit operations facility.",
-   "summary_bullets": [
-    "$2.8 billion Hazel McCallion LRT extension, including a tunnelled section into downtown Brampton — connecting to the regional rapid transit network while protecting/revitalizing the historic downtown.",
-    "$298 million Cadetta Johnston Transit Facility (Brampton Transit's third operations centre), under construction — expanding capacity and supporting future zero-emission bus growth."
-   ],
-   "verbatim_quote": "This once-in-a-generation investment will connect Brampton to the regional rapid transit network while protecting and revitalizing the city's historic downtown.",
-   "source_url": "https://votepatrickbrown.com/wp-content/uploads/2026/09/pb-media-release-2026-09-17-campaign-launch.pdf",
-   "source_title": "Patrick Brown Files Nomination for Third Term as Mayor of Brampton (campaign launch release)",
-   "source_type": "candidate_website",
-   "source_date": "2026-09-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-patrick-brown",
-   "issue": "emergency-services",
-   "summary_short": "Brown highlights $1.7B in police facilities: a new 23 Division, modernized 22 Division, and a support facility housing the 9-1-1 centre.",
-   "summary_bullets": [
-    "$1.7 billion in policing and public-safety facility investments: 23 Division (first new Peel Regional Police divisional building in nearly 40 years, northwest Brampton, ~500 personnel).",
-    "Sir Robert Peel Centre redevelopment and 22 Division modernization (~1,100 personnel).",
-    "New Operational Support Facility at 8100 Mississauga Road housing the 9-1-1 Communications Centre, Community Safety Operations Centre, data analytics and road safety services."
-   ],
-   "verbatim_quote": "A growing city needs a police service built for it.",
-   "source_url": "https://votepatrickbrown.com/wp-content/uploads/2026/09/pb-media-release-2026-09-17-campaign-launch.pdf",
-   "source_title": "Patrick Brown Files Nomination for Third Term as Mayor of Brampton (campaign launch release)",
-   "source_type": "candidate_website",
-   "source_date": "2026-09-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-patrick-brown",
-   "issue": "economy",
-   "summary_short": "Brown points to the $138M Riverwalk flood project and $45M downtown street rebuild as unlocking growth for ~17,700 residents and 24,000 jobs.",
-   "summary_bullets": [
-    "$138 million Riverwalk Downtown Brampton Flood Protection Project (under construction): removes flood constraints along Etobicoke Creek, unlocking new development for ~17,700 new residents and nearly 24,000 jobs.",
-    "$45 million downtown revitalization: Main Street and Queen Street rebuilt from the sidewalks up, Garden Square and Ken Whillans Square redeveloped."
-   ],
-   "verbatim_quote": "These investments did not happen by accident. They happened because Brampton had a strong voice fighting for our fair share.",
-   "source_url": "https://votepatrickbrown.com/wp-content/uploads/2026/09/pb-media-release-2026-09-17-campaign-launch.pdf",
-   "source_title": "Patrick Brown Files Nomination for Third Term as Mayor of Brampton (campaign launch release)",
-   "source_type": "candidate_website",
-   "source_date": "2026-09-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-patrick-brown",
-   "issue": "active-transportation",
-   "summary_short": "Brown's recreation plank includes the $16M Orangeville rail trail, the $160M Embleton community centre, and the $80M Howden recreation centre.",
-   "summary_bullets": [
-    "$16 million Brampton-Orangeville Rail Trail: 14 km of former rail line becoming a walk/run/ride trail, joining a 51-km corridor into the Caledon hills.",
-    "$160 million Embleton Community Centre (under construction) — largest recreation investment in Brampton's history: aquatics, fitness, childcare, gathering areas.",
-    "$80 million Howden Recreation Centre and Library (construction begins soon): competition-sized gymnasium, new library branch, outdoor courts and play areas."
-   ],
-   "verbatim_quote": "Construction is underway on the largest recreation investment Brampton has ever made.",
-   "source_url": "https://votepatrickbrown.com/wp-content/uploads/2026/09/pb-media-release-2026-09-17-campaign-launch.pdf",
-   "source_title": "Patrick Brown Files Nomination for Third Term as Mayor of Brampton (campaign launch release)",
-   "source_type": "candidate_website",
-   "source_date": "2026-09-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-paul-tarriwal",
-   "issue": "taxes-and-spending",
-   "summary_short": "Tarriwal's 'Tell the Truth About the Tax Bill' priority promises transparency and respect for taxpayers' money, with detailed costing still pending.",
-   "summary_bullets": [
-    "One of seven platform priorities: 'Tell the Truth About the Tax Bill' — framed around transparency and respect for taxpayers.",
-    "Core governing principles listed: set clear priorities, make responsible decisions, respect people's money, finish what you start.",
-    "Detailed costing and first-100-days commitments for each priority were 'still being written' at research time (2026-10-17)."
-   ],
-   "verbatim_quote": "Brampton doesn't need more announcements. It needs leadership that follows through.",
-   "source_url": "https://www.betterbrampton.ca/",
-   "source_title": "Better Brampton — Paul Tarriwal for Mayor of Brampton (campaign site)",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-paul-tarriwal",
-   "issue": "emergency-services",
-   "summary_short": "Tarriwal lists public safety reaching business owners as a core priority, including dedicated community patrols with Peel Police.",
-   "summary_bullets": [
-    "One of seven platform priorities: 'Safety That Reaches the Business Owner' — under the 'Stronger Communities: safer, cleaner, more connected' pillar.",
-    "Campaign's published commitments include 100 dedicated community patrols partnering with Peel Police on auto theft and illegal street racing (per platform preview materials).",
-    "Detailed costing and first-100-days commitments were 'still being written' at research time (2026-10-17)."
-   ],
-   "verbatim_quote": "A Brampton resident. A father. A business professional. Not a career politician.",
-   "source_url": "https://www.betterbrampton.ca/",
-   "source_title": "Better Brampton — Paul Tarriwal for Mayor of Brampton (campaign site)",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-paul-tarriwal",
-   "issue": "healthcare",
-   "summary_short": "Tarriwal names healthcare and hospital capacity among his seven platform priorities, with details still being published.",
-   "summary_bullets": [
-    "One of seven platform priorities: 'Healthcare & Hospital Capacity.'",
-    "Detailed costing and first-100-days commitments were 'still being written' at research time (2026-10-17)."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://www.betterbrampton.ca/",
-   "source_title": "Better Brampton — Paul Tarriwal for Mayor of Brampton (campaign site)",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-paul-tarriwal",
-   "issue": "roads-and-infrastructure",
-   "summary_short": "Tarriwal committed to wind-row plowing so driveways aren't left blocked by plow-packed snow and ice, alongside a transit priority.",
-   "summary_bullets": [
-    "Adds wind-row clearing to the platform: after the plow clears the road, the packed wall of snow and ice at the end of driveways would be cleared too — 'No more mountains of ice at the end of your driveway.'",
-    "One of seven platform priorities: 'Transit You Can Still Catch.'",
-    "Campaign promises each commitment will be published with the work shown: what it costs, who delivers it, when it starts and how residents can measure it."
-   ],
-   "verbatim_quote": "No more mountains of ice at the end of your driveway.",
-   "source_url": "https://www.betterbrampton.ca/",
-   "source_title": "New commitment: wind-row plowing (campaign update, Aug 25, 2026)",
-   "source_type": "candidate_website",
-   "source_date": "2026-08-25",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-paul-tarriwal",
-   "issue": "economy",
-   "summary_short": "Tarriwal's economic priorities cover jobs, the Stellantis plant's future, and the downtown unlocked by the Riverwalk project.",
-   "summary_bullets": [
-    "Platform priorities include 'Jobs for the 21%', 'The Plant, and What Comes After It' (the Stellantis plant retooling), and 'The Riverwalk, and the Downtown It Unlocks.'",
-    "Framed under 'A Strong Local Economy: investment and opportunity' and 'A Better Future: long-term planning, not announcements.'",
-    "Detailed costing and first-100-days commitments were 'still being written' at research time (2026-10-17)."
-   ],
-   "verbatim_quote": null,
-   "source_url": "https://www.betterbrampton.ca/",
-   "source_title": "Better Brampton — Paul Tarriwal for Mayor of Brampton (campaign site)",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-sandeep-somal",
-   "issue": "taxes-and-spending",
-   "summary_short": "Somal runs on affordability and responsible spending: stable costs, less waste, and better accountability in city budgets.",
-   "summary_bullets": [
-    "Affordability priority: 'Keeping life affordable for families' — focus on stable costs and reducing waste in city spending.",
-    "Responsible Spending priority: 'Better value for taxpayer money' — reduce waste and improve accountability in city budgets."
-   ],
-   "verbatim_quote": "I'm running for Mayor to improve city services, support families, and keep costs under control.",
-   "source_url": "https://www.sandeepsomalformayor.ca/",
-   "source_title": "Sandeep Somal For Mayor (campaign site)",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-sandeep-somal",
-   "issue": "housing",
-   "summary_short": "Somal's housing priority is building more homes faster by reducing approval delays.",
-   "summary_bullets": [
-    "Housing & Growth priority: 'More homes, built faster' — reduce delays and unlock housing development."
-   ],
-   "verbatim_quote": "More homes, built faster.",
-   "source_url": "https://www.sandeepsomalformayor.ca/",
-   "source_title": "Sandeep Somal For Mayor (campaign site)",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-sandeep-somal",
-   "issue": "emergency-services",
-   "summary_short": "Somal's safer-neighbourhoods plank focuses on upkeep, enforcement and local quality of life.",
-   "summary_bullets": [
-    "Safer Neighbourhoods priority: 'Clean, well-maintained communities' — focus on upkeep, enforcement, and local quality of life."
-   ],
-   "verbatim_quote": "Clean, well-maintained communities.",
-   "source_url": "https://www.sandeepsomalformayor.ca/",
-   "source_title": "Sandeep Somal For Mayor (campaign site)",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-sandeep-somal",
-   "issue": "government",
-   "summary_short": "Somal wants faster permits and service delivery, plus more affordable recreation and community spaces for kids and families.",
-   "summary_bullets": [
-    "Efficient City Services priority: 'Fixing delays in city approvals' — speed up permits, applications, and service delivery.",
-    "Youth & Families priority: more affordable recreation, sports, and community spaces; better access to programs for kids."
-   ],
-   "verbatim_quote": "Let's make Brampton work better for the people who live here.",
-   "source_url": "https://www.sandeepsomalformayor.ca/",
-   "source_title": "Sandeep Somal For Mayor (campaign site)",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-wesley-jackson",
-   "issue": "government",
-   "summary_short": "Jackson's accountability posts question the city's debt schedule on the Innovation Centre and an $80M building/empty-office problem.",
-   "summary_bullets": [
-    "'The Case of the Missing Innovation Centre': questions a City debt repayment schedule showing $7M payments in 2026 and $12M from 2027, demanding answers on the Innovation Centre project.",
-    "'Brampton Has an $80 Million Building Problem — And an Empty Office Problem': challenges city spending on buildings and empty office space.",
-    "Platform goals: 'Strong Communities' (focused leadership, practical solutions), 'Connected City', 'Brighter Future'; holds live town halls every Tuesday 6-8 PM."
-   ],
-   "verbatim_quote": "This moment calls for focused leadership, practical solutions and the confidence to move our city forward.",
-   "source_url": "https://www.wesleyjackson.ca/",
-   "source_title": "Wesley Jackson for Mayor (campaign site — news posts)",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-prabh-gill",
-   "issue": "government",
-   "summary_short": "Gill's signature idea is a 'One problem, One owner' City Hall with a named owner per issue, plus reopening the cancelled forensic investigations.",
-   "summary_bullets": [
-    "Centrepiece: turn City Hall into a 'One problem, One owner' institution — every issue delegated to a single named municipal official, empowered and held accountable; resident knows who owns their issue.",
-    "Would re-open the half-dozen forensic investigations into allegedly fraudulent procurements/hiring that a council majority launched and Brown cancelled in 2022; 'I'm publishing what they find and I'm serving the full four years.'",
-    "Says the current 311 system issues a ticket number with no updates on progress; his model would assign an official, publish a capital status report to council, and escalate to a departmental manager if unresolved — no restructuring or extra cost."
-   ],
-   "verbatim_quote": "Every problem that comes into City Hall gets one named person who owns it until it's solved. And the resident knows who that person is.",
-   "source_url": "https://www.europesays.com/canada/249881/",
-   "source_title": "Brampton mayoral candidate Prabh Gill has radical ideas to change City Hall (The Pointer)",
-   "source_type": "local_news",
-   "source_date": "2026-10-15",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-prabh-gill",
-   "issue": "taxes-and-spending",
-   "summary_short": "Gill says $1.5-$1.6B in taxpayer-collected capital sits tied to unbuilt projects and attacks wasteful council travel.",
-   "summary_bullets": [
-    "Says council staff confirmed $1.5-$1.6B in unspent capital tied to approved-but-unbuilt projects: 'The money was already collected from taxpayers for work that was somehow mismanaged... The projects never moved forward.'",
-    "Criticized a $19.4M internal loan from an emergency/rate-stabilization reserve to cover the operating budget, repaid via the hospital levy.",
-    "Attacked wasteful councillor travel ('flying to Taiwan, Portugal') costing tens of thousands with no benefit: 'with no investment to show for it, that's wasteful spending.'"
-   ],
-   "verbatim_quote": "The City has collected somewhere between $1.5 and $1.6 billion from residents for capital projects that never got built. There's no transparency, no accountability.",
-   "source_url": "https://www.europesays.com/canada/249881/",
-   "source_title": "Brampton mayoral candidate Prabh Gill has radical ideas to change City Hall (The Pointer)",
-   "source_type": "local_news",
-   "source_date": "2026-10-15",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-prabh-gill",
-   "issue": "healthcare",
-   "summary_short": "Gill demands answers on the stalled Peel Memorial hospital expansion and the city's $125M local-share commitment.",
-   "summary_bullets": [
-    "Demands accountability on the stalled Peel Memorial Phase 2 expansion (stalled nearly a decade, final cost unknown); the City has committed $125M as its local share.",
-    "Says Brown never established a funding mechanism for the local share while demanding tax freezes.",
-    "Frames the mayor's responsibility as beginning 'the moment the city takes a dollar from residents' and ending only 'when the doors open.'"
-   ],
-   "verbatim_quote": "The province funds it, Infrastructure Ontario procures it, and [William] Osler runs it. But the mayor's responsibility starts the moment the city takes a dollar from residents for it, and it does not end until the doors open.",
-   "source_url": "https://www.europesays.com/canada/249881/",
-   "source_title": "Brampton mayoral candidate Prabh Gill has radical ideas to change City Hall (The Pointer)",
-   "source_type": "local_news",
-   "source_date": "2026-10-15",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-prabh-gill",
-   "issue": "roads-and-infrastructure",
-   "summary_short": "Gill calls the $11M closed-session Argo on-demand transit deal a 'backdoor deal' approved while transit service was cut.",
-   "summary_bullets": [
-    "Attacked the $11M deal with private company Argo for on-demand transit, approved in a closed-session vote in April 2025 while Brampton Transit service was being cut and the transit union was bargaining.",
-    "Said no public information exists on the Argo agreement details after an FOI produced only scheduling emails and a redacted draft report."
-   ],
-   "verbatim_quote": "Instead of strengthening it, we're bringing...a backdoor deal with a private company.",
-   "source_url": "https://www.europesays.com/canada/249881/",
-   "source_title": "Brampton mayoral candidate Prabh Gill has radical ideas to change City Hall (The Pointer)",
-   "source_type": "local_news",
-   "source_date": "2026-10-15",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-prabh-gill",
-   "issue": "economy",
-   "summary_short": "Gill wants to attract skilled trades to Brampton as Stellantis retools, saying supply decisions for the next decade are up for grabs.",
-   "summary_bullets": [
-    "Stressed bringing more skilled trade workers to Brampton as the Stellantis auto plant retools: 'every supply decision for the next decade is up for grabs.'",
-    "Accused Brown of being too busy planning his next political move to help Brampton's 3,000 Stellantis workers; vowed never to use Brampton as a 'stepping stone.'"
-   ],
-   "verbatim_quote": "The auto plant is retooling, and every supply decision for the next decade is up for grabs.",
-   "source_url": "https://www.europesays.com/canada/249881/",
-   "source_title": "Brampton mayoral candidate Prabh Gill has radical ideas to change City Hall (The Pointer)",
-   "source_type": "local_news",
-   "source_date": "2026-10-15",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-jagruti-bhatt",
-   "issue": "taxes-and-spending",
-   "summary_short": "Bhatt would put property-tax restraint first via a department-by-department spending review, plus relief/rebate options for seniors and hard-hit households.",
-   "summary_bullets": [
-    "Make property-tax restraint a priority: lead a serious spending review, asking every department to separate essential services from expenditures that can be delayed, reduced or eliminated — before asking taxpayers for more.",
-    "Explore legally available relief and rebate programs for seniors and other qualifying households facing hardship.",
-    "Acknowledges City Hall can't solve inflation or set interest rates, but must do everything within its authority to keep costs down and advocate for residents when senior-government decisions affect them."
-   ],
-   "verbatim_quote": "Brampton doesn't need City Hall to make life more complicated. It needs municipal leadership that protects taxpayers, respects homeowners, supports businesses and remembers that behind every tax bill is a family working hard to pay it.",
-   "source_url": "https://www.gtachronicle.com/news/my-home-my-brampton-my-sanctuary-putting-money-back-in-bramptonians-pockets/",
-   "source_title": "My Home, My Brampton, My Sanctuary: Putting Money Back in Bramptonians' Pockets (guest column by the candidate, GTA Chronicle)",
-   "source_type": "local_news",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-jagruti-bhatt",
-   "issue": "housing",
-   "summary_short": "Bhatt would replace rental licensing with a simpler Occupancy C.A.R.E. safety model and accelerate affordable housing on City-owned land.",
-   "summary_bullets": [
-    "Replace the Residential Rental Licensing framework with 'Occupancy C.A.R.E.' — a simpler, resident-friendly approach focused on legitimate health, fire and building-safety requirements.",
-    "Says responsible homeowners shouldn't be burdened by overlapping rules, paperwork and administrative requirements; overcrowding, dangerous construction and serious fire-code violations still can't be ignored.",
-    "Support accelerating appropriate affordable-housing projects on suitable City-owned lands, working with other governments and community organizations; strengthen partnerships with food banks and co-ops for food security."
-   ],
-   "verbatim_quote": "Your home should be your sanctuary, not a source of unnecessary fear or administrative stress.",
-   "source_url": "https://www.gtachronicle.com/news/my-home-my-brampton-my-sanctuary-putting-money-back-in-bramptonians-pockets/",
-   "source_title": "My Home, My Brampton, My Sanctuary: Putting Money Back in Bramptonians' Pockets (guest column by the candidate, GTA Chronicle)",
-   "source_type": "local_news",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-jagruti-bhatt",
-   "issue": "economy",
-   "summary_short": "Bhatt would use the mayor's office to press the province to end postal-code-based auto insurance rating that punishes Brampton drivers.",
-   "summary_bullets": [
-    "Use the mayor's office to press the Ontario government and regulators for action on auto insurance affordability.",
-    "Target geographic/postal-code-based insurance rating: Brampton drivers shouldn't face unfairly high premiums 'simply because of where they live.'",
-    "Auto insurance is provincially regulated, but says the mayor should be a strong advocate for residents on it."
-   ],
-   "verbatim_quote": "The Mayor of Brampton should be a strong advocate for residents on an issue that has such a significant impact on household budgets.",
-   "source_url": "https://www.gtachronicle.com/news/my-home-my-brampton-my-sanctuary-putting-money-back-in-bramptonians-pockets/",
-   "source_title": "My Home, My Brampton, My Sanctuary: Putting Money Back in Bramptonians' Pockets (guest column by the candidate, GTA Chronicle)",
-   "source_type": "local_news",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-jagruti-bhatt",
-   "issue": "economy",
-   "summary_short": "Bhatt would cut city licensing and business fees 30-50% for small businesses and home-based entrepreneurs.",
-   "summary_bullets": [
-    "Comprehensive review of City licensing and business fees, targeting 30-50% reductions for small businesses and home-based entrepreneurs 'where financially and legally feasible.'",
-    "Says municipal government should remove barriers to entrepreneurship, not add costs for people building businesses and creating jobs; keep necessary health, safety and consumer protections."
-   ],
-   "verbatim_quote": "Small businesses, personal-service operators and home-based entrepreneurs create jobs and keep money circulating in our community.",
-   "source_url": "https://www.gtachronicle.com/news/my-home-my-brampton-my-sanctuary-putting-money-back-in-bramptonians-pockets/",
-   "source_title": "My Home, My Brampton, My Sanctuary: Putting Money Back in Bramptonians' Pockets (guest column by the candidate, GTA Chronicle)",
-   "source_type": "local_news",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "brampton-jagruti-bhatt",
-   "issue": "roads-and-infrastructure",
-   "summary_short": "Bhatt wants significantly cheaper Brampton Transit passes for students and seniors, framing transit as an affordability policy.",
-   "summary_bullets": [
-    "Make affordable, efficient public transit a major priority: pursue significantly cheaper Brampton Transit passes, particularly for students and seniors.",
-    "Frames transit as affordability policy: affordable transit could reduce pressure on families to maintain multiple vehicles, cutting insurance, fuel and maintenance costs.",
-    "Work with Council and other governments on transit affordability for residents who depend heavily on public transportation."
-   ],
-   "verbatim_quote": "Better transit is not simply a transportation policy; it can also be an affordability policy.",
-   "source_url": "https://www.gtachronicle.com/news/my-home-my-brampton-my-sanctuary-putting-money-back-in-bramptonians-pockets/",
-   "source_title": "My Home, My Brampton, My Sanctuary: Putting Money Back in Bramptonians' Pockets (guest column by the candidate, GTA Chronicle)",
-   "source_type": "local_news",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  }
- ]
+  "positions": [
+    {
+      "candidate": "brampton-patrick-brown",
+      "issue": "healthcare",
+      "summary_short": "Brown's campaign centres on a $3B second hospital breaking ground this fall, a $900M cancer care centre, and the TMU medical school that opened in 2025.",
+      "summary_bullets": [
+        "$3 billion second hospital at the former Peel Memorial site — new inpatient tower, 24-hour emergency department, expanded outpatient services; construction begins fall 2026.",
+        "Estimated $900 million Comprehensive Cancer Care Centre at Brampton Civic Hospital ($3M approved for planning) to bring radiation and specialized cancer treatment closer to home.",
+        "$225 million TMU School of Medicine opened in 2025 — GTA's first new medical school in more than a century, with clinics connecting 14,000 residents to a family doctor."
+      ],
+      "verbatim_quote": "For too long Brampton didn't get its fair share. Today, we are witnessing the largest infrastructure investment in our city's history.",
+      "source_url": "https://votepatrickbrown.com/wp-content/uploads/2026/09/pb-media-release-2026-09-17-campaign-launch.pdf",
+      "source_title": "Patrick Brown Files Nomination for Third Term as Mayor of Brampton (campaign launch release)",
+      "source_type": "candidate_website",
+      "source_date": "2026-09-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-patrick-brown",
+      "issue": "roads-and-infrastructure",
+      "summary_short": "Brown backs the $2.8B Hazel McCallion LRT extension with a downtown tunnel and a $298M third transit operations facility.",
+      "summary_bullets": [
+        "$2.8 billion Hazel McCallion LRT extension, including a tunnelled section into downtown Brampton — connecting to the regional rapid transit network while protecting/revitalizing the historic downtown.",
+        "$298 million Cadetta Johnston Transit Facility (Brampton Transit's third operations centre), under construction — expanding capacity and supporting future zero-emission bus growth."
+      ],
+      "verbatim_quote": "This once-in-a-generation investment will connect Brampton to the regional rapid transit network while protecting and revitalizing the city's historic downtown.",
+      "source_url": "https://votepatrickbrown.com/wp-content/uploads/2026/09/pb-media-release-2026-09-17-campaign-launch.pdf",
+      "source_title": "Patrick Brown Files Nomination for Third Term as Mayor of Brampton (campaign launch release)",
+      "source_type": "candidate_website",
+      "source_date": "2026-09-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-patrick-brown",
+      "issue": "emergency-services",
+      "summary_short": "Brown highlights $1.7B in police facilities: a new 23 Division, modernized 22 Division, and a support facility housing the 9-1-1 centre.",
+      "summary_bullets": [
+        "$1.7 billion in policing and public-safety facility investments: 23 Division (first new Peel Regional Police divisional building in nearly 40 years, northwest Brampton, ~500 personnel).",
+        "Sir Robert Peel Centre redevelopment and 22 Division modernization (~1,100 personnel).",
+        "New Operational Support Facility at 8100 Mississauga Road housing the 9-1-1 Communications Centre, Community Safety Operations Centre, data analytics and road safety services."
+      ],
+      "verbatim_quote": "A growing city needs a police service built for it.",
+      "source_url": "https://votepatrickbrown.com/wp-content/uploads/2026/09/pb-media-release-2026-09-17-campaign-launch.pdf",
+      "source_title": "Patrick Brown Files Nomination for Third Term as Mayor of Brampton (campaign launch release)",
+      "source_type": "candidate_website",
+      "source_date": "2026-09-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-patrick-brown",
+      "issue": "economy",
+      "summary_short": "Brown points to the $138M Riverwalk flood project and $45M downtown street rebuild as unlocking growth for ~17,700 residents and 24,000 jobs.",
+      "summary_bullets": [
+        "$138 million Riverwalk Downtown Brampton Flood Protection Project (under construction): removes flood constraints along Etobicoke Creek, unlocking new development for ~17,700 new residents and nearly 24,000 jobs.",
+        "$45 million downtown revitalization: Main Street and Queen Street rebuilt from the sidewalks up, Garden Square and Ken Whillans Square redeveloped."
+      ],
+      "verbatim_quote": "These investments did not happen by accident. They happened because Brampton had a strong voice fighting for our fair share.",
+      "source_url": "https://votepatrickbrown.com/wp-content/uploads/2026/09/pb-media-release-2026-09-17-campaign-launch.pdf",
+      "source_title": "Patrick Brown Files Nomination for Third Term as Mayor of Brampton (campaign launch release)",
+      "source_type": "candidate_website",
+      "source_date": "2026-09-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-patrick-brown",
+      "issue": "active-transportation",
+      "summary_short": "Brown's recreation plank includes the $16M Orangeville rail trail, the $160M Embleton community centre, and the $80M Howden recreation centre.",
+      "summary_bullets": [
+        "$16 million Brampton-Orangeville Rail Trail: 14 km of former rail line becoming a walk/run/ride trail, joining a 51-km corridor into the Caledon hills.",
+        "$160 million Embleton Community Centre (under construction) — largest recreation investment in Brampton's history: aquatics, fitness, childcare, gathering areas.",
+        "$80 million Howden Recreation Centre and Library (construction begins soon): competition-sized gymnasium, new library branch, outdoor courts and play areas."
+      ],
+      "verbatim_quote": "Construction is underway on the largest recreation investment Brampton has ever made.",
+      "source_url": "https://votepatrickbrown.com/wp-content/uploads/2026/09/pb-media-release-2026-09-17-campaign-launch.pdf",
+      "source_title": "Patrick Brown Files Nomination for Third Term as Mayor of Brampton (campaign launch release)",
+      "source_type": "candidate_website",
+      "source_date": "2026-09-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-paul-tarriwal",
+      "issue": "taxes-and-spending",
+      "summary_short": "Tarriwal's 'Tell the Truth About the Tax Bill' priority promises transparency and respect for taxpayers' money, with detailed costing still pending.",
+      "summary_bullets": [
+        "One of seven platform priorities: 'Tell the Truth About the Tax Bill' — framed around transparency and respect for taxpayers.",
+        "Core governing principles listed: set clear priorities, make responsible decisions, respect people's money, finish what you start.",
+        "Detailed costing and first-100-days commitments for each priority were 'still being written' at research time (2026-10-17)."
+      ],
+      "verbatim_quote": "Brampton doesn't need more announcements. It needs leadership that follows through.",
+      "source_url": "https://www.betterbrampton.ca/",
+      "source_title": "Better Brampton — Paul Tarriwal for Mayor of Brampton (campaign site)",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-paul-tarriwal",
+      "issue": "emergency-services",
+      "summary_short": "Tarriwal lists public safety reaching business owners as a core priority, including dedicated community patrols with Peel Police.",
+      "summary_bullets": [
+        "One of seven platform priorities: 'Safety That Reaches the Business Owner' — under the 'Stronger Communities: safer, cleaner, more connected' pillar.",
+        "Campaign's published commitments include 100 dedicated community patrols partnering with Peel Police on auto theft and illegal street racing (per platform preview materials).",
+        "Detailed costing and first-100-days commitments were 'still being written' at research time (2026-10-17)."
+      ],
+      "verbatim_quote": "A Brampton resident. A father. A business professional. Not a career politician.",
+      "source_url": "https://www.betterbrampton.ca/",
+      "source_title": "Better Brampton — Paul Tarriwal for Mayor of Brampton (campaign site)",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-paul-tarriwal",
+      "issue": "roads-and-infrastructure",
+      "summary_short": "Tarriwal committed to wind-row plowing so driveways aren't left blocked by plow-packed snow and ice, alongside a transit priority.",
+      "summary_bullets": [
+        "Adds wind-row clearing to the platform: after the plow clears the road, the packed wall of snow and ice at the end of driveways would be cleared too — 'No more mountains of ice at the end of your driveway.'",
+        "One of seven platform priorities: 'Transit You Can Still Catch.'",
+        "Campaign promises each commitment will be published with the work shown: what it costs, who delivers it, when it starts and how residents can measure it."
+      ],
+      "verbatim_quote": "No more mountains of ice at the end of your driveway.",
+      "source_url": "https://www.betterbrampton.ca/",
+      "source_title": "New commitment: wind-row plowing (campaign update, Aug 25, 2026)",
+      "source_type": "candidate_website",
+      "source_date": "2026-08-25",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-sandeep-somal",
+      "issue": "taxes-and-spending",
+      "summary_short": "Somal runs on affordability and responsible spending: stable costs, less waste, and better accountability in city budgets.",
+      "summary_bullets": [
+        "Affordability priority: 'Keeping life affordable for families' — focus on stable costs and reducing waste in city spending.",
+        "Responsible Spending priority: 'Better value for taxpayer money' — reduce waste and improve accountability in city budgets."
+      ],
+      "verbatim_quote": "I'm running for Mayor to improve city services, support families, and keep costs under control.",
+      "source_url": "https://www.sandeepsomalformayor.ca/",
+      "source_title": "Sandeep Somal For Mayor (campaign site)",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-sandeep-somal",
+      "issue": "housing",
+      "summary_short": "Somal's housing priority is building more homes faster by reducing approval delays.",
+      "summary_bullets": [
+        "Housing & Growth priority: 'More homes, built faster' — reduce delays and unlock housing development."
+      ],
+      "verbatim_quote": "More homes, built faster.",
+      "source_url": "https://www.sandeepsomalformayor.ca/",
+      "source_title": "Sandeep Somal For Mayor (campaign site)",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-sandeep-somal",
+      "issue": "emergency-services",
+      "summary_short": "Somal's safer-neighbourhoods plank focuses on upkeep, enforcement and local quality of life.",
+      "summary_bullets": [
+        "Safer Neighbourhoods priority: 'Clean, well-maintained communities' — focus on upkeep, enforcement, and local quality of life."
+      ],
+      "verbatim_quote": "Clean, well-maintained communities.",
+      "source_url": "https://www.sandeepsomalformayor.ca/",
+      "source_title": "Sandeep Somal For Mayor (campaign site)",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-sandeep-somal",
+      "issue": "government",
+      "summary_short": "Somal wants faster permits and service delivery, plus more affordable recreation and community spaces for kids and families.",
+      "summary_bullets": [
+        "Efficient City Services priority: 'Fixing delays in city approvals' — speed up permits, applications, and service delivery.",
+        "Youth & Families priority: more affordable recreation, sports, and community spaces; better access to programs for kids."
+      ],
+      "verbatim_quote": "Let's make Brampton work better for the people who live here.",
+      "source_url": "https://www.sandeepsomalformayor.ca/",
+      "source_title": "Sandeep Somal For Mayor (campaign site)",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-wesley-jackson",
+      "issue": "government",
+      "summary_short": "Jackson's accountability posts question the city's debt schedule on the Innovation Centre and an $80M building/empty-office problem.",
+      "summary_bullets": [
+        "'The Case of the Missing Innovation Centre': questions a City debt repayment schedule showing $7M payments in 2026 and $12M from 2027, demanding answers on the Innovation Centre project.",
+        "'Brampton Has an $80 Million Building Problem — And an Empty Office Problem': challenges city spending on buildings and empty office space.",
+        "Platform goals: 'Strong Communities' (focused leadership, practical solutions), 'Connected City', 'Brighter Future'; holds live town halls every Tuesday 6-8 PM."
+      ],
+      "verbatim_quote": "This moment calls for focused leadership, practical solutions and the confidence to move our city forward.",
+      "source_url": "https://www.wesleyjackson.ca/",
+      "source_title": "Wesley Jackson for Mayor (campaign site — news posts)",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-prabh-gill",
+      "issue": "government",
+      "summary_short": "Gill's signature idea is a 'One problem, One owner' City Hall with a named owner per issue, plus reopening the cancelled forensic investigations.",
+      "summary_bullets": [
+        "Centrepiece: turn City Hall into a 'One problem, One owner' institution — every issue delegated to a single named municipal official, empowered and held accountable; resident knows who owns their issue.",
+        "Would re-open the half-dozen forensic investigations into allegedly fraudulent procurements/hiring that a council majority launched and Brown cancelled in 2022; 'I'm publishing what they find and I'm serving the full four years.'",
+        "Says the current 311 system issues a ticket number with no updates on progress; his model would assign an official, publish a capital status report to council, and escalate to a departmental manager if unresolved — no restructuring or extra cost."
+      ],
+      "verbatim_quote": "Every problem that comes into City Hall gets one named person who owns it until it's solved. And the resident knows who that person is.",
+      "source_url": "https://www.europesays.com/canada/249881/",
+      "source_title": "Brampton mayoral candidate Prabh Gill has radical ideas to change City Hall (The Pointer)",
+      "source_type": "local_news",
+      "source_date": "2026-10-15",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-prabh-gill",
+      "issue": "taxes-and-spending",
+      "summary_short": "Gill says $1.5-$1.6B in taxpayer-collected capital sits tied to unbuilt projects and attacks wasteful council travel.",
+      "summary_bullets": [
+        "Says council staff confirmed $1.5-$1.6B in unspent capital tied to approved-but-unbuilt projects: 'The money was already collected from taxpayers for work that was somehow mismanaged... The projects never moved forward.'",
+        "Criticized a $19.4M internal loan from an emergency/rate-stabilization reserve to cover the operating budget, repaid via the hospital levy.",
+        "Attacked wasteful councillor travel ('flying to Taiwan, Portugal') costing tens of thousands with no benefit: 'with no investment to show for it, that's wasteful spending.'"
+      ],
+      "verbatim_quote": "The City has collected somewhere between $1.5 and $1.6 billion from residents for capital projects that never got built. There's no transparency, no accountability.",
+      "source_url": "https://www.europesays.com/canada/249881/",
+      "source_title": "Brampton mayoral candidate Prabh Gill has radical ideas to change City Hall (The Pointer)",
+      "source_type": "local_news",
+      "source_date": "2026-10-15",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-prabh-gill",
+      "issue": "healthcare",
+      "summary_short": "Gill demands answers on the stalled Peel Memorial hospital expansion and the city's $125M local-share commitment.",
+      "summary_bullets": [
+        "Demands accountability on the stalled Peel Memorial Phase 2 expansion (stalled nearly a decade, final cost unknown); the City has committed $125M as its local share.",
+        "Says Brown never established a funding mechanism for the local share while demanding tax freezes.",
+        "Frames the mayor's responsibility as beginning 'the moment the city takes a dollar from residents' and ending only 'when the doors open.'"
+      ],
+      "verbatim_quote": "The province funds it, Infrastructure Ontario procures it, and [William] Osler runs it. But the mayor's responsibility starts the moment the city takes a dollar from residents for it, and it does not end until the doors open.",
+      "source_url": "https://www.europesays.com/canada/249881/",
+      "source_title": "Brampton mayoral candidate Prabh Gill has radical ideas to change City Hall (The Pointer)",
+      "source_type": "local_news",
+      "source_date": "2026-10-15",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-prabh-gill",
+      "issue": "roads-and-infrastructure",
+      "summary_short": "Gill calls the $11M closed-session Argo on-demand transit deal a 'backdoor deal' approved while transit service was cut.",
+      "summary_bullets": [
+        "Attacked the $11M deal with private company Argo for on-demand transit, approved in a closed-session vote in April 2025 while Brampton Transit service was being cut and the transit union was bargaining.",
+        "Said no public information exists on the Argo agreement details after an FOI produced only scheduling emails and a redacted draft report."
+      ],
+      "verbatim_quote": "Instead of strengthening it, we're bringing...a backdoor deal with a private company.",
+      "source_url": "https://www.europesays.com/canada/249881/",
+      "source_title": "Brampton mayoral candidate Prabh Gill has radical ideas to change City Hall (The Pointer)",
+      "source_type": "local_news",
+      "source_date": "2026-10-15",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-prabh-gill",
+      "issue": "economy",
+      "summary_short": "Gill wants to attract skilled trades to Brampton as Stellantis retools, saying supply decisions for the next decade are up for grabs.",
+      "summary_bullets": [
+        "Stressed bringing more skilled trade workers to Brampton as the Stellantis auto plant retools: 'every supply decision for the next decade is up for grabs.'",
+        "Accused Brown of being too busy planning his next political move to help Brampton's 3,000 Stellantis workers; vowed never to use Brampton as a 'stepping stone.'"
+      ],
+      "verbatim_quote": "The auto plant is retooling, and every supply decision for the next decade is up for grabs.",
+      "source_url": "https://www.europesays.com/canada/249881/",
+      "source_title": "Brampton mayoral candidate Prabh Gill has radical ideas to change City Hall (The Pointer)",
+      "source_type": "local_news",
+      "source_date": "2026-10-15",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-jagruti-bhatt",
+      "issue": "taxes-and-spending",
+      "summary_short": "Bhatt would put property-tax restraint first via a department-by-department spending review, plus relief/rebate options for seniors and hard-hit households.",
+      "summary_bullets": [
+        "Make property-tax restraint a priority: lead a serious spending review, asking every department to separate essential services from expenditures that can be delayed, reduced or eliminated — before asking taxpayers for more.",
+        "Explore legally available relief and rebate programs for seniors and other qualifying households facing hardship.",
+        "Acknowledges City Hall can't solve inflation or set interest rates, but must do everything within its authority to keep costs down and advocate for residents when senior-government decisions affect them."
+      ],
+      "verbatim_quote": "Brampton doesn't need City Hall to make life more complicated. It needs municipal leadership that protects taxpayers, respects homeowners, supports businesses and remembers that behind every tax bill is a family working hard to pay it.",
+      "source_url": "https://www.gtachronicle.com/news/my-home-my-brampton-my-sanctuary-putting-money-back-in-bramptonians-pockets/",
+      "source_title": "My Home, My Brampton, My Sanctuary: Putting Money Back in Bramptonians' Pockets (guest column by the candidate, GTA Chronicle)",
+      "source_type": "local_news",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-jagruti-bhatt",
+      "issue": "housing",
+      "summary_short": "Bhatt would replace rental licensing with a simpler Occupancy C.A.R.E. safety model and accelerate affordable housing on City-owned land.",
+      "summary_bullets": [
+        "Replace the Residential Rental Licensing framework with 'Occupancy C.A.R.E.' — a simpler, resident-friendly approach focused on legitimate health, fire and building-safety requirements.",
+        "Says responsible homeowners shouldn't be burdened by overlapping rules, paperwork and administrative requirements; overcrowding, dangerous construction and serious fire-code violations still can't be ignored.",
+        "Support accelerating appropriate affordable-housing projects on suitable City-owned lands, working with other governments and community organizations; strengthen partnerships with food banks and co-ops for food security."
+      ],
+      "verbatim_quote": "Your home should be your sanctuary, not a source of unnecessary fear or administrative stress.",
+      "source_url": "https://www.gtachronicle.com/news/my-home-my-brampton-my-sanctuary-putting-money-back-in-bramptonians-pockets/",
+      "source_title": "My Home, My Brampton, My Sanctuary: Putting Money Back in Bramptonians' Pockets (guest column by the candidate, GTA Chronicle)",
+      "source_type": "local_news",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-jagruti-bhatt",
+      "issue": "economy",
+      "summary_short": "Bhatt would use the mayor's office to press the province to end postal-code-based auto insurance rating that punishes Brampton drivers.",
+      "summary_bullets": [
+        "Use the mayor's office to press the Ontario government and regulators for action on auto insurance affordability.",
+        "Target geographic/postal-code-based insurance rating: Brampton drivers shouldn't face unfairly high premiums 'simply because of where they live.'",
+        "Auto insurance is provincially regulated, but says the mayor should be a strong advocate for residents on it."
+      ],
+      "verbatim_quote": "The Mayor of Brampton should be a strong advocate for residents on an issue that has such a significant impact on household budgets.",
+      "source_url": "https://www.gtachronicle.com/news/my-home-my-brampton-my-sanctuary-putting-money-back-in-bramptonians-pockets/",
+      "source_title": "My Home, My Brampton, My Sanctuary: Putting Money Back in Bramptonians' Pockets (guest column by the candidate, GTA Chronicle)",
+      "source_type": "local_news",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-jagruti-bhatt",
+      "issue": "economy",
+      "summary_short": "Bhatt would cut city licensing and business fees 30-50% for small businesses and home-based entrepreneurs.",
+      "summary_bullets": [
+        "Comprehensive review of City licensing and business fees, targeting 30-50% reductions for small businesses and home-based entrepreneurs 'where financially and legally feasible.'",
+        "Says municipal government should remove barriers to entrepreneurship, not add costs for people building businesses and creating jobs; keep necessary health, safety and consumer protections."
+      ],
+      "verbatim_quote": "Small businesses, personal-service operators and home-based entrepreneurs create jobs and keep money circulating in our community.",
+      "source_url": "https://www.gtachronicle.com/news/my-home-my-brampton-my-sanctuary-putting-money-back-in-bramptonians-pockets/",
+      "source_title": "My Home, My Brampton, My Sanctuary: Putting Money Back in Bramptonians' Pockets (guest column by the candidate, GTA Chronicle)",
+      "source_type": "local_news",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-jagruti-bhatt",
+      "issue": "roads-and-infrastructure",
+      "summary_short": "Bhatt wants significantly cheaper Brampton Transit passes for students and seniors, framing transit as an affordability policy.",
+      "summary_bullets": [
+        "Make affordable, efficient public transit a major priority: pursue significantly cheaper Brampton Transit passes, particularly for students and seniors.",
+        "Frames transit as affordability policy: affordable transit could reduce pressure on families to maintain multiple vehicles, cutting insurance, fuel and maintenance costs.",
+        "Work with Council and other governments on transit affordability for residents who depend heavily on public transportation."
+      ],
+      "verbatim_quote": "Better transit is not simply a transportation policy; it can also be an affordability policy.",
+      "source_url": "https://www.gtachronicle.com/news/my-home-my-brampton-my-sanctuary-putting-money-back-in-bramptonians-pockets/",
+      "source_title": "My Home, My Brampton, My Sanctuary: Putting Money Back in Bramptonians' Pockets (guest column by the candidate, GTA Chronicle)",
+      "source_type": "local_news",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "brampton-prabh-gill",
+      "issue": "taxes-and-spending",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Prabh Gill for Mayor of Brampton | Brampton First",
+      "source_type": "candidate_website",
+      "source_url": "https://prabhsgill.ca/",
+      "summary_bullets": [
+        "Control spending and eliminate waste at City Hall",
+        "Grow Brampton's commercial tax base to ease the residential burden"
+      ],
+      "summary_short": "Gill pledges to control spending, eliminate waste and grow Brampton's commercial tax base.",
+      "verbatim_quote": "Control spending, eliminate waste and grow Brampton's commercial tax base."
+    },
+    {
+      "candidate": "brampton-prabh-gill",
+      "issue": "economy",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Prabh Gill for Mayor of Brampton | Brampton First",
+      "source_type": "candidate_website",
+      "source_url": "https://prabhsgill.ca/",
+      "summary_bullets": [
+        "More local jobs and less commuting for residents",
+        "More investment and a stronger commercial tax base"
+      ],
+      "summary_short": "Gill promises to bring more jobs, investment and economic opportunity home to Brampton.",
+      "verbatim_quote": "Bring more jobs, investment and economic opportunity home to Brampton."
+    },
+    {
+      "candidate": "brampton-prabh-gill",
+      "issue": "emergency-services",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Prabh Gill for Mayor of Brampton | Brampton First",
+      "source_type": "candidate_website",
+      "source_url": "https://prabhsgill.ca/",
+      "summary_bullets": [
+        "Practical action focused on safer streets, neighbourhoods and families",
+        "Strengthen safety across Brampton's communities"
+      ],
+      "summary_short": "Gill promises practical action to strengthen safety across Brampton's neighbourhoods.",
+      "verbatim_quote": "Practical action focused on safer streets, neighbourhoods and families."
+    },
+    {
+      "candidate": "brampton-prabh-gill",
+      "issue": "transit",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Prabh Gill for Mayor of Brampton | Brampton First",
+      "source_type": "candidate_website",
+      "source_url": "https://prabhsgill.ca/",
+      "summary_bullets": [
+        "Better transportation planning and road improvements",
+        "Strong advocacy for Highway 410 solutions"
+      ],
+      "summary_short": "Gill pledges better transportation planning, road improvements and advocacy for Highway 410 solutions.",
+      "verbatim_quote": "Better transportation planning, road improvements and strong advocacy for Highway 410 solutions."
+    }
+  ]
 }

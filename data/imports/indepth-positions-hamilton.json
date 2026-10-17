@@ -1,293 +1,339 @@
 {
- "positions": [
-  {
-   "candidate": "hamilton-sasha-austin",
-   "issue": "economy",
-   "summary_short": "Austin is running on a promise of urgent city revival centred on safety, affordability and prosperity.",
-   "summary_bullets": [
-    "Describes her candidacy as 'an extreme intervention to execute the revival of our city.'",
-    "Says she would expedite safety, affordability and prosperity for citizens citywide.",
-    "Presents herself as the only candidate with a lifetime of frontline service in healthcare, outreach, public administration, social services, governance and fiscal watchdog work."
-   ],
-   "verbatim_quote": "I am running for Hamilton Mayor as an extreme intervention to execute the revival of our city. To expedite safety, affordability & prosperity to our city wide citizens.",
-   "source_url": "https://northendbreezes.com/municipal-election-candidate-profiles/",
-   "source_title": "Municipal Election Candidate Profiles - North End Breezes (candidate-submitted profile)",
-   "source_type": "candidate_submission",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-rob-cooper",
-   "issue": "taxes-and-spending",
-   "summary_short": "Cooper would cap tax increases at the rate of inflation, arguing past tax hikes delivered worse services.",
-   "summary_bullets": [
-    "His plan is to cap property tax increases at the rate of inflation: never higher, sometimes lower.",
-    "Cites a 23% tax increase over the last four years alongside worse roads, violent crime and homelessness, arguing 'throwing money against problems' made life worse.",
-    "Criticizes city budgeting as having 'no actuals, no benchmarks, no peer data' and service levels from 2014, calling the budget 'a guess.'",
-    "Says he decided to run for mayor after being ruled out of order for trying to cap taxes as a councillor, being told only the mayor can set the tax rate under strong mayor powers."
-   ],
-   "verbatim_quote": "My plan is to cap taxes at rate of inflation, which means we're not going to exceed inflation.",
-   "source_url": "https://thepublicrecord.ca/2026/10/rob-cooper-hamilton-mayor-2026-podcast-interview-transcript/",
-   "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Rob Cooper Answers 20 Detailed Questions on The 155 Podcast - TPR Hamilton",
-   "source_type": "local_news",
-   "source_date": "2026-10-10",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-rob-cooper",
-   "issue": "housing",
-   "summary_short": "Cooper set a goal of zero homelessness within four years.",
-   "summary_bullets": [
-    "Frames homelessness as mental health, drug addiction, trauma and violent crime.",
-    "Sets a goal of zero homelessness in four years, with details on his campaign website."
-   ],
-   "verbatim_quote": "And going back to homelessness, my goal in four years is zero homeless.",
-   "source_url": "https://thepublicrecord.ca/2026/10/rob-cooper-hamilton-mayor-2026-podcast-interview-transcript/",
-   "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Rob Cooper Answers 20 Detailed Questions on The 155 Podcast - TPR Hamilton",
-   "source_type": "local_news",
-   "source_date": "2026-10-10",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-rob-cooper",
-   "issue": "emergency-services",
-   "summary_short": "Cooper names violent crime a top priority and wants Hamilton to be the safest city in Ontario.",
-   "summary_bullets": [
-    "Names violent crime as a top priority alongside taxes, citing indiscriminate gun violence including stray bullets killing bystanders.",
-    "Says Hamilton is 'unsafe and dangerous' and argues the problem must be defined before it can be fixed.",
-    "Wants Hamilton to be the safest place in Ontario."
-   ],
-   "verbatim_quote": "making our city the safest place in Ontario",
-   "source_url": "https://thepublicrecord.ca/2026/10/rob-cooper-hamilton-mayor-2026-podcast-interview-transcript/",
-   "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Rob Cooper Answers 20 Detailed Questions on The 155 Podcast - TPR Hamilton",
-   "source_type": "local_news",
-   "source_date": "2026-10-10",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-rob-cooper",
-   "issue": "government",
-   "summary_short": "Cooper prefers collaborative governance but would use strong mayor powers on taxes, and would hire a transformational city manager plus a Chief HR Officer.",
-   "summary_bullets": [
-    "Prefers a collaborative model with councillors, with a mayor's-office staffer responsible for the mayor-council relationship.",
-    "Would use strong mayor powers on the tax rate if council pushed increases he opposed.",
-    "Would hire a 'transformational' city manager and, as a key hire, a Chief Human Resources Officer to fix culture, succession and compensation issues.",
-    "Wants neutral, trained chairs for council committees instead of the current rotating-chair model he calls dysfunctional."
-   ],
-   "verbatim_quote": "My preference is to work with the councillors.",
-   "source_url": "https://thepublicrecord.ca/2026/10/rob-cooper-hamilton-mayor-2026-podcast-interview-transcript/",
-   "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Rob Cooper Answers 20 Detailed Questions on The 155 Podcast - TPR Hamilton",
-   "source_type": "local_news",
-   "source_date": "2026-10-10",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-scarlett-gillespie",
-   "issue": "housing",
-   "summary_short": "Gillespie centres her platform on affordable housing, tenant protections and community-led safety.",
-   "summary_bullets": [
-    "As mayor would prioritize community-led safety initiatives, affordable housing, and a thriving arts sector.",
-    "Has fought for tenant protections and infrastructure maintenance at CityHousing Hamilton.",
-    "Platform priorities include housing, tenant protections, climate justice, transparency at city hall, community-led initiatives and strengthening the arts sector."
-   ],
-   "verbatim_quote": "As your Mayor, she will prioritize community-led safety initiatives, affordable housing, and a thriving arts sector.",
-   "source_url": "https://scarlettformayor.ca/",
-   "source_title": "Scarlett for Mayor - A Mayor for the People",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-scarlett-gillespie",
-   "issue": "environment",
-   "summary_short": "Gillespie advocates for climate justice and transparency in local government.",
-   "summary_bullets": [
-    "Advocates for climate justice as part of her platform.",
-    "Links climate advocacy with transparency in local government."
-   ],
-   "verbatim_quote": "advocating for climate justice and transparency in local government",
-   "source_url": "https://scarlettformayor.ca/",
-   "source_title": "Scarlett for Mayor - A Mayor for the People",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-scarlett-gillespie",
-   "issue": "arts-and-culture",
-   "summary_short": "Gillespie would treat arts as civic infrastructure, review the City Enrichment Fund for inflation, and protect affordable cultural space.",
-   "summary_bullets": [
-    "Calls arts and culture 'essential civic infrastructure,' part of economic development, downtown revitalization, neighbourhood planning and community wellbeing - not an optional expense.",
-    "Would request a comprehensive early-term review of the City Enrichment Fund with artists and sector representatives, supporting inflationary adjustments and sustainable supplementary revenues (including Municipal Accommodation Tax revenues).",
-    "Would create a citywide inventory of at-risk cultural spaces including underused city-owned properties, review municipal venue rental rates, and explore long-term affordable leases and shared cultural hubs.",
-    "Would establish a regular ongoing arts-and-culture roundtable with HACC, independent artists and grassroots organizations, with early consultation before major decisions and public reporting of what was heard."
-   ],
-   "verbatim_quote": "I would treat arts and culture as part of economic development, downtown revitalization, neighbourhood planning and community wellbeing, and not as an optional expense considered only after other priorities.",
-   "source_url": "https://hamiltoncitymagazine.ca/candidate-survey-hamilton-municipal-election-2026/",
-   "source_title": "CANDIDATE SURVEY: HAMILTON MUNICIPAL ELECTION 2026 - Hamilton City Magazine (Hamilton Arts Council survey)",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-09-23",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-andrea-horwath",
-   "issue": "economy",
-   "summary_short": "Horwath is running on a seven-point tariff response plan and downtown revitalization, citing the $300M TD Coliseum deal.",
-   "summary_bullets": [
-    "Named fighting Trump tariffs a top platform priority: she put out a seven-point plan and circulated a motion to council (passed unanimously) to protect Hamilton businesses, workers and community.",
-    "Named downtown revitalization another top plank, calling downtown 'the front door' and 'heartbeat' of the city.",
-    "Cited getting the TD Coliseum deal over the finish line, growing its investment from $50M to $300M."
-   ],
-   "verbatim_quote": "One of the platform priorities I have is fighting against the Trump tariffs.",
-   "source_url": "https://thepublicrecord.ca/2026/10/full-transcript-hamilton-mayoral-candidate-andrea-horwath-answers-20-detailed-questions-on-the-155-podcast/",
-   "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Andrea Horwath Answers 20 Detailed Questions on The 155 Podcast - TPR Hamilton",
-   "source_type": "local_news",
-   "source_date": "2026-10-10",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-andrea-horwath",
-   "issue": "taxes-and-spending",
-   "summary_short": "Horwath proposed a 4.25% 2026 tax increase, framed as holding the line on affordability while funding roads, infrastructure and transit.",
-   "summary_bullets": [
-    "Set a proposed 2026 tax budget increase of 4.25%, framed as 'holding the line on affordability.'",
-    "Says the budget focuses on fixing roads, renewing aging infrastructure, investing in transit and supporting community safety.",
-    "Says the city must work smarter, find efficiencies and ensure tax dollars are used wisely."
-   ],
-   "verbatim_quote": "holding the line on affordability by setting a proposed increase of 4.25%",
-   "source_url": "https://www.hamilton.ca/city-council/news-notices/news-releases/statement-mayor-regarding-2026-proposed-tax-budget",
-   "source_title": "Statement from Mayor Regarding the 2026 Proposed Tax Budget | City of Hamilton",
-   "source_type": "local_news",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-andrea-horwath",
-   "issue": "housing",
-   "summary_short": "Horwath says she is building more housing, attracting investment and securing senior-government support.",
-   "summary_bullets": [
-    "Says 'We are building Hamilton: building more housing, attracting investment and finally securing the support from other levels of government our city deserves.'",
-    "Is running for re-election to 'build on that momentum,' citing knowledge of the job and a record of results."
-   ],
-   "verbatim_quote": "We are building Hamilton: building more housing, attracting investment and finally securing the support from other levels of government our city deserves.",
-   "source_url": "https://northendbreezes.com/municipal-election-candidate-profiles/",
-   "source_title": "Municipal Election Candidate Profiles - North End Breezes (candidate-submitted profile)",
-   "source_type": "candidate_submission",
-   "source_date": "2026-10-17",
-   "source_extent": "a few sentences",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-keanin-loomis",
-   "issue": "roads-and-infrastructure",
-   "summary_short": "Loomis would coordinate infrastructure work via 'Dig Once Hamilton,' add a rural infrastructure strategy, and better connect HSR, LRT and GO.",
-   "summary_bullets": [
-    "'Getting Hamilton Moving Again': every Hamiltonian should get where they need to go safely, reliably and efficiently.",
-    "Would introduce 'Dig Once Hamilton,' a city-wide approach to coordinate infrastructure work, reduce disruption and get better value from road investments.",
-    "Would introduce a Rural Hamilton Infrastructure Strategy for rural roads, bridges, culverts and drainage, prioritized by safety, condition and community needs.",
-    "Would launch 'Routes to Opportunity' to improve connections between HSR, LRT and GO and address transportation gaps for residents facing barriers."
-   ],
-   "verbatim_quote": "As mayor, Keanin Loomis will introduce Dig Once Hamilton, a city-wide approach to coordinate infrastructure work, reduce disruption and ensure Hamilton gets better value from every road and infrastructure investment.",
-   "source_url": "https://www.voteloomis.ca/mobility",
-   "source_title": "Keanin Loomis for Mayor - Mobility (SMART Plan)",
-   "source_type": "candidate_website",
-   "source_date": "2026-10-17",
-   "source_extent": "a page or more",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-keanin-loomis",
-   "issue": "emergency-services",
-   "summary_short": "Loomis makes safety his number-one SMART Plan plank, with a coordinated downtown response to homelessness, mental health and public disorder.",
-   "summary_bullets": [
-    "His SMART Plan stands for Safety, Mobility, Accountability, Responsive Government and Taxpayer Respect.",
-    "Safety is the number-one plank: says residents across the community lack confidence in Hamilton's future because of what is playing out on downtown streets.",
-    "First-100-day agenda: hire the next city manager, pass the first budget, and make an appreciable impact downtown - particularly on homelessness - via a far more coordinated response to homelessness, mental health and public disorder."
-   ],
-   "verbatim_quote": "There's a reason why safety is number one.",
-   "source_url": "https://thepublicrecord.ca/2026/10/full-transcript-hamilton-mayoral-candidate-keanin-loomis-answers-20-detailed-questions-on-the-155-election-podcast/",
-   "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Keanin Loomis Answers 20 Detailed Questions on The 155 Election Podcast - TPR Hamilton",
-   "source_type": "local_news",
-   "source_date": "2026-10-10",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-keanin-loomis",
-   "issue": "government",
-   "summary_short": "Loomis's 100-day agenda starts with hiring the city manager and passing a budget.",
-   "summary_bullets": [
-    "Top items of his first 100-day agenda: hire the next city manager (calls it the most important and first decision), get the first budget passed, and make an appreciable downtown impact on homelessness.",
-    "Says he cannot yet say what the tax rate will be because he would 'inherit your mess' from the current administration."
-   ],
-   "verbatim_quote": "First, hire the next city manager, because that's the most important decision I will make and the very first decision I need to make.",
-   "source_url": "https://thepublicrecord.ca/2026/10/full-transcript-hamilton-mayoral-candidate-keanin-loomis-answers-20-detailed-questions-on-the-155-election-podcast/",
-   "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Keanin Loomis Answers 20 Detailed Questions on The 155 Election Podcast - TPR Hamilton",
-   "source_type": "local_news",
-   "source_date": "2026-10-10",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-keanin-loomis",
-   "issue": "arts-and-culture",
-   "summary_short": "Loomis would grow the City Enrichment Fund with demand, pilot 'meanwhile leases' for vacant spaces, and keep an open door to the arts sector.",
-   "summary_bullets": [
-    "Calls arts and culture 'one of Hamilton's biggest competitive advantages' and an integral part of his economic development strategy.",
-    "Would commit to reviewing and strengthening the City Enrichment Fund in collaboration with the sector, growing it alongside demand once finances are back on track.",
-    "Would explore a 'meanwhile lease' approach letting artists temporarily use vacant spaces, and cut City Hall fees, red tape and permit delays for cultural venues.",
-    "As mayor would keep a direct line to artists and organizations, work with HACC as the city-wide convening body, and bring the sector in early on funding, cultural space and downtown planning."
-   ],
-   "verbatim_quote": "I see arts and culture as an integral part of Hamilton's economic development strategy.",
-   "source_url": "https://hamiltoncitymagazine.ca/candidate-survey-hamilton-municipal-election-2026/",
-   "source_title": "CANDIDATE SURVEY: HAMILTON MUNICIPAL ELECTION 2026 - Hamilton City Magazine (Hamilton Arts Council survey)",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-09-23",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-keanin-loomis",
-   "issue": "environment",
-   "summary_short": "Loomis pledged to oppose AI data centres lacking stringent, enforceable regulations.",
-   "summary_bullets": [
-    "At the televised debate, when challenged by Gillespie on AI data centres, Loomis answered 'yes, absolutely' to opposing any data centre without appropriately stringent and enforceable regulations."
-   ],
-   "verbatim_quote": "yes, absolutely",
-   "source_url": "https://thepublicrecord.ca/2026/10/live-blog-and-reader-chat-hamilton-mayoral-debate-with-horwath-loomis-and-cooper/",
-   "source_title": "Summary and Replay: Hamilton's Televised Mayoral Debate 2026 - TPR Hamilton",
-   "source_type": "local_news",
-   "source_date": "2026-10-09",
-   "source_extent": "reported remarks",
-   "no_public_position": false
-  },
-  {
-   "candidate": "hamilton-nathalie-xian-yi-yan",
-   "issue": "arts-and-culture",
-   "summary_short": "Yan would grow the City Enrichment Fund, protect affordable cultural space in downtown planning, and partner with the arts sector continuously.",
-   "summary_bullets": [
-    "Calls arts and culture essential economic and social infrastructure, citing $1.29B in GDP and 15,000+ jobs.",
-    "Would commit to reviewing and strengthening the City Enrichment Fund via a transparent review of funding levels, application processes and unmet demand, growing it as the fiscal position permits and seeking private-sector and senior-government partnerships.",
-    "Would protect and create affordable studio, rehearsal, performance and exhibition space as part of downtown planning, with city-owned space kept accessible and cost-recovery or below-market rates.",
-    "Would establish regular dialogue with artists, arts organizations and HACC, with early involvement in policies and transparent follow-up on recommendations."
-   ],
-   "verbatim_quote": "As Mayor, I would treat arts and culture as an investment in Hamilton's future—not merely another expense in the municipal budget.",
-   "source_url": "https://hamiltoncitymagazine.ca/candidate-survey-hamilton-municipal-election-2026/",
-   "source_title": "CANDIDATE SURVEY: HAMILTON MUNICIPAL ELECTION 2026 - Hamilton City Magazine (Hamilton Arts Council survey)",
-   "source_type": "candidate_questionnaire",
-   "source_date": "2026-09-23",
-   "source_extent": "several paragraphs",
-   "no_public_position": false
-  }
- ]
+  "positions": [
+    {
+      "candidate": "hamilton-sasha-austin",
+      "issue": "economy",
+      "summary_short": "Austin is running on a promise of urgent city revival centred on safety, affordability and prosperity.",
+      "summary_bullets": [
+        "Describes her candidacy as 'an extreme intervention to execute the revival of our city.'",
+        "Says she would expedite safety, affordability and prosperity for citizens citywide.",
+        "Presents herself as the only candidate with a lifetime of frontline service in healthcare, outreach, public administration, social services, governance and fiscal watchdog work."
+      ],
+      "verbatim_quote": "I am running for Hamilton Mayor as an extreme intervention to execute the revival of our city. To expedite safety, affordability & prosperity to our city wide citizens.",
+      "source_url": "https://northendbreezes.com/municipal-election-candidate-profiles/",
+      "source_title": "Municipal Election Candidate Profiles - North End Breezes (candidate-submitted profile)",
+      "source_type": "candidate_submission",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-rob-cooper",
+      "issue": "taxes-and-spending",
+      "summary_short": "Cooper would cap tax increases at the rate of inflation, arguing past tax hikes delivered worse services.",
+      "summary_bullets": [
+        "His plan is to cap property tax increases at the rate of inflation: never higher, sometimes lower.",
+        "Cites a 23% tax increase over the last four years alongside worse roads, violent crime and homelessness, arguing 'throwing money against problems' made life worse.",
+        "Criticizes city budgeting as having 'no actuals, no benchmarks, no peer data' and service levels from 2014, calling the budget 'a guess.'",
+        "Says he decided to run for mayor after being ruled out of order for trying to cap taxes as a councillor, being told only the mayor can set the tax rate under strong mayor powers."
+      ],
+      "verbatim_quote": "My plan is to cap taxes at rate of inflation, which means we're not going to exceed inflation.",
+      "source_url": "https://thepublicrecord.ca/2026/10/rob-cooper-hamilton-mayor-2026-podcast-interview-transcript/",
+      "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Rob Cooper Answers 20 Detailed Questions on The 155 Podcast - TPR Hamilton",
+      "source_type": "local_news",
+      "source_date": "2026-10-10",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-rob-cooper",
+      "issue": "housing",
+      "summary_short": "Cooper set a goal of zero homelessness within four years.",
+      "summary_bullets": [
+        "Frames homelessness as mental health, drug addiction, trauma and violent crime.",
+        "Sets a goal of zero homelessness in four years, with details on his campaign website."
+      ],
+      "verbatim_quote": "And going back to homelessness, my goal in four years is zero homeless.",
+      "source_url": "https://thepublicrecord.ca/2026/10/rob-cooper-hamilton-mayor-2026-podcast-interview-transcript/",
+      "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Rob Cooper Answers 20 Detailed Questions on The 155 Podcast - TPR Hamilton",
+      "source_type": "local_news",
+      "source_date": "2026-10-10",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-rob-cooper",
+      "issue": "emergency-services",
+      "summary_short": "Cooper names violent crime a top priority and wants Hamilton to be the safest city in Ontario.",
+      "summary_bullets": [
+        "Names violent crime as a top priority alongside taxes, citing indiscriminate gun violence including stray bullets killing bystanders.",
+        "Says Hamilton is 'unsafe and dangerous' and argues the problem must be defined before it can be fixed.",
+        "Wants Hamilton to be the safest place in Ontario."
+      ],
+      "verbatim_quote": "making our city the safest place in Ontario",
+      "source_url": "https://thepublicrecord.ca/2026/10/rob-cooper-hamilton-mayor-2026-podcast-interview-transcript/",
+      "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Rob Cooper Answers 20 Detailed Questions on The 155 Podcast - TPR Hamilton",
+      "source_type": "local_news",
+      "source_date": "2026-10-10",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-rob-cooper",
+      "issue": "government",
+      "summary_short": "Cooper prefers collaborative governance but would use strong mayor powers on taxes, and would hire a transformational city manager plus a Chief HR Officer.",
+      "summary_bullets": [
+        "Prefers a collaborative model with councillors, with a mayor's-office staffer responsible for the mayor-council relationship.",
+        "Would use strong mayor powers on the tax rate if council pushed increases he opposed.",
+        "Would hire a 'transformational' city manager and, as a key hire, a Chief Human Resources Officer to fix culture, succession and compensation issues.",
+        "Wants neutral, trained chairs for council committees instead of the current rotating-chair model he calls dysfunctional."
+      ],
+      "verbatim_quote": "My preference is to work with the councillors.",
+      "source_url": "https://thepublicrecord.ca/2026/10/rob-cooper-hamilton-mayor-2026-podcast-interview-transcript/",
+      "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Rob Cooper Answers 20 Detailed Questions on The 155 Podcast - TPR Hamilton",
+      "source_type": "local_news",
+      "source_date": "2026-10-10",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-scarlett-gillespie",
+      "issue": "housing",
+      "summary_short": "Gillespie centres her platform on affordable housing, tenant protections and community-led safety.",
+      "summary_bullets": [
+        "As mayor would prioritize community-led safety initiatives, affordable housing, and a thriving arts sector.",
+        "Has fought for tenant protections and infrastructure maintenance at CityHousing Hamilton.",
+        "Platform priorities include housing, tenant protections, climate justice, transparency at city hall, community-led initiatives and strengthening the arts sector."
+      ],
+      "verbatim_quote": "As your Mayor, she will prioritize community-led safety initiatives, affordable housing, and a thriving arts sector.",
+      "source_url": "https://scarlettformayor.ca/",
+      "source_title": "Scarlett for Mayor - A Mayor for the People",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-scarlett-gillespie",
+      "issue": "environment",
+      "summary_short": "Gillespie advocates for climate justice and transparency in local government.",
+      "summary_bullets": [
+        "Advocates for climate justice as part of her platform.",
+        "Links climate advocacy with transparency in local government."
+      ],
+      "verbatim_quote": "advocating for climate justice and transparency in local government",
+      "source_url": "https://scarlettformayor.ca/",
+      "source_title": "Scarlett for Mayor - A Mayor for the People",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-scarlett-gillespie",
+      "issue": "arts-and-culture",
+      "summary_short": "Gillespie would treat arts as civic infrastructure, review the City Enrichment Fund for inflation, and protect affordable cultural space.",
+      "summary_bullets": [
+        "Calls arts and culture 'essential civic infrastructure,' part of economic development, downtown revitalization, neighbourhood planning and community wellbeing - not an optional expense.",
+        "Would request a comprehensive early-term review of the City Enrichment Fund with artists and sector representatives, supporting inflationary adjustments and sustainable supplementary revenues (including Municipal Accommodation Tax revenues).",
+        "Would create a citywide inventory of at-risk cultural spaces including underused city-owned properties, review municipal venue rental rates, and explore long-term affordable leases and shared cultural hubs.",
+        "Would establish a regular ongoing arts-and-culture roundtable with HACC, independent artists and grassroots organizations, with early consultation before major decisions and public reporting of what was heard."
+      ],
+      "verbatim_quote": "I would treat arts and culture as part of economic development, downtown revitalization, neighbourhood planning and community wellbeing, and not as an optional expense considered only after other priorities.",
+      "source_url": "https://hamiltoncitymagazine.ca/candidate-survey-hamilton-municipal-election-2026/",
+      "source_title": "CANDIDATE SURVEY: HAMILTON MUNICIPAL ELECTION 2026 - Hamilton City Magazine (Hamilton Arts Council survey)",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-09-23",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-andrea-horwath",
+      "issue": "economy",
+      "summary_short": "Horwath is running on a seven-point tariff response plan and downtown revitalization, citing the $300M TD Coliseum deal.",
+      "summary_bullets": [
+        "Named fighting Trump tariffs a top platform priority: she put out a seven-point plan and circulated a motion to council (passed unanimously) to protect Hamilton businesses, workers and community.",
+        "Named downtown revitalization another top plank, calling downtown 'the front door' and 'heartbeat' of the city.",
+        "Cited getting the TD Coliseum deal over the finish line, growing its investment from $50M to $300M."
+      ],
+      "verbatim_quote": "One of the platform priorities I have is fighting against the Trump tariffs.",
+      "source_url": "https://thepublicrecord.ca/2026/10/full-transcript-hamilton-mayoral-candidate-andrea-horwath-answers-20-detailed-questions-on-the-155-podcast/",
+      "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Andrea Horwath Answers 20 Detailed Questions on The 155 Podcast - TPR Hamilton",
+      "source_type": "local_news",
+      "source_date": "2026-10-10",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-andrea-horwath",
+      "issue": "taxes-and-spending",
+      "summary_short": "Horwath proposed a 4.25% 2026 tax increase, framed as holding the line on affordability while funding roads, infrastructure and transit.",
+      "summary_bullets": [
+        "Set a proposed 2026 tax budget increase of 4.25%, framed as 'holding the line on affordability.'",
+        "Says the budget focuses on fixing roads, renewing aging infrastructure, investing in transit and supporting community safety.",
+        "Says the city must work smarter, find efficiencies and ensure tax dollars are used wisely."
+      ],
+      "verbatim_quote": "holding the line on affordability by setting a proposed increase of 4.25%",
+      "source_url": "https://www.hamilton.ca/city-council/news-notices/news-releases/statement-mayor-regarding-2026-proposed-tax-budget",
+      "source_title": "Statement from Mayor Regarding the 2026 Proposed Tax Budget | City of Hamilton",
+      "source_type": "local_news",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-andrea-horwath",
+      "issue": "housing",
+      "summary_short": "Horwath says she is building more housing, attracting investment and securing senior-government support.",
+      "summary_bullets": [
+        "Says 'We are building Hamilton: building more housing, attracting investment and finally securing the support from other levels of government our city deserves.'",
+        "Is running for re-election to 'build on that momentum,' citing knowledge of the job and a record of results."
+      ],
+      "verbatim_quote": "We are building Hamilton: building more housing, attracting investment and finally securing the support from other levels of government our city deserves.",
+      "source_url": "https://northendbreezes.com/municipal-election-candidate-profiles/",
+      "source_title": "Municipal Election Candidate Profiles - North End Breezes (candidate-submitted profile)",
+      "source_type": "candidate_submission",
+      "source_date": "2026-10-17",
+      "source_extent": "a few sentences",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-keanin-loomis",
+      "issue": "roads-and-infrastructure",
+      "summary_short": "Loomis would coordinate infrastructure work via 'Dig Once Hamilton,' add a rural infrastructure strategy, and better connect HSR, LRT and GO.",
+      "summary_bullets": [
+        "'Getting Hamilton Moving Again': every Hamiltonian should get where they need to go safely, reliably and efficiently.",
+        "Would introduce 'Dig Once Hamilton,' a city-wide approach to coordinate infrastructure work, reduce disruption and get better value from road investments.",
+        "Would introduce a Rural Hamilton Infrastructure Strategy for rural roads, bridges, culverts and drainage, prioritized by safety, condition and community needs.",
+        "Would launch 'Routes to Opportunity' to improve connections between HSR, LRT and GO and address transportation gaps for residents facing barriers."
+      ],
+      "verbatim_quote": "As mayor, Keanin Loomis will introduce Dig Once Hamilton, a city-wide approach to coordinate infrastructure work, reduce disruption and ensure Hamilton gets better value from every road and infrastructure investment.",
+      "source_url": "https://www.voteloomis.ca/mobility",
+      "source_title": "Keanin Loomis for Mayor - Mobility (SMART Plan)",
+      "source_type": "candidate_website",
+      "source_date": "2026-10-17",
+      "source_extent": "a page or more",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-keanin-loomis",
+      "issue": "emergency-services",
+      "summary_short": "Loomis makes safety his number-one SMART Plan plank, with a coordinated downtown response to homelessness, mental health and public disorder.",
+      "summary_bullets": [
+        "His SMART Plan stands for Safety, Mobility, Accountability, Responsive Government and Taxpayer Respect.",
+        "Safety is the number-one plank: says residents across the community lack confidence in Hamilton's future because of what is playing out on downtown streets.",
+        "First-100-day agenda: hire the next city manager, pass the first budget, and make an appreciable impact downtown - particularly on homelessness - via a far more coordinated response to homelessness, mental health and public disorder."
+      ],
+      "verbatim_quote": "There's a reason why safety is number one.",
+      "source_url": "https://thepublicrecord.ca/2026/10/full-transcript-hamilton-mayoral-candidate-keanin-loomis-answers-20-detailed-questions-on-the-155-election-podcast/",
+      "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Keanin Loomis Answers 20 Detailed Questions on The 155 Election Podcast - TPR Hamilton",
+      "source_type": "local_news",
+      "source_date": "2026-10-10",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-keanin-loomis",
+      "issue": "government",
+      "summary_short": "Loomis's 100-day agenda starts with hiring the city manager and passing a budget.",
+      "summary_bullets": [
+        "Top items of his first 100-day agenda: hire the next city manager (calls it the most important and first decision), get the first budget passed, and make an appreciable downtown impact on homelessness.",
+        "Says he cannot yet say what the tax rate will be because he would 'inherit your mess' from the current administration."
+      ],
+      "verbatim_quote": "First, hire the next city manager, because that's the most important decision I will make and the very first decision I need to make.",
+      "source_url": "https://thepublicrecord.ca/2026/10/full-transcript-hamilton-mayoral-candidate-keanin-loomis-answers-20-detailed-questions-on-the-155-election-podcast/",
+      "source_title": "FULL TRANSCRIPT: Hamilton Mayoral Candidate Keanin Loomis Answers 20 Detailed Questions on The 155 Election Podcast - TPR Hamilton",
+      "source_type": "local_news",
+      "source_date": "2026-10-10",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-keanin-loomis",
+      "issue": "arts-and-culture",
+      "summary_short": "Loomis would grow the City Enrichment Fund with demand, pilot 'meanwhile leases' for vacant spaces, and keep an open door to the arts sector.",
+      "summary_bullets": [
+        "Calls arts and culture 'one of Hamilton's biggest competitive advantages' and an integral part of his economic development strategy.",
+        "Would commit to reviewing and strengthening the City Enrichment Fund in collaboration with the sector, growing it alongside demand once finances are back on track.",
+        "Would explore a 'meanwhile lease' approach letting artists temporarily use vacant spaces, and cut City Hall fees, red tape and permit delays for cultural venues.",
+        "As mayor would keep a direct line to artists and organizations, work with HACC as the city-wide convening body, and bring the sector in early on funding, cultural space and downtown planning."
+      ],
+      "verbatim_quote": "I see arts and culture as an integral part of Hamilton's economic development strategy.",
+      "source_url": "https://hamiltoncitymagazine.ca/candidate-survey-hamilton-municipal-election-2026/",
+      "source_title": "CANDIDATE SURVEY: HAMILTON MUNICIPAL ELECTION 2026 - Hamilton City Magazine (Hamilton Arts Council survey)",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-09-23",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-keanin-loomis",
+      "issue": "environment",
+      "summary_short": "Loomis pledged to oppose AI data centres lacking stringent, enforceable regulations.",
+      "summary_bullets": [
+        "At the televised debate, when challenged by Gillespie on AI data centres, Loomis answered 'yes, absolutely' to opposing any data centre without appropriately stringent and enforceable regulations."
+      ],
+      "verbatim_quote": "yes, absolutely",
+      "source_url": "https://thepublicrecord.ca/2026/10/live-blog-and-reader-chat-hamilton-mayoral-debate-with-horwath-loomis-and-cooper/",
+      "source_title": "Summary and Replay: Hamilton's Televised Mayoral Debate 2026 - TPR Hamilton",
+      "source_type": "local_news",
+      "source_date": "2026-10-09",
+      "source_extent": "reported remarks",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-nathalie-xian-yi-yan",
+      "issue": "arts-and-culture",
+      "summary_short": "Yan would grow the City Enrichment Fund, protect affordable cultural space in downtown planning, and partner with the arts sector continuously.",
+      "summary_bullets": [
+        "Calls arts and culture essential economic and social infrastructure, citing $1.29B in GDP and 15,000+ jobs.",
+        "Would commit to reviewing and strengthening the City Enrichment Fund via a transparent review of funding levels, application processes and unmet demand, growing it as the fiscal position permits and seeking private-sector and senior-government partnerships.",
+        "Would protect and create affordable studio, rehearsal, performance and exhibition space as part of downtown planning, with city-owned space kept accessible and cost-recovery or below-market rates.",
+        "Would establish regular dialogue with artists, arts organizations and HACC, with early involvement in policies and transparent follow-up on recommendations."
+      ],
+      "verbatim_quote": "As Mayor, I would treat arts and culture as an investment in Hamilton's future—not merely another expense in the municipal budget.",
+      "source_url": "https://hamiltoncitymagazine.ca/candidate-survey-hamilton-municipal-election-2026/",
+      "source_title": "CANDIDATE SURVEY: HAMILTON MUNICIPAL ELECTION 2026 - Hamilton City Magazine (Hamilton Arts Council survey)",
+      "source_type": "candidate_questionnaire",
+      "source_date": "2026-09-23",
+      "source_extent": "several paragraphs",
+      "no_public_position": false
+    },
+    {
+      "candidate": "hamilton-andrea-horwath",
+      "issue": "transit",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Andrea Horwath for Hamilton",
+      "source_type": "candidate_website",
+      "source_url": "https://andrea4hamilton.ca/",
+      "summary_bullets": [
+        "Make transit more affordable",
+        "Move forward with the LRT while improving transit options citywide"
+      ],
+      "summary_short": "Horwath says she is making transit more affordable and moving forward with the LRT.",
+      "verbatim_quote": "We're making transit more affordable, moving forward with the LRT while improving transit options across our city"
+    },
+    {
+      "candidate": "hamilton-andrea-horwath",
+      "issue": "roads-and-infrastructure",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Andrea Horwath for Hamilton",
+      "source_type": "candidate_website",
+      "source_url": "https://andrea4hamilton.ca/",
+      "summary_bullets": [
+        "Invest in roads, bridges and infrastructure in every neighbourhood"
+      ],
+      "summary_short": "Horwath cites investment in roads, bridges and infrastructure across every neighbourhood.",
+      "verbatim_quote": "We're investing in roads, bridges, and infrastructure across every neighbourhood."
+    },
+    {
+      "candidate": "hamilton-andrea-horwath",
+      "issue": "government",
+      "no_public_position": false,
+      "source_date": null,
+      "source_extent": "a page or more",
+      "source_title": "Andrea Horwath for Hamilton",
+      "source_type": "candidate_website",
+      "source_url": "https://andrea4hamilton.ca/",
+      "summary_bullets": [
+        "Make City Hall more responsive for people and businesses"
+      ],
+      "summary_short": "Horwath says she is making City Hall more responsive for people and businesses.",
+      "verbatim_quote": "We're also making City Hall more responsive for people and businesses."
+    }
+  ]
 }
