@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ConfidencePill from "@/components/ConfidencePill";
 import { formatShortDate } from "@/lib/dates";
 import type { Position } from "@/lib/types";
 
@@ -162,6 +163,13 @@ function SinglePosition({
           </details>
         ))}
       {fullResponseLink && <FullResponseNote link={fullResponseLink} />}
+      {/* The confidence belongs to this specific position, so it rides
+          with the position's block rather than the cell — a cell can hold
+          more than one statement. */}
+      <p className="mt-2">
+        <span className="mr-1.5 text-xs text-ink-faint">Confidence:</span>
+        <ConfidencePill level={p.confidence} />
+      </p>
     </div>
   );
 }

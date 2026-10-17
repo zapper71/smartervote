@@ -67,6 +67,65 @@ export type SourceType =
   | "candidate_submission"
   | "candidate_questionnaire";
 
+/**
+ * How much we trust that a position is really the candidate's.
+ *
+ * This is NOT a quality rating and NOT the length of the source (see
+ * migration 11 for why length never gets a scale). It answers one
+ * question: do we know these are really their words?
+ *
+ *   high   A quote found at an approved source, or the candidate's own
+ *          feedback on the position.
+ *   medium Claimed by someone who said they were the candidate via the
+ *          site, but not yet verified. The default when uncertain.
+ *   low    Submitted by someone else, with no corroboration found.
+ *
+ * Enforced in the database by positions_confidence_check.
+ */
+export type Confidence = "low" | "medium" | "high";
+
+export const CONFIDENCE_LEVELS: readonly Confidence[] = [
+  "low",
+  "medium",
+  "high",
+];
+
+/**
+ * The confidence newly staged content starts with, from its source type.
+ *
+ * Quotes found at an approved source (or the candidate's own reply) enter
+ * as 'high'. Everything else — i.e. site submissions not yet verified —
+ * enters at 'medium', the default when uncertain, for Andreas to review.
+ * Mirrors the backfill in migration 22.
+ */
+export function confidenceForSourceType(
+  sourceType: SourceType | null | undefined
+): Confidence {
+  switch (sourceType) {
+    case "candidate_website":
+    case "candidate_social":
+    case "local_news":
+    case "all_candidates_meeting":
+    case "candidate_questionnaire":
+    case "candidate_submission":
+      return "high";
+    default:
+      return "medium";
+  }
+}
+
+/**
+ * Normalise a confidence value read from the database.
+ *
+ * The column is new: rows read through a view that does not expose it yet
+ * (or written before the migration ran) come back without it. Missing or
+ * unrecognised values resolve to 'medium' — the default when uncertain —
+ * and never crash the render.
+ */
+export function resolveConfidence(v: unknown): Confidence {
+  return v === "low" || v === "medium" || v === "high" ? v : "medium";
+}
+
 export interface Municipality {
   id: string;
   name: string;
@@ -223,7 +282,14 @@ export interface Position {
    * null means we haven't recorded it, and the UI shows nothing.
    */
   source_extent: SourceExtent | null;
- reviewed_at: string | null;
+  reviewed_at: string | null;
+  /**
+   * Optional, not absent-by-design: the confidence column is new, so rows
+   * read before the migration runs (or through an older view) have no
+   * value. Consumers must use resolveConfidence() and treat missing as
+   * 'medium' — the default when uncertain — rather than assuming it.
+   */
+  confidence?: Confidence | null;
   issue_name: string;
   issue_slug: string;
   issue_sort: number;
