@@ -30,7 +30,7 @@ set name       = 'Donald Blais',
     website    = h.website,
     bio        = h.bio,
     photo_url  = h.photo_url,
-    updated_at = now()
+    last_reviewed_at = now()
 from candidates h
 where h.slug = 'donald-blais'
   and c.id <> h.id
