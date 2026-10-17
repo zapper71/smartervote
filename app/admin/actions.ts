@@ -433,21 +433,48 @@ export async function importJsonAction(
   // municipality: candidate -> race -> municipality_id, then issue by
   // (municipality_id, slug). Huntsville resolves exactly as before — its
   // candidates map to its own municipality.
-  const { data: candRows, error: candErr } = await db
-    .from("candidates")
-    .select("id,slug,race_id");
-  if (candErr)
-    return { ...report, errors: [`Could not read candidates: ${candErr.message}`] };
-  const { data: raceRows, error: raceErr } = await db
-    .from("races")
-    .select("id,municipality_id");
-  if (raceErr)
-    return { ...report, errors: [`Could not read races: ${raceErr.message}`] };
-  const { data: issueRows, error: issueErr } = await db
-    .from("issues")
-    .select("id,slug,municipality_id");
-  if (issueErr)
-    return { ...report, errors: [`Could not read issues: ${issueErr.message}`] };
+  // PostgREST caps a single response at 1,000 rows. With 6,800+ candidates
+  // and 2,200+ races now in the database, an unpaginated select silently
+  // truncates — every candidate past the cap came back "unknown candidate
+  // slug" (Bracebridge was the first import to hit it, Oct 17). Page
+  // through all three lookup tables in 1,000-row ranges.
+  const PAGE_SIZE = 1000;
+  type CandRow = { id: string; slug: string; race_id: string };
+  const candRows: CandRow[] = [];
+  for (let from = 0; ; from += PAGE_SIZE) {
+    const { data, error: candErr } = await db
+      .from("candidates")
+      .select("id,slug,race_id")
+      .range(from, from + PAGE_SIZE - 1);
+    if (candErr)
+      return { ...report, errors: [`Could not read candidates: ${candErr.message}`] };
+    candRows.push(...((data ?? []) as CandRow[]));
+    if (!data || data.length < PAGE_SIZE) break;
+  }
+  type RaceRow = { id: string; municipality_id: string };
+  const raceRows: RaceRow[] = [];
+  for (let from = 0; ; from += PAGE_SIZE) {
+    const { data, error: raceErr } = await db
+      .from("races")
+      .select("id,municipality_id")
+      .range(from, from + PAGE_SIZE - 1);
+    if (raceErr)
+      return { ...report, errors: [`Could not read races: ${raceErr.message}`] };
+    raceRows.push(...((data ?? []) as RaceRow[]));
+    if (!data || data.length < PAGE_SIZE) break;
+  }
+  type IssueRow = { id: string; slug: string; municipality_id: string };
+  const issueRows: IssueRow[] = [];
+  for (let from = 0; ; from += PAGE_SIZE) {
+    const { data, error: issueErr } = await db
+      .from("issues")
+      .select("id,slug,municipality_id")
+      .range(from, from + PAGE_SIZE - 1);
+    if (issueErr)
+      return { ...report, errors: [`Could not read issues: ${issueErr.message}`] };
+    issueRows.push(...((data ?? []) as IssueRow[]));
+    if (!data || data.length < PAGE_SIZE) break;
+  }
   const muniByRaceId = new Map(
     (raceRows ?? []).map((r) => [r.id, r.municipality_id] as const)
   );
