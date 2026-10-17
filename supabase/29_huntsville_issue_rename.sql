@@ -85,7 +85,7 @@ from (values
     ('healthcare-and-hospital','healthcare',            'Healthcare'),
     ('economy-and-downtown',   'economy',               'Economy'),
     ('parks-and-trails',       'active-transportation', 'Active transportation')
-) as v(old_slug, new_slug, new_name)
+) as v(old_slug, new_slug, new_name), m
 where i.municipality_id = m.id
   and i.slug = v.old_slug;
 
