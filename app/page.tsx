@@ -33,7 +33,7 @@ export default async function HomePage() {
         <p className="mt-4 text-sm text-ink-faint">
           Some municipalities have full candidate positions, researched from
           the candidates' own words. Everywhere else is at the listings stage
-          — candidate names and races while full positions are researched.{" "}
+          — candidate names and races only while full positions are researched.{" "}
           <Link href="/methodology" className="link">
             How this works
           </Link>
