@@ -16,6 +16,7 @@ import {
 } from "./actions";
 import { formatShortDate } from "@/lib/dates";
 import ConfidencePill from "@/components/ConfidencePill";
+import { AcceptAllForm } from "./accept-all-form";
 import {
   allowedExtents,
   CONFIDENCE_LEVELS,
@@ -468,6 +469,18 @@ export default async function AdminPage({
           and approve — your edit is saved with the approval. A candidate&rsquo;s full
           response publishes <em>verbatim</em>; approving it means you read the whole thing.
         </p>
+      )}
+
+      {/* Queue-wide accept, at Andreas's explicit request (Oct 18, 2026):
+          thousands of staged import rows can't go one click at a time. It
+          always means the whole in-review queue — never the filtered view —
+          asks for confirmation with the live count, and skips anything the
+          publish guard would reject. */}
+      {show === "in_review" && counts.in_review > 0 && (
+        <AcceptAllForm
+          positions={counts.in_review}
+          responses={respCounts.in_review}
+        />
       )}
 
       {visible.length === 0 && responsesByCandidate.size === 0 && (

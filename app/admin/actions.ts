@@ -840,9 +840,10 @@ export async function importJsonAction(
  * response is shown in the same candidate group, so "approve all" approving
  * only half of what you're looking at would be a trap.
  *
- * Scoped to a single candidate on purpose. A global "approve all" button is
- * exactly the thing you click at 11pm without reading, and the whole premise
- * of this site is that a person read every line.
+ * Scoped to a single candidate on purpose. The queue-wide version below
+ * (acceptAllAction) exists only by Andreas's explicit request — it carries
+ * its own confirmation step and excludes anything the publish guard would
+ * reject, so it cannot be an accident.
  */
 export async function bulkApproveCandidateAction(formData: FormData) {
   await requireAdmin();
@@ -871,6 +872,149 @@ export async function bulkApproveCandidateAction(formData: FormData) {
 
   revalidatePath("/admin");
   revalidatePath("/races", "layout");
+}
+
+/**
+ * The report shown after an Accept-all run. Serializable by construction —
+ * it travels back to the client component through useActionState.
+ */
+export interface AcceptAllResult {
+  ok: boolean;
+  positionsPublished: number;
+  positionsSkipped: number;
+  responsesPublished: number;
+  error: string | null;
+}
+
+const EMPTY_ACCEPT_ALL: AcceptAllResult = {
+  ok: false,
+  positionsPublished: 0,
+  positionsSkipped: 0,
+  responsesPublished: 0,
+  error: null,
+};
+
+/**
+ * Publish EVERYTHING currently in_review — the whole positions queue plus
+ * any waiting candidate responses.
+ *
+ * Added at Andreas's explicit request (Oct 18, 2026): ~3,700 staged rows
+ * cannot be reviewed one click at a time. Two deliberate safeguards keep
+ * this from being a careless button:
+ *
+ * 1. The UI asks for confirmation showing the live count before running.
+ * 2. The publish guard is enforced, not bypassed. The database's
+ *    published_needs_source CHECK constraint would reject the entire batch
+ *    if a single row lacked a quote + source (or the no-public-position
+ *    flag), so rows that would violate it are EXCLUDED up front and
+ *    reported as skipped — the same spirit as the single-row approve,
+ *    which lets the constraint reject it one at a time.
+ *
+ * Scale: the queue read is paged in 1,000-row ranges (PostgREST caps a
+ * single response), and the writes are chunked set-based UPDATEs of 500
+ * ids at a time — never a client-side loop over row objects, and no
+ * reliance on the read cap for the write path. reviewed_by/reviewed_at
+ * are set exactly as the single-row approve does; confidence, extents and
+ * summary text are left as imported.
+ */
+export async function acceptAllAction(
+  _prev: AcceptAllResult,
+  _formData: FormData
+): Promise<AcceptAllResult> {
+  await requireAdmin();
+  const db = getServiceClient();
+  const now = new Date().toISOString();
+  const READ_PAGE = 1000;
+  const WRITE_CHUNK = 500;
+
+  // Read the whole in_review queue, paged — the same pagination the page
+  // itself uses since the 1,000-row cap fix.
+  type QueueRow = {
+    id: string;
+    no_public_position: boolean | null;
+    source_url: string | null;
+    verbatim_quote: string | null;
+  };
+  const rows: QueueRow[] = [];
+  for (let from = 0; ; from += READ_PAGE) {
+    const { data, error } = await db
+      .from("positions")
+      .select("id,no_public_position,source_url,verbatim_quote")
+      .eq("status", "in_review")
+      .order("id", { ascending: true })
+      .range(from, from + READ_PAGE - 1);
+    if (error) throw new Error(`Could not read the queue: ${error.message}`);
+    rows.push(...((data ?? []) as QueueRow[]));
+    if (!data || data.length < READ_PAGE) break;
+  }
+
+  // Mirror the published_needs_source CHECK constraint: publishable means
+  // no_public_position is set, or a quote AND a source URL are both
+  // present. Anything else stays in review and is reported.
+  const eligible = rows.filter(
+    (r) => r.no_public_position || (r.source_url && r.verbatim_quote)
+  );
+  const skipped = rows.length - eligible.length;
+
+  for (let i = 0; i < eligible.length; i += WRITE_CHUNK) {
+    const chunk = eligible.slice(i, i + WRITE_CHUNK).map((r) => r.id);
+    const { error } = await db
+      .from("positions")
+      .update({
+        status: "published",
+        reviewed_by: REVIEWER,
+        reviewed_at: now,
+      })
+      .in("id", chunk);
+    if (error)
+      throw new Error(
+        `Published ${i} of ${eligible.length} positions before failing: ${error.message}`
+      );
+  }
+
+  // Candidate responses publish verbatim and carry no source guard — the
+  // per-candidate bulk approve publishes them alongside positions, and
+  // Accept-all does the same so it can't publish only half of what's
+  // waiting.
+  const respIds: string[] = [];
+  for (let from = 0; ; from += READ_PAGE) {
+    const { data, error } = await db
+      .from("candidate_responses")
+      .select("id")
+      .eq("status", "in_review")
+      .order("id", { ascending: true })
+      .range(from, from + READ_PAGE - 1);
+    if (error)
+      throw new Error(`Could not read the responses queue: ${error.message}`);
+    respIds.push(...((data ?? []) as { id: string }[]).map((r) => r.id));
+    if (!data || data.length < READ_PAGE) break;
+  }
+  for (let i = 0; i < respIds.length; i += WRITE_CHUNK) {
+    const chunk = respIds.slice(i, i + WRITE_CHUNK);
+    const { error } = await db
+      .from("candidate_responses")
+      .update({
+        status: "published",
+        reviewed_by: REVIEWER,
+        reviewed_at: now,
+      })
+      .in("id", chunk);
+    if (error)
+      throw new Error(
+        `Published ${eligible.length} positions and ${i} responses before failing: ${error.message}`
+      );
+  }
+
+  revalidatePath("/admin");
+  revalidatePath("/races", "layout");
+
+  return {
+    ok: true,
+    positionsPublished: eligible.length,
+    positionsSkipped: skipped,
+    responsesPublished: respIds.length,
+    error: null,
+  };
 }
 
 /**
