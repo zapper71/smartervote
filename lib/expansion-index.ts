@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — do not edit by hand.
- * Generated 2026-10-18T02:54:34.294Z by scripts/generate-expansion-index.mjs
+ * Generated 2026-10-18T03:52:18.365Z by scripts/generate-expansion-index.mjs
  * from the DATA agent's source files. Re-run the script to regenerate.
  *
  * LISTINGS TIER ONLY: candidate names and race structure, no positions.
@@ -50683,7 +50683,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Clive Woolner",
-          "acclaimed": false
+          "acclaimed": false,
+          "website": "https://www.clivewoolner.ca"
         },
         {
           "name": "Kristopher Wilkinson",
