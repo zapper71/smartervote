@@ -22,6 +22,12 @@ export interface ExpansionCandidate {
   name: string;
   /** null = unknown (not yet researched), not "not acclaimed". */
   acclaimed: boolean | null;
+  /**
+   * True when the candidate withdrew after nomination. They stay on the
+   * printed ballot, so listings keep them — struck through with the grey
+   * Withdrawn pill. Mirrors candidates.status = 'withdrawn' in the database.
+   */
+  withdrawn?: boolean;
   party?: string;
   /** The candidate's own website, from the listings harvest. Andreas's rule:
       where a race is listing-only, the candidate's name links to it. */
@@ -52340,6 +52346,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Greg DePaco",
           "acclaimed": null,
+          "withdrawn": true,
           "party": "BC Green Party"
         },
         {
@@ -53313,6 +53320,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Gerry Lenoski",
           "acclaimed": null,
+          "withdrawn": true,
           "party": "Unaffiliated"
         },
         {
@@ -53846,6 +53854,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Robert Evans",
           "acclaimed": null,
+          "withdrawn": true,
           "party": "Independent"
         }
       ],
@@ -54620,6 +54629,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Jordan Zheng McIntosh",
           "acclaimed": null,
+          "withdrawn": true,
           "party": "Conservative Party"
         },
         {
@@ -54692,6 +54702,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Timothy Webster",
           "acclaimed": null,
+          "withdrawn": true,
           "party": "Unaffiliated"
         }
       ],
@@ -54744,6 +54755,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Joachim Agou",
           "acclaimed": null,
+          "withdrawn": true,
           "party": "Conservative Party"
         },
         {

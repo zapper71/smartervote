@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { ExpansionRace } from "@/lib/expansion-index";
+import WithdrawnPill from "@/components/WithdrawnPill";
 
 export interface MunicipalityRaceGroup {
   key: string;
@@ -111,7 +112,9 @@ function RaceEntry({
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  {c.name}
+                  <span className={c.withdrawn ? "line-through" : undefined}>
+                    {c.name}
+                  </span>
                   <span aria-hidden="true" className="ml-0.5 text-xs">
                     ↗
                   </span>
@@ -121,7 +124,11 @@ function RaceEntry({
                   </span>
                 </a>
               ) : (
-                <span className="text-ink">{c.name}</span>
+                <span className="text-ink">
+                  <span className={c.withdrawn ? "line-through" : undefined}>
+                    {c.name}
+                  </span>
+                </span>
               )}
               {c.party && (
                 <span className="text-ink-faint"> · {c.party}</span>
@@ -129,6 +136,13 @@ function RaceEntry({
               {c.acclaimed && (
                 <span className="ml-1 text-xs font-medium text-flag">
                   Acclaimed
+                </span>
+              )}
+              {/* Withdrawn candidates stay on the printed ballot, so they
+                  stay listed — struck through with the grey Withdrawn pill. */}
+              {c.withdrawn && (
+                <span className="ml-1.5">
+                  <WithdrawnPill />
                 </span>
               )}
             </li>

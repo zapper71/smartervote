@@ -15,6 +15,7 @@ import { formatShortDate } from "@/lib/dates";
 import CandidateResponse from "@/components/CandidateResponse";
 import PositionCell from "@/components/PositionCell";
 import WebsiteLink from "@/components/WebsiteLink";
+import WithdrawnPill from "@/components/WithdrawnPill";
 
 export const revalidate = 300;
 
@@ -96,7 +97,14 @@ export default async function CandidatePage({ params }: Props) {
         </Link>
       </p>
 
-      <h1 className="mt-3 text-3xl">{candidate.name}</h1>
+      {/* A withdrawn candidate stays on the printed ballot: struck name,
+          grey pill, struck position content. Same convention as the race and
+          compare pages. */}
+      <h1 className="mt-3 text-3xl">
+        <span className={candidate.status === "withdrawn" ? "line-through" : undefined}>
+          {candidate.name}
+        </span>
+      </h1>
       <p className="mt-1 text-ink-soft">
         Candidate for {race.name}
         {race.ward_group_label ? ` · ${race.ward_group_label}` : ""}
@@ -105,6 +113,11 @@ export default async function CandidatePage({ params }: Props) {
       {candidate.status === "acclaimed" && (
         <p className="pill mt-3 bg-flag-light text-flag">
           Acclaimed — no election for this seat
+        </p>
+      )}
+      {candidate.status === "withdrawn" && (
+        <p className="mt-3">
+          <WithdrawnPill />
         </p>
       )}
 
@@ -206,6 +219,7 @@ export default async function CandidatePage({ params }: Props) {
                     respondedAt={candidate.responded_at}
                     lookedAt={candidate.last_reviewed_at}
                     fullResponseLink={fullResponseLink}
+                    withdrawn={candidate.status === "withdrawn"}
                   />
                 </div>
               </article>

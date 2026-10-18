@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import ConfidencePill from "@/components/ConfidencePill";
 import { formatShortDate } from "@/lib/dates";
@@ -223,6 +224,7 @@ export default function PositionCell({
   respondedAt,
   lookedAt,
   fullResponseLink,
+  withdrawn,
 }: {
   positions: Position[];
   correctionHref: string;
@@ -234,7 +236,18 @@ export default function PositionCell({
   lookedAt?: string | null;
   /** Deep link to their full email reply; shown only under email-built cells. */
   fullResponseLink?: FullResponseLink | null;
+  /**
+   * True when the candidate withdrew after nomination. Their own positions
+   * render struck through (name and positions both), because the ballot still
+   * carries their name but the positions were published by a campaign that
+   * no longer exists. The empty/"not reviewed" note is OUR editorial state,
+   * not their words, so it stays unstruck.
+   */
+  withdrawn?: boolean;
 }) {
+  // Strike their positions, never our editorial chrome.
+  const strike = (content: ReactNode) =>
+    withdrawn ? <div className="line-through">{content}</div> : content;
   if (positions.length === 0) {
     return (
       <p className="text-sm text-ink-faint">
@@ -278,7 +291,7 @@ export default function PositionCell({
   }
 
   if (real.length === 1) {
-    return (
+    return strike(
       <SinglePosition
         p={real[0]}
         showQuoteInline={false}
@@ -301,7 +314,7 @@ export default function PositionCell({
   // of the set — means conflict.
   const conflicting = real.some((p) => p.is_conflicting);
 
-  return (
+  return strike(
     <div>
       {conflicting ? (
         <>

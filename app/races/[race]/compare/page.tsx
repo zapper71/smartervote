@@ -6,6 +6,7 @@ import CandidatePicker from "@/components/CandidatePicker";
 import Clampable from "@/components/Clampable";
 import PositionCell from "@/components/PositionCell";
 import WebsiteLink from "@/components/WebsiteLink";
+import WithdrawnPill from "@/components/WithdrawnPill";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import {
   CompareFloatingBar,
@@ -97,6 +98,9 @@ export default async function ComparePage({ params, searchParams }: Props) {
     responses.map((r) => [r.candidate_id, r])
   );
   const key = (candidateId: string, issueId: string) => `${candidateId}:${issueId}`;
+  // Withdrawn candidates stay on the ballot (names printed) but render with
+  // a grey Withdrawn pill, struck-through name, and struck position content.
+  const isWithdrawn = (c: { status?: string | null }) => c.status === "withdrawn";
 
   // The deep link under an email-built cell: to the reply's matching
   // section on the candidate's page when there is one, else the top of
@@ -226,8 +230,15 @@ export default async function ComparePage({ params, searchParams }: Props) {
                     href={`/races/${race.slug}/${c.slug}`}
                     className="text-base font-semibold text-ink no-underline hover:text-accent"
                   >
-                    {c.name}
+                    <span className={isWithdrawn(c) ? "line-through" : undefined}>
+                      {c.name}
+                    </span>
                   </Link>
+                  {isWithdrawn(c) && (
+                    <span className="ml-2 inline-block align-middle">
+                      <WithdrawnPill />
+                    </span>
+                  )}
                   <p className="mt-1 text-xs font-normal">
                     <WebsiteLink
                       website={c.website}
@@ -295,6 +306,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
                         contactedAt={c.contacted_at}
                         respondedAt={c.responded_at}
                         lookedAt={c.last_reviewed_at}
+                        withdrawn={isWithdrawn(c)}
                         fullResponseLink={fullResponseLinkFor(
                           c.id,
                           c.slug,
@@ -369,8 +381,11 @@ export default async function ComparePage({ params, searchParams }: Props) {
                         href={`/races/${race.slug}/${c.slug}`}
                         className="font-semibold text-ink no-underline hover:text-accent"
                       >
-                        {c.name}
-                      </Link>
+                        <span className={isWithdrawn(c) ? "line-through" : undefined}>
+                          {c.name}
+                        </span>
+                      </Link>{" "}
+                      {isWithdrawn(c) && <WithdrawnPill />}
                     </h3>
                     <p className="text-xs">
                       <WebsiteLink
@@ -399,6 +414,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
                         contactedAt={c.contacted_at}
                         respondedAt={c.responded_at}
                         lookedAt={c.last_reviewed_at}
+                        withdrawn={isWithdrawn(c)}
                         fullResponseLink={fullResponseLinkFor(
                           c.id,
                           c.slug,

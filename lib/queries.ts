@@ -140,7 +140,8 @@ export async function getCandidatesForRace(raceId: string): Promise<Candidate[]>
     .from("candidates")
     .select("*")
     .eq("race_id", raceId)
-    .neq("status", "withdrawn")
+    // Withdrawn candidates are NOT filtered here: they stay on the printed
+    // ballot, so they render with the grey Withdrawn pill + strikethrough.
     .order("name", { ascending: true });
   if (error) {
     warn("getCandidatesForRace", error);
@@ -158,7 +159,7 @@ export async function getRacesWithCandidates(): Promise<RaceWithCandidates[]> {
   const { data, error } = await db
     .from("candidates")
     .select("*")
-    .neq("status", "withdrawn")
+    // Withdrawn candidates included — see note above (Withdrawn pill).
     .in(
       "race_id",
       races.map((r) => r.id)
@@ -301,8 +302,9 @@ export async function getRaceSlugsWithPublishedPositions(
     const { data: candidateRows, error: candidatesError } = await db
       .from("candidates")
       .select("id, race_id")
-      .in("race_id", [...idToSlug.keys()])
-      .neq("status", "withdrawn");
+      .in("race_id", [...idToSlug.keys()]);
+    // Withdrawn candidates included — a withdrawn candidate's published
+    // positions count toward the race's "positions loaded" badge.
     if (candidatesError) {
       warn("getRaceSlugsWithPublishedPositions", candidatesError);
       return null;

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Candidate } from "@/lib/types";
+import WithdrawnPill from "@/components/WithdrawnPill";
 
 /**
  * Narrowing, not gating.
@@ -107,7 +108,16 @@ export default function CandidatePicker({
                     }}
                     className="h-4 w-4"
                   />
-                  <span className="text-ink-soft">{c.name}</span>
+                  <span className="text-ink-soft">
+                    <span
+                      className={
+                        c.status === "withdrawn" ? "line-through" : undefined
+                      }
+                    >
+                      {c.name}
+                    </span>{" "}
+                    {c.status === "withdrawn" && <WithdrawnPill />}
+                  </span>
                 </label>
               ))}
             </div>

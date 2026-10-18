@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import WebsiteLink from "@/components/WebsiteLink";
+import WithdrawnPill from "@/components/WithdrawnPill";
 import {
   getCandidatesForRace,
   getPositionsForCandidates,
@@ -169,6 +170,9 @@ export default async function RacePage({ params }: Props) {
           {candidates.map((c) => (
             <li key={c.id} className="card">
               <h3 className="text-base">
+                {/* A withdrawn candidate's name is struck through and carries
+                    the grey Withdrawn pill, wherever it renders. The pill sits
+                    outside the struck name so the label itself stays readable. */}
                 {c.website && !candidatesWithPositions.has(c.id) ? (
                   <a
                     href={c.website}
@@ -176,7 +180,9 @@ export default async function RacePage({ params }: Props) {
                     rel="noopener noreferrer nofollow"
                     target="_blank"
                   >
-                    {c.name}
+                    <span className={c.status === "withdrawn" ? "line-through" : undefined}>
+                      {c.name}
+                    </span>
                     <span aria-hidden="true" className="ml-0.5 text-xs">
                       ↗
                     </span>
@@ -190,9 +196,12 @@ export default async function RacePage({ params }: Props) {
                     href={`/races/${race.slug}/${c.slug}`}
                     className="text-ink no-underline hover:text-accent"
                   >
-                    {c.name}
+                    <span className={c.status === "withdrawn" ? "line-through" : undefined}>
+                      {c.name}
+                    </span>
                   </Link>
-                )}
+                )}{" "}
+                {c.status === "withdrawn" && <WithdrawnPill />}
                 {/* Party is a provincial-ballot fact (BC districts). Shown in
                     the site's neutral accent, never a party colour. The
                     column is new (migration 24): a missing value renders
