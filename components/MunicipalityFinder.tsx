@@ -9,7 +9,8 @@ import {
 
 type Province = "ON" | "BC";
 
-const MAX_RESULTS = 10;
+/** Cap on rendered filtered rows; empty-query browse-all renders the full list. */
+const FILTER_CAP = 80;
 
 function normalise(s: string): string {
   return s
@@ -18,10 +19,56 @@ function normalise(s: string): string {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
+interface FinderEntry {
+  key: string;
+  name: string;
+  href: string;
+}
+
+function onEntries(): FinderEntry[] {
+  return FINDER_MUNICIPALITIES.map((m) => ({
+    key: m.slug,
+    name: m.name,
+    href: municipalityHref(m.slug),
+  }));
+}
+
+function bcEntries(): FinderEntry[] {
+  return FINDER_DISTRICTS.map((d) => ({
+    key: d.raceSlug,
+    name: d.name,
+    href: `/races/${d.raceSlug}`,
+  }));
+}
+
 /**
- * The election finder: province toggle + search-as-you-type over the static
- * expansion index. No database needed — this works on the preview before
- * migrations 24–28 are run.
+ * Case-insensitive CONTAINS matching: every typed word must appear somewhere
+ * in the name, in any order — so "etobicoke" also finds
+ * "Councillor - Ward 1 (Etobicoke North)" and "tobicoke" matches mid-word.
+ */
+function matches(name: string, q: string): boolean {
+  const n = normalise(name);
+  if (q === "") return true;
+  if (n.includes(q)) return true;
+  const words = q.split(/\s+/).filter(Boolean);
+  return words.length > 1 && words.every((w) => n.includes(w));
+}
+
+/** Rank: exact match first, then starts-with, then other contains matches. */
+function rank(name: string, q: string): number {
+  const n = normalise(name);
+  if (q === "") return 1;
+  if (n === q) return 0;
+  if (n.startsWith(q)) return 1;
+  if (n.includes(q)) return 2;
+  return 3;
+}
+
+/**
+ * The election finder: province toggle + a combobox — click the field and
+ * scroll the full list, or type to filter — over the static expansion index.
+ * No database needed — this works on the preview before migrations 24–28
+ * are run.
  *
  * Ontario results link to /municipalities/[slug] (a listings page until
  * positions are imported). A BC district IS its race, so districts link
@@ -31,27 +78,27 @@ export default function MunicipalityFinder() {
   const [province, setProvince] = useState<Province>("ON");
   const [query, setQuery] = useState("");
 
-  const results = useMemo(() => {
-    const q = normalise(query.trim());
-    if (province === "ON") {
-      const list = FINDER_MUNICIPALITIES.filter((m) =>
-        q === "" ? false : normalise(m.name).includes(q)
-      );
-      return list
-        .slice(0, MAX_RESULTS)
-        .map((m) => ({ key: m.slug, name: m.name, href: municipalityHref(m.slug) }));
-    }
-    const list = FINDER_DISTRICTS.filter((d) =>
-      q === "" ? false : normalise(d.name).includes(q)
-    );
-    return list
-      .slice(0, MAX_RESULTS)
-      .map((d) => ({ key: d.raceSlug, name: d.name, href: `/races/${d.raceSlug}` }));
-  }, [province, query]);
+  const allEntries = useMemo(
+    () => (province === "ON" ? onEntries() : bcEntries()),
+    [province]
+  );
 
-  const totalForProvince =
-    province === "ON" ? FINDER_MUNICIPALITIES.length : FINDER_DISTRICTS.length;
   const trimmed = query.trim();
+  const q = normalise(trimmed);
+
+  const { shown, total } = useMemo(() => {
+    const matched = allEntries
+      .filter((e) => matches(e.name, q))
+      .sort((a, b) => rank(a.name, q) - rank(b.name, q));
+    // Browse-all (empty query) renders the whole scrollable list; filtered
+    // results are capped with a count so contains matches are never hidden
+    // silently.
+    const cap = q === "" ? matched.length : FILTER_CAP;
+    return { shown: matched.slice(0, cap), total: matched.length };
+  }, [allEntries, q]);
+
+  const noun = province === "ON" ? "municipality" : "district";
+  const plural = province === "ON" ? "municipalities" : "districts";
 
   return (
     <div className="mt-6 rounded-lg border border-paper-edge bg-paper p-5 shadow-sm">
@@ -107,43 +154,49 @@ export default function MunicipalityFinder() {
           className="mt-2 w-full rounded-md border border-paper-edge bg-paper-warm px-4 py-3 text-base text-ink placeholder:text-ink-faint"
         />
         <p id="finder-hint" className="mt-2 text-xs text-ink-faint">
-          {province === "ON"
-            ? `${FINDER_MUNICIPALITIES.length} Ontario municipalities · start typing to filter`
-            : `${FINDER_DISTRICTS.length} BC electoral districts · start typing to filter`}
+          {allEntries.length} {plural} · scroll the list or type to filter
         </p>
       </div>
 
       {/* Results */}
       <div className="mt-2">
         <p id="finder-count" aria-live="polite" className="sr-only">
-          {trimmed === ""
-            ? "Type to search."
-            : results.length === 0
-              ? `No matches for ${trimmed}.`
-              : `${results.length} match${results.length === 1 ? "" : "es"} for ${trimmed}.`}
+          {total === 0
+            ? `No matches for ${trimmed}.`
+            : `${total} match${total === 1 ? "" : "es"}${
+                trimmed === "" ? " — the full list." : ` for ${trimmed}.`
+              }`}
         </p>
-        {trimmed !== "" && results.length === 0 && (
+        {total === 0 && (
           <p className="mt-3 text-sm text-ink-soft">
-            No {province === "ON" ? "municipalities" : "districts"} match
-            &ldquo;{trimmed}&rdquo;. Check the spelling, or try a nearby place.
+            No {plural} match &ldquo;{trimmed}&rdquo;. Check the spelling, or
+            try a nearby place.
           </p>
         )}
-        {results.length > 0 && (
-          <ul className="mt-3 divide-y divide-paper-edge rounded-md border border-paper-edge">
-            {results.map((r) => (
-              <li key={r.key}>
-                <Link
-                  href={r.href}
-                  className="tap-target flex w-full items-center justify-between gap-3 px-4 py-3 text-ink no-underline hover:bg-accent-light"
-                >
-                  <span className="font-medium">{r.name}</span>
-                  <span aria-hidden="true" className="text-accent">
-                    &rarr;
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+        {shown.length > 0 && (
+          <>
+            <ul className="mt-3 max-h-72 divide-y divide-paper-edge overflow-y-auto rounded-md border border-paper-edge">
+              {shown.map((r) => (
+                <li key={r.key}>
+                  <Link
+                    href={r.href}
+                    className="tap-target flex w-full items-center justify-between gap-3 px-4 py-3 text-ink no-underline hover:bg-accent-light"
+                  >
+                    <span className="font-medium">{r.name}</span>
+                    <span aria-hidden="true" className="text-accent">
+                      &rarr;
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            {total > shown.length && (
+              <p className="mt-2 text-xs text-ink-faint">
+                Showing {shown.length} of {total} — keep typing to narrow it
+                down.
+              </p>
+            )}
+          </>
         )}
       </div>
     </div>

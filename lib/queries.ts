@@ -267,28 +267,70 @@ export async function getIssues(
 }
 
 /**
- * Which of these race slugs actually have rows in the database.
+ * Which of these race slugs have at least one PUBLISHED position.
  *
  * Used by the municipality pages to tag races "positions loaded" vs
- * "candidate list only". Returns null (not an empty set) when the check
- * itself fails, so callers can render WITHOUT the tags instead of
- * mislabelling everything as pending.
+ * "candidate list only" — and to decide where a compare link is honest.
+ * This queries public_positions through candidates -> race, so it reflects
+ * real published data rather than mere race rows. Returns null (not an
+ * empty set) when the check itself fails, so callers can render WITHOUT
+ * the tags rather than mislabelling everything as pending.
  */
-export async function getExistingRaceSlugs(
+export async function getRaceSlugsWithPublishedPositions(
   slugs: string[]
 ): Promise<Set<string> | null> {
   if (slugs.length === 0) return new Set();
   const db = getPublicClient();
   if (!db) return null;
   try {
-    const { data, error } = await db.from("races").select("slug").in("slug", slugs);
-    if (error) {
-      warn("getExistingRaceSlugs", error);
+    const { data: raceRows, error: racesError } = await db
+      .from("races")
+      .select("id, slug")
+      .in("slug", slugs);
+    if (racesError) {
+      warn("getRaceSlugsWithPublishedPositions", racesError);
       return null;
     }
-    return new Set(((data ?? []) as { slug: string }[]).map((r) => r.slug));
+    const idToSlug = new Map(
+      ((raceRows ?? []) as { id: string; slug: string }[]).map((r) => [
+        r.id,
+        r.slug,
+      ])
+    );
+    if (idToSlug.size === 0) return new Set();
+    const { data: candidateRows, error: candidatesError } = await db
+      .from("candidates")
+      .select("id, race_id")
+      .in("race_id", [...idToSlug.keys()])
+      .neq("status", "withdrawn");
+    if (candidatesError) {
+      warn("getRaceSlugsWithPublishedPositions", candidatesError);
+      return null;
+    }
+    const candidateIdToSlug = new Map(
+      ((candidateRows ?? []) as { id: string; race_id: string }[]).map((c) => [
+        c.id,
+        idToSlug.get(c.race_id) as string,
+      ])
+    );
+    if (candidateIdToSlug.size === 0) return new Set();
+    const { data: positionRows, error: positionsError } = await db
+      .from("public_positions")
+      .select("candidate_id")
+      .in("candidate_id", [...candidateIdToSlug.keys()])
+      .limit(100000);
+    if (positionsError) {
+      warn("getRaceSlugsWithPublishedPositions", positionsError);
+      return null;
+    }
+    const out = new Set<string>();
+    for (const p of (positionRows ?? []) as { candidate_id: string }[]) {
+      const slug = candidateIdToSlug.get(p.candidate_id);
+      if (slug) out.add(slug);
+    }
+    return out;
   } catch (e) {
-    warn("getExistingRaceSlugs", e);
+    warn("getRaceSlugsWithPublishedPositions", e);
     return null;
   }
 }

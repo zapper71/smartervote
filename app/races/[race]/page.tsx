@@ -126,7 +126,10 @@ export default async function RacePage({ params }: Props) {
         </p>
       )}
 
-      {candidates.length > 1 && (
+      {/* A compare link is only honest when published positions exist.
+          Races still in listings mode (no published positions) must not lead
+          into an empty comparison grid — they stay a candidate list. */}
+      {positionsForRace.length > 0 && candidates.length > 1 && (
         <div className="mt-8 rounded-lg border border-accent/20 bg-accent-light p-5">
           <h2 className="text-base text-ink">See them side by side</h2>
           <p className="mt-2 text-sm leading-relaxed text-ink-soft">
@@ -143,6 +146,15 @@ export default async function RacePage({ params }: Props) {
           </p>
         </div>
       )}
+      {isExpansion &&
+        positionsForRace.length === 0 &&
+        candidates.length > 1 && (
+          <p className="mt-8 rounded-lg border border-paper-edge bg-paper-warm px-4 py-3 text-sm text-ink-soft">
+            Side-by-side positions for this race are still being researched.
+            The candidates — and their websites where we have them — are
+            listed below.
+          </p>
+        )}
 
       <h2 className="mt-10 text-xl">
         {uncontested ? "Acclaimed" : `Candidates (${candidates.length})`}
