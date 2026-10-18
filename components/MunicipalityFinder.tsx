@@ -5,6 +5,8 @@ import { useMemo, useState } from "react";
 import {
   FINDER_DISTRICTS,
   FINDER_MUNICIPALITIES,
+  FINDER_RACE_ALIASES,
+  FINDER_COMMUNITY_ALIASES,
 } from "@/lib/expansion-finder";
 
 type Province = "ON" | "BC";
@@ -23,14 +25,111 @@ interface FinderEntry {
   key: string;
   name: string;
   href: string;
+  /** Short "why it matched" line, only shown for ward/community matches. */
+  sub?: string;
+  /** Direct race row (ward/riding), shown below its parent municipality. */
+  raceSlug?: string;
 }
 
-function onEntries(): FinderEntry[] {
-  return FINDER_MUNICIPALITIES.map((m) => ({
-    key: m.slug,
-    name: m.name,
-    href: municipalityHref(m.slug),
-  }));
+/** Cap on filtered race rows shown below the parent municipality. */
+const RACE_ROW_CAP = 3;
+
+/** Race aliases grouped by municipality slug, for ward/riding search. */
+const raceAliasesByMuni: Map<string, typeof FINDER_RACE_ALIASES> = new Map();
+for (const r of FINDER_RACE_ALIASES) {
+  const list = raceAliasesByMuni.get(r.muniSlug) ?? [];
+  list.push(r);
+  raceAliasesByMuni.set(r.muniSlug, list);
+}
+/** Curated community aliases grouped by municipality slug. */
+const communityAliasesByMuni: Map<string, string[]> = new Map();
+for (const c of FINDER_COMMUNITY_ALIASES) {
+  const list = communityAliasesByMuni.get(c.muniSlug) ?? [];
+  list.push(c.name);
+  communityAliasesByMuni.set(c.muniSlug, list);
+}
+
+/**
+ * Short display name for a matched race alias: the parenthesised place
+ * segment when it's short (e.g. "Etobicoke North"), else the full label.
+ */
+function aliasDisplay(a: (typeof FINDER_RACE_ALIASES)[number]): string {
+  for (const p of a.places) {
+    if (p.length <= 28) return p;
+  }
+  return a.label;
+}
+
+interface OnMatch {
+  entry: FinderEntry;
+  /** 0 exact name, 1 starts-with, 2 contains, 3 alias-only. */
+  ownRank: number;
+}
+
+function onEntries(q: string): { municipalities: FinderEntry[]; raceRows: FinderEntry[] } {
+  const matched: OnMatch[] = [];
+  const raceRows: FinderEntry[] = [];
+  const anyAliasOnly = q !== "";
+
+  for (const m of FINDER_MUNICIPALITIES) {
+    const n = normalise(m.name);
+    let ownRank: number | null = null;
+    if (q === "") ownRank = 1;
+    else if (n === q) ownRank = 0;
+    else if (n.startsWith(q)) ownRank = 1;
+    else if (n.includes(q)) ownRank = 2;
+
+    // Ward/riding + community aliases: matched display names for the sublabel.
+    const displays = new Set<string>();
+    const matchedRaces: typeof FINDER_RACE_ALIASES = [];
+    for (const r of raceAliasesByMuni.get(m.slug) ?? []) {
+      const hit =
+        matches(r.label, q) || r.places.some((p) => matches(p, q));
+      if (hit) {
+        displays.add(aliasDisplay(r));
+        matchedRaces.push(r);
+      }
+    }
+    for (const name of communityAliasesByMuni.get(m.slug) ?? []) {
+      if (matches(name, q)) displays.add(name);
+    }
+
+    if (ownRank === null && displays.size === 0) continue;
+
+    const sub =
+      ownRank === null
+        ? `Includes ${[...displays].slice(0, 3).join(", ")}`
+        : undefined;
+    matched.push({
+      entry: {
+        key: m.slug,
+        name: m.name,
+        href: municipalityHref(m.slug),
+        sub,
+      },
+      ownRank: ownRank ?? 3,
+    });
+
+    // Direct race rows only when the parent matched via alias, not by name —
+    // keeps own-name searches (e.g. "waterloo") uncluttered.
+    if (ownRank === null && anyAliasOnly) {
+      for (const r of matchedRaces.slice(0, RACE_ROW_CAP)) {
+        raceRows.push({
+          key: r.raceSlug,
+          name: r.label,
+          sub: `${m.name} · ward race`,
+          href: `/races/${r.raceSlug}`,
+          raceSlug: r.raceSlug,
+        });
+      }
+    }
+  }
+
+  matched.sort((a, b) => a.ownRank - b.ownRank || a.entry.name.localeCompare(b.entry.name));
+  return {
+    municipalities: matched.map((m) => m.entry),
+    raceRows: raceRows.slice(0, RACE_ROW_CAP),
+  };
 }
 
 function bcEntries(): FinderEntry[] {
@@ -78,26 +177,28 @@ export default function MunicipalityFinder() {
   const [province, setProvince] = useState<Province>("ON");
   const [query, setQuery] = useState("");
 
-  const allEntries = useMemo(
-    () => (province === "ON" ? onEntries() : bcEntries()),
-    [province]
-  );
-
   const trimmed = query.trim();
   const q = normalise(trimmed);
 
   const { shown, total } = useMemo(() => {
-    const matched = allEntries
+    if (province === "ON") {
+      const { municipalities, raceRows } = onEntries(q);
+      // Browse-all (empty query) renders the whole scrollable list; filtered
+      // results are capped with a count so contains matches are never hidden
+      // silently.
+      const cap = q === "" ? municipalities.length : FILTER_CAP;
+      return {
+        shown: [...municipalities.slice(0, cap), ...raceRows],
+        total: municipalities.length + raceRows.length,
+      };
+    }
+    const matched = bcEntries()
       .filter((e) => matches(e.name, q))
       .sort((a, b) => rank(a.name, q) - rank(b.name, q));
-    // Browse-all (empty query) renders the whole scrollable list; filtered
-    // results are capped with a count so contains matches are never hidden
-    // silently.
     const cap = q === "" ? matched.length : FILTER_CAP;
     return { shown: matched.slice(0, cap), total: matched.length };
-  }, [allEntries, q]);
+  }, [province, q]);
 
-  const noun = province === "ON" ? "municipality" : "district";
   const plural = province === "ON" ? "municipalities" : "districts";
 
   return (
@@ -154,7 +255,9 @@ export default function MunicipalityFinder() {
           className="mt-2 w-full rounded-md border border-paper-edge bg-paper-warm px-4 py-3 text-base text-ink placeholder:text-ink-faint"
         />
         <p id="finder-hint" className="mt-2 text-xs text-ink-faint">
-          {allEntries.length} {plural} · scroll the list or type to filter
+          {province === "ON"
+            ? `${FINDER_MUNICIPALITIES.length} Ontario municipalities · scroll the list or type to filter — wards & communities work too (e.g. Etobicoke, New Hamburg)`
+            : `${FINDER_DISTRICTS.length} BC electoral districts · scroll the list or type to filter`}
         </p>
       </div>
 
@@ -182,7 +285,14 @@ export default function MunicipalityFinder() {
                     href={r.href}
                     className="tap-target flex w-full items-center justify-between gap-3 px-4 py-3 text-ink no-underline hover:bg-accent-light"
                   >
-                    <span className="font-medium">{r.name}</span>
+                    <span>
+                      <span className="block font-medium">{r.name}</span>
+                      {r.sub && (
+                        <span className="block text-xs text-ink-faint">
+                          {r.sub}
+                        </span>
+                      )}
+                    </span>
                     <span aria-hidden="true" className="text-accent">
                       &rarr;
                     </span>

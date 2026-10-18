@@ -1,6 +1,6 @@
 /**
  * GENERATED FILE — do not edit by hand.
- * Generated 2026-10-17T18:12:51.641Z by scripts/generate-expansion-index.mjs
+ * Generated 2026-10-18T02:54:34.294Z by scripts/generate-expansion-index.mjs
  * from the DATA agent's source files. Re-run the script to regenerate.
  *
  * LISTINGS TIER ONLY: candidate names and race structure, no positions.
@@ -7365,7 +7365,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Jagruti Bhatt",
-          "acclaimed": false
+          "acclaimed": false,
+          "website": "https://flowercitybrampton.ca"
         },
         {
           "name": "Najma Khurram",
@@ -7387,7 +7388,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Prabh Gill",
-          "acclaimed": false
+          "acclaimed": false,
+          "website": "https://prabhsgill.ca"
         },
         {
           "name": "Prabhjot Kaur Sidhu",
@@ -17848,7 +17850,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Andrea Horwath",
-          "acclaimed": false
+          "acclaimed": false,
+          "website": "https://andrea4hamilton.ca"
         },
         {
           "name": "David Harrison",
@@ -21385,7 +21388,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Berry Vrbanovic",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://www.berryonline.com"
         },
         {
           "name": "Cindy Ward",
@@ -21427,11 +21431,13 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Anna Meksavanh",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://www.annameksavanh.ca"
         },
         {
           "name": "Colleen James",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://colleen-james.ca"
         },
         {
           "name": "Ed Edwards",
@@ -21443,7 +21449,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Joe Gowing",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://www.joe-gowing.com"
         },
         {
           "name": "Kevin White",
@@ -21459,7 +21466,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Matt Rodrigues",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://www.mattrodrigues.ca"
         },
         {
           "name": "Michael Harris",
@@ -24798,11 +24806,13 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Martin Ross",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://martinross4mayor.ca"
         },
         {
           "name": "Stephen Edgell",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://edgell4markham.ca"
         }
       ],
       "sources": [
@@ -45540,7 +45550,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Keenan Courtis",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://www.keenancourtis.ca"
         },
         {
           "name": "Mike Layton",
@@ -45567,7 +45578,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Ahmed Kamal",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://www.voteforahmed.ca"
         },
         {
           "name": "Bob Murphy",
@@ -45665,7 +45677,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Denise Walcott",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://votewalcott.com"
         },
         {
           "name": "Dennis Corcoran",
@@ -45748,7 +45761,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Sheena Sharp",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://www.votesheenasharp.ca"
         }
       ],
       "sources": [
@@ -45864,11 +45878,13 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Adam Smith",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://adamsmithward19.ca"
         },
         {
           "name": "Austin Vieira",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://austinvieirabey.ca"
         },
         {
           "name": "Devin Wilkins",
@@ -45880,7 +45896,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "James Dann",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://jamesdann.ca"
         },
         {
           "name": "Jeff Wahl",
@@ -45888,7 +45905,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Jennie Worden",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://www.jennieworden.ca"
         },
         {
           "name": "Karsten Riedel",
@@ -46483,7 +46501,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Braeden Chow",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://www.braedenchowfortoronto.ca"
         },
         {
           "name": "Brian Buffey",
@@ -46491,7 +46510,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Chris Alexander",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://www.chrisalexander.ca"
         },
         {
           "name": "Cory Deville",
@@ -46607,7 +46627,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Michael Lamoureux",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://michaellamoureux.ca"
         },
         {
           "name": "Mohamad Kaaki",
@@ -46623,7 +46644,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Odessa Paloma Parker",
-          "acclaimed": null
+          "acclaimed": null,
+          "website": "https://www.odessaformayor.ca"
         },
         {
           "name": "Olivia Chow",
@@ -48125,7 +48147,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Linda D. Jackson",
-          "acclaimed": false
+          "acclaimed": false,
+          "website": "https://reallindajackson.ca"
         },
         {
           "name": "Mandy Rai",
@@ -48821,7 +48844,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Lindsay MANARY",
-          "acclaimed": false
+          "acclaimed": false,
+          "website": "https://lindsaymanary.ca"
         },
         {
           "name": "Rami SAID",
@@ -51217,7 +51241,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "DILKENS, Drew",
           "acclaimed": null,
-          "website": "https://dilkensformayor.com"
+          "website": "https://www.mayordrewdilkens.ca"
         },
         {
           "name": "FRANCIS, Fred",

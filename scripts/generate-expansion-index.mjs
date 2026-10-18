@@ -269,6 +269,36 @@ const finderDistricts = bcRaces.map((r) => ({
   raceSlug: r.slug,
 }));
 
+// Finder place search: race labels per municipality, so a query matching a
+// riding/ward name (e.g. "etobicoke" -> Toronto's Etobicoke ward races) or a
+// community surfaces the PARENT municipality. Also the short parenthesised
+// place segment when present (e.g. "Etobicoke North"), used for result
+// sublabels.
+const finderRaceAliases = [];
+for (const [muniSlug, raceList] of Object.entries(racesByMunicipality)) {
+  if (muniSlug === BC_SLUG) continue; // BC districts are races already
+  for (const race of raceList) {
+    const placeMatch = [...String(race.name).matchAll(/\(([^)]+)\)/g)]
+      .map((m) => m[1].trim())
+      .filter((s) => s.length > 0 && s.length <= 40);
+    finderRaceAliases.push({
+      muniSlug,
+      label: race.name,
+      raceSlug: race.slug,
+      places: placeMatch,
+    });
+  }
+}
+
+// Small curated community aliases, only for well-established cases the race
+// labels don't already name: North York (Toronto former borough; Toronto ward
+// race names cover Etobicoke, Scarborough, East York, York but not it) and
+// New Hamburg -> Wilmot (Andreas's own pairing).
+const finderCommunityAliases = [
+  { muniSlug: "toronto", name: "North York" },
+  { muniSlug: "wilmot", name: "New Hamburg" },
+];
+
 const finderTs =
   header +
   `/**
@@ -297,6 +327,40 @@ export interface FinderDistrict {
 /** The 93 BC electoral districts, alphabetical. */
 export const FINDER_DISTRICTS: FinderDistrict[] = ${JSON.stringify(
     finderDistricts,
+    null,
+    2
+  )};
+
+export interface FinderRaceAlias {
+  /** Municipality slug the race belongs to. */
+  muniSlug: string;
+  /** Race display label. */
+  label: string;
+  /** Race slug — links to /races/[raceSlug]. */
+  raceSlug: string;
+  /** Short parenthesised place segments from the label, for result sublabels. */
+  places: string[];
+}
+
+/** Race labels per Ontario municipality, so ward/riding search surfaces the
+ * parent municipality. */
+export const FINDER_RACE_ALIASES: FinderRaceAlias[] = ${JSON.stringify(
+    finderRaceAliases,
+    null,
+    2
+  )};
+
+export interface FinderCommunityAlias {
+  /** Municipality slug the community belongs to. */
+  muniSlug: string;
+  /** Community/place name. */
+  name: string;
+}
+
+/** Small curated set of community names searchers type (former boroughs,
+ * villages) that race labels don't already name. */
+export const FINDER_COMMUNITY_ALIASES: FinderCommunityAlias[] = ${JSON.stringify(
+    finderCommunityAliases,
     null,
     2
   )};
