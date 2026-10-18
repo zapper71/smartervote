@@ -28,6 +28,14 @@ export default function CandidatePicker({
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const allSelected = selected.length === candidates.length;
+  // In a crowded race (more than 10 candidates) ticking one checkbox at a
+  // time is tedious, so bulk controls appear. Races with 10 or fewer
+  // candidates keep exactly the UI they had before — no extra controls.
+  const showBulkControls = candidates.length > 10;
+  // Controlled checkboxes so "Select all" / "Deselect all" can flip the whole
+  // list at once. The form still submits as GET with `only` params, exactly
+  // as before.
+  const [checked, setChecked] = useState<Set<string>>(() => new Set(selected));
 
   return (
     <div className="mt-6">
@@ -61,6 +69,26 @@ export default function CandidatePicker({
               All candidates are shown by default. Narrowing is just for
               readability — it doesn&rsquo;t change anything about the comparison.
             </p>
+            {showBulkControls && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setChecked(new Set(candidates.map((c) => c.slug)))
+                  }
+                  className="tap-target rounded-md border border-paper-edge bg-paper px-3 py-1.5 text-sm font-medium text-ink hover:border-accent hover:text-accent"
+                >
+                  Select all
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setChecked(new Set())}
+                  className="tap-target rounded-md border border-paper-edge bg-paper px-3 py-1.5 text-sm font-medium text-ink hover:border-accent hover:text-accent"
+                >
+                  Deselect all
+                </button>
+              </div>
+            )}
             <div className="mt-3 grid gap-2 sm:grid-cols-2">
               {candidates.map((c) => (
                 <label key={c.id} className="flex items-center gap-2 text-sm">
@@ -68,7 +96,15 @@ export default function CandidatePicker({
                     type="checkbox"
                     name="only"
                     value={c.slug}
-                    defaultChecked={selected.includes(c.slug)}
+                    checked={checked.has(c.slug)}
+                    onChange={(e) => {
+                      setChecked((prev) => {
+                        const next = new Set(prev);
+                        if (e.target.checked) next.add(c.slug);
+                        else next.delete(c.slug);
+                        return next;
+                      });
+                    }}
                     className="h-4 w-4"
                   />
                   <span className="text-ink-soft">{c.name}</span>

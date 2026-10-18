@@ -166,6 +166,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
       </p>
 
       <CandidatePicker
+        key={candidates.map((c) => c.slug).join(",")}
         candidates={allCandidates}
         selected={candidates.map((c) => c.slug)}
         raceSlug={race.slug}
