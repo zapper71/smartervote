@@ -96,8 +96,7 @@ end $$;
 -- Huntsville. Idempotent — re-running is a no-op.
 -- ---------------------------------------------------------------------
 update issues i
-set applies_to = 'school_board',
-    updated_at = now()
+set applies_to = 'school_board'
 from municipalities m
 where m.id = i.municipality_id
   and m.slug <> 'huntsville'
@@ -158,7 +157,7 @@ where i.id is null;
 -- Rollback (commented — only if you need to undo):
 -- BEGIN;
 -- update issues i
--- set applies_to = 'municipal', updated_at = now()
+-- set applies_to = 'municipal'
 -- from municipalities m
 -- where m.id = i.municipality_id
 --   and m.slug <> 'huntsville'
