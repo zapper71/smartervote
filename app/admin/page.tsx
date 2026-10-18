@@ -198,18 +198,39 @@ export default async function AdminPage({
     error: { message: string } | null;
   };
   let confidenceColumn = true;
-  let positionsResult: PositionRows = await db
-    .from("positions")
-    .select(`${SELECT_BASE},confidence`)
-    .in("status", ["in_review", "published", "draft"]);
-  if (positionsResult.error && /confidence/i.test(positionsResult.error.message)) {
+  // PostgREST caps a single response at 1,000 rows and the queue is well
+  // past that, so page through positions in 1,000-row ranges with a stable
+  // id order (mirrors the importer pagination, 29610b6). The confidence
+  // column is new (migration 22): if it hasn't been run yet the select
+  // fails, so on a confidence-related error the WHOLE fetch restarts without
+  // it — same end behavior as before, all rows resolve to 'medium'.
+  const PAGE_SIZE = 1000;
+  const pages: unknown[][] = [];
+  let positionsError: { message: string } | null = null;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    pages.length = 0;
+    positionsError = null;
+    for (let from = 0; ; from += PAGE_SIZE) {
+      const pageResult: PositionRows = await db
+        .from("positions")
+        .select(`${SELECT_BASE}${confidenceColumn ? ",confidence" : ""}`)
+        .in("status", ["in_review", "published", "draft"])
+        .order("id", { ascending: true })
+        .range(from, from + PAGE_SIZE - 1);
+      if (pageResult.error) {
+        positionsError = pageResult.error;
+        break;
+      }
+      pages.push(pageResult.data ?? []);
+      if (!pageResult.data || pageResult.data.length < PAGE_SIZE) break;
+    }
+    if (!positionsError || !/confidence/i.test(positionsError.message)) break;
     confidenceColumn = false;
-    positionsResult = await db
-      .from("positions")
-      .select(SELECT_BASE)
-      .in("status", ["in_review", "published", "draft"]);
   }
-  const { data, error } = positionsResult;
+  const { data, error } = {
+    data: pages.flat() as unknown[] | null,
+    error: positionsError,
+  };
 
   if (error) {
     return (
