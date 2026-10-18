@@ -7,6 +7,7 @@ import Clampable from "@/components/Clampable";
 import PositionCell from "@/components/PositionCell";
 import WebsiteLink from "@/components/WebsiteLink";
 import WithdrawnPill from "@/components/WithdrawnPill";
+import PartyPill from "@/components/PartyPill";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import {
   CompareFloatingBar,
@@ -234,6 +235,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
                       {c.name}
                     </span>
                   </Link>
+                  <PartyPill party={c.party} />
                   {isWithdrawn(c) && (
                     <span className="ml-2 inline-block align-middle">
                       <WithdrawnPill />
@@ -385,6 +387,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
                           {c.name}
                         </span>
                       </Link>{" "}
+                      <PartyPill party={c.party} />
                       {isWithdrawn(c) && <WithdrawnPill />}
                     </h3>
                     <p className="text-xs">

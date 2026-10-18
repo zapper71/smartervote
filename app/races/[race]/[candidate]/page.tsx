@@ -16,6 +16,7 @@ import CandidateResponse from "@/components/CandidateResponse";
 import PositionCell from "@/components/PositionCell";
 import WebsiteLink from "@/components/WebsiteLink";
 import WithdrawnPill from "@/components/WithdrawnPill";
+import PartyPill from "@/components/PartyPill";
 
 export const revalidate = 300;
 
@@ -104,6 +105,7 @@ export default async function CandidatePage({ params }: Props) {
         <span className={candidate.status === "withdrawn" ? "line-through" : undefined}>
           {candidate.name}
         </span>
+        <PartyPill party={candidate.party} />
       </h1>
       <p className="mt-1 text-ink-soft">
         Candidate for {race.name}

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import WebsiteLink from "@/components/WebsiteLink";
 import WithdrawnPill from "@/components/WithdrawnPill";
+import PartyPill from "@/components/PartyPill";
 import {
   getCandidatesForRace,
   getPositionsForCandidates,
@@ -202,15 +203,7 @@ export default async function RacePage({ params }: Props) {
                   </Link>
                 )}{" "}
                 {c.status === "withdrawn" && <WithdrawnPill />}
-                {/* Party is a provincial-ballot fact (BC districts). Shown in
-                    the site's neutral accent, never a party colour. The
-                    column is new (migration 24): a missing value renders
-                    nothing, never a crash. */}
-                {race.race_type === "provincial_district" && c.party && (
-                  <span className="pill ml-2 bg-accent-light align-middle text-accent">
-                    {c.party}
-                  </span>
-                )}
+                <PartyPill party={c.party} />
               </h3>
               {c.status === "acclaimed" && (
                 <span className="pill mt-2 bg-flag-light text-flag">Acclaimed</span>

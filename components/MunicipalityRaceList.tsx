@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { ExpansionRace } from "@/lib/expansion-index";
 import WithdrawnPill from "@/components/WithdrawnPill";
+import PartyPill from "@/components/PartyPill";
 
 export interface MunicipalityRaceGroup {
   key: string;
@@ -130,9 +131,7 @@ function RaceEntry({
                   </span>
                 </span>
               )}
-              {c.party && (
-                <span className="text-ink-faint"> · {c.party}</span>
-              )}
+              <PartyPill party={c.party} />
               {c.acclaimed && (
                 <span className="ml-1 text-xs font-medium text-flag">
                   Acclaimed

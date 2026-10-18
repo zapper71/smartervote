@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Candidate } from "@/lib/types";
 import WithdrawnPill from "@/components/WithdrawnPill";
+import PartyPill from "@/components/PartyPill";
 
 /**
  * Narrowing, not gating.
@@ -116,6 +117,7 @@ export default function CandidatePicker({
                     >
                       {c.name}
                     </span>{" "}
+                    <PartyPill party={c.party} />
                     {c.status === "withdrawn" && <WithdrawnPill />}
                   </span>
                 </label>
