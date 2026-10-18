@@ -41,12 +41,19 @@ create or replace view public_candidates as
 select c.id, c.race_id, c.name, c.slug, c.status, c.website, c.socials,
        c.photo_url, c.bio, c.incumbent, c.last_reviewed_at,
        r.slug as race_slug, r.name as race_name, r.race_type, r.seats,
-       m.slug as municipality_slug
+       m.slug as municipality_slug,
+       c.verified_links,
+       c.contacted_at,
+       c.responded_at
 from   candidates c
 join   races r          on r.id = c.race_id
 join   municipalities m on m.id = r.municipality_id;
--- NOTE: the `where c.status <> 'withdrawn'` clause from 01_schema.sql is
--- intentionally gone. Withdrawn candidates render with the Withdrawn pill.
+-- NOTE: the `where c.status <> 'withdrawn'` clause is intentionally gone.
+-- Withdrawn candidates render with the Withdrawn pill.
+-- Column list matches the CURRENT live definition (migration 17) exactly —
+-- verified_links / contacted_at / responded_at included. An earlier draft
+-- omitted them and Postgres rejected it with 42P16 (cannot drop columns
+-- from view); fixed 2026-10-18.
 
 drop policy if exists candidates_public_read on candidates;
 create policy candidates_public_read on candidates
