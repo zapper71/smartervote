@@ -10,7 +10,7 @@ export default function NotFound() {
       </p>
       <ul className="mt-4">
         <li>
-          <Link href="/races" className="link">
+          <Link href="/municipalities/huntsville" className="link">
             See all races on the Huntsville ballot
           </Link>
         </li>

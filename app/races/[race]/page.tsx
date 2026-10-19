@@ -89,8 +89,8 @@ export default async function RacePage({ params }: Props) {
             &larr; {municipality.name} races
           </Link>
         ) : (
-          <Link href="/races" className="link">
-            &larr; All races
+          <Link href="/municipalities/huntsville" className="link">
+            &larr; Huntsville races
           </Link>
         )}
       </p>
