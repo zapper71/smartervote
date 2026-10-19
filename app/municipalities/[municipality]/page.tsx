@@ -3,13 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import MunicipalityRaceList, { type MunicipalityRaceGroup } from "@/components/MunicipalityRaceList";
-import RaceCard from "@/components/RaceCard";
 import {
   MUNICIPALITIES,
   RACES_BY_MUNICIPALITY,
   type ExpansionRace,
 } from "@/lib/expansion-index";
-import { getRaceSlugsWithPublishedPositions, getRacesWithCandidates, MUNICIPALITY_SLUG } from "@/lib/queries";
+import { getRaceSlugsWithPublishedPositions } from "@/lib/queries";
 
 export const revalidate = 300;
 
@@ -17,7 +16,7 @@ type Props = { params: Promise<{ municipality: string }> };
 
 export async function generateStaticParams() {
   // Static and database-free: this page works on the preview before
-  // migrations 24–28 exist. Huntsville renders from the database (see below).
+  // migrations 24–28 exist.
   return MUNICIPALITIES.map((m) => ({ municipality: m.slug }));
 }
 
@@ -45,36 +44,6 @@ const GROUPS: { key: string; label: string; types: string[] }[] = [
 
 export default async function MunicipalityPage({ params }: Props) {
   const { municipality: slug } = await params;
-
-  // Huntsville's ballot is database-driven — its races and candidates
-  // change as content is published — so it renders from the database
-  // rather than the static expansion index every other municipality uses.
-  if (slug === MUNICIPALITY_SLUG) {
-    const huntsvilleRaces = await getRacesWithCandidates();
-    if (huntsvilleRaces.length === 0) {
-      return <UnavailableNotice what="The list of races" />;
-    }
-    return (
-      <div>
-        <p className="text-sm">
-          <Link href="/" className="link">
-            &larr; Find your municipality
-          </Link>
-        </p>
-        <h1 className="mt-3 text-3xl">Everything on the Huntsville ballot</h1>
-        <p className="prose-civic mt-3">
-          Every Huntsville elector votes for Mayor, for three District and Town
-          Councillors, for their own ward councillor, and for a school board
-          trustee. That&rsquo;s four separate decisions on one ballot.
-        </p>
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-          {huntsvilleRaces.map((race) => (
-            <RaceCard key={race.id} race={race} />
-          ))}
-        </ul>
-      </div>
-    );
-  }
 
   const muni = MUNICIPALITIES.find((m) => m.slug === slug);
   if (!muni) notFound();
@@ -109,7 +78,7 @@ export default async function MunicipalityPage({ params }: Props) {
     <div>
       <p className="text-sm">
         <Link href="/" className="link">
-          &larr; Find your municipality
+          &larr; Find your {muni.province === "BC" ? "district" : "municipality"}
         </Link>
       </p>
 
