@@ -25,7 +25,7 @@ export default function MethodologyPage() {
       <h2>What this site does</h2>
       <p>
         It puts every candidate in a race side by side on the same issues, in the same
-        format, so you can see where they actually differ. The Town of Huntsville
+        format, so you can see where they actually differ. The authority running an election
         publishes who is running and how to reach them. It does not compare them. That gap
         is the only reason this site exists.
       </p>
@@ -40,27 +40,25 @@ export default function MethodologyPage() {
           SmarterVote has no connection to smartvoting.ca, which is a separate and openly
           partisan strategic-voting site.
         </li>
-        <li>It does not accept advertising, sponsorship, donations or funding.</li>
+        <li>
+          It does not accept advertising, sponsorship or funding. Reader donations toward
+          running costs buy no influence over content.
+        </li>
       </ul>
 
       <h2>Where the information comes from</h2>
       <p>
-        The candidate list is taken from the{" "}
-        <a
-          href="https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/certified-candidates/"
-          className="link"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          Town of Huntsville&rsquo;s certified candidate list
-        </a>
-        . Nominations closed on 21 August 2026 and candidates were certified on 24 August,
-        so that list is final.
+        Candidate lists come from the official source for each election: the authority
+        running it — a municipal clerk, a provincial or territorial election agency, or
+        Elections Canada — publishes the final list of candidates, and that is the list
+        we use.
       </p>
       <p>Positions come from, in order of preference:</p>
       <ul>
         <li>The candidate&rsquo;s own campaign website</li>
         <li>The candidate&rsquo;s own public social media</li>
+        <li>Their answers to a candidate questionnaire</li>
+        <li>Remarks reported from an all-candidates meeting or debate</li>
         <li>Local news reporting, attributed to the outlet and dated</li>
         <li>Anything the candidate sends us directly</li>
       </ul>
@@ -74,9 +72,23 @@ export default function MethodologyPage() {
         position found&rdquo;. There is no third option.
       </p>
       <p>
-        Summaries are drafted with AI assistance and constrained to restate only what the
-        source actually says. Every one is reviewed by a person before it appears. Nothing
-        publishes automatically.
+        Summaries are researched and drafted with AI assistance, and constrained to
+        restate only what the source actually says. Every summary keeps its quote and its
+        source link, so you never have to take a summary&rsquo;s word for anything.
+      </p>
+      <p>
+        Where our confidence is not high — the source is second-hand, the wording is
+        ambiguous, or it isn&rsquo;t clear the words are really the candidate&rsquo;s — a
+        person reviews the summary before it appears. High-confidence summaries, built on
+        a direct quote from an approved source, may appear after automated checks against
+        the source, and are spot-checked.
+      </p>
+      <p>
+        We have not checked most positions with the candidates themselves. Unless a
+        position is marked as confirmed by the candidate, it rests only on their public
+        words — quoted and linked so you can verify it. If you are a candidate and
+        something here is wrong or incomplete, the corrections process is the fastest fix,
+        and candidates are answered first.
       </p>
 
       <h2>How we quote people</h2>
@@ -235,16 +247,16 @@ export default function MethodologyPage() {
       <h2>Links to candidates&rsquo; own pages</h2>
       <p>
         Where we link to a candidate&rsquo;s campaign website, that address comes
-        from the Town&rsquo;s certified candidate list.
+        from the official candidate list for that election.
       </p>
       <p>
-        <strong>We do not guess social media links.</strong> The Town publishes
-        social media as free text &mdash; sometimes a username, sometimes just a
-        page name &mdash; and those are not web addresses. Turning them into
+        <strong>We do not guess social media links.</strong> Official candidate
+        lists publish social media as free text &mdash; sometimes a username, sometimes
+        just a page name &mdash; and those are not web addresses. Turning them into
         addresses means guessing, and a wrong guess doesn&rsquo;t produce a broken
         link; it points a candidate&rsquo;s name at a stranger who happens to share
-        it. A handle on the Town&rsquo;s list is shown here as plain text, exactly
-        as the Town published it, and never as a link.
+        it. A handle on an official candidate list is shown here as plain text,
+        exactly as the authority published it, and never as a link.
       </p>
       <p>A social account becomes a link in only two situations:</p>
       <ul>
@@ -274,8 +286,10 @@ export default function MethodologyPage() {
 
       <h2>The fairness problem, stated plainly</h2>
       <p>
-        Ten of the 28 candidates have campaign websites. Eighteen don&rsquo;t. Nine have
-        neither a website nor a listed social account.
+        Most candidates, in most places, don&rsquo;t have a campaign website. In
+        Huntsville — where this site started — ten of the 28 candidates have one;
+        eighteen don&rsquo;t, and nine have neither a website nor a listed social
+        account. The same pattern shows up in every election this site covers.
       </p>
       <p>
         A site that only summarises what candidates published would quietly punish whoever
@@ -311,19 +325,19 @@ export default function MethodologyPage() {
 
       <h2>Election advertising rules</h2>
       <p>
-        Ontario&rsquo;s <em>Municipal Elections Act, 1996</em> regulates third-party
-        advertising, which it defines as advertising that{" "}
-        <em>promotes, supports or opposes</em> a candidate. The Province&rsquo;s own
-        guidance further states that advertising about an issue rather than a candidate is
-        not third-party advertising.
+        Every election in Canada has rules about third-party advertising — advertising
+        that promotes, supports or opposes a candidate or party. The law differs by
+        election — a municipal elections act, a provincial election act, or the Canada
+        Elections Act federally — but the basic test is the same.
       </p>
       <p>
-        SmarterVote promotes, supports and opposes nobody. It presents what candidates have
-        said about issues, with sources, and makes no recommendation. On that basis we
-        understand it to fall outside the definition of third-party advertising, and
-        SmarterVote is not registered as a third-party advertiser. We&rsquo;re setting that
-        reasoning out publicly so it can be checked rather than assumed. If the Town Clerk
-        or any reader believes we&rsquo;ve got this wrong, please{" "}
+        SmarterVote promotes, supports and opposes nobody. It presents what candidates
+        have said about issues, with sources, and makes no recommendation. On that basis
+        we understand it to fall outside the definition of third-party advertising in the
+        elections we cover, and SmarterVote is not registered as a third-party advertiser
+        in any of them. We&rsquo;re setting that reasoning out publicly so it can be
+        checked rather than assumed. If an election official or any reader believes
+        we&rsquo;ve got this wrong, please{" "}
         <Link href="/corrections" className="link">
           tell us
         </Link>{" "}
@@ -332,34 +346,26 @@ export default function MethodologyPage() {
 
       <h2>Accessibility</h2>
       <p>
-        The site targets WCAG 2.2 Level AA and is built to meet Ontario&rsquo;s AODA
-        requirements. If something here is hard to use with a screen reader, a keyboard, or
+        The site targets WCAG 2.2 Level AA. If something here is hard to use with a screen reader, a keyboard, or
         at high zoom, that&rsquo;s a defect — please report it and it will be fixed.
       </p>
 
       <h2>Who runs this</h2>
       <p>
-        One Huntsville resident, unpaid, with no funding, no advertising and no
-        affiliation. See{" "}
+        One Huntsville resident, unpaid, with no advertising and no affiliation.
+        See{" "}
         <Link href="/about" className="link">
           About
         </Link>
         .
       </p>
 
-      <h2>For official information, go to the Town</h2>
+      <h2>For official information, go to the authority running your election</h2>
       <p>
         This is an independent site. For anything official — registering to vote, how to
-        vote, deadlines, results — always use{" "}
-        <a
-          href="https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/"
-          className="link"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          huntsville.ca
-        </a>
-        .
+        vote, deadlines, results — always use the election authority for your election:
+        your municipal clerk, your provincial or territorial election agency, or
+        Elections Canada.
       </p>
     </div>
   );
