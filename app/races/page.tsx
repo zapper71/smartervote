@@ -6,7 +6,7 @@ import { getRacesWithCandidates } from "@/lib/queries";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "All races",
+  title: "Huntsville races",
   description:
     "Every race on the Town of Huntsville 2026 ballot: mayor, District and Town councillors, ward councillors and school board trustees.",
 };
