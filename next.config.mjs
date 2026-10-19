@@ -2,6 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  async redirects() {
+    return [
+      // /races was Huntsville's ballot page. Huntsville's ballot now lives
+      // with every other municipality's at /municipalities/huntsville, and
+      // /races itself sends people to the home-page finder.
+      { source: "/races", destination: "/", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

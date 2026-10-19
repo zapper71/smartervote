@@ -313,10 +313,7 @@ export default function MunicipalityFinder() {
   );
 }
 
-/**
- * Huntsville's canonical pages are /races/* (unprefixed slugs, unchanged).
- * It never goes through /municipalities/huntsville.
- */
+/** Every municipality's race list lives at /municipalities/<slug>. */
 function municipalityHref(slug: string): string {
-  return slug === "huntsville" ? "/races" : `/municipalities/${slug}`;
+  return `/municipalities/${slug}`;
 }

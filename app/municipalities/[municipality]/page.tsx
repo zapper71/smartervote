@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import MunicipalityRaceList, { type MunicipalityRaceGroup } from "@/components/MunicipalityRaceList";
 import {
@@ -8,7 +8,7 @@ import {
   RACES_BY_MUNICIPALITY,
   type ExpansionRace,
 } from "@/lib/expansion-index";
-import { getRaceSlugsWithPublishedPositions, MUNICIPALITY_SLUG } from "@/lib/queries";
+import { getRaceSlugsWithPublishedPositions } from "@/lib/queries";
 
 export const revalidate = 300;
 
@@ -16,7 +16,7 @@ type Props = { params: Promise<{ municipality: string }> };
 
 export async function generateStaticParams() {
   // Static and database-free: this page works on the preview before
-  // migrations 24–28 exist. Huntsville redirects to /races (see below).
+  // migrations 24–28 exist.
   return MUNICIPALITIES.map((m) => ({ municipality: m.slug }));
 }
 
@@ -44,10 +44,6 @@ const GROUPS: { key: string; label: string; types: string[] }[] = [
 
 export default async function MunicipalityPage({ params }: Props) {
   const { municipality: slug } = await params;
-
-  // Huntsville's canonical pages are /races/* — unprefixed slugs, unchanged
-  // behaviour. This keeps one Huntsville races page instead of two.
-  if (slug === MUNICIPALITY_SLUG) redirect("/races");
 
   const muni = MUNICIPALITIES.find((m) => m.slug === slug);
   if (!muni) notFound();
@@ -82,7 +78,7 @@ export default async function MunicipalityPage({ params }: Props) {
     <div>
       <p className="text-sm">
         <Link href="/" className="link">
-          &larr; Find your municipality
+          &larr; Find your {muni.province === "BC" ? "district" : "municipality"}
         </Link>
       </p>
 

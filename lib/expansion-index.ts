@@ -51,8 +51,8 @@ export const MUNICIPALITIES: ExpansionMunicipality[] = [
     "slug": "huntsville",
     "name": "Huntsville",
     "province": "ON",
-    "raceCount": null,
-    "candidateCount": null
+    "raceCount": 9,
+    "candidateCount": 29
   },
   {
     "slug": "addington-highlands",
@@ -19070,6 +19070,223 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       ],
       "sources": [
         "https://www.howick.ca/news/2026/2026-howick-municipal-election-list-of-certified-candidates"
+      ]
+    }
+  ],
+  "huntsville": [
+    {
+      "slug": "mayor",
+      "name": "Mayor",
+      "raceType": "mayor",
+      "seats": 1,
+      "candidates": [
+        {
+          "name": "Dan Armour",
+          "acclaimed": null
+        },
+        {
+          "name": "Dan Caswell",
+          "acclaimed": null
+        },
+        {
+          "name": "Rebecca Mello",
+          "acclaimed": null
+        },
+        {
+          "name": "Scott Morrison",
+          "acclaimed": null
+        }
+      ],
+      "sources": [
+        "https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/"
+      ]
+    },
+    {
+      "slug": "district-and-town-councillor",
+      "name": "District and Town Councillor",
+      "raceType": "council_at_large",
+      "seats": 3,
+      "candidates": [
+        {
+          "name": "Bob Stone",
+          "acclaimed": null
+        },
+        {
+          "name": "Brian Ellas",
+          "acclaimed": null
+        },
+        {
+          "name": "Helena Renwick",
+          "acclaimed": null
+        },
+        {
+          "name": "James Bowler",
+          "acclaimed": null
+        },
+        {
+          "name": "Leland Maw",
+          "acclaimed": null
+        },
+        {
+          "name": "Peggy Peterson",
+          "acclaimed": null
+        },
+        {
+          "name": "Rod Ward",
+          "acclaimed": null
+        }
+      ],
+      "sources": [
+        "https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/"
+      ]
+    },
+    {
+      "slug": "wards-1-2",
+      "name": "Councillor — Wards 1 & 2",
+      "raceType": "council_ward",
+      "seats": 2,
+      "candidates": [
+        {
+          "name": "Geordie Sabbagh",
+          "acclaimed": null
+        },
+        {
+          "name": "Karin Terziano",
+          "acclaimed": null
+        },
+        {
+          "name": "Louisa Chiaramonte",
+          "acclaimed": null
+        },
+        {
+          "name": "Michael Lowe",
+          "acclaimed": null
+        },
+        {
+          "name": "Rylind Davis",
+          "acclaimed": null
+        },
+        {
+          "name": "Stephen Hernen",
+          "acclaimed": null
+        }
+      ],
+      "sources": [
+        "https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/"
+      ]
+    },
+    {
+      "slug": "wards-3-4-5",
+      "name": "Councillor — Wards 3, 4 & 5",
+      "raceType": "council_ward",
+      "seats": 2,
+      "candidates": [
+        {
+          "name": "Dione Schumacher",
+          "acclaimed": null
+        },
+        {
+          "name": "Jason FitzGerald",
+          "acclaimed": null
+        },
+        {
+          "name": "Tyler Ellis",
+          "acclaimed": null
+        }
+      ],
+      "sources": [
+        "https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/"
+      ]
+    },
+    {
+      "slug": "ward-6",
+      "name": "Councillor — Ward 6",
+      "raceType": "council_ward",
+      "seats": 1,
+      "candidates": [
+        {
+          "name": "Kirsty Koop",
+          "acclaimed": null
+        },
+        {
+          "name": "Michael Ankenmann",
+          "acclaimed": null
+        },
+        {
+          "name": "Monty Clouthier",
+          "acclaimed": null
+        }
+      ],
+      "sources": [
+        "https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/"
+      ]
+    },
+    {
+      "slug": "trustee-tldsb",
+      "name": "School Trustee — Trillium Lakelands DSB",
+      "raceType": "school_board",
+      "seats": 1,
+      "candidates": [
+        {
+          "name": "Bruce Reain",
+          "acclaimed": null
+        },
+        {
+          "name": "Elizabeth Purcell",
+          "acclaimed": null
+        }
+      ],
+      "sources": [
+        "https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/"
+      ]
+    },
+    {
+      "slug": "trustee-smcdsb",
+      "name": "School Trustee — Simcoe Muskoka Catholic DSB (Area 5)",
+      "raceType": "school_board",
+      "seats": 1,
+      "candidates": [
+        {
+          "name": "Joshua Boutotte",
+          "acclaimed": true
+        }
+      ],
+      "sources": [
+        "https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/"
+      ]
+    },
+    {
+      "slug": "trustee-cspne",
+      "name": "Conseiller scolaire — Conseil scolaire public du Nord-Est (Zone A)",
+      "raceType": "school_board",
+      "seats": 1,
+      "candidates": [
+        {
+          "name": "Bruce Cazabon",
+          "acclaimed": true
+        }
+      ],
+      "sources": [
+        "https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/"
+      ]
+    },
+    {
+      "slug": "trustee-monavenir",
+      "name": "Conseiller scolaire — Conseil scolaire catholique MonAvenir",
+      "raceType": "school_board",
+      "seats": 1,
+      "candidates": [
+        {
+          "name": "Donald Blais",
+          "acclaimed": null
+        },
+        {
+          "name": "Innocent Legrand",
+          "acclaimed": null
+        }
+      ],
+      "sources": [
+        "https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/"
       ]
     }
   ],
