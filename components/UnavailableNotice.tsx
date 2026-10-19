@@ -20,18 +20,8 @@ export default function UnavailableNotice({ what = "This information" }: { what?
       <h2 className="text-base text-ink">{what} isn&rsquo;t available right now</h2>
       <p className="mt-2 text-sm leading-relaxed text-ink-soft">
         Something went wrong loading this page. It&rsquo;s a problem on our end, not
-        yours. For official candidate and voting information, go straight to the Town of
-        Huntsville:
-      </p>
-      <p className="mt-3">
-        <a
-          href="https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/certified-candidates/"
-          className="link tap-target text-sm font-medium"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          Certified candidates on huntsville.ca &rarr;
-        </a>
+        yours. For official candidate and voting information, go straight to the official
+        source for your election — the authority running it.
       </p>
 
       {isDev && (
