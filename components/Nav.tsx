@@ -40,7 +40,7 @@ export default function Nav() {
           ))}
                 </ul>
         <a
-          href="https://gofund.me/9b32a40d4"
+          href="https://www.gofundme.com/f/smartervoteca-grow-and-cover-more-elections"
           target="_blank"
           rel="noopener noreferrer"
           className="tap-target rounded-md bg-accent px-4 py-2 text-sm font-medium text-white no-underline hover:bg-accent-hover"

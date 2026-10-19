@@ -32,7 +32,7 @@ export default function Footer() {
             Privacy
           </Link>
                     <a
-            href="https://gofund.me/9b32a40d4"
+            href="https://www.gofundme.com/f/smartervoteca-grow-and-cover-more-elections"
             className="link tap-target"
             rel="noopener noreferrer"
             target="_blank"
