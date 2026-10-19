@@ -10,24 +10,9 @@ export default function NotFound() {
       </p>
       <ul className="mt-4">
         <li>
-          <Link href="/municipalities/huntsville" className="link">
-            See all races on the Huntsville ballot
-          </Link>
-        </li>
-        <li>
           <Link href="/" className="link">
-            Back to the home page
+            Find your municipality or district
           </Link>
-        </li>
-        <li>
-          <a
-            href="https://www.huntsville.ca/council-administration/municipal-and-school-board-elections/"
-            className="link"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Official Town of Huntsville election page
-          </a>
         </li>
       </ul>
     </div>

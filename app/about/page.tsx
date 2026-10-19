@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Who runs SmarterVote, why it's free, and who funds it (nobody).",
+    "Who runs SmarterVote, why it's free, and how it's funded.",
 };
 
 export default function AboutPage() {
@@ -13,8 +13,9 @@ export default function AboutPage() {
       <h1 className="text-3xl text-ink">About SmarterVote</h1>
 
       <p className="mt-4">
-        SmarterVote is a free, non-partisan guide to what candidates actually say. It
-        started in Huntsville, Ontario, for the October 2026 municipal election, because
+        SmarterVote is a free, non-partisan guide to what candidates actually say —
+        now covering the 2026 elections in Ontario and British Columbia. It started in
+        Huntsville, Ontario, for the October 2026 municipal election, because
         the information a voter needs was scattered across two dozen websites, some
         Facebook pages, and a few local news articles — and nowhere could you see two
         candidates for the same seat answering the same question.
@@ -28,10 +29,11 @@ export default function AboutPage() {
 
       <h2>Who funds it</h2>
       <p>
-        Nobody. There is no advertising, no sponsorship, no donations and no grant. The
-        running costs are a domain name and some free hosting tiers, paid personally. If
-        that ever changes, it will be said plainly on this page before anything else
-        changes.
+        No advertising, no sponsorship, no grants. Readers can chip in through GoFundMe
+        to help with running costs; donations are voluntary, buy no influence over
+        content, and are not tax-deductible. Apart from those contributions the costs —
+        a domain name and hosting — are paid personally. If that ever changes, it will
+        be said plainly on this page before anything else changes.
       </p>
 
       <h2>Independence</h2>
@@ -59,10 +61,10 @@ export default function AboutPage() {
 
       <h2>What&rsquo;s next</h2>
       <p>
-        Huntsville is the pilot. If it&rsquo;s useful here, the plan is to extend it to
-        other municipalities, then to provincial and federal elections. Whether that
-        happens depends entirely on whether Huntsville voters find this worth using —
-        so if you have thoughts, please send them.
+        Huntsville was the pilot. SmarterVote now covers municipal elections across
+        Ontario and British Columbia&rsquo;s 2026 provincial election. Whether it extends
+        further — other provinces, federal elections — depends on whether voters keep
+        finding it worth using, so if you have thoughts, please send them.
       </p>
 
       <h2>How it works</h2>
