@@ -7,6 +7,9 @@
  *   ~/workspace/goals/smartervote-national-scale-up-planning/files/bc-2026-candidates.json
  *   ~/workspace/goals/smartervote-national-scale-up-planning/files/expansion/listing-websites.json
  *     (optional; candidate_slug -> own website, from the listings harvest)
+ *   ~/workspace/goals/smartervote-national-scale-up-planning/files/expansion/winners.json
+ *     (optional; candidate_slug -> result_status, from reviewed results —
+ *     migration 41; drives the Elected checkmark in listings)
  * Emits:
  *   lib/expansion-index.ts    (full index — server components only)
  *   lib/expansion-finder.ts   (lightweight finder lists — safe for the client bundle)
@@ -84,6 +87,28 @@ try {
   websiteBySlug = {};
 }
 
+// Winner overlay (migration 41, Andreas 2026-10-23): candidate_slug ->
+// { result_status: 'unofficial' | 'official' }. Same pattern as the
+// website harvest — a missing file means no winners in the index, never
+// a crash and never a guess. Populated from reviewed results only.
+let winnerBySlug = {};
+try {
+  for (const w of loadJson(join(filesDir, "expansion/winners.json"))) {
+    if (
+      w.candidate_slug &&
+      (w.result_status === "unofficial" || w.result_status === "official")
+    )
+      winnerBySlug[w.candidate_slug] = w.result_status;
+  }
+} catch {
+  winnerBySlug = {};
+}
+
+function winnerFields(muniSlug, candName) {
+  const status = winnerBySlug[`${muniSlug}-${slugify(candName)}`];
+  return status ? { winner: true, resultStatus: status } : {};
+}
+
 // municipality -> race label -> { candidates: [], sources: Set }
 const ontario = new Map();
 for (const row of ontarioRows) {
@@ -131,6 +156,7 @@ for (const muniName of [...ontario.keys()].sort((a, b) => a.localeCompare(b))) {
       .map((c) => ({
         ...c,
         website: websiteBySlug[`${muniSlug}-${slugify(c.name)}`] ?? undefined,
+        ...winnerFields(muniSlug, c.name),
       }))
       .sort((a, b) => a.name.localeCompare(b.name));
     candidateCount += candidates.length;
@@ -166,6 +192,7 @@ for (const d of bcDistricts) {
       name: String(c.name ?? "").trim(),
       acclaimed: null, // not in the source data; a null here means unknown, not "no"
       party: String(c.affiliation ?? "").trim() || undefined,
+      ...winnerFields(BC_SLUG, String(c.name ?? "").trim()),
     }))
     .filter((c) => c.name)
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -230,6 +257,14 @@ export interface ExpansionCandidate {
   name: string;
   /** null = unknown (not yet researched), not "not acclaimed". */
   acclaimed: boolean | null;
+  /** True when the candidate withdrew after nomination (listings keep them,
+      struck through with the grey Withdrawn pill). */
+  withdrawn?: boolean;
+  /** True when a recorded winner (migration 41), via the winners overlay
+      (expansion/winners.json). Absent = no result recorded. */
+  winner?: boolean;
+  /** 'unofficial' | 'official' — meaningful only when winner is true. */
+  resultStatus?: "unofficial" | "official";
   party?: string;
   /** The candidate's own website, from the listings harvest. Andreas's rule:
       where a race is listing-only, the candidate's name links to it. */

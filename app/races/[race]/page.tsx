@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import WebsiteLink from "@/components/WebsiteLink";
 import WithdrawnPill from "@/components/WithdrawnPill";
+import WinnerPill from "@/components/WinnerPill";
 import PartyPill from "@/components/PartyPill";
 import {
   getCandidatesForRace,
@@ -203,6 +204,10 @@ export default async function RacePage({ params }: Props) {
                   </Link>
                 )}{" "}
                 {c.status === "withdrawn" && <WithdrawnPill />}
+                <WinnerPill
+                  isWinner={c.is_winner}
+                  resultStatus={c.result_status}
+                />
                 <PartyPill party={c.party} />
               </h3>
               {c.status === "acclaimed" && (

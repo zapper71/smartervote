@@ -28,6 +28,15 @@ export interface ExpansionCandidate {
    * Withdrawn pill. Mirrors candidates.status = 'withdrawn' in the database.
    */
   withdrawn?: boolean;
+  /**
+   * True when this candidate is a recorded winner (migration 41:
+   * candidates.is_winner). Carried into the index by the generator's
+   * winners overlay (expansion/winners.json), keyed by candidate slug.
+   * Absent = no result recorded — never a guess.
+   */
+  winner?: boolean;
+  /** 'unofficial' | 'official' — meaningful only when winner is true. */
+  resultStatus?: "unofficial" | "official";
   party?: string;
   /** The candidate's own website, from the listings harvest. Andreas's rule:
       where a race is listing-only, the candidate's name links to it. */

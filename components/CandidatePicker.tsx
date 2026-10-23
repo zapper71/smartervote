@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Candidate } from "@/lib/types";
 import WithdrawnPill from "@/components/WithdrawnPill";
+import WinnerPill from "@/components/WinnerPill";
 import PartyPill from "@/components/PartyPill";
 
 /**
@@ -119,6 +120,10 @@ export default function CandidatePicker({
                     </span>{" "}
                     <PartyPill party={c.party} />
                     {c.status === "withdrawn" && <WithdrawnPill />}
+                    <WinnerPill
+                      isWinner={c.is_winner}
+                      resultStatus={c.result_status}
+                    />
                   </span>
                 </label>
               ))}
