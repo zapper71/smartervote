@@ -16,6 +16,7 @@ import CandidateResponse from "@/components/CandidateResponse";
 import PositionCell from "@/components/PositionCell";
 import WebsiteLink from "@/components/WebsiteLink";
 import WithdrawnPill from "@/components/WithdrawnPill";
+import WinnerPill from "@/components/WinnerPill";
 import PartyPill from "@/components/PartyPill";
 
 export const revalidate = 300;
@@ -120,6 +121,14 @@ export default async function CandidatePage({ params }: Props) {
       {candidate.status === "withdrawn" && (
         <p className="mt-3">
           <WithdrawnPill />
+        </p>
+      )}
+      {candidate.is_winner && (
+        <p className="mt-3">
+          <WinnerPill
+            isWinner={candidate.is_winner}
+            resultStatus={candidate.result_status}
+          />
         </p>
       )}
 
