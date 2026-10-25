@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { ExpansionRace } from "@/lib/expansion-index";
 import WithdrawnPill from "@/components/WithdrawnPill";
+import WinnerPill from "@/components/WinnerPill";
 import PartyPill from "@/components/PartyPill";
 
 export interface MunicipalityRaceGroup {
@@ -142,6 +143,14 @@ function RaceEntry({
               {c.withdrawn && (
                 <span className="ml-1.5">
                   <WithdrawnPill />
+                </span>
+              )}
+              {/* Winners get the Elected checkmark (migration 41 data,
+                  carried into the static index by the generator's winners
+                  overlay). Absent until results are recorded. */}
+              {c.winner && (
+                <span className="ml-1.5">
+                  <WinnerPill isWinner resultStatus={c.resultStatus} />
                 </span>
               )}
             </li>

@@ -7,6 +7,7 @@ import Clampable from "@/components/Clampable";
 import PositionCell from "@/components/PositionCell";
 import WebsiteLink from "@/components/WebsiteLink";
 import WithdrawnPill from "@/components/WithdrawnPill";
+import WinnerPill from "@/components/WinnerPill";
 import PartyPill from "@/components/PartyPill";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import {
@@ -241,6 +242,14 @@ export default async function ComparePage({ params, searchParams }: Props) {
                       <WithdrawnPill />
                     </span>
                   )}
+                  {c.is_winner && (
+                    <span className="ml-2 inline-block align-middle">
+                      <WinnerPill
+                        isWinner={c.is_winner}
+                        resultStatus={c.result_status}
+                      />
+                    </span>
+                  )}
                   <p className="mt-1 text-xs font-normal">
                     <WebsiteLink
                       website={c.website}
@@ -352,7 +361,11 @@ export default async function ComparePage({ params, searchParams }: Props) {
                     className="font-semibold text-ink no-underline hover:text-accent"
                   >
                     {c.name}
-                  </Link>
+                  </Link>{" "}
+                  <WinnerPill
+                    isWinner={c.is_winner}
+                    resultStatus={c.result_status}
+                  />
                 </h3>
                 <div className="mt-2">
                   <BioCell bio={c.bio} correctionHref={correctionFor(c.name)} />
@@ -389,6 +402,10 @@ export default async function ComparePage({ params, searchParams }: Props) {
                       </Link>{" "}
                       <PartyPill party={c.party} />
                       {isWithdrawn(c) && <WithdrawnPill />}
+                      <WinnerPill
+                        isWinner={c.is_winner}
+                        resultStatus={c.result_status}
+                      />
                     </h3>
                     <p className="text-xs">
                       <WebsiteLink

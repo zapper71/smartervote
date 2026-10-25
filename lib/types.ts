@@ -11,6 +11,18 @@ export type RaceType =
 export type CandidateStatus = "certified" | "withdrawn" | "acclaimed";
 
 /**
+ * How final a recorded win is (migration 41).
+ *
+ *   unofficial  Winner declared on preliminary / election-night results.
+ *               Renders the AMBER checkmark, "Elected — unofficial result".
+ *   official    Certified / final result. Renders the GREEN checkmark,
+ *               "Elected".
+ *
+ * Null on every candidate until a result is recorded for them.
+ */
+export type ResultStatus = "unofficial" | "official";
+
+/**
  * The controlled vocabulary for Position.source_extent. Must match the
  * positions_source_extent_check constraint in 11_source_extent.sql.
  *
@@ -225,6 +237,17 @@ export interface Candidate {
    * as Position.confidence.
    */
   party?: string | null;
+  /**
+   * Election result (migration 41). Optional for the same reason as party:
+   * rows read before the migration runs come back without these fields, and
+   * every consumer must treat a missing value as "no result recorded" and
+   * render no badge — never crash, never guess.
+   */
+  is_winner?: boolean;
+  /** 'unofficial' | 'official' — meaningful only when is_winner is true. */
+  result_status?: ResultStatus | null;
+  /** Where the recorded result came from (authority name and/or URL). */
+  result_source?: string | null;
   /**
    * When we emailed this candidate inviting them to correct or add.
    *

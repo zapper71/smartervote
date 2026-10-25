@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { contestLabel } from "@/lib/dates";
 import type { RaceWithCandidates } from "@/lib/types";
+import WinnerPill from "@/components/WinnerPill";
 
 export default function RaceCard({ race }: { race: RaceWithCandidates }) {
   const count = race.candidates.length;
@@ -35,7 +36,23 @@ export default function RaceCard({ race }: { race: RaceWithCandidates }) {
 
       {count > 0 && (
         <p className="mt-3 text-sm text-ink-faint">
-          {race.candidates.map((c) => c.name).join(" · ")}
+          {race.candidates.map((c, i) => (
+            <span key={c.id}>
+              {i > 0 && " · "}
+              <span className={c.status === "withdrawn" ? "line-through" : undefined}>
+                {c.name}
+              </span>
+              {c.is_winner && (
+                <>
+                  {" "}
+                  <WinnerPill
+                    isWinner={c.is_winner}
+                    resultStatus={c.result_status}
+                  />
+                </>
+              )}
+            </span>
+          ))}
         </p>
       )}
 
