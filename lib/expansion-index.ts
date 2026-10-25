@@ -53315,6 +53315,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Ravi Parmar",
           "acclaimed": null,
+          "winner": true,
+          "resultStatus": "unofficial",
           "party": "BC NDP"
         },
         {
@@ -54967,6 +54969,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Lara Honrado",
           "acclaimed": null,
+          "winner": true,
+          "resultStatus": "unofficial",
           "party": "BC NDP"
         },
         {
