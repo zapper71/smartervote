@@ -1031,6 +1031,45 @@ export async function resolveCorrectionAction(formData: FormData) {
   const status = String(formData.get("status"));
   const note = String(formData.get("resolution_note") ?? "").trim();
 
+  await resolveCorrection(id, status, note);
+}
+
+/**
+ * Per-button actions for the corrections form. The old design read the
+ * decision from the clicked button's name/value pair
+ * (formData.get("status")), which arrives as null whenever the form is
+ * submitted without a submitter — and then threw
+ * "Unexpected status: null" (Digest 4158835799, Oct 24) even though the
+ * admin was signed in. Binding the decision into the action itself
+ * makes a button click carry its decision no matter how the browser
+ * submits the form.
+ */
+export async function acceptCorrectionAction(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id"));
+  const note = String(formData.get("resolution_note") ?? "").trim();
+  await resolveCorrection(id, "accepted", note);
+}
+
+export async function rejectCorrectionAction(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id"));
+  const note = String(formData.get("resolution_note") ?? "").trim();
+  await resolveCorrection(id, "rejected", note);
+}
+
+export async function requestCorrectionInfoAction(formData: FormData) {
+  await requireAdmin();
+  const id = String(formData.get("id"));
+  const note = String(formData.get("resolution_note") ?? "").trim();
+  await resolveCorrection(id, "needs_info", note);
+}
+
+async function resolveCorrection(
+  id: string,
+  status: string,
+  note: string,
+) {
   if (!["accepted", "rejected", "needs_info"].includes(status)) {
     throw new Error(`Unexpected status: ${status}`);
   }

@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getServiceClient } from "@/lib/supabase";
 import { adminEnabled, isSignedIn } from "@/lib/admin-auth";
-import { resolveCorrectionAction } from "../actions";
+import {
+  acceptCorrectionAction,
+  rejectCorrectionAction,
+  requestCorrectionInfoAction,
+  resolveCorrectionAction,
+} from "../actions";
 
 export const metadata: Metadata = {
   title: "Corrections",
@@ -195,22 +200,19 @@ export default async function AdminCorrections({
                 />
                 <div className="mt-3 flex flex-wrap gap-2">
                   <button
-                    name="status"
-                    value="accepted"
+                    formAction={acceptCorrectionAction}
                     className="tap-target rounded-md bg-accent px-4 py-2 text-sm font-medium text-white"
                   >
                     Accept
                   </button>
                   <button
-                    name="status"
-                    value="rejected"
+                    formAction={rejectCorrectionAction}
                     className="tap-target rounded-md border border-paper-edge px-4 py-2 text-sm"
                   >
                     Reject
                   </button>
                   <button
-                    name="status"
-                    value="needs_info"
+                    formAction={requestCorrectionInfoAction}
                     className="tap-target rounded-md border border-paper-edge px-4 py-2 text-sm"
                   >
                     Need more info
