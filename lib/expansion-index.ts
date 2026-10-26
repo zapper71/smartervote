@@ -52953,6 +52953,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Tony Luck",
           "acclaimed": null,
+          "winner": true,
+          "resultStatus": "unofficial",
           "party": "Conservative Party"
         }
       ],
@@ -53682,6 +53684,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Anna Kindy",
           "acclaimed": null,
+          "winner": true,
+          "resultStatus": "unofficial",
           "party": "Conservative Party"
         },
         {
@@ -54033,6 +54037,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Sheldon Clare",
           "acclaimed": null,
+          "winner": true,
+          "resultStatus": "unofficial",
           "party": "Conservative Party"
         }
       ],
@@ -54271,6 +54277,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "David L Williams",
           "acclaimed": null,
+          "winner": true,
+          "resultStatus": "unofficial",
           "party": "Conservative Party"
         },
         {
