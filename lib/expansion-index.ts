@@ -593,7 +593,7 @@ export const MUNICIPALITIES: ExpansionMunicipality[] = [
     "name": "Gravenhurst",
     "province": "ON",
     "raceCount": 14,
-    "candidateCount": 46
+    "candidateCount": 45
   },
   {
     "slug": "greater-madawaska",
@@ -15060,13 +15060,6 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Heidi Lorenz",
           "acclaimed": null
-        },
-        {
-          "name": "Jeff Watson",
-          "acclaimed": null,
-          "winner": true,
-          "resultStatus": "unofficial",
-          "website": "https://watsonformayor.ca"
         },
         {
           "name": "Jo Morphy",
