@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { ExpansionRace } from "@/lib/expansion-index";
 import WithdrawnPill from "@/components/WithdrawnPill";
 import WinnerPill from "@/components/WinnerPill";
+import ResultsNotAvailablePill from "@/components/ResultsNotAvailablePill";
 import PartyPill from "@/components/PartyPill";
 
 export interface MunicipalityRaceGroup {
@@ -59,6 +60,10 @@ function RaceEntry({
 }) {
   const count = race.candidates.length;
   const acclaimedCount = race.candidates.filter((c) => c.acclaimed).length;
+  // Broad results rule (Andreas, 2026-10-27): a race with no flagged
+  // winner in the index carries the "Results not available" tag. It
+  // clears on its own when the index winner patch for that race lands.
+  const hasWinner = race.candidates.some((c) => c.winner);
   // Same rule as Huntsville's RaceCard: a one-horse race has nothing to compare.
   const contested = count > 1 && (race.seats == null || count > race.seats);
   return (
@@ -72,6 +77,7 @@ function RaceEntry({
             {race.name}
           </Link>
         </h3>
+        {!hasWinner && <ResultsNotAvailablePill />}
         {dataLoaded !== null &&
           (dataLoaded ? (
             contested ? (
