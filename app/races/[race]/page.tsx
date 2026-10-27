@@ -70,6 +70,9 @@ export default async function RacePage({ params }: Props) {
 
   const candidates = await getCandidatesForRace(race.id);
   const hasWinner = candidates.some((c) => c.is_winner);
+  const winners = candidates.filter((c) => c.is_winner);
+  const hasAcclaimedWinner =
+    winners.length > 0 && winners.every((c) => c.status === "acclaimed");
   const uncontested = candidates.length > 0 && candidates.length <= race.seats;
 
   // Andreas's listings-tier rule, applied per candidate: a name links out to
@@ -256,6 +259,7 @@ export default async function RacePage({ params }: Props) {
       </p>
       <ResultsSourceNote
         hasWinner={hasWinner}
+        hasAcclaimedWinner={hasAcclaimedWinner}
         source={RESULTS_SOURCES[race.slug] ?? null}
       />
     </div>

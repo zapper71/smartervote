@@ -15,6 +15,17 @@
  * One race carries two source strings for the same source
  * (wilmot-waterloo-catholic-district-school-board-trustee);
  * it maps to the region-wide Waterloo Region Votes page.
+ *
+ * SECOND PASS (2026-10-27): 6 contested races whose recorded
+ * source was headlines/screenshots now link the municipality's
+ * own results page, verified live that day to show the same
+ * winners with all polls reporting (Sault app, Windsor
+ * dashboard). This is a deliberate exception to the
+ * recorded-source-only policy, at Andreas's direction: link
+ * the official page where it verifies the outcome.
+ * The remaining 57 nulls are all acclaimed races, covered by
+ * the footer's "Acclaimed candidates do not have a source"
+ * note instead of a link (see ResultsSourceNote).
  */
 export const RESULTS_SOURCES: Record<string, { label: string; url: string }> = {
   "ajax-conseil-scolaire-catholique-monavenir-trustee": { label: "Poliwave Ontario municipal live results — Ajax", url: "https://www.poliwave.com/ca/on/live/municipal-2026/ajax" },
@@ -412,4 +423,10 @@ export const RESULTS_SOURCES: Record<string, { label: string; url: string }> = {
   "windsor-mayor": { label: "City of Windsor — official live results dashboard", url: "https://results.citywindsor.ca/" },
   "windsor-trustee-conseil-scolaire-viamonde": { label: "SSBCrack — Windsor-Essex election-day trustee roundup", url: "https://news.ssbcrack.com/windsor-essex-election-day-voters-choose-school-board-trustees-and-municipal-leaders/" },
   "windsor-trustee-windsor-essex-catholic-district-school-board-wards-1-and-10": { label: "SSBCrack — Windsor-Essex election-day trustee roundup", url: "https://news.ssbcrack.com/windsor-essex-election-day-voters-choose-school-board-trustees-and-municipal-leaders/" },
+  "sault-ste-marie-mayor": { label: "City of Sault Ste. Marie — 2026 Municipal Election Unofficial Results", url: "https://apps.saultstemarie.ca/electionResults/" },
+  "sault-ste-marie-ward-3": { label: "City of Sault Ste. Marie — 2026 Municipal Election Unofficial Results", url: "https://apps.saultstemarie.ca/electionResults/" },
+  "sault-ste-marie-ward-5": { label: "City of Sault Ste. Marie — 2026 Municipal Election Unofficial Results", url: "https://apps.saultstemarie.ca/electionResults/" },
+  "windsor-councillor-ward-5": { label: "City of Windsor — 2026 Election Results Dashboard", url: "https://results.citywindsor.ca/?option=ward5" },
+  "windsor-trustee-greater-essex-county-district-school-board-wards-1-2-9": { label: "City of Windsor — 2026 Election Results Dashboard", url: "https://results.citywindsor.ca/?option=tep129" },
+  "windsor-trustee-windsor-essex-catholic-district-school-board-wards-6-and-7": { label: "City of Windsor — 2026 Election Results Dashboard", url: "https://results.citywindsor.ca/?option=tec67" },
 };

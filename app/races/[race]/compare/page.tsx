@@ -94,6 +94,9 @@ export default async function ComparePage({ params, searchParams }: Props) {
   const valid = requested.filter((s) => allCandidates.some((c) => c.slug === s));
   const candidates = valid.length > 0 ? allCandidates.filter((c) => valid.includes(c.slug)) : allCandidates;
   const hasWinner = allCandidates.some((c) => c.is_winner);
+  const winners = allCandidates.filter((c) => c.is_winner);
+  const hasAcclaimedWinner =
+    winners.length > 0 && winners.every((c) => c.status === "acclaimed");
   const isFiltered = candidates.length !== allCandidates.length;
 
   const positions = await getPositionsForCandidates(candidates.map((c) => c.id));
@@ -478,6 +481,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
       </div>
       <ResultsSourceNote
         hasWinner={hasWinner}
+        hasAcclaimedWinner={hasAcclaimedWinner}
         source={RESULTS_SOURCES[race.slug] ?? null}
       />
     </div>
