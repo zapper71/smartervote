@@ -5,6 +5,9 @@ import UnavailableNotice from "@/components/UnavailableNotice";
 import WebsiteLink from "@/components/WebsiteLink";
 import WithdrawnPill from "@/components/WithdrawnPill";
 import WinnerPill from "@/components/WinnerPill";
+import ResultsNotAvailablePill from "@/components/ResultsNotAvailablePill";
+import ResultsSourceNote from "@/components/ResultsSourceNote";
+import { RESULTS_SOURCES } from "@/lib/results-sources";
 import PartyPill from "@/components/PartyPill";
 import {
   getCandidatesForRace,
@@ -66,6 +69,7 @@ export default async function RacePage({ params }: Props) {
   const isExpansion = municipality?.slug !== MUNICIPALITY_SLUG;
 
   const candidates = await getCandidatesForRace(race.id);
+  const hasWinner = candidates.some((c) => c.is_winner);
   const uncontested = candidates.length > 0 && candidates.length <= race.seats;
 
   // Andreas's listings-tier rule, applied per candidate: a name links out to
@@ -101,6 +105,11 @@ export default async function RacePage({ params }: Props) {
         <p className="mt-1 text-ink-faint">{race.ward_group_label}</p>
       )}
       <p className="mt-3 text-ink-soft">{contestLabel(candidates.length, race.seats)}</p>
+      {!hasWinner && (
+        <p className="mt-2">
+          <ResultsNotAvailablePill />
+        </p>
+      )}
       {isExpansion && municipality && (
         <p className="mt-2 text-sm text-ink-soft">
           {municipality.name}
@@ -245,6 +254,10 @@ export default async function RacePage({ params }: Props) {
         </Link>
         .
       </p>
+      <ResultsSourceNote
+        hasWinner={hasWinner}
+        source={RESULTS_SOURCES[race.slug] ?? null}
+      />
     </div>
   );
 }

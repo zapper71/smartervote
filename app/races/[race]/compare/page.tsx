@@ -8,6 +8,9 @@ import PositionCell from "@/components/PositionCell";
 import WebsiteLink from "@/components/WebsiteLink";
 import WithdrawnPill from "@/components/WithdrawnPill";
 import WinnerPill from "@/components/WinnerPill";
+import ResultsNotAvailablePill from "@/components/ResultsNotAvailablePill";
+import ResultsSourceNote from "@/components/ResultsSourceNote";
+import { RESULTS_SOURCES } from "@/lib/results-sources";
 import PartyPill from "@/components/PartyPill";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import {
@@ -90,6 +93,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
   const requested = Array.isArray(sp.only) ? sp.only : sp.only ? [sp.only] : [];
   const valid = requested.filter((s) => allCandidates.some((c) => c.slug === s));
   const candidates = valid.length > 0 ? allCandidates.filter((c) => valid.includes(c.slug)) : allCandidates;
+  const hasWinner = allCandidates.some((c) => c.is_winner);
   const isFiltered = candidates.length !== allCandidates.length;
 
   const positions = await getPositionsForCandidates(candidates.map((c) => c.id));
@@ -158,6 +162,11 @@ export default async function ComparePage({ params, searchParams }: Props) {
         {contestLabel(allCandidates.length, race.seats)}
         {race.seats > 1 && ` · you can vote for up to ${race.seats}`}
       </p>
+      {!hasWinner && (
+        <p className="mt-2">
+          <ResultsNotAvailablePill />
+        </p>
+      )}
 
       {/* issues.length, not a hard-coded "ten" — see the candidate page. */}
       <p className="prose-civic mt-4 text-sm">
@@ -467,6 +476,10 @@ export default async function ComparePage({ params, searchParams }: Props) {
           </Link>
         </p>
       </div>
+      <ResultsSourceNote
+        hasWinner={hasWinner}
+        source={RESULTS_SOURCES[race.slug] ?? null}
+      />
     </div>
   );
 }
