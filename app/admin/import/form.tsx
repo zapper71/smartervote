@@ -103,9 +103,6 @@ export function ImportForm() {
           >
             {pending ? "Importing…" : "Validate & import"}
           </button>
-          <a href="/admin" className="link text-sm">
-            Back to the review queue
-          </a>
         </div>
       </form>
 

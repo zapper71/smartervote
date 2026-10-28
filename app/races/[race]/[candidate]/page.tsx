@@ -116,6 +116,11 @@ export default async function CandidatePage({ params }: Props) {
         Candidate for {race.name}
         {race.ward_group_label ? ` · ${race.ward_group_label}` : ""}
       </p>
+      <p className="mt-2 text-sm">
+        <Link href={`/races/${race.slug}/${candidate.slug}/input`} className="link">
+          Are you this candidate? Share your positions &rarr;
+        </Link>
+      </p>
 
       {candidate.status === "acclaimed" && (
         <p className="pill mt-3 bg-flag-light text-flag">

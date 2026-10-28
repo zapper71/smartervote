@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { adminEnabled, isSignedIn } from "@/lib/admin-auth";
 import { AdminDisabled, AdminLogin } from "../gate";
+import AdminNav from "@/components/AdminNav";
 import { ImportForm } from "./form";
 
 export const metadata: Metadata = {
@@ -22,13 +23,18 @@ export default async function ImportPage({
 
   return (
     <div>
-      <h1 className="text-3xl">Import</h1>
-      <p className="mt-1 max-w-2xl text-sm text-ink-soft">
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="text-3xl">Import</h1>
+          <p className="mt-1 max-w-2xl text-sm text-ink-soft">
         Paste staged content as JSON. Every row lands in the review queue as{" "}
         <em>in review</em> — nothing here publishes anything. Duplicates are
         skipped, not overwritten, and every problem is reported below instead of
         failing silently.
-      </p>
+          </p>
+        </div>
+        <AdminNav current="import" />
+      </div>
       <ImportForm />
     </div>
   );

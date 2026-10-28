@@ -6,7 +6,6 @@ import {
   approveAction,
   approveResponseAction,
   bulkApproveCandidateAction,
-  logoutAction,
   rejectAction,
   rejectResponseAction,
   setConfidenceAction,
@@ -16,6 +15,7 @@ import {
 } from "./actions";
 import { formatShortDate } from "@/lib/dates";
 import ConfidencePill from "@/components/ConfidencePill";
+import AdminNav from "@/components/AdminNav";
 import { AcceptAllForm } from "./accept-all-form";
 import {
   allowedExtents,
@@ -338,25 +338,7 @@ export default async function AdminPage({
             rejected
           </p>
         </div>
-        <div className="flex gap-2">
-          <a
-            href="/admin/import"
-            className="tap-target rounded-md border border-paper-edge px-3 py-2 text-sm no-underline text-ink"
-          >
-            Import
-          </a>
-          <a
-            href="/admin/corrections"
-            className="tap-target rounded-md border border-paper-edge px-3 py-2 text-sm no-underline text-ink"
-          >
-            Corrections
-          </a>
-          <form action={logoutAction}>
-            <button className="tap-target rounded-md border border-paper-edge px-3 py-2 text-sm">
-              Sign out
-            </button>
-          </form>
-        </div>
+        <AdminNav current="review" />
       </div>
 
       <div className="mt-6 flex flex-wrap gap-2 text-sm">

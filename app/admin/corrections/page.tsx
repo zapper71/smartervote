@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getServiceClient } from "@/lib/supabase";
 import { adminEnabled, isSignedIn } from "@/lib/admin-auth";
 import { resolveCorrectionAction } from "../actions";
+import AdminNav from "@/components/AdminNav";
 
 export const metadata: Metadata = {
   title: "Corrections",
@@ -92,12 +93,7 @@ export default async function AdminCorrections({
             )}
           </p>
         </div>
-        <Link
-          href="/admin"
-          className="tap-target rounded-md border border-paper-edge px-3 py-2 text-sm no-underline text-ink"
-        >
-          Position queue
-        </Link>
+        <AdminNav current="corrections" />
       </div>
 
       <div className="mt-6 flex gap-2 text-sm">
