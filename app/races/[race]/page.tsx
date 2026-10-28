@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import WebsiteLink from "@/components/WebsiteLink";
+import CandidateEmail from "@/components/CandidateEmail";
 import WithdrawnPill from "@/components/WithdrawnPill";
 import WinnerPill from "@/components/WinnerPill";
 import ResultsNotAvailablePill from "@/components/ResultsNotAvailablePill";
@@ -222,6 +223,7 @@ export default async function RacePage({ params }: Props) {
                 />
                 <PartyPill party={c.party} />
               </h3>
+              {c.email && <CandidateEmail email={c.email} />}
               {c.status === "acclaimed" && (
                 <span className="pill mt-2 bg-flag-light text-flag">Acclaimed</span>
               )}

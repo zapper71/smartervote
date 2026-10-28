@@ -220,6 +220,12 @@ export interface Candidate {
   status: CandidateStatus;
   /** Published as a URL by the Town on the certified candidate list. Safe to link. */
   website: string | null;
+  /**
+   * Email from the certified candidate list (column since 01_schema,
+   * only now surfaced in the UI). Displayed below the name via
+   * CandidateEmail; renders nothing when null.
+   */
+  email?: string | null;
   /** Free text from the Town. NEVER linked — see Socials above. */
   socials: Socials;
   /** Human-verified social URLs. The only social links the site renders. */

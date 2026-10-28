@@ -12,6 +12,7 @@ import ResultsNotAvailablePill from "@/components/ResultsNotAvailablePill";
 import ResultsSourceNote from "@/components/ResultsSourceNote";
 import { RESULTS_SOURCES } from "@/lib/results-sources";
 import PartyPill from "@/components/PartyPill";
+import CandidateEmail from "@/components/CandidateEmail";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import {
   CompareFloatingBar,
@@ -262,6 +263,12 @@ export default async function ComparePage({ params, searchParams }: Props) {
                       />
                     </span>
                   )}
+                  {c.email && (
+                    <CandidateEmail
+                      email={c.email}
+                      className="mt-1 text-xs font-normal"
+                    />
+                  )}
                   <p className="mt-1 text-xs font-normal">
                     <WebsiteLink
                       website={c.website}
@@ -379,6 +386,9 @@ export default async function ComparePage({ params, searchParams }: Props) {
                     resultStatus={c.result_status}
                   />
                 </h3>
+                {c.email && (
+                  <CandidateEmail email={c.email} className="mt-1 text-xs" />
+                )}
                 <div className="mt-2">
                   <BioCell bio={c.bio} correctionHref={correctionFor(c.name)} />
                 </div>
@@ -419,6 +429,9 @@ export default async function ComparePage({ params, searchParams }: Props) {
                         resultStatus={c.result_status}
                       />
                     </h3>
+                    {c.email && (
+                      <CandidateEmail email={c.email} className="text-xs" />
+                    )}
                     <p className="text-xs">
                       <WebsiteLink
                       website={c.website}
