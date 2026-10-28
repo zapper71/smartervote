@@ -2653,7 +2653,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Kristy McDonald",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Malcolm Andre Barrington",
@@ -2698,7 +2698,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Nancy Henry",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
@@ -2723,7 +2723,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Nick Papalambropoulos",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Santosh Gaddam",
@@ -2756,7 +2756,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Marilyn Crawford",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Richard Hinds",
@@ -2785,7 +2785,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Rob Tyler-Morin",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Stephen Sullivan",
@@ -2822,7 +2822,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Ranjith Paranivasagam",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Sterling Lee",
@@ -2863,7 +2863,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Stephanie Ashton",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
@@ -14303,7 +14303,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Esther Childs",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Louise Clodd",
@@ -14883,7 +14883,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "WELKER, Heidi",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
@@ -14900,7 +14900,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "KELLAM, David",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "LATNER, Anita",
@@ -14929,7 +14929,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "LEMOINE, Carol Ann",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
@@ -14946,7 +14946,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "JORGENSEN, Randy",
           "acclaimed": true,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
@@ -14967,7 +14967,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "KILBOURNE, Tina",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
@@ -14992,19 +14992,19 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Jaden Hollingshead",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Penny Varney",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Sandy Cairns",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
@@ -15052,7 +15052,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "CHILDS, Esther",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "CLODD, Louise",
@@ -15097,7 +15097,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "WATSON, Jeff",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial",
+          "resultStatus": "official",
           "website": "https://watsonformayor.ca"
         }
       ],
@@ -19414,7 +19414,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Scott Morrison",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
@@ -19431,7 +19431,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Bob Stone",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Brian Ellas",
@@ -19441,13 +19441,13 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Helena Renwick",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "James Bowler",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Leland Maw",
@@ -19476,13 +19476,13 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Geordie Sabbagh",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Karin Terziano",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Louisa Chiaramonte",
@@ -19515,13 +19515,13 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Dione Schumacher",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Jason FitzGerald",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Tyler Ellis",
@@ -19546,7 +19546,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Michael Ankenmann",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Monty Clouthier",
@@ -19571,7 +19571,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Elizabeth Purcell",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
@@ -22875,7 +22875,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Elizabeth Purcell",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
@@ -29899,7 +29899,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Esther Childs",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Louise Clodd",
@@ -51999,7 +51999,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Kristopher Wilkinson",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial",
+          "resultStatus": "official",
           "website": "https://kris4wilmot.com"
         },
         {
@@ -52035,7 +52035,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Stewart Cressman",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
@@ -52060,7 +52060,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Michael Roth",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
@@ -52077,7 +52077,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Harvir Sidhu",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Kevin Sundberg",
@@ -52114,13 +52114,13 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Scott Dunstall",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Steven Martin",
           "acclaimed": false,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
