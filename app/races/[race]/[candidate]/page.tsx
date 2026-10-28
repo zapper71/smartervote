@@ -18,6 +18,7 @@ import WebsiteLink from "@/components/WebsiteLink";
 import WithdrawnPill from "@/components/WithdrawnPill";
 import WinnerPill from "@/components/WinnerPill";
 import PartyPill from "@/components/PartyPill";
+import CandidateEmail from "@/components/CandidateEmail";
 
 export const revalidate = 300;
 
@@ -108,6 +109,9 @@ export default async function CandidatePage({ params }: Props) {
         </span>
         <PartyPill party={candidate.party} />
       </h1>
+      {candidate.email && (
+        <CandidateEmail email={candidate.email} className="mt-1 text-base" />
+      )}
       <p className="mt-1 text-ink-soft">
         Candidate for {race.name}
         {race.ward_group_label ? ` · ${race.ward_group_label}` : ""}
