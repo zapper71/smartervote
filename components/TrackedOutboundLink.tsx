@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import type { OutboundDestination } from "@/lib/outbound-destinations";
 
 /**
  * An outbound link that counts the click, anonymously, in aggregate.
@@ -18,35 +19,6 @@ import type { ReactNode } from "react";
  * (so local dev and previews don't pollute the counts) and on /admin
  * pages (internal use, not voter traffic).
  */
-
-export type OutboundDestination =
-  | "source"
-  | "website"
-  | "facebook"
-  | "instagram"
-  | "youtube"
-  | "linkedin"
-  | "tiktok"
-  | "email"
-  | "other";
-
-/** Map a verified-link platform string to its click-count bucket. */
-export function platformToDestination(platform: string): OutboundDestination {
-  switch (platform.toLowerCase()) {
-    case "facebook":
-      return "facebook";
-    case "instagram":
-      return "instagram";
-    case "youtube":
-      return "youtube";
-    case "linkedin":
-      return "linkedin";
-    case "tiktok":
-      return "tiktok";
-    default:
-      return "other";
-  }
-}
 
 export default function TrackedOutboundLink({
   href,

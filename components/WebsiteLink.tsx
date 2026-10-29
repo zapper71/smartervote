@@ -1,7 +1,6 @@
 import type { Socials, VerifiedLink } from "@/lib/types";
-import TrackedOutboundLink, {
-  platformToDestination,
-} from "@/components/TrackedOutboundLink";
+import TrackedOutboundLink from "@/components/TrackedOutboundLink";
+import { platformToDestination } from "@/lib/outbound-destinations";
 
 /**
  * Everywhere a candidate is listed, this shows how to reach them directly:
