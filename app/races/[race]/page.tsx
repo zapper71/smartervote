@@ -166,7 +166,7 @@ export default async function RacePage({ params }: Props) {
         positionsForRace.length === 0 &&
         candidates.length > 1 && (
           <p className="mt-8 rounded-lg border border-paper-edge bg-paper-warm px-4 py-3 text-sm text-ink-soft">
-            This riding does not have a deep-dive analysis done for it.
+            This race does not have a deep-dive analysis done for it.
             The candidates - and their websites where we have them - are
             listed below.
           </p>
