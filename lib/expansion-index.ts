@@ -1488,8 +1488,8 @@ export const MUNICIPALITIES: ExpansionMunicipality[] = [
     "slug": "sault-ste-marie",
     "name": "Sault Ste. Marie",
     "province": "ON",
-    "raceCount": 25,
-    "candidateCount": 70
+    "raceCount": 16,
+    "candidateCount": 54
   },
   {
     "slug": "scugog",
@@ -40310,150 +40310,6 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       ]
     },
     {
-      "slug": "sault-ste-marie-trustee-algoma-dsb-ward-1",
-      "name": "Trustee - Algoma DSB Ward 1",
-      "raceType": "school_board",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Norman Fera",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "unofficial"
-        }
-      ],
-      "sources": [
-        "https://saultstemarie.ca/government/municipal-elections/2026-candidates/"
-      ]
-    },
-    {
-      "slug": "sault-ste-marie-trustee-algoma-dsb-ward-2",
-      "name": "Trustee - Algoma DSB Ward 2",
-      "raceType": "school_board",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Jesse Balanyk",
-          "acclaimed": null
-        },
-        {
-          "name": "Michelle Murphy",
-          "acclaimed": null,
-          "winner": true,
-          "resultStatus": "unofficial"
-        }
-      ],
-      "sources": [
-        "https://saultstemarie.ca/government/municipal-elections/2026-candidates/"
-      ]
-    },
-    {
-      "slug": "sault-ste-marie-trustee-algoma-dsb-ward-3",
-      "name": "Trustee - Algoma DSB Ward 3",
-      "raceType": "school_board",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Greg Bowman",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "unofficial"
-        }
-      ],
-      "sources": [
-        "https://saultstemarie.ca/government/municipal-elections/2026-candidates/"
-      ]
-    },
-    {
-      "slug": "sault-ste-marie-trustee-algoma-dsb-ward-4",
-      "name": "Trustee - Algoma DSB Ward 4",
-      "raceType": "school_board",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Sara McCleary",
-          "acclaimed": null,
-          "winner": true,
-          "resultStatus": "unofficial"
-        },
-        {
-          "name": "Tim Marsh",
-          "acclaimed": null
-        }
-      ],
-      "sources": [
-        "https://saultstemarie.ca/government/municipal-elections/2026-candidates/"
-      ]
-    },
-    {
-      "slug": "sault-ste-marie-trustee-algoma-dsb-ward-5",
-      "name": "Trustee - Algoma DSB Ward 5",
-      "raceType": "school_board",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Nicholas Apostle",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "unofficial"
-        }
-      ],
-      "sources": [
-        "https://saultstemarie.ca/government/municipal-elections/2026-candidates/"
-      ]
-    },
-    {
-      "slug": "sault-ste-marie-trustee-algoma-dsb-prince-township-and-sault-north-locality",
-      "name": "Trustee - Algoma DSB, Prince Township and Sault North Locality",
-      "raceType": "school_board",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Sheryl Evans",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "unofficial"
-        }
-      ],
-      "sources": [
-        "https://saultstemarie.ca/government/municipal-elections/2026-candidates/"
-      ]
-    },
-    {
-      "slug": "sault-ste-marie-trustee-conseil-scolaire-catholique-du-nouvel-ontario",
-      "name": "Trustee - Conseil scolaire catholique du Nouvel-Ontario",
-      "raceType": "school_board",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Suzanne Salituri (LeClair)",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "unofficial"
-        }
-      ],
-      "sources": [
-        "https://saultstemarie.ca/government/municipal-elections/2026-candidates/"
-      ]
-    },
-    {
-      "slug": "sault-ste-marie-trustee-conseil-scolaire-du-grand-nord",
-      "name": "Trustee - Conseil scolaire du Grand Nord",
-      "raceType": "school_board",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Danielle Valiquette",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "unofficial"
-        }
-      ],
-      "sources": [
-        "https://saultstemarie.ca/government/municipal-elections/2026-candidates/"
-      ]
-    },
-    {
       "slug": "sault-ste-marie-trustee-district-ssm-social-services-administration-board-representing-sault-north",
       "name": "Trustee - District SSM Social Services Administration Board representing Sault North",
       "raceType": "school_board",
@@ -40470,53 +40326,6 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Shauna DiGasparro",
           "acclaimed": null
-        }
-      ],
-      "sources": [
-        "https://saultstemarie.ca/government/municipal-elections/2026-candidates/"
-      ]
-    },
-    {
-      "slug": "sault-ste-marie-trustee-huron-superior-catholic-dsb",
-      "name": "Trustee - Huron Superior Catholic DSB",
-      "raceType": "school_board",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Carol Amadio",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "unofficial"
-        },
-        {
-          "name": "John Bruno",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "unofficial"
-        },
-        {
-          "name": "John Caputo",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "unofficial"
-        },
-        {
-          "name": "Sandra P. Turco",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "unofficial"
-        },
-        {
-          "name": "Tony D'Agostino",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "unofficial"
-        },
-        {
-          "name": "Wayne Greco",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "unofficial"
         }
       ],
       "sources": [
