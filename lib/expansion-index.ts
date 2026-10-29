@@ -564,8 +564,8 @@ export const MUNICIPALITIES: ExpansionMunicipality[] = [
     "slug": "georgian-bay",
     "name": "Georgian Bay",
     "province": "ON",
-    "raceCount": 18,
-    "candidateCount": 29
+    "raceCount": 12,
+    "candidateCount": 20
   },
   {
     "slug": "georgian-bluffs",
@@ -14020,85 +14020,6 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
   "georgian-bay": [
     {
       "slug": "georgian-bay-councillor-ward-1",
-      "name": "Councillor - Ward 1",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Steven Predko",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "official",
-          "website": "https://steve.predko.ca"
-        }
-      ],
-      "sources": [
-        "https://www.gbtownship.ca/township-hall/mayor-and-council/election/"
-      ]
-    },
-    {
-      "slug": "georgian-bay-councillor-ward-2",
-      "name": "Councillor - Ward 2",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Stephen Jarvis",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "official"
-        }
-      ],
-      "sources": [
-        "https://www.gbtownship.ca/township-hall/mayor-and-council/election/"
-      ]
-    },
-    {
-      "slug": "georgian-bay-councillor-ward-3",
-      "name": "Councillor - Ward 3",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Kristian Graziano",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "official",
-          "website": "https://tgbcouncillor.ca"
-        }
-      ],
-      "sources": [
-        "https://www.gbtownship.ca/township-hall/mayor-and-council/election/"
-      ]
-    },
-    {
-      "slug": "georgian-bay-councillor-ward-4",
-      "name": "Councillor - Ward 4",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Allan Hazelton",
-          "acclaimed": null,
-          "website": "https://allanhazelton.ca"
-        },
-        {
-          "name": "Darren Demera",
-          "acclaimed": null,
-          "winner": true,
-          "resultStatus": "official"
-        },
-        {
-          "name": "Susan Hunter",
-          "acclaimed": null
-        }
-      ],
-      "sources": [
-        "https://www.gbtownship.ca/township-hall/mayor-and-council/election/"
-      ]
-    },
-    {
-      "slug": "georgian-bay-councillor-ward-1",
       "name": "Councillor Ward 1",
       "raceType": "council_ward",
       "seats": null,
@@ -14174,45 +14095,6 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       ],
       "sources": [
         "https://media-003-ca.cdn.govstack.com/gbtownship-ca/media/eqmjhndg/certified-list-of-candidates-2026.pdf"
-      ]
-    },
-    {
-      "slug": "georgian-bay-district-councillor-wards-1-and-3",
-      "name": "District Councillor - Wards 1 and 3",
-      "raceType": "council_at_large",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Brian Bochek",
-          "acclaimed": null
-        },
-        {
-          "name": "Laurie Russell",
-          "acclaimed": null,
-          "winner": true,
-          "resultStatus": "official",
-          "website": "https://laurierussell.ca"
-        }
-      ],
-      "sources": [
-        "https://www.gbtownship.ca/township-hall/mayor-and-council/election/"
-      ]
-    },
-    {
-      "slug": "georgian-bay-district-councillor-wards-2-and-4",
-      "name": "District Councillor - Wards 2 and 4",
-      "raceType": "council_at_large",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Rod Northey",
-          "acclaimed": true,
-          "winner": true,
-          "resultStatus": "official"
-        }
-      ],
-      "sources": [
-        "https://www.gbtownship.ca/township-hall/mayor-and-council/election/"
       ]
     },
     {
