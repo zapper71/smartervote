@@ -6,6 +6,8 @@
  * renders as a mailto link so voters can contact the candidate.
  * Renders nothing when no email is on file.
  */
+import TrackedOutboundLink from "@/components/TrackedOutboundLink";
+
 export default function CandidateEmail({
   email,
   className = "mt-1 text-sm",
@@ -16,9 +18,13 @@ export default function CandidateEmail({
   if (!email) return null;
   return (
     <p className={className}>
-      <a className="link break-all" href={`mailto:${email}`}>
+      <TrackedOutboundLink
+        className="link break-all"
+        href={`mailto:${email}`}
+        destination="email"
+      >
         {email}
-      </a>
+      </TrackedOutboundLink>
     </p>
   );
 }
