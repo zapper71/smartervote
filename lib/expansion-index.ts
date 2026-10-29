@@ -6150,7 +6150,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "acclaimed": false,
           "winner": true,
           "resultStatus": "unofficial",
-          "website": "https://votesutherland.com"
+          "website": "https://votetatiana.ca"
         }
       ],
       "sources": [
@@ -6181,7 +6181,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Tatiana Sutherland",
           "acclaimed": null,
-          "website": "https://votesutherland.com"
+          "website": "https://votetatiana.ca"
         }
       ],
       "sources": [
