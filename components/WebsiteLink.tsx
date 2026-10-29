@@ -1,4 +1,7 @@
 import type { Socials, VerifiedLink } from "@/lib/types";
+import TrackedOutboundLink, {
+  platformToDestination,
+} from "@/components/TrackedOutboundLink";
 
 /**
  * Everywhere a candidate is listed, this shows how to reach them directly:
@@ -105,8 +108,9 @@ export default function WebsiteLink({
   return (
     <span className={`inline-flex flex-wrap items-baseline gap-x-3 gap-y-1 ${className}`}>
       {website && (
-        <a
+        <TrackedOutboundLink
           href={website}
+          destination="website"
           className="link"
           rel="noopener noreferrer nofollow"
           target="_blank"
@@ -119,14 +123,15 @@ export default function WebsiteLink({
           <span aria-hidden="true" className="ml-0.5 text-xs">
             ↗
           </span>
-        </a>
+        </TrackedOutboundLink>
       )}
 
       {/* Verified links: a person opened these and confirmed the identity. */}
       {verified.map((l) => (
-        <a
+        <TrackedOutboundLink
           key={l.url}
           href={l.url}
+          destination={platformToDestination(l.platform ?? "")}
           className="link"
           rel="noopener noreferrer nofollow"
           target="_blank"
@@ -139,7 +144,7 @@ export default function WebsiteLink({
           <span aria-hidden="true" className="ml-0.5 text-xs">
             ↗
           </span>
-        </a>
+        </TrackedOutboundLink>
       ))}
 
       {/* Unverified: the Town's free text, shown as text. Never a link.

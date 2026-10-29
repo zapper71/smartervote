@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import ConfidencePill from "@/components/ConfidencePill";
+import TrackedOutboundLink from "@/components/TrackedOutboundLink";
 import { formatShortDate } from "@/lib/dates";
 import type { Position } from "@/lib/types";
 
@@ -86,14 +87,15 @@ function SourceLine({ p }: { p: Position }) {
     <p className="mt-2 text-xs text-ink-faint">
       Source:{" "}
       {p.source_url ? (
-        <a
+        <TrackedOutboundLink
           href={p.source_url}
+          destination="source"
           className="link"
           rel="noopener noreferrer nofollow"
           target="_blank"
         >
           {p.source_title ?? p.source_url}
-        </a>
+        </TrackedOutboundLink>
       ) : (
         (p.source_title ?? "—")
       )}
