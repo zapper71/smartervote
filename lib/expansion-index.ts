@@ -39034,7 +39034,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "West, David",
           "acclaimed": null,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
@@ -39078,13 +39078,13 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Dimeo, Joseph",
           "acclaimed": true,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         },
         {
           "name": "Iafrate, Maria",
           "acclaimed": true,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
