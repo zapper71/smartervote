@@ -242,8 +242,8 @@ export const MUNICIPALITIES: ExpansionMunicipality[] = [
     "slug": "bracebridge",
     "name": "Bracebridge",
     "province": "ON",
-    "raceCount": 21,
-    "candidateCount": 38
+    "raceCount": 16,
+    "candidateCount": 30
   },
   {
     "slug": "bradford-west-gwillimbury",
@@ -592,8 +592,8 @@ export const MUNICIPALITIES: ExpansionMunicipality[] = [
     "slug": "gravenhurst",
     "name": "Gravenhurst",
     "province": "ON",
-    "raceCount": 14,
-    "candidateCount": 45
+    "raceCount": 9,
+    "candidateCount": 32
   },
   {
     "slug": "greater-madawaska",
@@ -6018,98 +6018,6 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
     }
   ],
   "bracebridge": [
-    {
-      "slug": "bracebridge-councillor-ward-1-bracebridge",
-      "name": "Councillor - Ward 1 (Bracebridge)",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Brian Koehn",
-          "acclaimed": null
-        },
-        {
-          "name": "Debbie Vernon",
-          "acclaimed": null,
-          "website": "https://electdebbievernon.com"
-        }
-      ],
-      "sources": [
-        "https://www.bracebridgevotes.ca/voters/meet-the-candidates-certified/"
-      ]
-    },
-    {
-      "slug": "bracebridge-councillor-ward-2-monck-muskoka",
-      "name": "Councillor - Ward 2 (Monck/Muskoka)",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Barry Hammond",
-          "acclaimed": true
-        }
-      ],
-      "sources": [
-        "https://www.bracebridgevotes.ca/voters/meet-the-candidates-certified/"
-      ]
-    },
-    {
-      "slug": "bracebridge-councillor-ward-3-macaulay",
-      "name": "Councillor - Ward 3 (Macaulay)",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Andrew Struthers",
-          "acclaimed": null,
-          "website": "https://electstruthers.ca"
-        },
-        {
-          "name": "Donna Kearney",
-          "acclaimed": null,
-          "website": "https://msmconnect.ca"
-        }
-      ],
-      "sources": [
-        "https://www.bracebridgevotes.ca/voters/meet-the-candidates-certified/"
-      ]
-    },
-    {
-      "slug": "bracebridge-councillor-ward-4-draper",
-      "name": "Councillor - Ward 4 (Draper)",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Cindy Waters",
-          "acclaimed": null,
-          "website": "https://cindywaters.ca"
-        },
-        {
-          "name": "Laura Craig",
-          "acclaimed": null,
-          "website": "https://lauracraig.ca"
-        }
-      ],
-      "sources": [
-        "https://www.bracebridgevotes.ca/voters/meet-the-candidates-certified/"
-      ]
-    },
-    {
-      "slug": "bracebridge-councillor-ward-5-oakley",
-      "name": "Councillor - Ward 5 (Oakley)",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Barb McMurray",
-          "acclaimed": true
-        }
-      ],
-      "sources": [
-        "https://www.bracebridgevotes.ca/voters/meet-the-candidates-certified/"
-      ]
-    },
     {
       "slug": "bracebridge-councillor-ward-1-bracebridge",
       "name": "Councillor Ward 1 (Bracebridge)",
@@ -14691,138 +14599,29 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
   "gravenhurst": [
     {
       "slug": "gravenhurst-councillor-ward-1",
-      "name": "Councillor - Ward 1",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Brad Rundle",
-          "acclaimed": null
-        },
-        {
-          "name": "Elizabeth Shannon",
-          "acclaimed": null
-        },
-        {
-          "name": "Erin Gauthier",
-          "acclaimed": null
-        },
-        {
-          "name": "Gordie Merton",
-          "acclaimed": null,
-          "website": "https://gordiemerton.ca"
-        },
-        {
-          "name": "Heidi Welker",
-          "acclaimed": null
-        }
-      ],
-      "sources": [
-        "https://www.gravenhurst.ca/gravenhurst-votes/candidate-profiles/"
-      ]
-    },
-    {
-      "slug": "gravenhurst-councillor-ward-2",
-      "name": "Councillor - Ward 2",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Anita Latner",
-          "acclaimed": null
-        },
-        {
-          "name": "David Kellam",
-          "acclaimed": null
-        },
-        {
-          "name": "Stephen Sims",
-          "acclaimed": null,
-          "website": "https://stephensims4ward2.com"
-        }
-      ],
-      "sources": [
-        "https://www.gravenhurst.ca/gravenhurst-votes/candidate-profiles/"
-      ]
-    },
-    {
-      "slug": "gravenhurst-councillor-ward-3",
-      "name": "Councillor - Ward 3",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Carol Ann LeMoine",
-          "acclaimed": null
-        },
-        {
-          "name": "Larry Brassard",
-          "acclaimed": null,
-          "website": "https://msmconnect.ca"
-        }
-      ],
-      "sources": [
-        "https://www.gravenhurst.ca/gravenhurst-votes/candidate-profiles/"
-      ]
-    },
-    {
-      "slug": "gravenhurst-councillor-ward-4",
-      "name": "Councillor - Ward 4",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Randy Jorgensen",
-          "acclaimed": true
-        }
-      ],
-      "sources": [
-        "https://www.gravenhurst.ca/gravenhurst-votes/candidate-profiles/"
-      ]
-    },
-    {
-      "slug": "gravenhurst-councillor-ward-5",
-      "name": "Councillor - Ward 5",
-      "raceType": "council_ward",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Samantha Renee Ennest",
-          "acclaimed": null
-        },
-        {
-          "name": "Tina Kilbourne",
-          "acclaimed": null
-        }
-      ],
-      "sources": [
-        "https://www.gravenhurst.ca/gravenhurst-votes/candidate-profiles/"
-      ]
-    },
-    {
-      "slug": "gravenhurst-councillor-ward-1",
       "name": "Councillor (Ward 1)",
       "raceType": "council_ward",
       "seats": null,
       "candidates": [
         {
-          "name": "GAUTHIER, Erin",
+          "name": "Erin Gauthier",
           "acclaimed": false
         },
         {
-          "name": "MERTON, Gordie",
+          "name": "Gordie Merton",
+          "website": "https://gordiemerton.ca",
           "acclaimed": false
         },
         {
-          "name": "RUNDLE, Brad",
+          "name": "Brad Rundle",
           "acclaimed": false
         },
         {
-          "name": "SHANNON, Elizabeth",
+          "name": "Elizabeth Shannon",
           "acclaimed": false
         },
         {
-          "name": "WELKER, Heidi",
+          "name": "Heidi Welker",
           "acclaimed": false,
           "winner": true,
           "resultStatus": "official"
@@ -14839,17 +14638,18 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "seats": null,
       "candidates": [
         {
-          "name": "KELLAM, David",
+          "name": "David Kellam",
           "acclaimed": false,
           "winner": true,
           "resultStatus": "official"
         },
         {
-          "name": "LATNER, Anita",
+          "name": "Anita Latner",
           "acclaimed": false
         },
         {
-          "name": "SIMS, Stephen",
+          "name": "Stephen Sims",
+          "website": "https://stephensims4ward2.com",
           "acclaimed": false
         }
       ],
@@ -14864,11 +14664,12 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "seats": null,
       "candidates": [
         {
-          "name": "BRASSARD, Larry",
+          "name": "Larry Brassard",
+          "website": "https://msmconnect.ca",
           "acclaimed": false
         },
         {
-          "name": "LEMOINE, Carol Ann",
+          "name": "Carol Ann LeMoine",
           "acclaimed": false,
           "winner": true,
           "resultStatus": "official"
@@ -14885,7 +14686,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "seats": null,
       "candidates": [
         {
-          "name": "JORGENSEN, Randy",
+          "name": "Randy Jorgensen",
           "acclaimed": true,
           "winner": true,
           "resultStatus": "official"
@@ -14902,11 +14703,11 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "seats": null,
       "candidates": [
         {
-          "name": "ENNEST, Samantha Renee",
+          "name": "Samantha Renee Ennest",
           "acclaimed": false
         },
         {
-          "name": "KILBOURNE, Tina",
+          "name": "Tina Kilbourne",
           "acclaimed": false,
           "winner": true,
           "resultStatus": "official"
