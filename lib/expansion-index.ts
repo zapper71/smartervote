@@ -242,8 +242,8 @@ export const MUNICIPALITIES: ExpansionMunicipality[] = [
     "slug": "bracebridge",
     "name": "Bracebridge",
     "province": "ON",
-    "raceCount": 16,
-    "candidateCount": 30
+    "raceCount": 15,
+    "candidateCount": 26
   },
   {
     "slug": "bradford-west-gwillimbury",
@@ -6150,37 +6150,6 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "acclaimed": false,
           "winner": true,
           "resultStatus": "official",
-          "website": "https://votetatiana.ca"
-        }
-      ],
-      "sources": [
-        "https://www.bracebridgevotes.ca/voters/meet-the-candidates-certified/"
-      ]
-    },
-    {
-      "slug": "bracebridge-district-councillor",
-      "name": "District Councillor",
-      "raceType": "council_at_large",
-      "seats": null,
-      "candidates": [
-        {
-          "name": "Brenda Rhodes",
-          "acclaimed": null,
-          "website": "https://brendarhodes.ca"
-        },
-        {
-          "name": "Christian McEachran Morin",
-          "acclaimed": null,
-          "website": "https://votecmm.ca"
-        },
-        {
-          "name": "Don Smith",
-          "acclaimed": null,
-          "website": "https://votedonsmith.com"
-        },
-        {
-          "name": "Tatiana Sutherland",
-          "acclaimed": null,
           "website": "https://votetatiana.ca"
         }
       ],
