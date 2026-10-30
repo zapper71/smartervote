@@ -3,7 +3,7 @@ import MunicipalityFinder from "@/components/MunicipalityFinder";
 import UnavailableNotice from "@/components/UnavailableNotice";
 import { getMunicipality } from "@/lib/queries";
 
-export const revalidate = 300;
+export const revalidate = 3600; // Hourly (was 300s): Supabase egress control, Oct 2026
 
 export default async function HomePage() {
   // Huntsville is reachable through the finder like every other
