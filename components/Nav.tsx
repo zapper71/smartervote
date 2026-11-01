@@ -20,11 +20,12 @@ export default function Nav() {
         aria-label="Main"
         className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3"
       >
-        <Link href="/" className="tap-target font-semibold tracking-tight text-ink no-underline">
+        <Link href="/" className="tap-target items-end font-semibold tracking-tight text-ink no-underline">
           <span className="text-lg">Smarter</span>
           <span className="text-lg text-accent">Vote</span>
-          <span className="ml-2 hidden text-xs font-normal text-ink-faint sm:inline">
-            Ontario &amp; BC · 2026
+          <span className="text-lg">.ca</span>
+          <span className="ml-2 hidden pb-0.5 text-sm font-normal text-ink-faint sm:inline">
+            Candidates side-by-side on the issues. No BS.
           </span>
         </Link>
         <ul className="flex flex-wrap items-center gap-1 text-sm">

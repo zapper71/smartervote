@@ -173,8 +173,23 @@ function rank(name: string, q: string): number {
  * positions are imported). A BC district IS its race, so districts link
  * straight to /races/[district race slug].
  */
-export default function MunicipalityFinder() {
-  const [province, setProvince] = useState<Province>("ON");
+/**
+ * Optional preset for province pages: when given, the finder starts on
+ * that province and the toggle is hidden (the page is already scoped to
+ * it). Without it the finder behaves as before, ON by default.
+ * autoFocus puts the cursor in the search field on the dedicated finder
+ * page (desktop browsers honour it; mobile browsers may not open the
+ * keyboard until the user taps, which is fine — the field still fills
+ * the screen).
+ */
+export default function MunicipalityFinder({
+  initialProvince,
+  autoFocus = false,
+}: {
+  initialProvince?: Province;
+  autoFocus?: boolean;
+} = {}) {
+  const [province, setProvince] = useState<Province>(initialProvince ?? "ON");
   const [query, setQuery] = useState("");
 
   const trimmed = query.trim();
@@ -203,7 +218,8 @@ export default function MunicipalityFinder() {
 
   return (
     <div className="mt-6 rounded-lg border border-paper-edge bg-paper p-5 shadow-sm">
-      {/* Province toggle */}
+      {/* Province toggle — hidden when the page presets a province */}
+      {!initialProvince && (
       <div role="group" aria-label="Province" className="flex gap-2">
         {(
           [
@@ -229,6 +245,7 @@ export default function MunicipalityFinder() {
           </button>
         ))}
       </div>
+      )}
 
       {/* Search */}
       <div className="mt-4">
@@ -238,12 +255,13 @@ export default function MunicipalityFinder() {
         >
           {province === "ON"
             ? "Find your municipality"
-            : "Find your electoral district"}
+            : "Find your district"}
         </label>
         <input
           id="finder-search"
           type="search"
           value={query}
+          autoFocus={autoFocus}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={
             province === "ON"
@@ -257,7 +275,7 @@ export default function MunicipalityFinder() {
         <p id="finder-hint" className="mt-2 text-xs text-ink-faint">
           {province === "ON"
             ? `${FINDER_MUNICIPALITIES.length} Ontario municipalities · scroll the list or type to filter — wards & communities work too (e.g. Etobicoke, New Hamburg)`
-            : `${FINDER_DISTRICTS.length} BC electoral districts · scroll the list or type to filter`}
+            : `${FINDER_DISTRICTS.length} BC districts · scroll the list or type to filter`}
         </p>
       </div>
 
