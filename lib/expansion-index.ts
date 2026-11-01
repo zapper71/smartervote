@@ -12,7 +12,7 @@ import type { RaceType } from "./types";
 export interface ExpansionMunicipality {
   slug: string;
   name: string;
-  province: "ON" | "BC";
+  province: "ON" | "BC" | "SK";
   /** null when the count is database-driven and unknown at generation time (Huntsville). */
   raceCount: number | null;
   candidateCount: number | null;
@@ -1924,6 +1924,111 @@ export const MUNICIPALITIES: ExpansionMunicipality[] = [
     "province": "BC",
     "raceCount": 93,
     "candidateCount": 355
+  },
+  {
+    "slug": "corman-park-no-344",
+    "name": "RM of Corman Park No. 344",
+    "province": "SK",
+    "raceCount": 4,
+    "candidateCount": 9
+  },
+  {
+    "slug": "laird-no-404",
+    "name": "RM of Laird No. 404",
+    "province": "SK",
+    "raceCount": 3,
+    "candidateCount": 3
+  },
+  {
+    "slug": "lomond-no-37",
+    "name": "RM of Lomond No. 37",
+    "province": "SK",
+    "raceCount": 3,
+    "candidateCount": 3
+  },
+  {
+    "slug": "meota-no-468",
+    "name": "RM of Meota No. 468",
+    "province": "SK",
+    "raceCount": 2,
+    "candidateCount": 2
+  },
+  {
+    "slug": "grayson-no-184",
+    "name": "RM of Grayson No. 184",
+    "province": "SK",
+    "raceCount": 1,
+    "candidateCount": 3
+  },
+  {
+    "slug": "gull-lake-no-139",
+    "name": "RM of Gull Lake No. 139",
+    "province": "SK",
+    "raceCount": 4,
+    "candidateCount": 6
+  },
+  {
+    "slug": "edenwold-no-158",
+    "name": "RM of Edenwold No. 158",
+    "province": "SK",
+    "raceCount": 3,
+    "candidateCount": 5
+  },
+  {
+    "slug": "prince-albert-no-461",
+    "name": "RM of Prince Albert No. 461",
+    "province": "SK",
+    "raceCount": 2,
+    "candidateCount": 2
+  },
+  {
+    "slug": "buckland-no-491",
+    "name": "RM of Buckland No. 491",
+    "province": "SK",
+    "raceCount": 3,
+    "candidateCount": 4
+  },
+  {
+    "slug": "vanscoy-no-345",
+    "name": "RM of Vanscoy No. 345",
+    "province": "SK",
+    "raceCount": 3,
+    "candidateCount": 3
+  },
+  {
+    "slug": "meadow-lake-no-588",
+    "name": "RM of Meadow Lake No. 588",
+    "province": "SK",
+    "raceCount": 3,
+    "candidateCount": 6
+  },
+  {
+    "slug": "dundurn-no-314",
+    "name": "RM of Dundurn No. 314",
+    "province": "SK",
+    "raceCount": 2,
+    "candidateCount": 2
+  },
+  {
+    "slug": "rosthern-no-403",
+    "name": "RM of Rosthern No. 403",
+    "province": "SK",
+    "raceCount": 3,
+    "candidateCount": 4
+  },
+  {
+    "slug": "britannia-no-502",
+    "name": "RM of Britannia No. 502",
+    "province": "SK",
+    "raceCount": 3,
+    "candidateCount": 5
+  },
+  {
+    "slug": "blucher-no-343",
+    "name": "RM of Blucher No. 343",
+    "province": "SK",
+    "raceCount": 3,
+    "candidateCount": 3
   }
 ];
 
@@ -56084,5 +56189,737 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         "https://www.elections.bc.ca"
       ]
     }
-  ]
+  ],
+  "corman-park-no-344": [
+  {
+    "slug": "corman-park-no-344-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Michelle Chuhaniuk",
+        "acclaimed": false
+      },
+      {
+        "name": "Kyle Jantzen",
+        "acclaimed": false
+      },
+      {
+        "name": "Tarren Pederson",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "https://rmcormanpark.ca/281/Elections-and-Voting"
+    ]
+  },
+  {
+    "slug": "corman-park-no-344-councillor-division-4",
+    "name": "Councillor, Division 4",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "David Greenwood",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rmcormanpark.ca/281/Elections-and-Voting"
+    ]
+  },
+  {
+    "slug": "corman-park-no-344-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Steven Balzer",
+        "acclaimed": false
+      },
+      {
+        "name": "Shaun May",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "https://rmcormanpark.ca/281/Elections-and-Voting"
+    ]
+  },
+  {
+    "slug": "corman-park-no-344-councillor-division-8",
+    "name": "Councillor, Division 8",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Ashley Hubbard",
+        "acclaimed": false
+      },
+      {
+        "name": "Brent Priel",
+        "acclaimed": false
+      },
+      {
+        "name": "Wendy Trask",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "https://rmcormanpark.ca/281/Elections-and-Voting"
+    ]
+  }
+],
+  "laird-no-404": [
+  {
+    "slug": "laird-no-404-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Phil Loewen",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rmoflaird.ca/category/current-posts/"
+    ]
+  },
+  {
+    "slug": "laird-no-404-councillor-division-4",
+    "name": "Councillor, Division 4",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Ken Fehr",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rmoflaird.ca/category/current-posts/"
+    ]
+  },
+  {
+    "slug": "laird-no-404-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Salton Willems",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rmoflaird.ca/category/current-posts/"
+    ]
+  }
+],
+  "lomond-no-37": [
+  {
+    "slug": "lomond-no-37-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Todd Persson",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rm37.ca/notice-of-abandonment-of-poll-4/"
+    ]
+  },
+  {
+    "slug": "lomond-no-37-councillor-division-4",
+    "name": "Councillor, Division 4",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Fred Morrice",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rm37.ca/notice-of-abandonment-of-poll-4/"
+    ]
+  },
+  {
+    "slug": "lomond-no-37-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Denis Sidloski",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rm37.ca/notice-of-abandonment-of-poll-4/"
+    ]
+  }
+],
+  "meota-no-468": [
+  {
+    "slug": "meota-no-468-councillor-division-4",
+    "name": "Councillor, Division 4",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Gary Heidel",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://www.rmmeota468.ca/"
+    ]
+  },
+  {
+    "slug": "meota-no-468-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Jodie Gabruck",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://www.rmmeota468.ca/"
+    ]
+  }
+],
+  "grayson-no-184": [
+  {
+    "slug": "grayson-no-184-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Darren Butler",
+        "acclaimed": false
+      },
+      {
+        "name": "Mike Lang",
+        "acclaimed": false
+      },
+      {
+        "name": "Vernon Taillon",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "http://www.rmofgrayson184.ca/home.html"
+    ]
+  }
+],
+  "gull-lake-no-139": [
+  {
+    "slug": "gull-lake-no-139-councillor-division-1",
+    "name": "Councillor, Division 1",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Dennis Kirk",
+        "acclaimed": false
+      },
+      {
+        "name": "Aaron Deitrich",
+        "acclaimed": false
+      },
+      {
+        "name": "Camara Froese",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "https://rmgulllake.ca/council-staff/"
+    ]
+  },
+  {
+    "slug": "gull-lake-no-139-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Kenneth Mitchell",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rmgulllake.ca/council-staff/"
+    ]
+  },
+  {
+    "slug": "gull-lake-no-139-councillor-division-4",
+    "name": "Councillor, Division 4",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Rob Toney",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rmgulllake.ca/council-staff/"
+    ]
+  },
+  {
+    "slug": "gull-lake-no-139-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Collette Jones",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rmgulllake.ca/council-staff/"
+    ]
+  }
+],
+  "edenwold-no-158": [
+  {
+    "slug": "edenwold-no-158-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Ashley Fullerton",
+        "acclaimed": false
+      },
+      {
+        "name": "Randy Schulz",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "http://rmedenwold.ca/election-information"
+    ]
+  },
+  {
+    "slug": "edenwold-no-158-councillor-division-4",
+    "name": "Councillor, Division 4",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Karen Kotylak",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "http://rmedenwold.ca/election-information"
+    ]
+  },
+  {
+    "slug": "edenwold-no-158-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Glenn Lechner",
+        "acclaimed": false
+      },
+      {
+        "name": "Tim Brodt",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "http://rmedenwold.ca/election-information"
+    ]
+  }
+],
+  "prince-albert-no-461": [
+  {
+    "slug": "prince-albert-no-461-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Tyler Hazelwood",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rmprincealbert.ca/"
+    ]
+  },
+  {
+    "slug": "prince-albert-no-461-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Richard Sayers",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rmprincealbert.ca/"
+    ]
+  }
+],
+  "buckland-no-491": [
+  {
+    "slug": "buckland-no-491-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Leonard Yungwirth",
+        "acclaimed": false
+      },
+      {
+        "name": "Jason Zalewski",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "https://rmbuckland.ca/"
+    ]
+  },
+  {
+    "slug": "buckland-no-491-councillor-division-4",
+    "name": "Councillor, Division 4",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Melinda Lavoie",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rmbuckland.ca/"
+    ]
+  },
+  {
+    "slug": "buckland-no-491-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Lillian Jacobson",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rmbuckland.ca/"
+    ]
+  }
+],
+  "vanscoy-no-345": [
+  {
+    "slug": "vanscoy-no-345-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Jeff Colborn",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://www.rmvanscoy.ca/"
+    ]
+  },
+  {
+    "slug": "vanscoy-no-345-councillor-division-4",
+    "name": "Councillor, Division 4",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "John Arnold",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://www.rmvanscoy.ca/"
+    ]
+  },
+  {
+    "slug": "vanscoy-no-345-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Dean Gregory",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://www.rmvanscoy.ca/"
+    ]
+  }
+],
+  "meadow-lake-no-588": [
+  {
+    "slug": "meadow-lake-no-588-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Keray Bacon",
+        "acclaimed": false
+      },
+      {
+        "name": "Russ Jones",
+        "acclaimed": false
+      },
+      {
+        "name": "Blair Mysko",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "https://www.rmofmeadowlake.com/government/elections"
+    ]
+  },
+  {
+    "slug": "meadow-lake-no-588-councillor-division-4",
+    "name": "Councillor, Division 4",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Garry Ratke",
+        "acclaimed": false
+      },
+      {
+        "name": "Darwin Schwartz",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "https://www.rmofmeadowlake.com/government/elections"
+    ]
+  },
+  {
+    "slug": "meadow-lake-no-588-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Ernie Schwartz",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://www.rmofmeadowlake.com/government/elections"
+    ]
+  }
+],
+  "dundurn-no-314": [
+  {
+    "slug": "dundurn-no-314-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Ben J. Wilson",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://dundurnrm.ca/election-2026"
+    ]
+  },
+  {
+    "slug": "dundurn-no-314-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Rodney Glen Rieder",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://dundurnrm.ca/election-2026"
+    ]
+  }
+],
+  "rosthern-no-403": [
+  {
+    "slug": "rosthern-no-403-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Larry Fehr",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://www.rmofrosthern.ca/elections.html"
+    ]
+  },
+  {
+    "slug": "rosthern-no-403-councillor-division-4",
+    "name": "Councillor, Division 4",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Leo Perrin",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://www.rmofrosthern.ca/elections.html"
+    ]
+  },
+  {
+    "slug": "rosthern-no-403-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Andrew Robin",
+        "acclaimed": false
+      },
+      {
+        "name": "David Neufeldt",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "https://www.rmofrosthern.ca/elections.html"
+    ]
+  }
+],
+  "britannia-no-502": [
+  {
+    "slug": "britannia-no-502-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Ryan Kerr",
+        "acclaimed": false
+      },
+      {
+        "name": "Wilfred Jurke",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "https://rmbritannia.com/"
+    ]
+  },
+  {
+    "slug": "britannia-no-502-councillor-division-4",
+    "name": "Councillor, Division 4",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Elaine Newman",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rmbritannia.com/"
+    ]
+  },
+  {
+    "slug": "britannia-no-502-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "H. John Wack",
+        "acclaimed": false
+      },
+      {
+        "name": "Karl Jory",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "https://rmbritannia.com/"
+    ]
+  }
+],
+  "blucher-no-343": [
+  {
+    "slug": "blucher-no-343-councillor-division-2",
+    "name": "Councillor, Division 2",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Quintin Senger",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rm343.com/2026-municipal-elections/"
+    ]
+  },
+  {
+    "slug": "blucher-no-343-councillor-division-4",
+    "name": "Councillor, Division 4",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Dale Chysyk",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rm343.com/2026-municipal-elections/"
+    ]
+  },
+  {
+    "slug": "blucher-no-343-councillor-division-6",
+    "name": "Councillor, Division 6",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Francis M. Boehm",
+        "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://rm343.com/2026-municipal-elections/"
+    ]
+  }
+]
 };

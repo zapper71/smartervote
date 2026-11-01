@@ -9,11 +9,11 @@ import { INDEXABLE, SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "SmarterVote — Ontario & BC 2026 elections",
+    default: "SmarterVote — Canadian elections. Candidates side-by-side on the issues. No BS.",
     template: "%s · SmarterVote",
   },
   description:
-    "A free, non-partisan guide to the candidates in Ontario's 2026 municipal elections and British Columbia's 2026 provincial election. Compare what candidates actually say, side by side, with a source for every claim.",
+    "Canadian elections. Candidates side-by-side on the issues. No BS.",
   openGraph: {
     type: "website",
     locale: "en_CA",

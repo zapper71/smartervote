@@ -7,9 +7,11 @@ import {
   FINDER_MUNICIPALITIES,
   FINDER_RACE_ALIASES,
   FINDER_COMMUNITY_ALIASES,
+  type FinderMunicipality,
 } from "@/lib/expansion-finder";
+import { FINDER_SASKATCHEWAN } from "@/lib/sk-finder";
 
-type Province = "ON" | "BC";
+type Province = "ON" | "BC" | "SK";
 
 /** Cap on rendered filtered rows; empty-query browse-all renders the full list. */
 const FILTER_CAP = 80;
@@ -66,12 +68,15 @@ interface OnMatch {
   ownRank: number;
 }
 
-function onEntries(q: string): { municipalities: FinderEntry[]; raceRows: FinderEntry[] } {
+function onEntries(
+  q: string,
+  list: FinderMunicipality[],
+): { municipalities: FinderEntry[]; raceRows: FinderEntry[] } {
   const matched: OnMatch[] = [];
   const raceRows: FinderEntry[] = [];
   const anyAliasOnly = q !== "";
 
-  for (const m of FINDER_MUNICIPALITIES) {
+  for (const m of list) {
     const n = normalise(m.name);
     let ownRank: number | null = null;
     if (q === "") ownRank = 1;
@@ -171,18 +176,39 @@ function rank(name: string, q: string): number {
  *
  * Ontario results link to /municipalities/[slug] (a listings page until
  * positions are imported). A BC district IS its race, so districts link
- * straight to /races/[district race slug].
+ * straight to /races/[district race slug]. Saskatchewan results link to
+ * /municipalities/[slug] like Ontario's; the SK list is the 15 RMs with
+ * live pages, from lib/sk-finder.ts.
  */
-export default function MunicipalityFinder() {
-  const [province, setProvince] = useState<Province>("ON");
+/**
+ * Optional preset for province pages: when given, the finder starts on
+ * that province and the toggle is hidden (the page is already scoped to
+ * it). Without it the finder behaves as before, ON by default.
+ * autoFocus puts the cursor in the search field on the dedicated finder
+ * page (desktop browsers honour it; mobile browsers may not open the
+ * keyboard until the user taps, which is fine — the field still fills
+ * the screen).
+ */
+export default function MunicipalityFinder({
+  initialProvince,
+  autoFocus = false,
+}: {
+  initialProvince?: Province;
+  autoFocus?: boolean;
+} = {}) {
+  const [province, setProvince] = useState<Province>(initialProvince ?? "ON");
   const [query, setQuery] = useState("");
 
   const trimmed = query.trim();
   const q = normalise(trimmed);
 
   const { shown, total } = useMemo(() => {
-    if (province === "ON") {
-      const { municipalities, raceRows } = onEntries(q);
+    if (province !== "BC") {
+      // ON and SK share the municipality path; SK slugs simply have no
+      // ward/community aliases, so their alias lookups come back empty.
+      const list =
+        province === "SK" ? FINDER_SASKATCHEWAN : FINDER_MUNICIPALITIES;
+      const { municipalities, raceRows } = onEntries(q, list);
       // Browse-all (empty query) renders the whole scrollable list; filtered
       // results are capped with a count so contains matches are never hidden
       // silently.
@@ -199,16 +225,18 @@ export default function MunicipalityFinder() {
     return { shown: matched.slice(0, cap), total: matched.length };
   }, [province, q]);
 
-  const plural = province === "ON" ? "municipalities" : "districts";
+  const plural = province === "BC" ? "districts" : "municipalities";
 
   return (
     <div className="mt-6 rounded-lg border border-paper-edge bg-paper p-5 shadow-sm">
-      {/* Province toggle */}
+      {/* Province toggle — hidden when the page presets a province */}
+      {!initialProvince && (
       <div role="group" aria-label="Province" className="flex gap-2">
         {(
           [
             ["ON", "Ontario"],
             ["BC", "British Columbia"],
+            ["SK", "Saskatchewan"],
           ] as const
         ).map(([value, label]) => (
           <button
@@ -229,6 +257,7 @@ export default function MunicipalityFinder() {
           </button>
         ))}
       </div>
+      )}
 
       {/* Search */}
       <div className="mt-4">
@@ -236,19 +265,22 @@ export default function MunicipalityFinder() {
           htmlFor="finder-search"
           className="block text-sm font-medium text-ink"
         >
-          {province === "ON"
-            ? "Find your municipality"
-            : "Find your electoral district"}
+          {province === "BC"
+            ? "Find your district"
+            : "Find your municipality"}
         </label>
         <input
           id="finder-search"
           type="search"
           value={query}
+          autoFocus={autoFocus}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={
             province === "ON"
               ? "e.g. Toronto, Ottawa, Muskoka Lakes…"
-              : "e.g. Abbotsford South, Victoria…"
+              : province === "SK"
+                ? "e.g. Corman Park, Edenwold…"
+                : "e.g. Abbotsford South, Victoria…"
           }
           autoComplete="off"
           aria-describedby="finder-hint finder-count"
@@ -257,7 +289,9 @@ export default function MunicipalityFinder() {
         <p id="finder-hint" className="mt-2 text-xs text-ink-faint">
           {province === "ON"
             ? `${FINDER_MUNICIPALITIES.length} Ontario municipalities · scroll the list or type to filter — wards & communities work too (e.g. Etobicoke, New Hamburg)`
-            : `${FINDER_DISTRICTS.length} BC electoral districts · scroll the list or type to filter`}
+            : province === "SK"
+              ? `${FINDER_SASKATCHEWAN.length} Saskatchewan municipalities · scroll the list or type to filter`
+              : `${FINDER_DISTRICTS.length} BC districts · scroll the list or type to filter`}
         </p>
       </div>
 
