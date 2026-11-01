@@ -120,49 +120,212 @@ export function upcomingElections(now: Date = new Date()): TrackedElection[] {
 
 export interface TileRow {
   label?: string;
-  /** Display text for the next election date, or "Not yet tracked". */
+  /** Display text for the election date, or "Not yet tracked". */
   date: string;
 }
 
+/** One tile's three sections: current race, next race, past races. */
+export interface TileSection {
+  current: TileRow[];
+  next: TileRow[];
+  past: TileRow[];
+}
+
 export interface ProvinceTiles {
-  federal: TileRow[];
-  provincial: TileRow[];
-  municipal: TileRow[];
+  federal: TileSection;
+  provincial: TileSection;
+  municipal: TileSection;
+}
+
+/**
+ * A tracked election cycle for one tile row.
+ *
+ * The tile rule (Andreas, Oct 31, 2026):
+ * - The "Current race" line starts showing once the candidate filing
+ *   deadline has passed.
+ * - It stays current until one month after ALL results for that election
+ *   are official, then it disappears from current and becomes a past race.
+ * - The "Next race" line shows the next cycle's date, a few years out.
+ *
+ * allResultsOfficialDate stays null until every result for that election
+ * is official; while it is null the race stays current (the one-month
+ * clock has not started). Set it when the results chase completes and the
+ * transition happens automatically. filingDeadline null means the deadline
+ * is not yet confirmed — the race is never shown as current (NWT, whose
+ * nominations close mid-November, exact day TBD).
+ */
+export interface TrackedCycle {
+  row: TileRow;
+  /** ISO date the candidate filing deadline passed, null if unconfirmed. */
+  filingDeadline: string | null;
+  /** ISO date ALL results became official, null if not yet all official. */
+  allResultsOfficialDate: string | null;
+  /** Next cycle for this row, as a display row (null = not yet tracked). */
+  next: TileRow | null;
+}
+
+/** Calendar-month addition, same convention as upcomingElections. */
+function addMonths(d: Date, months: number): Date {
+  const out = new Date(d);
+  out.setMonth(out.getMonth() + months);
+  return out;
+}
+
+function cycleSections(
+  cycle: TrackedCycle,
+  now: Date,
+): TileSection {
+  const next: TileRow[] = cycle.next ? [cycle.next] : [];
+  if (cycle.filingDeadline === null) {
+    // Deadline unconfirmed: never current, the election stays a next race.
+    return { current: [], next: [cycle.row, ...next], past: [] };
+  }
+  const filed = parseDate(cycle.filingDeadline);
+  if (now < filed) {
+    return { current: [], next: [cycle.row, ...next], past: [] };
+  }
+  if (
+    cycle.allResultsOfficialDate !== null &&
+    now > addMonths(parseDate(cycle.allResultsOfficialDate), 1)
+  ) {
+    return { current: [], next, past: [cycle.row] };
+  }
+  return { current: [cycle.row], next, past: [] };
 }
 
 /**
  * The three tiles for a province page. Federal is "Not yet tracked"
  * everywhere (no federal data exists). Saskatchewan's municipal cycle is
  * split, so it carries all five splits as separate labeled rows — the
- * Nov 9 row is the next election date only and does NOT claim the Nov 9
- * listings are live (SK data is published separately). Everywhere else a
- * single municipal row uses a verified date from TRACKED_ELECTIONS when
- * one exists, else "Not yet tracked".
+ * Nov 9 row is the current race (filing closed Oct 7, 2026, results not
+ * yet all official) and does NOT claim the Nov 9 listings are live (SK
+ * data is published separately); the 2028 splits are next races.
+ * Everywhere else a single row uses a verified date from
+ * TRACKED_ELECTIONS when one exists, else "Not yet tracked".
  */
-export function provinceTiles(provinceSlug: string): ProvinceTiles {
-  const notTracked: TileRow[] = [{ date: "Not yet tracked" }];
+export function provinceTiles(
+  provinceSlug: string,
+  now: Date = new Date(),
+): ProvinceTiles {
+  const notTracked = (): TileSection => ({
+    current: [],
+    next: [{ date: "Not yet tracked" }],
+    past: [],
+  });
+  const merge = (sections: TileSection[]): TileSection => ({
+    current: sections.flatMap((s) => s.current),
+    next: sections.flatMap((s) => s.next),
+    past: sections.flatMap((s) => s.past),
+  });
   const tiles: ProvinceTiles = {
-    federal: notTracked,
-    provincial: notTracked,
-    municipal: notTracked,
+    federal: notTracked(),
+    provincial: notTracked(),
+    municipal: notTracked(),
   };
   if (provinceSlug === "british-columbia") {
-    tiles.provincial = [{ date: formatElectionDate("2026-10-24") }];
+    tiles.provincial = merge([
+      cycleSections(
+        {
+          row: { date: formatElectionDate("2026-10-24") },
+          filingDeadline: "2026-10-03",
+          allResultsOfficialDate: null,
+          next: {
+            date: `${formatElectionDate("2030-10-19")} (scheduled)`,
+          },
+        },
+        now,
+      ),
+    ]);
   }
   if (provinceSlug === "ontario") {
-    tiles.municipal = [{ date: formatElectionDate("2026-10-26") }];
+    tiles.municipal = merge([
+      cycleSections(
+        {
+          row: { date: formatElectionDate("2026-10-26") },
+          filingDeadline: "2026-08-21",
+          allResultsOfficialDate: null,
+          next: { date: formatElectionDate("2030-10-28") },
+        },
+        now,
+      ),
+    ]);
   }
   if (provinceSlug === "saskatchewan") {
-    tiles.municipal = [
-      { label: "RM even-division councillors", date: formatElectionDate("2026-11-09") },
-      { label: "RM odd divisions + reeve", date: formatElectionDate("2028-11-08") },
-      { label: "Cities, towns and villages", date: formatElectionDate("2028-11-08") },
-      { label: "Resort villages", date: formatElectionDate("2028-07-29") },
-      { label: "Northern municipalities", date: "Fall 2028 (exact day TBD)" },
-    ];
+    tiles.municipal = merge([
+      cycleSections(
+        {
+          row: {
+            label: "RM even-division councillors",
+            date: formatElectionDate("2026-11-09"),
+          },
+          filingDeadline: "2026-10-07",
+          allResultsOfficialDate: null,
+          next: null,
+        },
+        now,
+      ),
+      cycleSections(
+        {
+          row: {
+            label: "RM odd divisions + reeve",
+            date: formatElectionDate("2028-11-08"),
+          },
+          filingDeadline: null,
+          allResultsOfficialDate: null,
+          next: null,
+        },
+        now,
+      ),
+      cycleSections(
+        {
+          row: {
+            label: "Cities, towns and villages",
+            date: formatElectionDate("2028-11-08"),
+          },
+          filingDeadline: null,
+          allResultsOfficialDate: null,
+          next: null,
+        },
+        now,
+      ),
+      cycleSections(
+        {
+          row: {
+            label: "Resort villages",
+            date: formatElectionDate("2028-07-29"),
+          },
+          filingDeadline: null,
+          allResultsOfficialDate: null,
+          next: null,
+        },
+        now,
+      ),
+      cycleSections(
+        {
+          row: {
+            label: "Northern municipalities",
+            date: "Fall 2028 (exact day TBD)",
+          },
+          filingDeadline: null,
+          allResultsOfficialDate: null,
+          next: null,
+        },
+        now,
+      ),
+    ]);
   }
   if (provinceSlug === "northwest-territories") {
-    tiles.municipal = [{ date: formatElectionDate("2026-12-14") }];
+    tiles.municipal = merge([
+      cycleSections(
+        {
+          row: { date: formatElectionDate("2026-12-14") },
+          filingDeadline: null,
+          allResultsOfficialDate: null,
+          next: null,
+        },
+        now,
+      ),
+    ]);
   }
   return tiles;
 }
