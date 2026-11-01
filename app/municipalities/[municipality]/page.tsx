@@ -9,6 +9,7 @@ import {
   type ExpansionRace,
 } from "@/lib/expansion-index";
 import { getRaceSlugsWithPublishedPositions } from "@/lib/queries";
+import { finderFor } from "@/lib/tracked-elections";
 
 export const revalidate = 300;
 
@@ -42,11 +43,33 @@ const GROUPS: { key: string; label: string; types: string[] }[] = [
   },
 ];
 
+/** Province code (as stored on index municipalities) → province page slug.
+ * Only ON, BC, SK occur in MUNICIPALITIES today; extend when a new
+ * province's municipalities go live. */
+const PROVINCE_SLUGS: Record<string, string> = {
+  ON: "ontario",
+  BC: "british-columbia",
+  SK: "saskatchewan",
+};
+
 export default async function MunicipalityPage({ params }: Props) {
   const { municipality: slug } = await params;
 
   const muni = MUNICIPALITIES.find((m) => m.slug === slug);
   if (!muni) notFound();
+
+  // Back link goes to the search page this municipality belongs to, not
+  // home: the province's finder when one exists for this level (ON/SK
+  // municipal, BC provincial), else the province overview. It never
+  // points at the province list again.
+  const provinceSlug = PROVINCE_SLUGS[muni.province];
+  const finderLevel = muni.province === "BC" ? "provincial" : "municipal";
+  const backHref =
+    provinceSlug && finderFor(provinceSlug, finderLevel)
+      ? `/provinces/${provinceSlug}/finder?level=${finderLevel}`
+      : provinceSlug
+        ? `/provinces/${provinceSlug}`
+        : "/";
 
   const races = RACES_BY_MUNICIPALITY[slug] ?? [];
 
@@ -77,7 +100,7 @@ export default async function MunicipalityPage({ params }: Props) {
   return (
     <div>
       <p className="text-sm">
-        <Link href="/" className="link">
+        <Link href={backHref} className="link">
           &larr; Find your {muni.province === "BC" ? "district" : "municipality"}
         </Link>
       </p>

@@ -49,6 +49,10 @@ Notes on the choices:
   no finder). A finder page opened with a missing, invalid, or
   uncovered `?level=` shows a short "no finder for this yet" message
   with a back link, never a dead end.
+- Municipality pages link back with the same mapping: their "Find your
+  municipality/district" link goes to their province's finder page when
+  one exists for that level (ON/SK municipal, BC provincial), else to
+  the province overview — never to the home province list.
 
 ## Finder data coverage (as of Oct 31, 2026)
 
