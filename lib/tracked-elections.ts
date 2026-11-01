@@ -6,10 +6,14 @@
  * is claimed anywhere on these pages. Anything not listed here renders as
  * "Not yet tracked" (tiles) or "Coming soon" (finder / no candidate info).
  *
- * There is NO federal data anywhere in the repo, so every Federal tile
- * reads "Not yet tracked". No past-race loading is built here: every tile's
- * past-results area reads "We will load historical race data soon."
- * (deferred until a Supabase reset).
+ * Federal next dates are included (next federal election, scheduled);
+ * there is no federal candidate data, so no Federal tile has a current
+ * race. Ontario and Nova Scotia provincial tiles stay "Not yet tracked":
+ * both repealed their fixed-date laws in 2025, so there is no scheduled
+ * provincial date to show (their constitutional latest dates are NOT
+ * election dates and are deliberately not encoded). No past-race loading
+ * is built here: every tile's past-results area reads "We will load
+ * historical race data soon." (deferred until a Supabase reset).
  */
 
 export interface Province {
@@ -196,14 +200,15 @@ function cycleSections(
 }
 
 /**
- * The three tiles for a province page. Federal is "Not yet tracked"
- * everywhere (no federal data exists). Saskatchewan's municipal cycle is
- * split, so it carries all five splits as separate labeled rows — the
- * Nov 9 row is the current race (filing closed Oct 7, 2026, results not
- * yet all official) and does NOT claim the Nov 9 listings are live (SK
- * data is published separately); the 2028 splits are next races.
- * Everywhere else a single row uses a verified date from
- * TRACKED_ELECTIONS when one exists, else "Not yet tracked".
+ * The three tiles for a province page. Federal carries the next federal
+ * election (scheduled) everywhere. Provincial carries the next fixed
+ * date (scheduled) everywhere except Ontario and Nova Scotia, which
+ * have no fixed date. Municipal carries the next date everywhere;
+ * Saskatchewan's cycle is split into five labeled rows and the NWT's
+ * into its community classes. The Nov 9 SK row is the current race
+ * (filing closed Oct 7, 2026, results not yet all official) and does NOT
+ * claim the Nov 9 listings are live (SK data is published separately).
+ * Anything without a verified next date stays "Not yet tracked".
  */
 export function provinceTiles(
   provinceSlug: string,
@@ -224,6 +229,25 @@ export function provinceTiles(
     provincial: notTracked(),
     municipal: notTracked(),
   };
+  /** Display row for a verified ISO date. */
+  const dated = (iso: string): TileRow => ({
+    date: formatElectionDate(iso),
+    sortDate: iso,
+  });
+  /** Display row for a fixed date that is still subject to an early call. */
+  const scheduled = (iso: string): TileRow => ({
+    date: `${formatElectionDate(iso)} (scheduled)`,
+    sortDate: iso,
+  });
+  /** A next-only row: no current race tracked, just the next date. */
+  const nextOnly = (row: TileRow): TileSection =>
+    cycleSections(
+      { row, filingDeadline: null, allResultsOfficialDate: null, next: null },
+      now,
+    );
+  // Federal: third Monday in October in the fourth calendar year after
+  // Apr 28, 2025 (Canada Elections Act), fixed but subject to dissolution.
+  tiles.federal = nextOnly(scheduled("2029-10-15"));
   if (provinceSlug === "british-columbia") {
     tiles.provincial = merge([
       cycleSections(
@@ -242,6 +266,53 @@ export function provinceTiles(
         now,
       ),
     ]);
+  }
+  // Provincial next fixed dates (scheduled). Ontario and Nova Scotia are
+  // deliberately absent: both repealed their fixed-date laws in 2025, so
+  // no scheduled date exists — do not fill these with stale June/July
+  // 2029 dates or with their constitutional latest dates.
+  const provincialNext: Record<string, string> = {
+    alberta: "2027-10-18",
+    manitoba: "2027-10-05",
+    "new-brunswick": "2028-10-16",
+    "newfoundland-and-labrador": "2029-10-09",
+    "prince-edward-island": "2027-10-04",
+    quebec: "2030-10-07",
+    saskatchewan: "2028-10-30",
+    "northwest-territories": "2027-10-05",
+    nunavut: "2029-10-29",
+    yukon: "2029-11-05",
+  };
+  const provNext = provincialNext[provinceSlug];
+  if (provNext) {
+    tiles.provincial = nextOnly(scheduled(provNext));
+  }
+  // Municipal next dates. Three are weaker than the rest and are flagged
+  // here, not on the site: NL (secondary sources only — no official page
+  // states the 2029 date), PEI Resort Municipality (derived from the
+  // Act's rule and the Aug 10, 2026 vote), and Yellowknife (derived from
+  // its stated 2026–2030 term and its October cycle).
+  const municipalNext: Record<string, TileRow[]> = {
+    alberta: [dated("2029-10-15")],
+    "british-columbia": [dated("2030-10-19")],
+    manitoba: [
+      { label: "Resort municipalities", ...dated("2030-07-26") },
+      { label: "Most municipalities", ...dated("2030-10-23") },
+    ],
+    "new-brunswick": [dated("2030-05-13")],
+    "newfoundland-and-labrador": [dated("2029-09-25")],
+    "nova-scotia": [dated("2028-10-21")],
+    "prince-edward-island": [
+      { label: "All except Resort Municipality", ...dated("2026-11-02") },
+      { label: "Resort Municipality", ...dated("2030-08-12") },
+    ],
+    quebec: [dated("2029-11-04")],
+    nunavut: [dated("2027-10-25")],
+    yukon: [dated("2028-10-19")],
+  };
+  const munNext = municipalNext[provinceSlug];
+  if (munNext) {
+    tiles.municipal = merge(munNext.map((row) => nextOnly(row)));
   }
   if (provinceSlug === "ontario") {
     tiles.municipal = merge([
@@ -331,19 +402,18 @@ export function provinceTiles(
     ]);
   }
   if (provinceSlug === "northwest-territories") {
+    // NWT municipal cycles are not uniform: hamlets vote Dec 14, 2026;
+    // other communities run on their own cycles (councils may also vary
+    // terms by bylaw), so each class gets its own labeled next row.
     tiles.municipal = merge([
-      cycleSections(
-        {
-          row: {
-            date: formatElectionDate("2026-12-14"),
-            sortDate: "2026-12-14",
-          },
-          filingDeadline: null,
-          allResultsOfficialDate: null,
-          next: null,
-        },
-        now,
-      ),
+      nextOnly({ label: "Hamlets", ...dated("2026-12-14") }),
+      nextOnly({
+        label: "Fort Good Hope (charter community)",
+        ...dated("2027-07-19"),
+      }),
+      nextOnly({ label: "Cities, towns and villages", ...dated("2027-10-18") }),
+      nextOnly({ label: "Tłįcho community governments", ...dated("2029-06-11") }),
+      nextOnly({ label: "City of Yellowknife", ...dated("2030-10-21") }),
     ]);
   }
   // Current and next races render in ascending date order; races with an
