@@ -145,7 +145,7 @@ export default async function ProvincePage({ params }: Props) {
       <h1 className="text-3xl sm:text-4xl">{province.name}</h1>
       <p className="mt-4 text-sm text-ink-faint">
         <Link href="/upcoming" className="link">
-          Upcoming elections
+          Recent &amp; Upcoming Elections
         </Link>
       </p>
 

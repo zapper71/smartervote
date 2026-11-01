@@ -14,7 +14,7 @@ export default function HomePage() {
       <section className="mb-10">
         <p className="mb-6">
           <Link href="/upcoming" className="link text-base font-medium">
-            Upcoming elections &rarr;
+            Recent &amp; Upcoming Elections &rarr;
           </Link>
         </p>
         <h1 className="text-3xl sm:text-4xl">What the candidates actually say</h1>

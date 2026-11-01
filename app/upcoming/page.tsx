@@ -6,7 +6,7 @@ import {
 } from "@/lib/tracked-elections";
 
 export const metadata: Metadata = {
-  title: "Upcoming elections",
+  title: "Recent & Upcoming Elections",
   description:
     "Elections finished within the last month and elections coming up within the next three months, tracked by SmarterVote.",
 };
@@ -20,7 +20,7 @@ export default function UpcomingPage() {
 
   return (
     <div>
-      <h1 className="text-3xl sm:text-4xl">Upcoming elections</h1>
+      <h1 className="text-3xl sm:text-4xl">Recent &amp; Upcoming Elections</h1>
       <p className="prose-civic mt-4">
         Elections finished within the last month, plus elections coming up
         within the next three months.
