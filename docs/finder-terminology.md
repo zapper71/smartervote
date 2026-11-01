@@ -56,6 +56,12 @@ Notes on the choices:
   static expansion index — opened by Ontario municipal tiles.
 - BC electoral districts, from the same index — opened by BC provincial
   tiles.
+- Saskatchewan municipalities: the 15 RMs with live pages and data
+  (migrations 46 + 47), hand-maintained in `lib/sk-finder.ts` because
+  the generated finder file must not be edited by hand — opened by
+  Saskatchewan municipal tiles. When a new Saskatchewan municipality
+  goes live, add it to `lib/sk-finder.ts`; the tile link follows
+  automatically.
 - Nothing else yet: federal ridings and every other province/territory
   have no finder data, so their tiles are plain. When data lands for a
   new province + level, add a case to `finderFor` in
@@ -65,8 +71,9 @@ Notes on the choices:
 
 - `lib/tracked-elections.ts` — `finderFor`, the province + level →
   finder mapping.
+- `lib/sk-finder.ts` — the hand-maintained Saskatchewan finder list.
 - `app/provinces/[province]/page.tsx` — tile links to the finder page.
 - `app/provinces/[province]/finder/page.tsx` — the dedicated finder
   page (level from `?level=`, back link, no-finder message).
 - `components/MunicipalityFinder.tsx` — labels, placeholders, hints, and
-  no-match text per province (ON = municipality, BC = district).
+  no-match text per province (ON and SK = municipality, BC = district).

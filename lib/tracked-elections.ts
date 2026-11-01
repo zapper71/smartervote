@@ -447,12 +447,18 @@ export function hasFinderEntries(provinceSlug: string): boolean {
 export function finderFor(
   provinceSlug: string,
   level: "federal" | "provincial" | "municipal",
-): { initialProvince: "ON" | "BC"; entity: "municipality" | "district" } | null {
+): {
+  initialProvince: "ON" | "BC" | "SK";
+  entity: "municipality" | "district";
+} | null {
   if (provinceSlug === "ontario" && level === "municipal") {
     return { initialProvince: "ON", entity: "municipality" };
   }
   if (provinceSlug === "british-columbia" && level === "provincial") {
     return { initialProvince: "BC", entity: "district" };
+  }
+  if (provinceSlug === "saskatchewan" && level === "municipal") {
+    return { initialProvince: "SK", entity: "municipality" };
   }
   return null;
 }
