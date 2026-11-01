@@ -23,6 +23,7 @@ export default function Nav() {
         <Link href="/" className="tap-target items-end font-semibold tracking-tight text-ink no-underline">
           <span className="text-lg">Smarter</span>
           <span className="text-lg text-accent">Vote</span>
+          <span className="text-lg">.ca</span>
           <span className="ml-2 hidden pb-0.5 text-sm font-normal text-ink-faint sm:inline">
             Candidates side-by-side on the issues. No BS.
           </span>
