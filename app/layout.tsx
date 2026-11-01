@@ -9,7 +9,7 @@ import { INDEXABLE, SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "SmarterVote — Ontario & BC 2026 elections",
+    default: "SmarterVote — Canadian elections. Candidates side-by-side on the issues. No BS.",
     template: "%s · SmarterVote",
   },
   description:
