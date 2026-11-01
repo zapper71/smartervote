@@ -173,8 +173,17 @@ function rank(name: string, q: string): number {
  * positions are imported). A BC district IS its race, so districts link
  * straight to /races/[district race slug].
  */
-export default function MunicipalityFinder() {
-  const [province, setProvince] = useState<Province>("ON");
+/**
+ * Optional preset for province pages: when given, the finder starts on
+ * that province and the toggle is hidden (the page is already scoped to
+ * it). Without it the finder behaves as before, ON by default.
+ */
+export default function MunicipalityFinder({
+  initialProvince,
+}: {
+  initialProvince?: Province;
+} = {}) {
+  const [province, setProvince] = useState<Province>(initialProvince ?? "ON");
   const [query, setQuery] = useState("");
 
   const trimmed = query.trim();
@@ -203,7 +212,8 @@ export default function MunicipalityFinder() {
 
   return (
     <div className="mt-6 rounded-lg border border-paper-edge bg-paper p-5 shadow-sm">
-      {/* Province toggle */}
+      {/* Province toggle — hidden when the page presets a province */}
+      {!initialProvince && (
       <div role="group" aria-label="Province" className="flex gap-2">
         {(
           [
@@ -229,6 +239,7 @@ export default function MunicipalityFinder() {
           </button>
         ))}
       </div>
+      )}
 
       {/* Search */}
       <div className="mt-4">
