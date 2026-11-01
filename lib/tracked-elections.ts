@@ -437,3 +437,22 @@ export function hasFinderEntries(provinceSlug: string): boolean {
   const p = getProvince(provinceSlug);
   return p?.short === "ON" || p?.short === "BC";
 }
+
+/**
+ * Which finder, if any, a province page's tile can open. Finder data
+ * covers Ontario municipalities and BC electoral districts only — every
+ * other province/level has no finder to open, so its tiles stay plain.
+ * See docs/finder-terminology.md for the level language used here.
+ */
+export function finderFor(
+  provinceSlug: string,
+  level: "federal" | "provincial" | "municipal",
+): { initialProvince: "ON" | "BC"; entity: "municipality" | "district" } | null {
+  if (provinceSlug === "ontario" && level === "municipal") {
+    return { initialProvince: "ON", entity: "municipality" };
+  }
+  if (provinceSlug === "british-columbia" && level === "provincial") {
+    return { initialProvince: "BC", entity: "district" };
+  }
+  return null;
+}

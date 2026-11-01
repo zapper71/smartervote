@@ -29,14 +29,16 @@ Notes on the choices:
 
 ## Finder behaviour (province pages)
 
-- The finder is hidden until a tile opens it. There is no always-visible
-  finder section and no "Coming soon" note: a province page shows only
-  its Federal / Provincial / Municipal tile columns until a tile is
+- The finder lives on its own page, not in an inline section: on a phone
+  an inline finder below the tiles is easy to miss entirely, while a
+  dedicated page makes the search the whole point of the screen. A
+  province page shows only its Federal / Provincial / Municipal tile
+  columns — no finder fields and no "Coming soon" note — until a tile is
   clicked.
-- Clicking a tile opens the finder via `?finder=<level>` on the same
-  province page, preset to that province (the province toggle is hidden)
-  with that level's language. A "Back to overview" link closes it (plain
-  province URL).
+- Clicking a tile goes to `/provinces/<slug>/finder?level=<level>`,
+  preset to that province (the province toggle is hidden) with that
+  level's language, and the cursor in the search field. A "Back to
+  overview" link returns to the province page.
 - Current race tiles are links when that province + level has finder
   data. Next race tiles are never clickable — there is nothing to select
   for an election years out.
@@ -44,7 +46,9 @@ Notes on the choices:
   being a link themselves: the drop-down is interactive content and
   cannot live inside a link.
 - Tiles for a province + level with no finder data stay plain (no link,
-  no finder). No finder section renders for an invalid `?finder=` value.
+  no finder). A finder page opened with a missing, invalid, or
+  uncovered `?level=` shows a short "no finder for this yet" message
+  with a back link, never a dead end.
 
 ## Finder data coverage (as of Oct 31, 2026)
 
@@ -55,12 +59,14 @@ Notes on the choices:
 - Nothing else yet: federal ridings and every other province/territory
   have no finder data, so their tiles are plain. When data lands for a
   new province + level, add a case to `finderFor` in
-  `app/provinces/[province]/page.tsx`; the terminology above already
-  covers it.
+  `lib/tracked-elections.ts`; the terminology above already covers it.
 
 ## Where it lives
 
-- `app/provinces/[province]/page.tsx` — `finderFor`, tile links, the
-  gated finder section.
+- `lib/tracked-elections.ts` — `finderFor`, the province + level →
+  finder mapping.
+- `app/provinces/[province]/page.tsx` — tile links to the finder page.
+- `app/provinces/[province]/finder/page.tsx` — the dedicated finder
+  page (level from `?level=`, back link, no-finder message).
 - `components/MunicipalityFinder.tsx` — labels, placeholders, hints, and
   no-match text per province (ON = municipality, BC = district).

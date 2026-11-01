@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import MunicipalityFinder from "@/components/MunicipalityFinder";
 import PastRacesDropdown from "@/components/PastRacesDropdown";
 import {
+  finderFor,
   getProvince,
   provinceTiles,
   type TileRow,
@@ -15,14 +15,9 @@ import {
 // render per request, never freeze at build time. That is why there is no
 // generateStaticParams here: static prerendering would pin the sections to
 // the build date and the transitions would never happen until a redeploy.
-// Per-request rendering is also what lets ?finder=<level> reveal the
-// finder section (see Column) without a rebuild.
 export const dynamic = "force-dynamic";
 
-type Props = {
-  params: Promise<{ province: string }>;
-  searchParams?: Promise<{ finder?: string | string[] }>;
-};
+type Props = { params: Promise<{ province: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { province: slug } = await params;
@@ -43,35 +38,19 @@ function RaceRow({ row }: { row: TileRow }) {
 }
 
 /**
- * Which finder, if any, a province page's tile can open. Finder data
- * covers Ontario municipalities and BC electoral districts only — every
- * other province/level has no finder to open, so its tiles stay plain.
- * See docs/finder-terminology.md for the level language used here.
- */
-function finderFor(
-  provinceSlug: string,
-  level: "federal" | "provincial" | "municipal",
-): { initialProvince: "ON" | "BC"; entity: "municipality" | "district" } | null {
-  if (provinceSlug === "ontario" && level === "municipal") {
-    return { initialProvince: "ON", entity: "municipality" };
-  }
-  if (provinceSlug === "british-columbia" && level === "provincial") {
-    return { initialProvince: "BC", entity: "district" };
-  }
-  return null;
-}
-
-/**
  * One column (Federal, Provincial, or Municipal): a stack of separate
  * tiles in order — one tile per current race, then one tile per next
  * race, then the past races as a drop-down when at least one exists,
  * otherwise the historical-loading disclaimer.
  *
- * The finder stays hidden until a tile opens it: current race tiles are
- * links to ?finder=<level> when that province/level has finder data, and
- * past race tiles carry a finder link below the drop-down (the drop-down
- * itself cannot live inside a link). Next race tiles are never clickable
- * — there is nothing to select for an election years out.
+ * Tiles open the dedicated finder page, not an inline section: current
+ * race tiles are links to /provinces/<slug>/finder?level=<level> when
+ * that province/level has finder data, and past race tiles carry a
+ * finder link below the drop-down (the drop-down itself cannot live
+ * inside a link). Next race tiles are never clickable — there is nothing
+ * to select for an election years out. A separate page keeps the search
+ * unmissable on phones, where an inline reveal below the tiles is easy
+ * to miss entirely.
  */
 function Column({
   title,
@@ -86,7 +65,7 @@ function Column({
 }) {
   const finder = finderFor(provinceSlug, level);
   const finderHref = finder
-    ? `/provinces/${provinceSlug}?finder=${level}`
+    ? `/provinces/${provinceSlug}/finder?level=${level}`
     : null;
   const finderText = finder ? `Find your ${finder.entity} →` : null;
   return (
@@ -154,20 +133,12 @@ function Column({
   );
 }
 
-export default async function ProvincePage({ params, searchParams }: Props) {
+export default async function ProvincePage({ params }: Props) {
   const { province: slug } = await params;
   const province = getProvince(slug);
   if (!province) notFound();
 
   const tiles = provinceTiles(slug);
-  const sp = await searchParams;
-  const finderParam = typeof sp?.finder === "string" ? sp.finder : undefined;
-  const finderOpen =
-    finderParam === "federal" ||
-    finderParam === "provincial" ||
-    finderParam === "municipal"
-      ? finderFor(slug, finderParam)
-      : null;
 
   return (
     <div>
@@ -198,17 +169,6 @@ export default async function ProvincePage({ params, searchParams }: Props) {
           provinceSlug={slug}
         />
       </div>
-
-      {finderOpen && (
-        <section className="mt-8">
-          <p className="text-sm text-ink-faint">
-            <Link href={`/provinces/${slug}`} className="link">
-              ← Back to {province.name} overview
-            </Link>
-          </p>
-          <MunicipalityFinder initialProvince={finderOpen.initialProvince} />
-        </section>
-      )}
     </div>
   );
 }

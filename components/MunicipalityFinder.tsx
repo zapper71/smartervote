@@ -177,11 +177,17 @@ function rank(name: string, q: string): number {
  * Optional preset for province pages: when given, the finder starts on
  * that province and the toggle is hidden (the page is already scoped to
  * it). Without it the finder behaves as before, ON by default.
+ * autoFocus puts the cursor in the search field on the dedicated finder
+ * page (desktop browsers honour it; mobile browsers may not open the
+ * keyboard until the user taps, which is fine — the field still fills
+ * the screen).
  */
 export default function MunicipalityFinder({
   initialProvince,
+  autoFocus = false,
 }: {
   initialProvince?: Province;
+  autoFocus?: boolean;
 } = {}) {
   const [province, setProvince] = useState<Province>(initialProvince ?? "ON");
   const [query, setQuery] = useState("");
@@ -255,6 +261,7 @@ export default function MunicipalityFinder({
           id="finder-search"
           type="search"
           value={query}
+          autoFocus={autoFocus}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={
             province === "ON"
