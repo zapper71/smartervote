@@ -249,7 +249,7 @@ export default function MunicipalityFinder({
         >
           {province === "ON"
             ? "Find your municipality"
-            : "Find your electoral district"}
+            : "Find your district"}
         </label>
         <input
           id="finder-search"
@@ -268,7 +268,7 @@ export default function MunicipalityFinder({
         <p id="finder-hint" className="mt-2 text-xs text-ink-faint">
           {province === "ON"
             ? `${FINDER_MUNICIPALITIES.length} Ontario municipalities · scroll the list or type to filter — wards & communities work too (e.g. Etobicoke, New Hamburg)`
-            : `${FINDER_DISTRICTS.length} BC electoral districts · scroll the list or type to filter`}
+            : `${FINDER_DISTRICTS.length} BC districts · scroll the list or type to filter`}
         </p>
       </div>
 
