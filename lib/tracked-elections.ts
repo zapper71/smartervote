@@ -122,6 +122,8 @@ export interface TileRow {
   label?: string;
   /** Display text for the election date, or "Not yet tracked". */
   date: string;
+  /** ISO date used to order races ascending; absent = unknown, sorts last. */
+  sortDate?: string;
 }
 
 /** One tile's three sections: current race, next race, past races. */
@@ -226,11 +228,15 @@ export function provinceTiles(
     tiles.provincial = merge([
       cycleSections(
         {
-          row: { date: formatElectionDate("2026-10-24") },
+          row: {
+            date: formatElectionDate("2026-10-24"),
+            sortDate: "2026-10-24",
+          },
           filingDeadline: "2026-10-03",
           allResultsOfficialDate: null,
           next: {
             date: `${formatElectionDate("2030-10-19")} (scheduled)`,
+            sortDate: "2030-10-19",
           },
         },
         now,
@@ -241,10 +247,16 @@ export function provinceTiles(
     tiles.municipal = merge([
       cycleSections(
         {
-          row: { date: formatElectionDate("2026-10-26") },
+          row: {
+            date: formatElectionDate("2026-10-26"),
+            sortDate: "2026-10-26",
+          },
           filingDeadline: "2026-08-21",
           allResultsOfficialDate: null,
-          next: { date: formatElectionDate("2030-10-28") },
+          next: {
+            date: formatElectionDate("2030-10-28"),
+            sortDate: "2030-10-28",
+          },
         },
         now,
       ),
@@ -257,6 +269,7 @@ export function provinceTiles(
           row: {
             label: "RM even-division councillors",
             date: formatElectionDate("2026-11-09"),
+            sortDate: "2026-11-09",
           },
           filingDeadline: "2026-10-07",
           allResultsOfficialDate: null,
@@ -269,6 +282,7 @@ export function provinceTiles(
           row: {
             label: "RM odd divisions + reeve",
             date: formatElectionDate("2028-11-08"),
+            sortDate: "2028-11-08",
           },
           filingDeadline: null,
           allResultsOfficialDate: null,
@@ -281,6 +295,7 @@ export function provinceTiles(
           row: {
             label: "Cities, towns and villages",
             date: formatElectionDate("2028-11-08"),
+            sortDate: "2028-11-08",
           },
           filingDeadline: null,
           allResultsOfficialDate: null,
@@ -293,6 +308,7 @@ export function provinceTiles(
           row: {
             label: "Resort villages",
             date: formatElectionDate("2028-07-29"),
+            sortDate: "2028-07-29",
           },
           filingDeadline: null,
           allResultsOfficialDate: null,
@@ -318,7 +334,10 @@ export function provinceTiles(
     tiles.municipal = merge([
       cycleSections(
         {
-          row: { date: formatElectionDate("2026-12-14") },
+          row: {
+            date: formatElectionDate("2026-12-14"),
+            sortDate: "2026-12-14",
+          },
           filingDeadline: null,
           allResultsOfficialDate: null,
           next: null,
@@ -326,6 +345,19 @@ export function provinceTiles(
         now,
       ),
     ]);
+  }
+  // Current and next races render in ascending date order; races with an
+  // unknown date (e.g. northern municipalities, exact day TBD) sort last.
+  // Stable sort keeps the listed order for same-day rows.
+  const byDateAsc = (a: TileRow, b: TileRow): number => {
+    const da = a.sortDate ?? "9999";
+    const db = b.sortDate ?? "9999";
+    return da < db ? -1 : da > db ? 1 : 0;
+  };
+  for (const tile of [tiles.federal, tiles.provincial, tiles.municipal]) {
+    tile.current.sort(byDateAsc);
+    tile.next.sort(byDateAsc);
+    tile.past.sort(byDateAsc);
   }
   return tiles;
 }

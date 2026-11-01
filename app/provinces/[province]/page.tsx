@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import MunicipalityFinder from "@/components/MunicipalityFinder";
+import PastRacesDropdown from "@/components/PastRacesDropdown";
 import {
   getProvince,
   hasFinderEntries,
@@ -29,19 +30,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-function RowList({ rows }: { rows: TileRow[] }) {
+function RaceRow({ row }: { row: TileRow }) {
   return (
-    <ul className="mt-2 space-y-1">
-      {rows.map((row, i) => (
-        <li key={i} className="text-ink-soft">
-          {row.label ? `${row.label} — ${row.date}` : row.date}
-        </li>
-      ))}
-    </ul>
+    <p className="mt-2 text-ink-soft">
+      {row.label ? `${row.label} — ${row.date}` : row.date}
+    </p>
   );
 }
 
-function Tile({
+/**
+ * One column (Federal, Provincial, or Municipal): a stack of separate
+ * tiles in order — one tile per current race, then one tile per next
+ * race, then the past races as a drop-down when at least one exists,
+ * otherwise the historical-loading disclaimer.
+ */
+function Column({
   title,
   section,
 }: {
@@ -49,32 +52,39 @@ function Tile({
   section: TileSection;
 }) {
   return (
-    <section className="card">
+    <div>
       <h2 className="text-xl">{title}</h2>
-      {section.current.length > 0 && (
-        <>
-          <p className="mt-3 text-sm font-medium uppercase tracking-wide text-ink-faint">
-            Current race
+      <div className="mt-3 space-y-3">
+        {section.current.map((row, i) => (
+          <section key={`current-${i}`} className="card">
+            <h3 className="text-sm font-medium uppercase tracking-wide text-accent">
+              Current Race
+            </h3>
+            <RaceRow row={row} />
+          </section>
+        ))}
+        {section.next.map((row, i) => (
+          <section key={`next-${i}`} className="card">
+            <h3 className="text-sm font-medium uppercase tracking-wide text-accent">
+              Next Race
+            </h3>
+            <RaceRow row={row} />
+          </section>
+        ))}
+        {section.past.length > 0 ? (
+          <section className="card">
+            <h3 className="text-sm font-medium uppercase tracking-wide text-accent">
+              Past Races
+            </h3>
+            <PastRacesDropdown races={section.past} />
+          </section>
+        ) : (
+          <p className="text-sm text-ink-faint">
+            We will load historical race data soon.
           </p>
-          <RowList rows={section.current} />
-        </>
-      )}
-      <p className="mt-3 text-sm font-medium uppercase tracking-wide text-ink-faint">
-        Next race
-      </p>
-      <RowList rows={section.next} />
-      {section.past.length > 0 && (
-        <>
-          <p className="mt-3 text-sm font-medium uppercase tracking-wide text-ink-faint">
-            Past races
-          </p>
-          <RowList rows={section.past} />
-        </>
-      )}
-      <p className="mt-4 border-t border-paper-edge pt-3 text-sm text-ink-faint">
-        We will load historical race data soon.
-      </p>
-    </section>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -95,10 +105,10 @@ export default async function ProvincePage({ params }: Props) {
         </Link>
       </p>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-3">
-        <Tile title="Federal" section={tiles.federal} />
-        <Tile title="Provincial" section={tiles.provincial} />
-        <Tile title="Municipal" section={tiles.municipal} />
+      <div className="mt-6 grid items-start gap-4 md:grid-cols-3">
+        <Column title="Federal" section={tiles.federal} />
+        <Column title="Provincial" section={tiles.provincial} />
+        <Column title="Municipal" section={tiles.municipal} />
       </div>
 
       <section className="mt-8">
