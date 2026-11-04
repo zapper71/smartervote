@@ -25,10 +25,11 @@
  *   municipality slug = slugify(name)
  *   race slug = "{municipality-slug}-{slugify(race label)}"  (globally unique)
  *   candidate slug = "{municipality-slug}-{slugify(name)}"
- * Huntsville keeps its existing unprefixed slugs, so it is NOT in
- * RACES_BY_MUNICIPALITY — its races are database-driven and live under
- * /races/*. It IS in MUNICIPALITIES (synthetic entry, counts unknown until
- * the database is read) so the homepage finder surfaces it.
+ * Huntsville is a normal Ontario entry since Nov 2026 (unification
+ * step 1): its races and candidates come from ontario-names-races.json
+ * like every other municipality, with prefixed slugs
+ * (huntsville-mayor, huntsville-dan-armour, ...). The old unprefixed
+ * slugs survive only as redirects until the slug migration lands.
  *
  * Run: node scripts/generate-expansion-index.mjs
  * No dependencies.
@@ -57,7 +58,7 @@ function classifyOntarioRaceType(label) {
   if (/school board|trustee|cecce|cepeo|cdsbeo|conseil scolaire/.test(l))
     return "school_board";
   if (/^\s*mayor\b/.test(l)) return "mayor"; // "Mayor", not "Deputy Mayor"
-  if (/\bward\b/.test(l)) return "council_ward";
+  if (/\bwards?\b/.test(l)) return "council_ward";
   return "council_at_large";
 }
 
@@ -120,8 +121,12 @@ for (const row of ontarioRows) {
     ontario.set(muniName, { races: new Map() });
   const muni = ontario.get(muniName);
   if (!muni.races.has(raceLabel))
-    muni.races.set(raceLabel, { candidates: new Map(), sources: new Set() });
+    muni.races.set(raceLabel, { candidates: new Map(), sources: new Set(), seats: null });
   const race = muni.races.get(raceLabel);
+  // Seats: optional per-race field on the source row (Huntsville carries
+  // real seat counts; other municipalities leave it null = unknown).
+  if (race.seats === null && row.seats !== undefined && row.seats !== null)
+    race.seats = row.seats;
   if (!race.candidates.has(candName)) {
     race.candidates.set(candName, {
       name: candName,
@@ -164,9 +169,10 @@ for (const muniName of [...ontario.keys()].sort((a, b) => a.localeCompare(b))) {
       slug: `${muniSlug}-${slugify(raceLabel)}`,
       name: raceLabel,
       raceType,
-      // Seats are not in the source data. Mayor is definitionally one seat;
-      // everything else is unknown rather than guessed.
-      seats: raceType === "mayor" ? 1 : null,
+      // Seats from the source row when present; mayor is definitionally
+      // one seat; everything else without a source value is unknown
+      // rather than guessed.
+      seats: r.seats ?? (raceType === "mayor" ? 1 : null),
       candidates,
       sources: [...r.sources].sort(),
     });
@@ -216,17 +222,8 @@ municipalities.push({
 });
 racesByMunicipality[BC_SLUG] = bcRaces;
 
-// Huntsville: synthetic entry so the finder surfaces it. Its races keep
-// their existing unprefixed slugs and are database-driven, so it has no
-// RACES_BY_MUNICIPALITY entry — /municipalities/huntsville redirects to
-// /races, the canonical Huntsville page.
-municipalities.unshift({
-  slug: "huntsville",
-  name: "Huntsville",
-  province: "ON",
-  raceCount: null, // database-driven; unknown at generation time
-  candidateCount: null,
-});
+// Huntsville is generated like every other Ontario municipality (see the
+// Ontario loop above); no synthetic entry, no special-casing.
 
 const generatedAt = new Date().toISOString();
 const header = `/**
@@ -248,7 +245,7 @@ export interface ExpansionMunicipality {
   slug: string;
   name: string;
   province: "ON" | "BC";
-  /** null when the count is database-driven and unknown at generation time (Huntsville). */
+  /** null only when the count is genuinely unknown at generation time. */
   raceCount: number | null;
   candidateCount: number | null;
 }
@@ -282,7 +279,7 @@ export interface ExpansionRace {
   sources: string[];
 }
 
-/** 265 Ontario municipalities + British Columbia (+ synthetic Huntsville first). */
+/** Ontario municipalities + British Columbia. */
 export const MUNICIPALITIES: ExpansionMunicipality[] = ${JSON.stringify(
     municipalities,
     null,
@@ -345,7 +342,7 @@ export interface FinderMunicipality {
   name: string;
 }
 
-/** Ontario municipalities, Huntsville first, then alphabetical. */
+/** Ontario municipalities, alphabetical. */
 export const FINDER_MUNICIPALITIES: FinderMunicipality[] = ${JSON.stringify(
     finderMunicipalities,
     null,
