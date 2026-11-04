@@ -109,7 +109,7 @@ export default async function RacePage({ params }: Props) {
         <p className="mt-1 text-ink-faint">{race.ward_group_label}</p>
       )}
       <p className="mt-3 text-ink-soft">{contestLabel(candidates.length, race.seats)}</p>
-      {!hasWinner && (
+      {!hasWinner && !uncontested && (
         <p className="mt-2">
           <ResultsNotAvailablePill />
         </p>
@@ -262,6 +262,7 @@ export default async function RacePage({ params }: Props) {
       <ResultsSourceNote
         hasWinner={hasWinner}
         hasAcclaimedWinner={hasAcclaimedWinner}
+        uncontested={uncontested}
         source={RESULTS_SOURCES[race.slug] ?? null}
       />
     </div>

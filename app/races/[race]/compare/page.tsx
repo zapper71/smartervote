@@ -98,6 +98,10 @@ export default async function ComparePage({ params, searchParams }: Props) {
   const winners = allCandidates.filter((c) => c.is_winner);
   const hasAcclaimedWinner =
     winners.length > 0 && winners.every((c) => c.status === "acclaimed");
+  // Same uncontested rule as the race page: candidates <= seats means the
+  // seat was decided without an election, so no "Results not available" tag.
+  const uncontested =
+    allCandidates.length > 0 && allCandidates.length <= race.seats;
   const isFiltered = candidates.length !== allCandidates.length;
 
   const positions = await getPositionsForCandidates(candidates.map((c) => c.id));
@@ -166,7 +170,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
         {contestLabel(allCandidates.length, race.seats)}
         {race.seats > 1 && ` · you can vote for up to ${race.seats}`}
       </p>
-      {!hasWinner && (
+      {!hasWinner && !uncontested && (
         <p className="mt-2">
           <ResultsNotAvailablePill />
         </p>
@@ -495,6 +499,7 @@ export default async function ComparePage({ params, searchParams }: Props) {
       <ResultsSourceNote
         hasWinner={hasWinner}
         hasAcclaimedWinner={hasAcclaimedWinner}
+        uncontested={uncontested}
         source={RESULTS_SOURCES[race.slug] ?? null}
       />
     </div>
