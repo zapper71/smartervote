@@ -16,16 +16,25 @@ export interface ResultsSource {
  * section). On a race with a recorded winner but no mapped source
  * and no acclamation, renders nothing: a source name without a
  * link is not shown as a link.
+ *
+ * Uncontested races (Andreas, 2026-11-04) are the exception to the
+ * disclaimer: a seat decided without an election has no counts in
+ * progress, so the "Results not available" sentence does not apply
+ * even before a winner flag lands — the page's own "decided without
+ * an election" box already explains the outcome.
  */
 export default function ResultsSourceNote({
   hasWinner,
   hasAcclaimedWinner,
+  uncontested = false,
   source,
 }: {
   hasWinner: boolean;
   hasAcclaimedWinner: boolean;
+  uncontested?: boolean;
   source?: ResultsSource | null;
 }) {
+  if (!hasWinner && uncontested) return null;
   if (!hasWinner) {
     return (
       <div className="mt-8 border-t border-paper-edge pt-4 text-sm text-ink-soft">

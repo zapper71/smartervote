@@ -64,6 +64,10 @@ function RaceEntry({
   // winner in the index carries the "Results not available" tag. It
   // clears on its own when the index winner patch for that race lands.
   const hasWinner = race.candidates.some((c) => c.winner);
+  // Same "· acclaimed" rule as the line below: every candidate acclaimed
+  // means the seat was decided without an election, so no
+  // "Results not available" tag even before a winner flag lands.
+  const fullyAcclaimed = count > 0 && count === acclaimedCount;
   // Same rule as Huntsville's RaceCard: a one-horse race has nothing to compare.
   const contested = count > 1 && (race.seats == null || count > race.seats);
   return (
@@ -77,7 +81,7 @@ function RaceEntry({
             {race.name}
           </Link>
         </h3>
-        {!hasWinner && <ResultsNotAvailablePill />}
+        {!hasWinner && !fullyAcclaimed && <ResultsNotAvailablePill />}
         {dataLoaded !== null &&
           (dataLoaded ? (
             contested ? (
