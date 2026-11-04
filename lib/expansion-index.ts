@@ -40318,7 +40318,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
           "name": "Sheryl Evans",
           "acclaimed": true,
           "winner": true,
-          "resultStatus": "unofficial"
+          "resultStatus": "official"
         }
       ],
       "sources": [
