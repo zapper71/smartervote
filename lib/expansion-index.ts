@@ -7462,7 +7462,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Pierre Gregory",
-          "acclaimed": false
+          "acclaimed": false,
+          "winner": true,
+          "resultStatus": "unofficial"
         }
       ],
       "sources": [
