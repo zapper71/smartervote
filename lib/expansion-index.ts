@@ -4658,7 +4658,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": false
+          "acclaimed": false,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent LeGrand",
@@ -6707,7 +6709,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": false
+          "acclaimed": false,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
