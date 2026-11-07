@@ -20,7 +20,7 @@ import WinnerPill from "@/components/WinnerPill";
 import PartyPill from "@/components/PartyPill";
 import CandidateEmail from "@/components/CandidateEmail";
 
-export const revalidate = 300;
+export const revalidate = 3600; // Hourly (was 300s): Supabase egress control, Oct 2026
 
 type Props = { params: Promise<{ race: string; candidate: string }> };
 

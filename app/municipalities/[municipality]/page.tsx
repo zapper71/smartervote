@@ -11,7 +11,7 @@ import {
 import { getRaceSlugsWithPublishedPositions } from "@/lib/queries";
 import { finderFor } from "@/lib/tracked-elections";
 
-export const revalidate = 300;
+export const revalidate = 3600; // Hourly (was 300s): Supabase egress control, Oct 2026
 
 type Props = { params: Promise<{ municipality: string }> };
 

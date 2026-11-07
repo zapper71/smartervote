@@ -33,19 +33,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       {
         url: `${SITE_URL}/races/${race.slug}`,
         lastModified: now,
-        changeFrequency: "daily" as const,
+        changeFrequency: "weekly" as const,
         priority: 0.9,
       },
       {
         url: `${SITE_URL}/races/${race.slug}/compare`,
         lastModified: now,
-        changeFrequency: "daily" as const,
+        changeFrequency: "weekly" as const,
         priority: 0.9,
       },
       ...race.candidates.map((c) => ({
         url: `${SITE_URL}/races/${race.slug}/${c.slug}`,
         lastModified: now,
-        changeFrequency: "daily" as const,
+        changeFrequency: "weekly" as const,
         priority: 0.8,
       })),
     ]);

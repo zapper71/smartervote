@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     "SmarterVote puts every candidate side by side on the same issues, in the same format, with a link to the source for every claim.",
 };
 
+export const revalidate = 3600; // Hourly (was 300s): Supabase egress control, Oct 2026
+
 export default function HomePage() {
   return (
     <div>
