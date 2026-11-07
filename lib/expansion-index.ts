@@ -2285,7 +2285,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": false
+          "acclaimed": false,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -6311,7 +6313,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Donald Blais",
           "acclaimed": null,
-          "website": "https://votedonaldblais.ca"
+          "website": "https://votedonaldblais.ca",
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -6420,7 +6424,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Donald Blais",
           "acclaimed": false,
-          "website": "https://votedonaldblais.ca"
+          "website": "https://votedonaldblais.ca",
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -10732,7 +10738,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": null
+          "acclaimed": null,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -11023,7 +11031,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "BLAIS, Donald",
-          "acclaimed": false
+          "acclaimed": false,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "LEGRAND, Innocent",
@@ -13055,7 +13065,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": false
+          "acclaimed": false,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -14174,7 +14186,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Donald Blais",
           "acclaimed": null,
-          "website": "https://votedonaldblais.ca"
+          "website": "https://votedonaldblais.ca",
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -19447,7 +19461,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": null
+          "acclaimed": null,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -19970,7 +19986,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": null
+          "acclaimed": null,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -22664,7 +22682,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Donald Blais",
           "acclaimed": null,
-          "website": "https://votedonaldblais.ca"
+          "website": "https://votedonaldblais.ca",
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent LeGrand",
@@ -26251,7 +26271,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": null
+          "acclaimed": null,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -27283,7 +27305,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": null
+          "acclaimed": null,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -29704,7 +29728,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Donald Blais",
           "acclaimed": null,
-          "website": "https://votedonaldblais.ca"
+          "website": "https://votedonaldblais.ca",
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -30237,7 +30263,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": null
+          "acclaimed": null,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -33192,7 +33220,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": null
+          "acclaimed": null,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -35886,7 +35916,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": null
+          "acclaimed": null,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent LeGrand",
@@ -38608,7 +38640,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": null
+          "acclaimed": null,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -41104,7 +41138,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": null
+          "acclaimed": null,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -41465,7 +41501,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blais",
-          "acclaimed": null
+          "acclaimed": null,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
@@ -49772,7 +49810,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Donald Blaise",
-          "acclaimed": false
+          "acclaimed": false,
+          "winner": true,
+          "resultStatus": "official"
         },
         {
           "name": "Innocent Legrand",
