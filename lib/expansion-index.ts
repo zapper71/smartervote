@@ -56487,7 +56487,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         "acclaimed": false
       },
       {
-        "name": "Aaron Deitrich",
+        "name": "Aaron Dietrich",
         "acclaimed": false
       },
       {
