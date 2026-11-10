@@ -1978,8 +1978,8 @@ export const MUNICIPALITIES: ExpansionMunicipality[] = [
     "slug": "prince-albert-no-461",
     "name": "RM of Prince Albert No. 461",
     "province": "SK",
-    "raceCount": 2,
-    "candidateCount": 2
+    "raceCount": 3,
+    "candidateCount": 4,
   },
   {
     "slug": "buckland-no-491",
@@ -2013,8 +2013,8 @@ export const MUNICIPALITIES: ExpansionMunicipality[] = [
     "slug": "rosthern-no-403",
     "name": "RM of Rosthern No. 403",
     "province": "SK",
-    "raceCount": 3,
-    "candidateCount": 4
+    "raceCount": 4,
+    "candidateCount": 6,
   },
   {
     "slug": "britannia-no-502",
@@ -56617,6 +56617,27 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
     ]
   },
   {
+    "slug": "prince-albert-no-461-councillor-division-4",
+    "name": "Councillor, Division 4",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Richard Wilson",
+        "acclaimed": false,
+        "winner": true,
+        "resultStatus": "unofficial"
+      },
+      {
+        "name": "DJ Harris",
+        "acclaimed": false
+      }
+    ],
+    "sources": [
+      "https://rmprincealbert.ca/"
+    ]
+  },
+  {
     "slug": "prince-albert-no-461-councillor-division-6",
     "name": "Councillor, Division 6",
     "raceType": "council_ward",
@@ -56846,6 +56867,27 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       {
         "name": "Leo Perrin",
         "acclaimed": true
+      }
+    ],
+    "sources": [
+      "https://www.rmofrosthern.ca/elections.html"
+    ]
+  },
+  {
+    "slug": "rosthern-no-403-councillor-division-5",
+    "name": "Councillor, Division 5",
+    "raceType": "council_ward",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Ken Guedo",
+        "acclaimed": false,
+        "winner": true,
+        "resultStatus": "unofficial"
+      },
+      {
+        "name": "Patrick Hylkema",
+        "acclaimed": false
       }
     ],
     "sources": [
