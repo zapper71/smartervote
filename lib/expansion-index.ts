@@ -56877,7 +56877,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
     "candidates": [
       {
         "name": "Ken Guedo",
-        "acclaimed": false
+        "acclaimed": false,
+        "winner": true,
+        "resultStatus": "unofficial"
       },
       {
         "name": "Patrick Hylkema",
