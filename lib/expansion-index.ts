@@ -56674,7 +56674,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
     "candidates": [
       {
         "name": "Leonard Yungwirth",
-        "acclaimed": false
+        "acclaimed": false,
+        "winner": true,
+        "resultStatus": "unofficial"
       },
       {
         "name": "Jason Zalewski",
