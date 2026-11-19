@@ -50126,13 +50126,13 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Anna ACETO-GUERIN",
-          "acclaimed": false
-        },
-        {
-          "name": "Conrad STANLEY",
           "acclaimed": false,
           "winner": true,
           "resultStatus": "unofficial"
+        },
+        {
+          "name": "Conrad STANLEY",
+          "acclaimed": false
         },
         {
           "name": "Linda CUFF",
