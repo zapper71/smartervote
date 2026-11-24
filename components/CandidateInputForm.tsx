@@ -5,7 +5,7 @@ import {
   submitSubmissionAction,
   type SubmitReport,
 } from "@/app/races/[race]/[candidate]/input/actions";
-import type { Issue } from "@/lib/types";
+import type { Issue, RaceType } from "@/lib/types";
 
 const INITIAL: SubmitReport = {
   ok: false,
@@ -26,12 +26,14 @@ export default function CandidateInputForm({
   candidateSlug,
   candidateName,
   rosterEmail,
+  raceType,
   issues,
 }: {
   raceSlug: string;
   candidateSlug: string;
   candidateName: string;
   rosterEmail: string | null;
+  raceType: RaceType;
   issues: Issue[];
 }) {
   const [state, action, pending] = useActionState(submitSubmissionAction, INITIAL);
@@ -182,8 +184,9 @@ export default function CandidateInputForm({
         </div>
         {issues.length === 0 && (
           <p className="mt-4 text-sm text-ink-soft">
-            No issues are listed for this race yet — your bio and contact
-            details above can still be submitted.
+            {raceType === "federal_riding"
+              ? "Federal races don't have an issue list on SmarterVote yet, so there are no position blocks to fill in — your bio and contact details above can still be submitted. Positions can be added once a federal issue list is decided."
+              : "No issues are listed for this race yet — your bio and contact details above can still be submitted."}
           </p>
         )}
       </section>

@@ -54,6 +54,7 @@ export default async function CandidateInputPage({ params }: Props) {
         candidateSlug={candidate.slug}
         candidateName={candidate.name}
         rosterEmail={candidate.email ?? null}
+        raceType={race.race_type}
         issues={issues}
       />
     </div>

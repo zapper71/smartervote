@@ -236,7 +236,11 @@ export async function getPositions(candidateId: string): Promise<Position[]> {
  *
  * Pass the race's type. Omit it and you get the municipal set, which is the
  * safe default for anything that isn't a school board seat — including
- * provincial districts, which have no school-board-style split.
+ * provincial districts and federal ridings, which have no school-board-style
+ * split. (Federal ridings currently have no issues rows seeded at all, so
+ * getIssues returns [] for them; see the candidate-input form's empty-state
+ * note. If a federal issue set is ever seeded, it takes the municipal
+ * applies_to path unless this function is extended.)
  *
  * Pass the race's municipality id. Omit it and you get Huntsville's, which
  * keeps every existing caller working exactly as before.

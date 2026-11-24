@@ -6,7 +6,8 @@ export type RaceType =
   | "council_at_large"
   | "council_ward"
   | "school_board"
-  | "provincial_district";
+  | "provincial_district"
+  | "federal_riding";
 
 export type CandidateStatus = "certified" | "withdrawn" | "acclaimed";
 
