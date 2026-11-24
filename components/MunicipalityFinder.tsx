@@ -10,8 +10,13 @@ import {
   type FinderMunicipality,
 } from "@/lib/expansion-finder";
 import { FINDER_SASKATCHEWAN } from "@/lib/sk-finder";
+import {
+  FINDER_FEDERAL_ON,
+  FINDER_FEDERAL_QC,
+  FINDER_FEDERAL_SK,
+} from "@/lib/federal-finder";
 
-type Province = "ON" | "BC" | "SK";
+type Province = "ON" | "BC" | "SK" | "QC";
 
 /** Cap on rendered filtered rows; empty-query browse-all renders the full list. */
 const FILTER_CAP = 80;
@@ -178,7 +183,10 @@ function rank(name: string, q: string): number {
  * positions are imported). A BC district IS its race, so districts link
  * straight to /races/[district race slug]. Saskatchewan results link to
  * /municipalities/[slug] like Ontario's; the SK list is the 15 RMs with
- * live pages, from lib/sk-finder.ts.
+ * live pages, from lib/sk-finder.ts. Quebec results are the three
+ * federal byelection ridings (Dec 7, 2026), from lib/federal-finder.ts;
+ * the two Ontario and one Saskatchewan ridings are appended to those
+ * provinces' lists from the same file.
  */
 /**
  * Optional preset for province pages: when given, the finder starts on
@@ -206,8 +214,15 @@ export default function MunicipalityFinder({
     if (province !== "BC") {
       // ON and SK share the municipality path; SK slugs simply have no
       // ward/community aliases, so their alias lookups come back empty.
+      // The federal byelection ridings are appended from the
+      // hand-maintained federal lists (the generated finder file only
+      // covers ON municipalities + BC districts); QC is ridings only.
       const list =
-        province === "SK" ? FINDER_SASKATCHEWAN : FINDER_MUNICIPALITIES;
+        province === "SK"
+          ? [...FINDER_SASKATCHEWAN, ...FINDER_FEDERAL_SK]
+          : province === "QC"
+            ? FINDER_FEDERAL_QC
+            : [...FINDER_MUNICIPALITIES, ...FINDER_FEDERAL_ON];
       const { municipalities, raceRows } = onEntries(q, list);
       // Browse-all (empty query) renders the whole scrollable list; filtered
       // results are capped with a count so contains matches are never hidden
@@ -225,7 +240,12 @@ export default function MunicipalityFinder({
     return { shown: matched.slice(0, cap), total: matched.length };
   }, [province, q]);
 
-  const plural = province === "BC" ? "districts" : "municipalities";
+  const plural =
+    province === "BC"
+      ? "districts"
+      : province === "QC"
+        ? "ridings"
+        : "municipalities";
 
   return (
     <div className="mt-6 rounded-lg border border-paper-edge bg-paper p-5 shadow-sm">
@@ -237,6 +257,7 @@ export default function MunicipalityFinder({
             ["ON", "Ontario"],
             ["BC", "British Columbia"],
             ["SK", "Saskatchewan"],
+            ["QC", "Quebec"],
           ] as const
         ).map(([value, label]) => (
           <button
@@ -267,7 +288,9 @@ export default function MunicipalityFinder({
         >
           {province === "BC"
             ? "Find your district"
-            : "Find your municipality"}
+            : province === "QC"
+              ? "Find your riding"
+              : "Find your municipality"}
         </label>
         <input
           id="finder-search"
@@ -280,7 +303,9 @@ export default function MunicipalityFinder({
               ? "e.g. Toronto, Ottawa, Muskoka Lakes…"
               : province === "SK"
                 ? "e.g. Corman Park, Edenwold…"
-                : "e.g. Abbotsford South, Victoria…"
+                : province === "QC"
+                  ? "e.g. Laurier–Sainte-Marie, Rosemont…"
+                  : "e.g. Abbotsford South, Victoria…"
           }
           autoComplete="off"
           aria-describedby="finder-hint finder-count"
@@ -288,10 +313,12 @@ export default function MunicipalityFinder({
         />
         <p id="finder-hint" className="mt-2 text-xs text-ink-faint">
           {province === "ON"
-            ? `${FINDER_MUNICIPALITIES.length} Ontario municipalities · scroll the list or type to filter — wards & communities work too (e.g. Etobicoke, New Hamburg)`
+            ? `${FINDER_MUNICIPALITIES.length + FINDER_FEDERAL_ON.length} Ontario municipalities and ridings · scroll the list or type to filter — wards & communities work too (e.g. Etobicoke, New Hamburg)`
             : province === "SK"
-              ? `${FINDER_SASKATCHEWAN.length} Saskatchewan municipalities · scroll the list or type to filter`
-              : `${FINDER_DISTRICTS.length} BC districts · scroll the list or type to filter`}
+              ? `${FINDER_SASKATCHEWAN.length + FINDER_FEDERAL_SK.length} Saskatchewan municipalities and ridings · scroll the list or type to filter`
+              : province === "QC"
+                ? `${FINDER_FEDERAL_QC.length} Quebec ridings · scroll the list or type to filter`
+                : `${FINDER_DISTRICTS.length} BC districts · scroll the list or type to filter`}
         </p>
       </div>
 

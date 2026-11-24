@@ -25,9 +25,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { municipality: slug } = await params;
   const muni = MUNICIPALITIES.find((m) => m.slug === slug);
   if (!muni) return { title: "Municipality not found" };
+  const isFederal = (RACES_BY_MUNICIPALITY[slug] ?? []).some(
+    (r) => r.raceType === "federal_riding"
+  );
   return {
     title: `${muni.name} 2026 — races and candidates`,
-    description: `Who's running in ${muni.name} in the 2026 election: every race and candidate on the ballot.`,
+    description: isFederal
+      ? `Who's running in ${muni.name} in the December 7, 2026 federal byelection: every candidate on the ballot.`
+      : `Who's running in ${muni.name} in the 2026 election: every race and candidate on the ballot.`,
   };
 }
 
@@ -41,15 +46,21 @@ const GROUPS: { key: string; label: string; types: string[] }[] = [
     label: "Provincial district",
     types: ["provincial_district"],
   },
+  {
+    key: "federal",
+    label: "Federal riding",
+    types: ["federal_riding"],
+  },
 ];
 
 /** Province code (as stored on index municipalities) → province page slug.
- * Only ON, BC, SK occur in MUNICIPALITIES today; extend when a new
+ * ON, BC, SK and QC occur in MUNICIPALITIES today; extend when a new
  * province's municipalities go live. */
 const PROVINCE_SLUGS: Record<string, string> = {
   ON: "ontario",
   BC: "british-columbia",
   SK: "saskatchewan",
+  QC: "quebec",
 };
 
 export default async function MunicipalityPage({ params }: Props) {
@@ -58,20 +69,25 @@ export default async function MunicipalityPage({ params }: Props) {
   const muni = MUNICIPALITIES.find((m) => m.slug === slug);
   if (!muni) notFound();
 
+  const races = RACES_BY_MUNICIPALITY[slug] ?? [];
+  const isFederal = races.some((r) => r.raceType === "federal_riding");
+
   // Back link goes to the search page this municipality belongs to, not
   // home: the province's finder when one exists for this level (ON/SK
-  // municipal, BC provincial), else the province overview. It never
-  // points at the province list again.
+  // municipal, BC provincial, federal ridings in ON/QC/SK), else the
+  // province overview. It never points at the province list again.
   const provinceSlug = PROVINCE_SLUGS[muni.province];
-  const finderLevel = muni.province === "BC" ? "provincial" : "municipal";
+  const finderLevel = isFederal
+    ? "federal"
+    : muni.province === "BC"
+      ? "provincial"
+      : "municipal";
   const backHref =
     provinceSlug && finderFor(provinceSlug, finderLevel)
       ? `/provinces/${provinceSlug}/finder?level=${finderLevel}`
       : provinceSlug
         ? `/provinces/${provinceSlug}`
         : "/";
-
-  const races = RACES_BY_MUNICIPALITY[slug] ?? [];
 
   // Which races have at least one PUBLISHED position. If the check fails —
   // preview before migration, a blip, a missing table — the page renders
@@ -101,7 +117,12 @@ export default async function MunicipalityPage({ params }: Props) {
     <div>
       <p className="text-sm">
         <Link href={backHref} className="link">
-          &larr; Find your {muni.province === "BC" ? "district" : "municipality"}
+          &larr; Find your{" "}
+          {isFederal
+            ? "riding"
+            : muni.province === "BC"
+              ? "district"
+              : "municipality"}
         </Link>
       </p>
 
@@ -111,9 +132,11 @@ export default async function MunicipalityPage({ params }: Props) {
         <span className="pill bg-flag-light text-flag">Partial coverage</span>
       </div>
       <p className="prose-civic mt-3 text-sm">
-        {muni.province === "BC"
-          ? `The 93 electoral districts of the 2026 British Columbia provincial election. This page lists who's running in each district; full side-by-side positions are being researched.`
-          : `Who's running in the 2026 municipal election. This page lists every race and candidate we know of; full side-by-side positions are being researched.`}
+        {isFederal
+          ? `The December 7, 2026 federal byelection. This page lists every candidate running in this riding; full side-by-side positions are being researched.`
+          : muni.province === "BC"
+            ? `The 93 electoral districts of the 2026 British Columbia provincial election. This page lists who's running in each district; full side-by-side positions are being researched.`
+            : `Who's running in the 2026 municipal election. This page lists every race and candidate we know of; full side-by-side positions are being researched.`}
       </p>
 
       {races.length === 0 ? (
