@@ -12,7 +12,7 @@ import type { RaceType } from "./types";
 export interface ExpansionMunicipality {
   slug: string;
   name: string;
-  province: "ON" | "BC" | "SK";
+  province: "ON" | "BC" | "SK" | "QC";
   /** null when the count is database-driven and unknown at generation time (Huntsville). */
   raceCount: number | null;
   candidateCount: number | null;
@@ -2029,6 +2029,48 @@ export const MUNICIPALITIES: ExpansionMunicipality[] = [
     "province": "SK",
     "raceCount": 3,
     "candidateCount": 3
+  },
+  {
+    "slug": "brantford-brant-south",
+    "name": "Brantford–Brant South",
+    "province": "ON",
+    "raceCount": 1,
+    "candidateCount": 9
+  },
+  {
+    "slug": "laurier-sainte-marie",
+    "name": "Laurier–Sainte-Marie",
+    "province": "QC",
+    "raceCount": 1,
+    "candidateCount": 8
+  },
+  {
+    "slug": "rosemont-la-petite-patrie",
+    "name": "Rosemont–La Petite-Patrie",
+    "province": "QC",
+    "raceCount": 1,
+    "candidateCount": 8
+  },
+  {
+    "slug": "saint-hyacinthe-bagot-acton",
+    "name": "Saint-Hyacinthe–Bagot–Acton",
+    "province": "QC",
+    "raceCount": 1,
+    "candidateCount": 6
+  },
+  {
+    "slug": "scarborough-north",
+    "name": "Scarborough North",
+    "province": "ON",
+    "raceCount": 1,
+    "candidateCount": 5
+  },
+  {
+    "slug": "yorkton-melville",
+    "name": "Yorkton–Melville",
+    "province": "SK",
+    "raceCount": 1,
+    "candidateCount": 6
   }
 ];
 
@@ -57033,6 +57075,311 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
     ],
     "sources": [
       "https://rm343.com/2026-municipal-elections/"
+    ]
+  }
+],
+  "brantford-brant-south": [
+  {
+    "slug": "brantford-brant-south",
+    "name": "Member of Parliament",
+    "raceType": "federal_riding",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Leslie Bory",
+        "acclaimed": false,
+        "party": "Independent",
+        "website": "https://labourfirst.ca"
+      },
+      {
+        "name": "Dirk Byers",
+        "acclaimed": false,
+        "party": "Christian Heritage Party of Canada"
+      },
+      {
+        "name": "Dave Carrol",
+        "acclaimed": false,
+        "party": "Independent",
+        "website": "https://davecarrol.ca"
+      },
+      {
+        "name": "Mike Clancy",
+        "acclaimed": false,
+        "party": "Independent",
+        "website": "https://www.maturedemocracy.ca"
+      },
+      {
+        "name": "Kevin Davis",
+        "acclaimed": false,
+        "party": "Conservative Party of Canada",
+        "website": "https://fightingforbrantfordbrant.ca"
+      },
+      {
+        "name": "Kathryn Kissinger",
+        "acclaimed": false,
+        "party": "Green Party of Canada",
+        "website": "https://votekathrynkissinger.ca"
+      },
+      {
+        "name": "Joy O'Donnell",
+        "acclaimed": false,
+        "party": "Liberal Party of Canada",
+        "website": "https://joyodonnell.liberal.ca"
+      },
+      {
+        "name": "Anthony Tarrant",
+        "acclaimed": false,
+        "party": "People's Party of Canada"
+      },
+      {
+        "name": "Brad Ward",
+        "acclaimed": false,
+        "party": "New Democratic Party",
+        "website": "https://bradward.ndp.ca"
+      }
+    ],
+    "sources": [
+      "https://www.elections.ca/Scripts/vis/candidates?L=e&ED=35015&EV=66&EV_TYPE=3&PC=&PROV=&PROVID=&MAPID=35015&QID=8&PAGEID=17&TPAGEID=&PD=&STAT_CODE_ID=-1"
+    ]
+  }
+],
+  "laurier-sainte-marie": [
+  {
+    "slug": "laurier-sainte-marie",
+    "name": "Member of Parliament",
+    "raceType": "federal_riding",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Zumretay Arkin",
+        "acclaimed": false,
+        "party": "Bloc Québécois"
+      },
+      {
+        "name": "Chinook Blais-Leduc",
+        "acclaimed": false,
+        "party": "Parti Rhinocéros Party"
+      },
+      {
+        "name": "Guy Cormier",
+        "acclaimed": false,
+        "party": "Liberal Party of Canada",
+        "website": "https://guycormier.liberal.ca"
+      },
+      {
+        "name": "Jocelyn Simon Daigle",
+        "acclaimed": false,
+        "party": "Independent"
+      },
+      {
+        "name": "Eugène Duplessis",
+        "acclaimed": false,
+        "party": "People's Party of Canada"
+      },
+      {
+        "name": "Jean Duval",
+        "acclaimed": false,
+        "party": "Independent"
+      },
+      {
+        "name": "Mathieu Fournier",
+        "acclaimed": false,
+        "party": "Conservative Party of Canada"
+      },
+      {
+        "name": "Nimâ Machouf",
+        "acclaimed": false,
+        "party": "New Democratic Party",
+        "website": "https://nimamachouf.ca"
+      }
+    ],
+    "sources": [
+      "https://www.elections.ca/Scripts/vis/candidates?L=e&ED=24037&EV=66&EV_TYPE=3&PROV=QC&PROVID=24&QID=-1&PAGEID=17&TPAGEID="
+    ]
+  }
+],
+  "rosemont-la-petite-patrie": [
+  {
+    "slug": "rosemont-la-petite-patrie",
+    "name": "Member of Parliament",
+    "raceType": "federal_riding",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Pierre Céré",
+        "acclaimed": false,
+        "party": "New Democratic Party",
+        "website": "https://pierrecere.org"
+      },
+      {
+        "name": "Alexandre Curzi",
+        "acclaimed": false,
+        "party": "Bloc Québécois"
+      },
+      {
+        "name": "Yahia Ghzala",
+        "acclaimed": false,
+        "party": "Green Party of Canada"
+      },
+      {
+        "name": "Ingénieur Hu",
+        "acclaimed": false,
+        "party": "Centrist Party of Canada"
+      },
+      {
+        "name": "Osmar Llanos Martinez",
+        "acclaimed": false,
+        "party": "Conservative Party of Canada"
+      },
+      {
+        "name": "François Tessier",
+        "acclaimed": false,
+        "party": "Parti Rhinocéros Party"
+      },
+      {
+        "name": "Philippe Tessier",
+        "acclaimed": false,
+        "party": "No Affiliation"
+      },
+      {
+        "name": "Jean-Sébastien Vallée",
+        "acclaimed": false,
+        "party": "Liberal Party of Canada",
+        "website": "https://jeansebastienvallee.liberal.ca"
+      }
+    ],
+    "sources": [
+      "https://www.elections.ca/Scripts/vis/candidates?L=e&ED=24065&EV=66&EV_TYPE=3&PROV=QC&PROVID=24&QID=-1&PAGEID=17&TPAGEID="
+    ]
+  }
+],
+  "saint-hyacinthe-bagot-acton": [
+  {
+    "slug": "saint-hyacinthe-bagot-acton",
+    "name": "Member of Parliament",
+    "raceType": "federal_riding",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Mathieu Boisvert",
+        "acclaimed": false,
+        "party": "New Democratic Party"
+      },
+      {
+        "name": "Luc Brodeur-Jourdain",
+        "acclaimed": false,
+        "party": "Conservative Party of Canada",
+        "website": "https://lucbrodeurjourdain.ca"
+      },
+      {
+        "name": "Caroline Emond",
+        "acclaimed": false,
+        "party": "Bloc Québécois"
+      },
+      {
+        "name": "Martin Grenier",
+        "acclaimed": false,
+        "party": "Green Party of Canada"
+      },
+      {
+        "name": "Chantal Soucy",
+        "acclaimed": false,
+        "party": "Liberal Party of Canada"
+      },
+      {
+        "name": "Joanne Voyer",
+        "acclaimed": false,
+        "party": "People's Party of Canada"
+      }
+    ],
+    "sources": [
+      "https://www.elections.ca/scripts/vis/candidates?L=e&ED=24066&EV=66&EV_TYPE=3&PROV=CA&PROVID=99&QID=-1&PAGEID=17"
+    ]
+  }
+],
+  "scarborough-north": [
+  {
+    "slug": "scarborough-north",
+    "name": "Member of Parliament",
+    "raceType": "federal_riding",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Dameon Halstead",
+        "acclaimed": false,
+        "party": "Conservative Party of Canada"
+      },
+      {
+        "name": "Victoria Drisana Jewt",
+        "acclaimed": false,
+        "party": "Green Party of Canada"
+      },
+      {
+        "name": "Kingsley Kwok",
+        "acclaimed": false,
+        "party": "New Democratic Party",
+        "website": "https://kingsleykwok.ndp.ca"
+      },
+      {
+        "name": "James Li",
+        "acclaimed": false,
+        "party": "Liberal Party of Canada",
+        "website": "https://jamesli.liberal.ca"
+      },
+      {
+        "name": "Ayub Sipra",
+        "acclaimed": false,
+        "party": "Centrist Party of Canada"
+      }
+    ],
+    "sources": [
+      "https://www.elections.ca/Scripts/vis/candidates?L=e&ED=35095&EV=66&EV_TYPE=3&PC=&PROV=QC&PROVID=13&MAPID=&QID=8&PAGEID=17&TPAGEID=&PD=&STAT_CODE_ID=-1"
+    ]
+  }
+],
+  "yorkton-melville": [
+  {
+    "slug": "yorkton-melville",
+    "name": "Member of Parliament",
+    "raceType": "federal_riding",
+    "seats": 1,
+    "candidates": [
+      {
+        "name": "Tammy Bobyk-Jacquemart",
+        "acclaimed": false,
+        "party": "New Democratic Party"
+      },
+      {
+        "name": "Valerie Brooks",
+        "acclaimed": false,
+        "party": "Green Party of Canada"
+      },
+      {
+        "name": "Dionne Fehler",
+        "acclaimed": false,
+        "party": "People's Party of Canada"
+      },
+      {
+        "name": "Aaron Kienle",
+        "acclaimed": false,
+        "party": "Liberal Party of Canada",
+        "website": "https://aaronkienle.liberal.ca"
+      },
+      {
+        "name": "Travis M. Patron",
+        "acclaimed": false,
+        "party": "Independent",
+        "website": "https://travispatron.ca"
+      },
+      {
+        "name": "Nelson Pohl",
+        "acclaimed": false,
+        "party": "Conservative Party of Canada",
+        "website": "https://www.yorkton-melville.ca"
+      }
+    ],
+    "sources": [
+      "https://www.elections.ca/Scripts/vis/candidates?L=e&ED=47014&EV=66&EV_TYPE=3&PC=&PROV=&PROVID=&MAPID=47014&QID=8&PAGEID=17&TPAGEID=&PD=&STAT_CODE_ID=-1"
     ]
   }
 ]
