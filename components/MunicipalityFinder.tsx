@@ -189,6 +189,23 @@ function rank(name: string, q: string): number {
  * provinces' lists from the same file.
  */
 /**
+ * Per-province finder lists, keyed by province — never default to
+ * another province's list. A future province MUST be added here (and
+ * to `Province` above) or TypeScript fails the build instead of the
+ * finder silently showing Ontario's municipalities. BC is districts,
+ * handled by bcEntries() below, so it carries empty lists here.
+ */
+const PROVINCE_LISTS: Record<
+  Province,
+  { municipalities: FinderMunicipality[]; federal: FinderMunicipality[] }
+> = {
+  ON: { municipalities: FINDER_MUNICIPALITIES, federal: FINDER_FEDERAL_ON },
+  SK: { municipalities: FINDER_SASKATCHEWAN, federal: FINDER_FEDERAL_SK },
+  QC: { municipalities: [], federal: FINDER_FEDERAL_QC },
+  BC: { municipalities: [], federal: [] },
+};
+
+/**
  * Optional preset for province pages: when given, the finder starts on
  * that province and the toggle is hidden (the page is already scoped to
  * it). Without it the finder behaves as before, ON by default.
@@ -196,12 +213,19 @@ function rank(name: string, q: string): number {
  * page (desktop browsers honour it; mobile browsers may not open the
  * keyboard until the user taps, which is fine — the field still fills
  * the screen).
+ * `entity` scopes the list to a level: "riding" shows only the
+ * province's federal ridings; anything else shows the province's
+ * municipalities (BC: districts). The finder page passes the entity
+ * its tile's level resolved to — without it a federal tile would open
+ * the municipality list with the ridings buried in it.
  */
 export default function MunicipalityFinder({
   initialProvince,
+  entity,
   autoFocus = false,
 }: {
   initialProvince?: Province;
+  entity?: "municipality" | "district" | "riding";
   autoFocus?: boolean;
 } = {}) {
   const [province, setProvince] = useState<Province>(initialProvince ?? "ON");
@@ -210,19 +234,21 @@ export default function MunicipalityFinder({
   const trimmed = query.trim();
   const q = normalise(trimmed);
 
-  const { shown, total } = useMemo(() => {
+  const { shown, total, listLength } = useMemo(() => {
     if (province !== "BC") {
       // ON and SK share the municipality path; SK slugs simply have no
       // ward/community aliases, so their alias lookups come back empty.
-      // The federal byelection ridings are appended from the
-      // hand-maintained federal lists (the generated finder file only
-      // covers ON municipalities + BC districts); QC is ridings only.
+      // Ridings only when this finder is scoped to the federal level;
+      // otherwise the province's municipalities with its federal
+      // ridings appended (QC has no municipal list — ridings only
+      // either way). The generated finder file only covers ON
+      // municipalities + BC districts; the federal lists are
+      // hand-maintained in lib/federal-finder.ts.
+      const lists = PROVINCE_LISTS[province];
       const list =
-        province === "SK"
-          ? [...FINDER_SASKATCHEWAN, ...FINDER_FEDERAL_SK]
-          : province === "QC"
-            ? FINDER_FEDERAL_QC
-            : [...FINDER_MUNICIPALITIES, ...FINDER_FEDERAL_ON];
+        entity === "riding"
+          ? lists.federal
+          : [...lists.municipalities, ...lists.federal];
       const { municipalities, raceRows } = onEntries(q, list);
       // Browse-all (empty query) renders the whole scrollable list; filtered
       // results are capped with a count so contains matches are never hidden
@@ -231,19 +257,25 @@ export default function MunicipalityFinder({
       return {
         shown: [...municipalities.slice(0, cap), ...raceRows],
         total: municipalities.length + raceRows.length,
+        listLength: list.length,
       };
     }
     const matched = bcEntries()
       .filter((e) => matches(e.name, q))
       .sort((a, b) => rank(a.name, q) - rank(b.name, q));
     const cap = q === "" ? matched.length : FILTER_CAP;
-    return { shown: matched.slice(0, cap), total: matched.length };
-  }, [province, q]);
+    return {
+      shown: matched.slice(0, cap),
+      total: matched.length,
+      listLength: matched.length,
+    };
+  }, [province, q, entity]);
 
+  const isRiding = entity === "riding";
   const plural =
     province === "BC"
       ? "districts"
-      : province === "QC"
+      : isRiding || province === "QC"
         ? "ridings"
         : "municipalities";
 
@@ -288,7 +320,7 @@ export default function MunicipalityFinder({
         >
           {province === "BC"
             ? "Find your district"
-            : province === "QC"
+            : isRiding || province === "QC"
               ? "Find your riding"
               : "Find your municipality"}
         </label>
@@ -299,26 +331,34 @@ export default function MunicipalityFinder({
           autoFocus={autoFocus}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={
-            province === "ON"
-              ? "e.g. Toronto, Ottawa, Muskoka Lakes…"
-              : province === "SK"
-                ? "e.g. Corman Park, Edenwold…"
-                : province === "QC"
-                  ? "e.g. Laurier–Sainte-Marie, Rosemont…"
-                  : "e.g. Abbotsford South, Victoria…"
+            province === "BC"
+              ? "e.g. Abbotsford South, Victoria…"
+              : isRiding
+                ? province === "ON"
+                  ? "e.g. Scarborough North, Brantford–Brant South…"
+                  : province === "SK"
+                    ? "e.g. Yorkton–Melville…"
+                    : "e.g. Laurier–Sainte-Marie, Rosemont…"
+                : province === "ON"
+                  ? "e.g. Toronto, Ottawa, Muskoka Lakes…"
+                  : province === "SK"
+                    ? "e.g. Corman Park, Edenwold…"
+                    : "e.g. Laurier–Sainte-Marie, Rosemont…"
           }
           autoComplete="off"
           aria-describedby="finder-hint finder-count"
           className="mt-2 w-full rounded-md border border-paper-edge bg-paper-warm px-4 py-3 text-base text-ink placeholder:text-ink-faint"
         />
         <p id="finder-hint" className="mt-2 text-xs text-ink-faint">
-          {province === "ON"
-            ? `${FINDER_MUNICIPALITIES.length + FINDER_FEDERAL_ON.length} Ontario municipalities and ridings · scroll the list or type to filter — wards & communities work too (e.g. Etobicoke, New Hamburg)`
-            : province === "SK"
-              ? `${FINDER_SASKATCHEWAN.length + FINDER_FEDERAL_SK.length} Saskatchewan municipalities and ridings · scroll the list or type to filter`
-              : province === "QC"
-                ? `${FINDER_FEDERAL_QC.length} Quebec ridings · scroll the list or type to filter`
-                : `${FINDER_DISTRICTS.length} BC districts · scroll the list or type to filter`}
+          {province === "BC"
+            ? `${FINDER_DISTRICTS.length} BC districts · scroll the list or type to filter`
+            : isRiding
+              ? `${listLength} ${province === "ON" ? "Ontario" : province === "SK" ? "Saskatchewan" : "Quebec"} riding${listLength === 1 ? "" : "s"} · scroll the list or type to filter`
+              : province === "ON"
+                ? `${listLength} Ontario municipalities and ridings · scroll the list or type to filter — wards & communities work too (e.g. Etobicoke, New Hamburg)`
+                : province === "SK"
+                  ? `${listLength} Saskatchewan municipalities and ridings · scroll the list or type to filter`
+                  : `${listLength} Quebec ridings · scroll the list or type to filter`}
         </p>
       </div>
 
