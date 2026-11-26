@@ -6,13 +6,16 @@
  * is claimed anywhere on these pages. Anything not listed here renders as
  * "Not yet tracked" (tiles) or "Coming soon" (finder / no candidate info).
  *
- * Federal next dates are included (next federal election, scheduled);
- * there is no federal candidate data, so no Federal tile has a current
- * race. Ontario and Nova Scotia provincial tiles stay "Not yet tracked":
- * both repealed their fixed-date laws in 2025, so there is no scheduled
- * provincial date to show (their constitutional latest dates are NOT
- * election dates and are deliberately not encoded). No past-race loading
- * is built here: every tile's past-results area reads "We will load
+ * Federal next dates are included (next federal election, scheduled).
+ * The Dec 7, 2026 federal byelections in Ontario, Quebec and
+ * Saskatchewan DO have federal candidate data (6 ridings, 42
+ * candidates, listings only), so those provinces' Federal tiles show
+ * the byelection as the current race. Ontario and Nova Scotia
+ * provincial tiles stay "Not yet tracked": both repealed their
+ * fixed-date laws in 2025, so there is no scheduled provincial date
+ * to show (their constitutional latest dates are NOT election dates
+ * and are deliberately not encoded). No past-race loading is built
+ * here: every tile's past-results area reads "We will load
  * historical race data soon." (deferred until a Supabase reset).
  */
 
@@ -103,6 +106,27 @@ export const TRACKED_ELECTIONS: TrackedElection[] = [
     level: "Hamlet elections",
     date: "2026-12-14",
     hasCandidateInfo: false,
+  },
+  {
+    provinceSlug: "ontario",
+    provinceName: "Ontario",
+    level: "Federal byelections",
+    date: "2026-12-07",
+    hasCandidateInfo: true,
+  },
+  {
+    provinceSlug: "quebec",
+    provinceName: "Quebec",
+    level: "Federal byelections",
+    date: "2026-12-07",
+    hasCandidateInfo: true,
+  },
+  {
+    provinceSlug: "saskatchewan",
+    provinceName: "Saskatchewan",
+    level: "Federal byelections",
+    date: "2026-12-07",
+    hasCandidateInfo: true,
   },
 ];
 
@@ -201,9 +225,10 @@ function cycleSections(
 
 /**
  * The three tiles for a province page. Federal carries the next federal
- * election (scheduled) everywhere. Provincial carries the next fixed
- * date (scheduled) everywhere except Ontario and Nova Scotia, which
- * have no fixed date. Municipal carries the next date everywhere;
+ * election (scheduled) everywhere, plus the Dec 7, 2026 byelections as
+ * the current race in Ontario, Quebec and Saskatchewan. Provincial
+ * carries the next fixed date (scheduled) everywhere except Ontario and
+ * Nova Scotia, which have no fixed date. Municipal carries the next date
  * Saskatchewan's cycle is split into five labeled rows and the NWT's
  * into its community classes. The Nov 9 SK row is the current race
  * (filing closed Oct 7, 2026, results not yet all official) and does NOT
@@ -248,6 +273,35 @@ export function provinceTiles(
   // Federal: third Monday in October in the fourth calendar year after
   // Apr 28, 2025 (Canada Elections Act), fixed but subject to dissolution.
   tiles.federal = nextOnly(scheduled("2029-10-15"));
+  // Federal byelections, Dec 7, 2026 (nominations closed Nov 16, 2026;
+  // candidate lists confirmed by Elections Canada Nov 18, 2026):
+  // 2 ridings in Ontario, 3 in Quebec, 1 in Saskatchewan. While the
+  // byelection is the current federal race in those provinces, its tile
+  // shows it as current (filing passed, results not yet all official)
+  // with the 2029 general as next; everywhere else the federal tile
+  // stays the 2029 scheduled date only.
+  if (
+    provinceSlug === "ontario" ||
+    provinceSlug === "quebec" ||
+    provinceSlug === "saskatchewan"
+  ) {
+    tiles.federal = cycleSections(
+      {
+        row: {
+          label: "Federal byelections",
+          date: formatElectionDate("2026-12-07"),
+          sortDate: "2026-12-07",
+        },
+        filingDeadline: "2026-11-16",
+        allResultsOfficialDate: null,
+        next: {
+          date: `${formatElectionDate("2029-10-15")} (scheduled)`,
+          sortDate: "2029-10-15",
+        },
+      },
+      now,
+    );
+  }
   if (provinceSlug === "british-columbia") {
     tiles.provincial = merge([
       cycleSections(
@@ -442,14 +496,17 @@ export function hasFinderEntries(provinceSlug: string): boolean {
  * Which finder, if any, a province page's tile can open. Finder data
  * covers Ontario municipalities and BC electoral districts only — every
  * other province/level has no finder to open, so its tiles stay plain.
+ * Exceptions: Saskatchewan municipalities (hand-maintained list) and
+ * the Dec 7, 2026 federal byelection ridings in Ontario, Quebec and
+ * Saskatchewan (hand-maintained lists in lib/federal-finder.ts).
  * See docs/finder-terminology.md for the level language used here.
  */
 export function finderFor(
   provinceSlug: string,
   level: "federal" | "provincial" | "municipal",
 ): {
-  initialProvince: "ON" | "BC" | "SK";
-  entity: "municipality" | "district";
+  initialProvince: "ON" | "BC" | "SK" | "QC";
+  entity: "municipality" | "district" | "riding";
 } | null {
   if (provinceSlug === "ontario" && level === "municipal") {
     return { initialProvince: "ON", entity: "municipality" };
@@ -459,6 +516,17 @@ export function finderFor(
   }
   if (provinceSlug === "saskatchewan" && level === "municipal") {
     return { initialProvince: "SK", entity: "municipality" };
+  }
+  if (level === "federal") {
+    if (provinceSlug === "ontario") {
+      return { initialProvince: "ON", entity: "riding" };
+    }
+    if (provinceSlug === "quebec") {
+      return { initialProvince: "QC", entity: "riding" };
+    }
+    if (provinceSlug === "saskatchewan") {
+      return { initialProvince: "SK", entity: "riding" };
+    }
   }
   return null;
 }

@@ -8,6 +8,11 @@ const nextConfig = {
       // with every other municipality's at /municipalities/huntsville, and
       // /races itself sends people to the home-page finder.
       { source: "/races", destination: "/", permanent: true },
+      // Candidate rename (Nov 10, 2026): Gull Lake Div 1 "Aaron Deitrich"
+      // was seeded with a misspelled surname; the RM's Notice of Poll
+      // (Oct 13, 2026, Returning Officer Jeanette Kerr) says "Aaron
+      // Dietrich". Old candidate URL -> new candidate URL.
+      { source: "/races/gull-lake-no-139-councillor-division-1/gull-lake-no-139-aaron-deitrich", destination: "/races/gull-lake-no-139-councillor-division-1/gull-lake-no-139-aaron-dietrich", permanent: true },
     ];
   },
   async headers() {
