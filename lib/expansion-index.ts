@@ -57226,7 +57226,7 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         "party": "Green Party of Canada"
       },
       {
-        "name": "Ingénieur Hu",
+        "name": "Fang Hu",
         "acclaimed": false,
         "party": "Centrist Party of Canada"
       },

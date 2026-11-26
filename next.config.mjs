@@ -13,6 +13,12 @@ const nextConfig = {
       // (Oct 13, 2026, Returning Officer Jeanette Kerr) says "Aaron
       // Dietrich". Old candidate URL -> new candidate URL.
       { source: "/races/gull-lake-no-139-councillor-division-1/gull-lake-no-139-aaron-deitrich", destination: "/races/gull-lake-no-139-councillor-division-1/gull-lake-no-139-aaron-dietrich", permanent: true },
+      // Candidate rename (Nov 25, 2026): Rosemont "Ingénieur Hu" is
+      // Fang Hu — "Ingénieur" is his occupation (engineer), not part
+      // of his name (Centrist homepage: "Engineer Fang Hu"; EC 2025
+      // results, LaSalle—Émard—Verdun: Fang Hu, 60 votes). Old
+      // candidate URL -> new candidate URL.
+      { source: "/races/rosemont-la-petite-patrie/rosemont-la-petite-patrie-ingenieur-hu", destination: "/races/rosemont-la-petite-patrie/rosemont-la-petite-patrie-fang-hu", permanent: true },
     ];
   },
   async headers() {
