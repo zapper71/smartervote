@@ -54077,6 +54077,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Kristina Loewen",
           "acclaimed": null,
+          "winner": true,
+          "resultStatus": "official",
           "party": "Conservative Party"
         },
         {
@@ -54278,6 +54280,8 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         {
           "name": "Stephanie Higginson",
           "acclaimed": null,
+          "winner": true,
+          "resultStatus": "official",
           "party": "BC NDP"
         }
       ],
