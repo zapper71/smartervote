@@ -106,7 +106,11 @@ function RaceEntry({
           : ""}
       </p>
       {count > 0 && (
-        <ul className="mt-3 flex flex-wrap gap-x-2 gap-y-1">
+        // Two-column candidate grid (Andreas, 2026-11-27): the old flex-wrap
+        // pill row read as one crowded paragraph on 8–9 candidate races.
+        // 1 left / 2 right, 3 below 1 / 4 below 2, evenly spaced. Single
+        // column on phones (chips are too wide for two-up at 375px).
+        <ul className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
           {race.candidates.map((c) => (
             <li
               key={c.name}
