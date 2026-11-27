@@ -94,7 +94,7 @@ smartervote/
 │   ├── methodology/               how this works — the trust page
 │   ├── about/  privacy/  corrections/
 │   └── not-found.tsx
-├── components/                    Nav, Footer, RaceCard, UnavailableNotice
+├── components/                    Nav, Footer, UnavailableNotice
 ├── lib/
 │   ├── supabase.ts                public (anon) + service clients, kept apart
 │   ├── queries.ts                 all data access, fails soft
