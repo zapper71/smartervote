@@ -13,6 +13,17 @@ import { LOCALE_COOKIE, localizePath, type Locale } from "@/lib/i18n";
  * than two languages are enabled, so pre-migration deploys degrade
  * cleanly.
  */
+/**
+ * Flag image path. The languages table stores the asset WITH its
+ * directory ('flags/union-jack.svg') while the component used to
+ * prepend '/flags/' itself — producing '/flags/flags/union-jack.svg',
+ * a 404 and a broken-image icon in the switcher. Strip a leading
+ * 'flags/' before prefixing so both shapes resolve.
+ */
+function flagSrc(asset: string): string {
+  return `/flags/${asset.replace(/^flags\//, "")}`;
+}
+
 export default function LanguageSwitcher({
   languages,
 }: {
@@ -65,7 +76,7 @@ export default function LanguageSwitcher({
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`/flags/${currentLang.flag_asset}`}
+          src={flagSrc(currentLang.flag_asset)}
           alt=""
           width={20}
           height={14}
@@ -89,7 +100,7 @@ export default function LanguageSwitcher({
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={`/flags/${l.flag_asset}`}
+                  src={flagSrc(l.flag_asset)}
                   alt=""
                   width={20}
                   height={14}

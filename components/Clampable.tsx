@@ -58,6 +58,21 @@ export default function Clampable({
     return () => ro.disconnect();
   }, [expanded]);
 
+  // Evidence toggles live inside clamped cells: opening a <details>
+  // ("Show their words & source") must release the clamp, or the
+  // expanded quote stays crammed in the 5-line box and overlaps the
+  // confidence badge and bullets below it. The toggle event doesn't
+  // bubble, so listen in the capture phase on the inner container.
+  useIsomorphicLayoutEffect(() => {
+    const el = innerRef.current;
+    if (!el) return;
+    const onToggle = (e: Event) => {
+      if ((e.target as HTMLDetailsElement).open) setExpanded(true);
+    };
+    el.addEventListener("toggle", onToggle, true);
+    return () => el.removeEventListener("toggle", onToggle, true);
+  }, []);
+
   // Inline styles rather than a line-clamp-N Tailwind class: Tailwind's JIT
   // only generates class names it sees literally in source, so a dynamic
   // line count would silently lose its clamp.

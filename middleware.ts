@@ -37,7 +37,12 @@ export function middleware(request: NextRequest) {
     return res;
   }
 
-  if (cookieLocale === "fr" || isQuebecPage(pathname)) {
+  // The French default (D4) is a FIRST-visit default, not a veto: it
+  // applies only when no language choice is remembered. An explicit
+  // sv-locale=en cookie must win, or the switcher's EN option and /en/
+  // links can never leave a Quebec page — the old condition redirected
+  // to /fr on every Quebec-page visit regardless of the cookie.
+  if (cookieLocale === "fr" || (!cookieLocale && isQuebecPage(pathname))) {
     const url = request.nextUrl.clone();
     url.pathname = pathname === "/" ? "/fr" : `/fr${pathname}`;
     return NextResponse.redirect(url);
