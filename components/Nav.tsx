@@ -1,4 +1,6 @@
 import Link from "next/link";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { getLanguages } from "@/lib/queries";
 
 const links = [
   { href: "/", label: "Home" },
@@ -7,7 +9,10 @@ const links = [
   { href: "/about", label: "About" },
 ];
 
-export default function Nav() {
+export default async function Nav() {
+  // The switcher reads the languages table; empty until migration 52
+  // runs, in which case it renders nothing.
+  const languages = await getLanguages();
   return (
     <header className="border-b border-paper-edge bg-paper">
       <a
@@ -40,14 +45,17 @@ export default function Nav() {
             </li>
           ))}
                 </ul>
-        <a
-          href="https://www.gofundme.com/f/smartervoteca-grow-and-cover-more-elections"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="tap-target rounded-md bg-accent px-4 py-2 text-sm font-medium text-white no-underline hover:bg-accent-hover"
-        >
-          Donate
-        </a>
+        <div className="flex items-center gap-1">
+          <LanguageSwitcher languages={languages} />
+          <a
+            href="https://www.gofundme.com/f/smartervoteca-grow-and-cover-more-elections"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="tap-target rounded-md bg-accent px-4 py-2 text-sm font-medium text-white no-underline hover:bg-accent-hover"
+          >
+            Donate
+          </a>
+        </div>
       </nav>
     </header>
   );

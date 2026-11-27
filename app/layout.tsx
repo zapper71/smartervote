@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import PageViewBeacon from "@/components/PageViewBeacon";
+import LocaleHtmlLang from "@/components/LocaleHtmlLang";
 import { INDEXABLE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en-CA">
       <body className="flex min-h-screen flex-col">
+        <LocaleHtmlLang />
         <Nav />
         <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
           {children}
