@@ -2,7 +2,11 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import ConfidencePill from "@/components/ConfidencePill";
 import TrackedOutboundLink from "@/components/TrackedOutboundLink";
+import TranslatedQuote from "@/components/TranslatedQuote";
+import TranslatedText from "@/components/TranslatedText";
 import { formatShortDate } from "@/lib/dates";
+import { formatUi, localizeExtent, type Locale, type ResolvedText } from "@/lib/i18n";
+import type { PositionLocalization } from "@/components/pages/localize-content";
 import type { Position } from "@/lib/types";
 
 /**
@@ -15,6 +19,13 @@ import type { Position } from "@/lib/types";
  * editorial judgment about which statement "really" counts.
  *
  * A cell is never silently empty. Every state is labelled.
+ *
+ * Localised rendering: `localized` (from localizePageContent, keyed by
+ * position id) + `locale` render summaries, bullets and quotes in the page
+ * language — native when written in it, else the translations row, AI with
+ * `*` or the original with a language tag when no row exists yet. `strings`
+ * localises the chrome (empty notes, toggles, conflict pill, confidence
+ * labels). Omit all three for the English behaviour.
  */
 
 /**
@@ -29,6 +40,32 @@ export interface FullResponseLink {
   href: string;
   label: string;
 }
+
+/** English chrome defaults; `strings` overrides per key when provided. */
+const CELL_DEFAULTS = {
+  "cell.conflict_pill": "Conflicting Position",
+  "cell.conflict_note":
+    "This candidate has said different things about this issue in different places. Both are shown below, with their sources. We haven’t chosen between them.",
+  "cell.multi_note":
+    "This candidate has spoken about this issue more than once. Each statement is shown with its own source.",
+  "cell.misread_link": "Think we’ve misread this?",
+  "cell.wrong_link": "Think we’ve got this wrong?",
+  "cell.show_words": "Show their words & source",
+  "cell.hide": "Hide",
+  "cell.source_label": "Source: ",
+  "cell.confidence_label": "Confidence:",
+  "cell.empty_asked_replied":
+    "We asked on {date1}. They replied on {date2} but haven’t given a position on this.",
+  "cell.empty_asked": "We asked on {date} — no reply yet.",
+  "cell.empty_looked": "No public statement found as of {date}.",
+  "cell.empty_unreviewed": "Not reviewed yet.",
+  "cell.know_something": "Know something?",
+  "cell.tell_us": "Tell us if we missed it.",
+  "confidence.low": "Low",
+  "confidence.medium": "Medium",
+  "confidence.high": "High",
+  "confidence.title": "Confidence: {level}",
+} as const;
 
 function FullResponseNote({ link }: { link: FullResponseLink }) {
   // Same-page anchors stay a native <a>: the response component on the
@@ -51,11 +88,10 @@ function FullResponseNote({ link }: { link: FullResponseLink }) {
   );
 }
 
-function ConflictPill() {
-
+function ConflictPill({ t }: { t: Record<string, string> }) {
   return (
     <span className="pill border border-red-300 bg-red-50 text-red-800">
-      Conflicting Position
+      {t["cell.conflict_pill"]}
     </span>
   );
 }
@@ -73,19 +109,38 @@ function ConflictPill() {
  * tracks conviction. The fact goes on the page; the conclusion stays with
  * the reader.
  *
- * Renders nothing when unset.
+ * Renders nothing when unset. The stored value is English data; the
+ * chrome pass localises it through localizeExtent (extent.* rows).
  */
-function ExtentNote({ p, className = "" }: { p: Position; className?: string }) {
+function ExtentNote({
+  p,
+  locale,
+  className = "",
+}: {
+  p: Position;
+  locale: Locale;
+  className?: string;
+}) {
   if (!p.source_extent) return null;
   return (
-    <span className={`text-ink-faint ${className}`}>({p.source_extent})</span>
+    <span className={`text-ink-faint ${className}`}>
+      ({localizeExtent(p.source_extent, locale)})
+    </span>
   );
 }
 
-function SourceLine({ p }: { p: Position }) {
+function SourceLine({
+  p,
+  t,
+  locale,
+}: {
+  p: Position;
+  t: Record<string, string>;
+  locale: Locale;
+}) {
   return (
     <p className="mt-2 text-xs text-ink-faint">
-      Source:{" "}
+      {t["cell.source_label"]}
       {p.source_url ? (
         <TrackedOutboundLink
           href={p.source_url}
@@ -99,8 +154,57 @@ function SourceLine({ p }: { p: Position }) {
       ) : (
         (p.source_title ?? "—")
       )}
-      {p.source_date ? ` · ${formatShortDate(p.source_date)}` : ""}
+      {p.source_date ? ` · ${formatShortDate(p.source_date, locale)}` : ""}
     </p>
+  );
+}
+
+/**
+ * The quote itself, in the page language (decision D2).
+ *
+ * - Translation row exists and the page language differs from the quote's
+ *   native language: the translation, WITHOUT quotation marks, with a link
+ *   expanding to the original WITH marks (TranslatedQuote).
+ * - Otherwise: the original, with quotation marks — plus a small language
+ *   tag when it is shown in a language it wasn't written in and no
+ *   translation row exists yet.
+ */
+function QuoteContent({
+  p,
+  loc,
+  locale,
+}: {
+  p: Position;
+  loc?: PositionLocalization;
+  locale: Locale;
+}) {
+  if (!p.verbatim_quote) return null;
+  const nativeLocale = p.verbatim_quote_locale ?? "en";
+  if (loc?.quoteIsTranslation && loc.quoteTranslated) {
+    return (
+      <TranslatedQuote
+        translated={loc.quoteTranslated}
+        translatedIsAi={loc.quoteTranslatedIsAi}
+        original={p.verbatim_quote}
+        originalLocale={loc.quoteNativeLocale}
+        locale={locale}
+      />
+    );
+  }
+  return (
+    <blockquote className="border-l-2 border-accent/40 pl-3 text-sm italic leading-relaxed text-ink-soft">
+      &ldquo;
+      <TranslatedText
+        resolved={{
+          text: p.verbatim_quote,
+          isAiTranslation: false,
+          isNative: locale === nativeLocale,
+        }}
+        nativeLocale={nativeLocale}
+        locale={locale}
+      />
+      &rdquo;
+    </blockquote>
   );
 }
 
@@ -108,21 +212,55 @@ function SinglePosition({
   p,
   showQuoteInline,
   fullResponseLink,
+  loc,
+  locale,
+  t,
 }: {
   p: Position;
   showQuoteInline: boolean;
   fullResponseLink?: FullResponseLink | null;
+  loc?: PositionLocalization;
+  locale: Locale;
+  t: Record<string, string>;
 }) {
+  // Normalise to ResolvedText so the localised and unlocalised paths
+  // render through the same markup. Without a localisation map the
+  // summary is native by construction (isNative: true, no tag).
+  const summary: ResolvedText | null = loc
+    ? loc.summaryShort
+    : p.summary_short
+      ? { text: p.summary_short, isAiTranslation: false, isNative: true }
+      : null;
+  const bullets: ResolvedText[] | null = loc
+    ? loc.summaryBullets
+    : (p.summary_bullets ?? []).map((b) => ({
+        text: b,
+        isAiTranslation: false,
+        isNative: true,
+      }));
+
   return (
     <div>
-      {p.summary_short && (
-        <p className="text-sm font-medium leading-snug text-ink">{p.summary_short}</p>
+      {summary && (
+        <p className="text-sm font-medium leading-snug text-ink">
+          <TranslatedText
+            resolved={summary}
+            nativeLocale={p.summary_locale ?? "en"}
+            locale={locale}
+          />
+        </p>
       )}
 
-      {p.summary_bullets && p.summary_bullets.length > 0 && (
+      {bullets && bullets.length > 0 && (
         <ul className="mt-2 list-disc space-y-1 pl-4 text-sm leading-snug text-ink-soft">
-          {p.summary_bullets.map((b, i) => (
-            <li key={i}>{b}</li>
+          {bullets.map((b, i) => (
+            <li key={i}>
+              <TranslatedText
+                resolved={b}
+                nativeLocale={p.summary_locale ?? "en"}
+                locale={locale}
+              />
+            </li>
           ))}
         </ul>
       )}
@@ -130,19 +268,19 @@ function SinglePosition({
       {p.verbatim_quote &&
         (showQuoteInline ? (
           <>
-            <blockquote className="mt-2 border-l-2 border-accent/40 pl-3 text-sm italic leading-relaxed text-ink-soft">
-              &ldquo;{p.verbatim_quote}&rdquo;
-            </blockquote>
+            <div className="mt-2">
+              <QuoteContent p={p} loc={loc} locale={locale} />
+            </div>
             {/* The quote is already visible, so the note rides with the
                 source line rather than on a toggle that isn't there.
                 Guarded, or an unset extent leaves an empty paragraph with a
                 top margin and the source line drifts down for no reason. */}
             {p.source_extent && (
               <p className="mt-1 text-xs">
-                <ExtentNote p={p} />
+                <ExtentNote p={p} locale={locale} />
               </p>
             )}
-            <SourceLine p={p} />
+            <SourceLine p={p} t={t} locale={locale} />
           </>
         ) : (
           <details className="group mt-2">
@@ -153,16 +291,16 @@ function SinglePosition({
                 reader uses to check our evidence — it should not be the
                 hardest thing on the page to hit. */}
             <summary className="inline-flex min-h-[24px] cursor-pointer list-none items-center text-xs font-medium text-accent hover:underline">
-              <span className="group-open:hidden">Show their words &amp; source</span>
-              <span className="hidden group-open:inline">Hide</span>{" "}
+              <span className="group-open:hidden">{t["cell.show_words"]}</span>
+              <span className="hidden group-open:inline">{t["cell.hide"]}</span>{" "}
               {/* Stays visible whether the details element is open or shut:
                   it describes the source, not the disclosure state. */}
-              <ExtentNote p={p} className="font-normal" />
+              <ExtentNote p={p} locale={locale} className="font-normal" />
             </summary>
-            <blockquote className="mt-2 border-l-2 border-accent/40 pl-3 text-sm italic leading-relaxed text-ink-soft">
-              &ldquo;{p.verbatim_quote}&rdquo;
-            </blockquote>
-            <SourceLine p={p} />
+            <div className="mt-2">
+              <QuoteContent p={p} loc={loc} locale={locale} />
+            </div>
+            <SourceLine p={p} t={t} locale={locale} />
           </details>
         ))}
       {fullResponseLink && <FullResponseNote link={fullResponseLink} />}
@@ -170,8 +308,18 @@ function SinglePosition({
           with the position's block rather than the cell — a cell can hold
           more than one statement. */}
       <p className="mt-2">
-        <span className="mr-1.5 text-xs text-ink-faint">Confidence:</span>
-        <ConfidencePill level={p.confidence} />
+        <span className="mr-1.5 text-xs text-ink-faint">
+          {t["cell.confidence_label"]}
+        </span>
+        <ConfidencePill
+          level={p.confidence}
+          labels={{
+            low: t["confidence.low"],
+            medium: t["confidence.medium"],
+            high: t["confidence.high"],
+            title: t["confidence.title"],
+          }}
+        />
       </p>
     </div>
   );
@@ -197,26 +345,44 @@ function EmptyNote({
   contactedAt,
   respondedAt,
   lookedAt,
+  t,
+  locale,
 }: {
   contactedAt?: string | null;
   respondedAt?: string | null;
   lookedAt?: string | null;
+  t: Record<string, string>;
+  locale: Locale;
 }) {
   if (contactedAt && respondedAt) {
     return (
       <>
-        We asked on {formatShortDate(contactedAt)}. They replied on{" "}
-        {formatShortDate(respondedAt)} but haven&rsquo;t given a position on this.
+        {formatUi(t["cell.empty_asked_replied"], {
+          date1: formatShortDate(contactedAt, locale),
+          date2: formatShortDate(respondedAt, locale),
+        })}
       </>
     );
   }
   if (contactedAt) {
-    return <>We asked on {formatShortDate(contactedAt)} &mdash; no reply yet.</>;
+    return (
+      <>
+        {formatUi(t["cell.empty_asked"], {
+          date: formatShortDate(contactedAt, locale),
+        })}
+      </>
+    );
   }
   if (lookedAt) {
-    return <>No public statement found as of {formatShortDate(lookedAt)}.</>;
+    return (
+      <>
+        {formatUi(t["cell.empty_looked"], {
+          date: formatShortDate(lookedAt, locale),
+        })}
+      </>
+    );
   }
-  return <>Not reviewed yet.</>;
+  return <>{t["cell.empty_unreviewed"]}</>;
 }
 
 export default function PositionCell({
@@ -227,6 +393,9 @@ export default function PositionCell({
   lookedAt,
   fullResponseLink,
   withdrawn,
+  localized,
+  locale = "en",
+  strings,
 }: {
   positions: Position[];
   correctionHref: string;
@@ -246,7 +415,13 @@ export default function PositionCell({
    * not their words, so it stays unstruck.
    */
   withdrawn?: boolean;
+  /** Localised content for these positions, from localizePageContent. */
+  localized?: Map<string, PositionLocalization>;
+  locale?: Locale;
+  /** Localised chrome strings (cell.* + confidence.*). Omit for English. */
+  strings?: Record<string, string>;
 }) {
+  const t: Record<string, string> = { ...CELL_DEFAULTS, ...(strings ?? {}) };
   // Strike their positions, never our editorial chrome.
   const strike = (content: ReactNode) =>
     withdrawn ? <div className="line-through">{content}</div> : content;
@@ -258,10 +433,12 @@ export default function PositionCell({
             contactedAt={contactedAt}
             respondedAt={respondedAt}
             lookedAt={lookedAt}
+            t={t}
+            locale={locale}
           />
         </span>{" "}
         <Link href={correctionHref} className="link">
-          Know something?
+          {t["cell.know_something"]}
         </Link>
       </p>
     );
@@ -283,10 +460,12 @@ export default function PositionCell({
             contactedAt={contactedAt}
             respondedAt={respondedAt}
             lookedAt={reviewedAt ?? lookedAt}
+            t={t}
+            locale={locale}
           />
         </span>{" "}
         <Link href={correctionHref} className="link">
-          Tell us if we missed it.
+          {t["cell.tell_us"]}
         </Link>
       </p>
     );
@@ -298,6 +477,9 @@ export default function PositionCell({
         p={real[0]}
         showQuoteInline={false}
         fullResponseLink={fullResponseLink}
+        loc={localized?.get(real[0].id)}
+        locale={locale}
+        t={t}
       />
     );
   }
@@ -320,17 +502,14 @@ export default function PositionCell({
     <div>
       {conflicting ? (
         <>
-          <ConflictPill />
+          <ConflictPill t={t} />
           <p className="mt-2 text-xs leading-relaxed text-ink-soft">
-            This candidate has said different things about this issue in
-            different places. Both are shown below, with their sources. We
-            haven&rsquo;t chosen between them.
+            {t["cell.conflict_note"]}
           </p>
         </>
       ) : (
         <p className="text-xs leading-relaxed text-ink-faint">
-          This candidate has spoken about this issue more than once. Each
-          statement is shown with its own source.
+          {t["cell.multi_note"]}
         </p>
       )}
 
@@ -343,17 +522,20 @@ export default function PositionCell({
             key={p.id}
             className={i > 0 ? "border-t border-paper-edge pt-3" : undefined}
           >
-               <SinglePosition
+            <SinglePosition
               p={p}
               showQuoteInline
               fullResponseLink={fullResponseLink}
+              loc={localized?.get(p.id)}
+              locale={locale}
+              t={t}
             />
           </div>
         ))}
       </div>
       <p className="mt-3 text-xs">
         <Link href={correctionHref} className="link">
-          {conflicting ? "Think we’ve misread this?" : "Think we’ve got this wrong?"}
+          {conflicting ? t["cell.misread_link"] : t["cell.wrong_link"]}
         </Link>
       </p>
     </div>

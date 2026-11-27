@@ -3,11 +3,13 @@ import type {
   Candidate,
   CandidateResponse,
   Issue,
+  Language,
   Municipality,
   Position,
   Race,
   RaceType,
   RaceWithCandidates,
+  TranslationRow,
   Ward,
 } from "./types";
 
@@ -404,4 +406,94 @@ export async function getCandidateResponsesForCandidates(
     return [];
   }
   return (data as CandidateResponse[]) ?? [];
+}
+
+/**
+ * Enabled languages, in display order. Empty when the languages table
+ * does not exist yet (migration 52 unrun) — callers treat that as
+ * "English only" and the switcher renders nothing.
+ */
+export async function getLanguages(): Promise<Language[]> {
+  const db = getPublicClient();
+  if (!db) return [];
+  const { data, error } = await db
+    .from("languages")
+    .select("*")
+    .eq("is_enabled", true)
+    .order("sort_order");
+  if (error) {
+    warn("getLanguages", error);
+    return [];
+  }
+  return (data as Language[]) ?? [];
+}
+
+/**
+ * Translation rows for one entity type and a set of natural keys, in the
+ * requested locale. Returned as a map keyed `${entity_id}:${field}`.
+ * No locale short-circuit: French-native content needs 'en' rows too
+ * (a French bio on an English page is translated from the table).
+ * Same failure contract as the rest of this file: empty on error,
+ * never throw.
+ */
+export async function getTranslations(
+  entityType: TranslationRow["entity_type"],
+  entityIds: string[],
+  locale: string
+): Promise<Map<string, TranslationRow>> {
+  const empty = new Map<string, TranslationRow>();
+  if (entityIds.length === 0) return empty;
+  const db = getPublicClient();
+  if (!db) return empty;
+  const { data, error } = await db
+    .from("translations")
+    .select("*")
+    .eq("entity_type", entityType)
+    .in("entity_id", entityIds)
+    .eq("locale", locale);
+  if (error) {
+    warn("getTranslations", error);
+    return empty;
+  }
+  const out = new Map<string, TranslationRow>();
+  for (const row of (data as TranslationRow[]) ?? []) {
+    out.set(`${row.entity_id}:${row.field}`, row);
+  }
+  return out;
+}
+
+/**
+ * One UI string in the page locale, falling back to the English text
+ * when no row exists. UI strings NEVER render an asterisk (interface,
+ * not content); their origin is tracked in the table for the record.
+ */
+export async function getUiString(
+  key: string,
+  locale: string,
+  fallback: string
+): Promise<string> {
+  const rows = await getTranslations("ui_string", [key], locale);
+  return rows.get(`${key}:`)?.text ?? fallback;
+}
+
+/**
+ * Many UI strings at once, in the page locale — one translations query
+ * for the whole page, instead of one round trip per string. Each key
+ * falls back to its English text when no row exists. Same asterisk
+ * rule as getUiString: UI strings never render one.
+ *
+ * (Added in the page-refactor phase — the shared page components call
+ * this with their full key list and English fallbacks.)
+ */
+export async function getUiStrings(
+  locale: string,
+  defaults: Record<string, string>
+): Promise<Record<string, string>> {
+  const keys = Object.keys(defaults);
+  const rows = await getTranslations("ui_string", keys, locale);
+  const out: Record<string, string> = {};
+  for (const key of keys) {
+    out[key] = rows.get(`${key}:`)?.text ?? defaults[key];
+  }
+  return out;
 }

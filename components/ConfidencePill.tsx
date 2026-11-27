@@ -1,4 +1,5 @@
 import { resolveConfidence, type Confidence } from "@/lib/types";
+import { formatUi } from "@/lib/i18n";
 
 /**
  * How much we trust that a position is really the candidate's.
@@ -26,16 +27,31 @@ const LEVEL_LABELS: Record<Confidence, string> = {
 
 export default function ConfidencePill({
   level,
+  labels,
 }: {
   level: Confidence | null | undefined;
+  /**
+   * Localised level names + title template ("Confidence: {level}").
+   * Defaults are the English strings; omit for English-only callers.
+   */
+  labels?: {
+    low: string;
+    medium: string;
+    high: string;
+    title: string;
+  };
 }) {
   const resolved = resolveConfidence(level);
+  const text = labels ? labels[resolved] : LEVEL_LABELS[resolved];
+  const title = labels
+    ? formatUi(labels.title, { level: labels[resolved] })
+    : `Confidence: ${LEVEL_LABELS[resolved]}`;
   return (
     <span
       className={`pill border bg-transparent ${LEVEL_STYLES[resolved]}`}
-      title={`Confidence: ${LEVEL_LABELS[resolved]}`}
+      title={title}
     >
-      {LEVEL_LABELS[resolved]}
+      {text}
     </span>
   );
 }

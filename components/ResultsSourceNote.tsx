@@ -28,20 +28,29 @@ export default function ResultsSourceNote({
   hasAcclaimedWinner,
   uncontested = false,
   source,
+  labels,
 }: {
   hasWinner: boolean;
   hasAcclaimedWinner: boolean;
   uncontested?: boolean;
   source?: ResultsSource | null;
+  /**
+   * Localised footer strings. Defaults are the English strings; omit for
+   * English-only callers.
+   */
+  labels?: {
+    notAvailableLong: string;
+    acclaimedNoSource: string;
+    sourceLabel: string;
+  };
 }) {
   if (!hasWinner && uncontested) return null;
   if (!hasWinner) {
     return (
       <div className="mt-8 border-t border-paper-edge pt-4 text-sm text-ink-soft">
         <p>
-          Results not available means that the counts are still in
-          progress, the counts are too close to call, or the result has
-          not been collected and verified on SmarterVote yet.
+          {labels?.notAvailableLong ??
+            "Results not available means that the counts are still in progress, the counts are too close to call, or the result has not been collected and verified on SmarterVote yet."}
         </p>
       </div>
     );
@@ -49,7 +58,7 @@ export default function ResultsSourceNote({
   if (hasAcclaimedWinner) {
     return (
       <div className="mt-8 border-t border-paper-edge pt-4 text-sm text-ink-soft">
-        <p>Acclaimed candidates do not have a source.</p>
+        <p>{labels?.acclaimedNoSource ?? "Acclaimed candidates do not have a source."}</p>
       </div>
     );
   }
@@ -57,7 +66,7 @@ export default function ResultsSourceNote({
   return (
     <div className="mt-8 border-t border-paper-edge pt-4 text-sm text-ink-soft">
       <p>
-        Results source:{" "}
+        {labels?.sourceLabel ?? "Results source: "}
         <a
           href={source.url}
           className="link"

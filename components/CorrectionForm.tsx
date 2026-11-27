@@ -2,9 +2,37 @@
 
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
+import type { Locale } from "@/lib/i18n";
 import { submitCorrection, type CorrectionResult } from "@/app/corrections/actions";
 
-function SubmitButton() {
+/** English chrome defaults; `strings` overrides per key when provided. */
+const FORM_DEFAULTS = {
+  "form.submit": "Send correction",
+  "form.sending": "Sending…",
+  "form.thanks_heading": "Thank you — we’ve got it",
+  "form.thanks_body1":
+    "Your correction is in the queue and a person will read it. You’ll get a reply either way, including if we decide not to change something.",
+  "form.thanks_body2":
+    "If this is urgent — voting is open, or it concerns your own candidate page — email {email} as well and we’ll prioritise it.",
+  "form.about_label": "About: {about}",
+  "form.claim_label": "What’s wrong?",
+  "form.claim_hint": "Tell us what’s inaccurate, missing or out of date.",
+  "form.proposed_label": "What should it say instead?",
+  "form.proposed_hint": "Optional, but it speeds things up a lot.",
+  "form.url_label": "A link we can check",
+  "form.url_hint": "Optional. A page, article or post that backs this up.",
+  "form.name_label": "Your name",
+  "form.email_label": "Your email",
+  "form.candidate_checkbox": "I’m a candidate in this election.",
+  "form.candidate_note":
+    "Corrections from candidates about their own page are handled first.",
+  "form.privacy_note":
+    "We use your email only to reply about this correction. It is never published, sold or shared.",
+} as const;
+
+const SUPPORT_EMAIL = "support.smartervote.ca@gmail.com";
+
+function SubmitButton({ labels }: { labels: { submit: string; sending: string } }) {
   const { pending } = useFormStatus();
   return (
     <button
@@ -12,7 +40,7 @@ function SubmitButton() {
       disabled={pending}
       className="tap-target rounded-md bg-accent px-5 py-2.5 font-medium text-white disabled:opacity-60"
     >
-      {pending ? "Sending…" : "Send correction"}
+      {pending ? labels.sending : labels.submit}
     </button>
   );
 }
@@ -29,14 +57,24 @@ function SubmitButton() {
  *
  * With props, the form is in the initial HTML and the server action
  * progressively enhances — so it submits even with JavaScript off entirely.
+ *
+ * `locale` is sent as a hidden field so the server action returns its
+ * validation errors in the form's language (form.error_* rows).
  */
 export default function CorrectionForm({
   about = "",
   pageUrl = "",
+  locale = "en",
+  strings,
 }: {
   about?: string;
   pageUrl?: string;
+  /** Page locale — labels, placeholders and the action's errors. */
+  locale?: Locale;
+  /** Localised chrome strings (form.*). Omit for English. */
+  strings?: Record<string, string>;
 }) {
+  const t: Record<string, string> = { ...FORM_DEFAULTS, ...(strings ?? {}) };
   const [state, action] = useActionState<CorrectionResult | null, FormData>(
     submitCorrection,
     null
@@ -44,37 +82,41 @@ export default function CorrectionForm({
   const v = (state && !state.ok && state.values) || {};
 
   if (state?.ok) {
+    const [thanksBefore, thanksAfter] = t["form.thanks_body2"].split("{email}");
     return (
       <div
         className="card border-accent/30 bg-accent-light"
         role="status"
         aria-live="polite"
       >
-        <h2 className="text-base text-ink">Thank you — we&rsquo;ve got it</h2>
+        <h2 className="text-base text-ink">{t["form.thanks_heading"]}</h2>
         <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-          Your correction is in the queue and a person will read it. You&rsquo;ll get a
-          reply either way, including if we decide not to change something.
+          {t["form.thanks_body1"]}
         </p>
         <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-          If this is urgent — voting is open, or it concerns your own candidate page —
-          email{" "}
-          <a href="mailto:support.smartervote.ca@gmail.com" className="link">
-            support.smartervote.ca@gmail.com
-          </a>{" "}
-          as well and we&rsquo;ll prioritise it.
+          {thanksBefore}
+          <a href={`mailto:${SUPPORT_EMAIL}`} className="link">
+            {SUPPORT_EMAIL}
+          </a>
+          {thanksAfter}
         </p>
       </div>
     );
   }
 
+  const [aboutBefore, aboutAfter] = t["form.about_label"].split("{about}");
+
   return (
     <form action={action} className="mt-6 space-y-5" noValidate>
       {about && (
         <p className="rounded-md border border-accent/20 bg-accent-light px-4 py-3 text-sm text-ink-soft">
-          About: <strong className="text-ink">{about}</strong>
+          {aboutBefore}
+          <strong className="text-ink">{about}</strong>
+          {aboutAfter}
         </p>
       )}
       <input type="hidden" name="page_url" defaultValue={pageUrl} />
+      <input type="hidden" name="locale" defaultValue={locale} />
 
       {state && !state.ok && (
         <p
@@ -87,11 +129,9 @@ export default function CorrectionForm({
 
       <div>
         <label htmlFor="claim" className="block text-sm font-medium text-ink">
-          What&rsquo;s wrong? <span className="text-flag">*</span>
+          {t["form.claim_label"]} <span className="text-flag">*</span>
         </label>
-        <p className="mt-1 text-sm text-ink-faint">
-          Tell us what&rsquo;s inaccurate, missing or out of date.
-        </p>
+        <p className="mt-1 text-sm text-ink-faint">{t["form.claim_hint"]}</p>
         <textarea
           id="claim"
           name="claim"
@@ -105,9 +145,9 @@ export default function CorrectionForm({
 
       <div>
         <label htmlFor="proposed_text" className="block text-sm font-medium text-ink">
-          What should it say instead?
+          {t["form.proposed_label"]}
         </label>
-        <p className="mt-1 text-sm text-ink-faint">Optional, but it speeds things up a lot.</p>
+        <p className="mt-1 text-sm text-ink-faint">{t["form.proposed_hint"]}</p>
         <textarea
           id="proposed_text"
           name="proposed_text"
@@ -120,11 +160,9 @@ export default function CorrectionForm({
 
       <div>
         <label htmlFor="supporting_url" className="block text-sm font-medium text-ink">
-          A link we can check
+          {t["form.url_label"]}
         </label>
-        <p className="mt-1 text-sm text-ink-faint">
-          Optional. A page, article or post that backs this up.
-        </p>
+        <p className="mt-1 text-sm text-ink-faint">{t["form.url_hint"]}</p>
         <input
           id="supporting_url"
           name="supporting_url"
@@ -140,7 +178,7 @@ export default function CorrectionForm({
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-ink">
-            Your name
+            {t["form.name_label"]}
           </label>
           <input
             id="name"
@@ -154,7 +192,7 @@ export default function CorrectionForm({
         </div>
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-ink">
-            Your email <span className="text-flag">*</span>
+            {t["form.email_label"]} <span className="text-flag">*</span>
           </label>
           <input
             id="email"
@@ -178,9 +216,9 @@ export default function CorrectionForm({
         />
         <label htmlFor="is_candidate" className="text-sm text-ink-soft">
           <span className="font-medium text-ink">
-            I&rsquo;m a candidate in this election.
+            {t["form.candidate_checkbox"]}
           </span>{" "}
-          Corrections from candidates about their own page are handled first.
+          {t["form.candidate_note"]}
         </label>
       </div>
 
@@ -197,12 +235,11 @@ export default function CorrectionForm({
         />
       </div>
 
-      <p className="text-sm text-ink-faint">
-        We use your email only to reply about this correction. It is never published,
-        sold or shared.
-      </p>
+      <p className="text-sm text-ink-faint">{t["form.privacy_note"]}</p>
 
-      <SubmitButton />
+      <SubmitButton
+        labels={{ submit: t["form.submit"], sending: t["form.sending"] }}
+      />
     </form>
   );
 }

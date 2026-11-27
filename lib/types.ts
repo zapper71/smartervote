@@ -233,6 +233,8 @@ export interface Candidate {
   verified_links: VerifiedLink[];
   photo_url: string | null;
   bio: string | null;
+  /** Language the bio was written in (migration 52, default 'en'). */
+  bio_locale?: string | null;
   incumbent: boolean;
   last_reviewed_at: string | null;
   /**
@@ -273,6 +275,8 @@ export interface Candidate {
 export interface Issue {
   id: string;
   name: string;
+  /** Language the issue name was written in (migration 52, default 'en'). */
+  name_locale?: string | null;
   slug: string;
   description: string | null;
   voter_question: string | null;
@@ -295,6 +299,9 @@ export interface Position {
   summary_short: string | null;
   summary_bullets: string[] | null;
   verbatim_quote: string | null;
+  /** Languages the summary / quote were written in (migration 52, 'en'). */
+  summary_locale?: string | null;
+  verbatim_quote_locale?: string | null;
   source_url: string | null;
   source_title: string | null;
   source_type: SourceType | null;
@@ -370,4 +377,46 @@ export interface CandidateResponse {
 /** A race with its candidates attached. */
 export interface RaceWithCandidates extends Race {
   candidates: Candidate[];
+}
+
+/** A row of the languages table (migration 52). */
+export interface Language {
+  code: string;
+  name: string;
+  native_name: string;
+  flag_asset: string;
+  is_default: boolean;
+  is_enabled: boolean;
+  sort_order: number;
+}
+
+/**
+ * A row of the translations table (migration 52).
+ *
+ * entity_id is a STABLE NATURAL KEY, never a UUID: candidate slug for
+ * candidate_bio; 'candidate-slug:issue-slug' for position_summary and
+ * verbatim_quote; 'municipality-slug:issue-slug' for issue_name and
+ * issue_question; the string key for ui_string.
+ *
+ * field is '' except for position_summary, where it is 'summary_short'
+ * or 'summary_bullets' (bullets text is a JSON array string).
+ */
+export interface TranslationRow {
+  id: string;
+  entity_type:
+    | "candidate_bio"
+    | "position_summary"
+    | "verbatim_quote"
+    | "issue_name"
+    | "issue_question"
+    | "ui_string";
+  entity_id: string;
+  field: string;
+  locale: string;
+  text: string;
+  origin: "ai" | "human";
+  reviewed_by: string | null;
+  reviewed_at: string | null;
+  source_hash: string | null;
+  is_stale: boolean;
 }

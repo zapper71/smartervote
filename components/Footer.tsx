@@ -1,6 +1,25 @@
-import Link from "next/link";
+"use client";
 
-export default function Footer() {
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { localizePath, type Locale } from "@/lib/i18n";
+
+/**
+ * Site footer. A client component because the locale comes from the
+ * URL — the root layout has no locale of its own, so it passes BOTH
+ * locales' chrome strings and this component picks by pathname (the
+ * same pattern as LocaleHtmlLang). Links stay in the page language
+ * via localizePath.
+ */
+export default function Footer({
+  strings,
+}: {
+  /** Localised chrome strings (footer.* + nav.how_it_works), keyed by locale. */
+  strings: Record<Locale, Record<string, string>>;
+}) {
+  const pathname = usePathname() ?? "";
+  const locale: Locale = pathname.startsWith("/fr") ? "fr" : "en";
+  const s = strings[locale];
   return (
     <footer className="mt-16 border-t border-paper-edge bg-paper">
       <div className="mx-auto max-w-5xl px-4 py-10 text-sm text-ink-soft">
@@ -10,26 +29,20 @@ export default function Footer() {
             credibility. It appears on every page, deliberately. */}
         <div className="rounded-lg border border-paper-edge bg-paper-warm p-4">
           <h2 className="mb-2 text-sm font-semibold text-ink">
-            SmarterVote is independent and non-partisan
+            {s["footer.independent_heading"]}
           </h2>
-          <p className="leading-relaxed">
-            We do not endorse, rank or recommend any candidate, and we do not tell anyone
-            how to vote. We are not affiliated with any political party, campaign, or with
-            any other similarly named website. Everything here is drawn from what
-            candidates have published themselves or from local news reporting, and every
-            claim carries a link to its source.
-          </p>
+          <p className="leading-relaxed">{s["footer.independent_body"]}</p>
         </div>
 
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
-          <Link href="/methodology" className="link tap-target">
-            How this works
+          <Link href={localizePath("/methodology", locale)} className="link tap-target">
+            {s["nav.how_it_works"]}
           </Link>
-          <Link href="/corrections" className="link tap-target">
-            Report a correction
+          <Link href={localizePath("/corrections", locale)} className="link tap-target">
+            {s["footer.report_correction"]}
           </Link>
-          <Link href="/privacy" className="link tap-target">
-            Privacy
+          <Link href={localizePath("/privacy", locale)} className="link tap-target">
+            {s["footer.privacy"]}
           </Link>
                     <a
             href="https://www.gofundme.com/f/smartervoteca-grow-and-cover-more-elections"
@@ -37,17 +50,11 @@ export default function Footer() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            Donate to support SmarterVote
+            {s["footer.donate"]}
           </a>
         </div>
 
-        <p className="mt-6 text-xs text-ink-faint">
-          Built and run by one person, for free, with no advertising. Reader donations
-          help keep it running. Candidate information is sourced from the official
-          candidate lists published by the election authority for each race. For official
-          information about voting — registering, where and when to vote, deadlines, and
-          results — always check the authority running your election.
-        </p>
+        <p className="mt-6 text-xs text-ink-faint">{s["footer.about_site"]}</p>
       </div>
     </footer>
   );

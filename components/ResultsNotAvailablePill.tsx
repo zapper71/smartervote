@@ -7,11 +7,19 @@
  * which IS the page background (#faf9f7) — the badge shape was there
  * but invisible, so it read as plain text. Slate-200 fill contrasts
  * with the page while staying clearly neutral (no result meaning). */
-export default function ResultsNotAvailablePill() {
+export default function ResultsNotAvailablePill({
+  labels,
+}: {
+  /**
+   * Localised label + title. Defaults are the English strings; omit for
+   * English-only callers.
+   */
+  labels?: { label: string; title: string };
+}) {
   return (
     <span className="pill bg-slate-200 text-slate-700"
-      title="No result recorded for this race yet">
-      Results not available
+      title={labels?.title ?? "No result recorded for this race yet"}>
+      {labels?.label ?? "Results not available"}
     </span>
   );
 }

@@ -23,11 +23,17 @@ export default function Clampable({
   children,
   lines = 5,
   className = "",
+  labels,
 }: {
   children: React.ReactNode;
   /** Preset clamp height in lines. */
   lines?: number;
   className?: string;
+  /**
+   * Localised "Read more" / "Show less". Defaults are the English
+   * strings; omit for English-only callers.
+   */
+  labels?: { readMore: string; showLess: string };
 }) {
   const innerRef = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
@@ -51,6 +57,21 @@ export default function Clampable({
     done?.catch(() => {});
     return () => ro.disconnect();
   }, [expanded]);
+
+  // Evidence toggles live inside clamped cells: opening a <details>
+  // ("Show their words & source") must release the clamp, or the
+  // expanded quote stays crammed in the 5-line box and overlaps the
+  // confidence badge and bullets below it. The toggle event doesn't
+  // bubble, so listen in the capture phase on the inner container.
+  useIsomorphicLayoutEffect(() => {
+    const el = innerRef.current;
+    if (!el) return;
+    const onToggle = (e: Event) => {
+      if ((e.target as HTMLDetailsElement).open) setExpanded(true);
+    };
+    el.addEventListener("toggle", onToggle, true);
+    return () => el.removeEventListener("toggle", onToggle, true);
+  }, []);
 
   // Inline styles rather than a line-clamp-N Tailwind class: Tailwind's JIT
   // only generates class names it sees literally in source, so a dynamic
@@ -79,7 +100,9 @@ export default function Clampable({
           // the 24px minimum applies.
           className="link mt-2 inline-flex min-h-[24px] cursor-pointer items-center text-xs font-medium"
         >
-          {expanded ? "Show less" : "Read more"}
+          {expanded
+            ? (labels?.showLess ?? "Show less")
+            : (labels?.readMore ?? "Read more")}
         </button>
       )}
     </div>

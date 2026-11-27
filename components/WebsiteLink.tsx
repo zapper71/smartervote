@@ -76,6 +76,7 @@ export default function WebsiteLink({
   verifiedLinks,
   candidateName,
   className = "",
+  labels,
 }: {
   website: string | null | undefined;
   socials?: Socials | null;
@@ -86,6 +87,11 @@ export default function WebsiteLink({
   verifiedLinks?: VerifiedLink[] | null;
   candidateName: string;
   className?: string;
+  /**
+   * Localised "no website" text. Default is the English string; omit for
+   * English-only callers.
+   */
+  labels?: { none: string };
 }) {
   const entries = Object.entries(socials ?? {}).filter(
     ([, v]) => typeof v === "string" && v.trim().length > 0
@@ -99,7 +105,7 @@ export default function WebsiteLink({
   if (!website && entries.length === 0 && verified.length === 0) {
     return (
       <span className={`text-ink-faint ${className}`}>
-        No website or social media listed
+        {labels?.none ?? "No website or social media listed"}
       </span>
     );
   }

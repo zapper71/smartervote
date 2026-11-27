@@ -21,6 +21,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
+import { formatUi } from "@/lib/i18n";
 
 const SCROLL_TARGET_ID = "compare-scroll";
 /** One candidate column is w-80 (20rem = 320px); the step buttons move by one. */
@@ -51,15 +52,28 @@ function useCompareOverflow(targetId: string) {
 
 export function CompareScrollHint({
   candidateCount,
+  label,
 }: {
   candidateCount: number;
+  /**
+   * Localised hint template with a {count} placeholder, e.g.
+   * "Scroll right to see all {count} candidates →". Default is the
+   * English string; omit for English-only callers.
+   */
+  label?: string;
 }) {
   const { overflows } = useCompareOverflow(SCROLL_TARGET_ID);
   if (!overflows) return null;
   return (
     <p className="mb-2 hidden text-right text-xs text-ink-faint md:block">
-      Scroll right to see all {candidateCount} candidates{" "}
-      <span aria-hidden="true">→</span>
+      {label ? (
+        formatUi(label, { count: candidateCount })
+      ) : (
+        <>
+          Scroll right to see all {candidateCount} candidates{" "}
+          <span aria-hidden="true">→</span>
+        </>
+      )}
     </p>
   );
 }
