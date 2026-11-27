@@ -122,3 +122,25 @@ export function formatUi(
 export function pluralize(text: string, count: number): string {
   return text.replace(/\(s\)/g, count === 1 ? "" : "s");
 }
+
+/**
+ * Localise a stored source-extent value (positions.source_extent).
+ *
+ * Extents are DATA, not ui_strings: the database stores the English
+ * value and PositionCell renders it verbatim, so there is no
+ * translations-row lookup — this map is the translation. The five rows
+ * exist in the translations table as extent.* for the record; this map
+ * must match them. Unknown values pass through unchanged.
+ */
+const EXTENT_FR: Record<string, string> = {
+  "a page or more": "une page ou plus",
+  "one sentence": "une phrase",
+  "a few sentences": "quelques phrases",
+  "several paragraphs": "plusieurs paragraphes",
+  "reported remarks": "remarques rapportées",
+};
+
+export function localizeExtent(value: string, locale: Locale): string {
+  if (locale !== "fr") return value;
+  return EXTENT_FR[value] ?? value;
+}

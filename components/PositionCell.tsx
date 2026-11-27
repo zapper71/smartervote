@@ -5,7 +5,7 @@ import TrackedOutboundLink from "@/components/TrackedOutboundLink";
 import TranslatedQuote from "@/components/TranslatedQuote";
 import TranslatedText from "@/components/TranslatedText";
 import { formatShortDate } from "@/lib/dates";
-import { formatUi, type Locale, type ResolvedText } from "@/lib/i18n";
+import { formatUi, localizeExtent, type Locale, type ResolvedText } from "@/lib/i18n";
 import type { PositionLocalization } from "@/components/pages/localize-content";
 import type { Position } from "@/lib/types";
 
@@ -109,17 +109,35 @@ function ConflictPill({ t }: { t: Record<string, string> }) {
  * tracks conviction. The fact goes on the page; the conclusion stays with
  * the reader.
  *
- * Renders nothing when unset. (Extent values stay English in Phase 1 —
- * the extent.* rows are wired by the chrome pass.)
+ * Renders nothing when unset. The stored value is English data; the
+ * chrome pass localises it through localizeExtent (extent.* rows).
  */
-function ExtentNote({ p, className = "" }: { p: Position; className?: string }) {
+function ExtentNote({
+  p,
+  locale,
+  className = "",
+}: {
+  p: Position;
+  locale: Locale;
+  className?: string;
+}) {
   if (!p.source_extent) return null;
   return (
-    <span className={`text-ink-faint ${className}`}>({p.source_extent})</span>
+    <span className={`text-ink-faint ${className}`}>
+      ({localizeExtent(p.source_extent, locale)})
+    </span>
   );
 }
 
-function SourceLine({ p, t }: { p: Position; t: Record<string, string> }) {
+function SourceLine({
+  p,
+  t,
+  locale,
+}: {
+  p: Position;
+  t: Record<string, string>;
+  locale: Locale;
+}) {
   return (
     <p className="mt-2 text-xs text-ink-faint">
       {t["cell.source_label"]}
@@ -136,7 +154,7 @@ function SourceLine({ p, t }: { p: Position; t: Record<string, string> }) {
       ) : (
         (p.source_title ?? "—")
       )}
-      {p.source_date ? ` · ${formatShortDate(p.source_date)}` : ""}
+      {p.source_date ? ` · ${formatShortDate(p.source_date, locale)}` : ""}
     </p>
   );
 }
@@ -259,10 +277,10 @@ function SinglePosition({
                 top margin and the source line drifts down for no reason. */}
             {p.source_extent && (
               <p className="mt-1 text-xs">
-                <ExtentNote p={p} />
+                <ExtentNote p={p} locale={locale} />
               </p>
             )}
-            <SourceLine p={p} t={t} />
+            <SourceLine p={p} t={t} locale={locale} />
           </>
         ) : (
           <details className="group mt-2">
@@ -277,12 +295,12 @@ function SinglePosition({
               <span className="hidden group-open:inline">{t["cell.hide"]}</span>{" "}
               {/* Stays visible whether the details element is open or shut:
                   it describes the source, not the disclosure state. */}
-              <ExtentNote p={p} className="font-normal" />
+              <ExtentNote p={p} locale={locale} className="font-normal" />
             </summary>
             <div className="mt-2">
               <QuoteContent p={p} loc={loc} locale={locale} />
             </div>
-            <SourceLine p={p} t={t} />
+            <SourceLine p={p} t={t} locale={locale} />
           </details>
         ))}
       {fullResponseLink && <FullResponseNote link={fullResponseLink} />}
@@ -328,18 +346,20 @@ function EmptyNote({
   respondedAt,
   lookedAt,
   t,
+  locale,
 }: {
   contactedAt?: string | null;
   respondedAt?: string | null;
   lookedAt?: string | null;
   t: Record<string, string>;
+  locale: Locale;
 }) {
   if (contactedAt && respondedAt) {
     return (
       <>
         {formatUi(t["cell.empty_asked_replied"], {
-          date1: formatShortDate(contactedAt),
-          date2: formatShortDate(respondedAt),
+          date1: formatShortDate(contactedAt, locale),
+          date2: formatShortDate(respondedAt, locale),
         })}
       </>
     );
@@ -348,7 +368,7 @@ function EmptyNote({
     return (
       <>
         {formatUi(t["cell.empty_asked"], {
-          date: formatShortDate(contactedAt),
+          date: formatShortDate(contactedAt, locale),
         })}
       </>
     );
@@ -357,7 +377,7 @@ function EmptyNote({
     return (
       <>
         {formatUi(t["cell.empty_looked"], {
-          date: formatShortDate(lookedAt),
+          date: formatShortDate(lookedAt, locale),
         })}
       </>
     );
@@ -414,6 +434,7 @@ export default function PositionCell({
             respondedAt={respondedAt}
             lookedAt={lookedAt}
             t={t}
+            locale={locale}
           />
         </span>{" "}
         <Link href={correctionHref} className="link">
@@ -440,6 +461,7 @@ export default function PositionCell({
             respondedAt={respondedAt}
             lookedAt={reviewedAt ?? lookedAt}
             t={t}
+            locale={locale}
           />
         </span>{" "}
         <Link href={correctionHref} className="link">

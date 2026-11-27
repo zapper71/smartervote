@@ -15,11 +15,14 @@ export function daysUntil(iso: string | null | undefined, from: Date = new Date(
   return Math.max(0, Math.round((target - today) / 86_400_000));
 }
 
-export function formatDate(iso: string | null | undefined): string {
+export function formatDate(
+  iso: string | null | undefined,
+  locale: "en" | "fr" = "en"
+): string {
   if (!iso) return "";
   const d = new Date(`${iso.slice(0, 10)}T00:00:00Z`);
   if (Number.isNaN(d.getTime())) return "";
-  return d.toLocaleDateString("en-CA", {
+  return d.toLocaleDateString(locale === "fr" ? "fr-CA" : "en-CA", {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -28,11 +31,14 @@ export function formatDate(iso: string | null | undefined): string {
   });
 }
 
-export function formatShortDate(iso: string | null | undefined): string {
+export function formatShortDate(
+  iso: string | null | undefined,
+  locale: "en" | "fr" = "en"
+): string {
   if (!iso) return "";
   const d = new Date(`${iso.slice(0, 10)}T00:00:00Z`);
   if (Number.isNaN(d.getTime())) return "";
-  return d.toLocaleDateString("en-CA", {
+  return d.toLocaleDateString(locale === "fr" ? "fr-CA" : "en-CA", {
     year: "numeric",
     month: "long",
     day: "numeric",

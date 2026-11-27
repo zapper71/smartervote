@@ -1,14 +1,31 @@
 import Link from "next/link";
 import { PROVINCES } from "@/lib/tracked-elections";
+import { getUiStrings } from "@/lib/queries";
 import { localizePath, type Locale } from "@/lib/i18n";
+import { PROVINCE_NAME_KEYS } from "@/components/pages/chrome";
 
 /**
  * Home page body, shared by the English route and the /fr wrapper.
  * No database content renders here, so there is no translations fetch
- * and no footnote. Chrome strings stay English in Phase 1 (phase (b));
- * the chrome pass wires them to the ui_string rows.
+ * and no footnote. Province names come from the province-name rows
+ * (finder.province_* for ON/BC/SK/QC, elections.province_* for the
+ * other nine) via PROVINCE_NAME_KEYS.
  */
-export default function HomePage({ locale }: { locale: Locale }) {
+export default async function HomePage({ locale }: { locale: Locale }) {
+  const nameKeys: Record<string, string> = {};
+  for (const p of PROVINCES) {
+    const key = PROVINCE_NAME_KEYS[p.slug];
+    if (key) nameKeys[key] = p.name;
+  }
+  const s = await getUiStrings(locale, {
+    "home.upcoming_link": "Recent & Upcoming Elections →",
+    "home.heading": "What the candidates actually say",
+    "home.intro":
+      "Official candidate lists tell you who’s running, not where candidates differ. SmarterVote puts every candidate side by side on the same issues, in the same format, with a link to the source for every claim.",
+    "home.provinces_heading": "Provinces and territories",
+    "nav.how_it_works": "How this works",
+    ...nameKeys,
+  });
   return (
     <div>
       <section className="mb-10">
@@ -17,25 +34,20 @@ export default function HomePage({ locale }: { locale: Locale }) {
             href={localizePath("/upcoming", locale)}
             className="link text-base font-medium"
           >
-            Recent &amp; Upcoming Elections &rarr;
+            {s["home.upcoming_link"]}
           </Link>
         </p>
-        <h1 className="text-3xl sm:text-4xl">What the candidates actually say</h1>
-        <p className="prose-civic mt-4">
-          Official candidate lists tell you who&rsquo;s running, not where
-          candidates differ. SmarterVote puts every candidate side by side on
-          the same issues, in the same format, with a link to the source for
-          every claim.
-        </p>
+        <h1 className="text-3xl sm:text-4xl">{s["home.heading"]}</h1>
+        <p className="prose-civic mt-4">{s["home.intro"]}</p>
         <p className="mt-4 text-sm text-ink-faint">
           <Link href={localizePath("/methodology", locale)} className="link">
-            How this works
+            {s["nav.how_it_works"]}
           </Link>
         </p>
       </section>
 
       <section>
-        <h2 className="text-xl">Provinces and territories</h2>
+        <h2 className="text-xl">{s["home.provinces_heading"]}</h2>
         <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {PROVINCES.map((p) => (
             <li key={p.slug} className="card">
@@ -43,7 +55,10 @@ export default function HomePage({ locale }: { locale: Locale }) {
                 href={localizePath(`/provinces/${p.slug}`, locale)}
                 className="tap-target font-medium text-ink no-underline hover:text-accent"
               >
-                {p.name} &rarr;
+                {PROVINCE_NAME_KEYS[p.slug]
+                  ? s[PROVINCE_NAME_KEYS[p.slug]]
+                  : p.name}{" "}
+                &rarr;
               </Link>
             </li>
           ))}

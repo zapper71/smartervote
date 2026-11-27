@@ -5,6 +5,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import PageViewBeacon from "@/components/PageViewBeacon";
 import LocaleHtmlLang from "@/components/LocaleHtmlLang";
+import { getLanguages, getUiStrings } from "@/lib/queries";
 import { INDEXABLE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -28,20 +29,49 @@ export const metadata: Metadata = {
     : { index: false, follow: false, nocache: true },
 };
 
-export default function RootLayout({
+/**
+ * Chrome strings for Nav + Footer, in both locales. The root layout has
+ * no locale of its own, so it fetches both and the client Nav/Footer pick
+ * by pathname (same pattern as LocaleHtmlLang). A failed read degrades
+ * to the English fallbacks — the chrome never blocks a page.
+ */
+const CHROME_KEYS = {
+  "site.tagline": "Candidates side-by-side on the issues. No BS.",
+  "nav.skip_link": "Skip to main content",
+  "nav.home": "Home",
+  "nav.races": "Races",
+  "nav.how_it_works": "How this works",
+  "nav.about": "About",
+  "nav.donate": "Donate",
+  "footer.independent_heading": "SmarterVote is independent and non-partisan",
+  "footer.independent_body":
+    "We do not endorse, rank or recommend any candidate, and we do not tell anyone how to vote. We are not affiliated with any political party, campaign, or with any other similarly named website. Everything here is drawn from what candidates have published themselves or from local news reporting, and every claim carries a link to its source.",
+  "footer.report_correction": "Report a correction",
+  "footer.privacy": "Privacy",
+  "footer.donate": "Donate to support SmarterVote",
+  "footer.about_site":
+    "Built and run by one person, for free, with no advertising. Reader donations help keep it running. Candidate information is sourced from the official candidate lists published by the election authority for each race. For official information about voting — registering, where and when to vote, deadlines, and results — always check the authority running your election.",
+} as const;
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [languages, chromeEn, chromeFr] = await Promise.all([
+    getLanguages(),
+    getUiStrings("en", CHROME_KEYS),
+    getUiStrings("fr", CHROME_KEYS),
+  ]);
   return (
     <html lang="en-CA">
       <body className="flex min-h-screen flex-col">
         <LocaleHtmlLang />
-        <Nav />
+        <Nav languages={languages} strings={{ en: chromeEn, fr: chromeFr }} />
         <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
           {children}
         </main>
-        <Footer />
+        <Footer strings={{ en: chromeEn, fr: chromeFr }} />
         <Analytics />
         <PageViewBeacon />
       </body>

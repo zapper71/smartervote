@@ -7,7 +7,7 @@ import WithdrawnPill from "@/components/WithdrawnPill";
 import WinnerPill from "@/components/WinnerPill";
 import ResultsNotAvailablePill from "@/components/ResultsNotAvailablePill";
 import PartyPill from "@/components/PartyPill";
-import { localizePath, type Locale } from "@/lib/i18n";
+import { formatUi, localizePath, pluralize, type Locale } from "@/lib/i18n";
 
 export interface MunicipalityRaceGroup {
   key: string;
@@ -51,17 +51,46 @@ function hostnameOf(url: string): string {
   }
 }
 
+/** English chrome defaults; `strings` overrides per key when provided. */
+const RACE_LIST_DEFAULTS = {
+  "race_list.compare_link": "Compare the {count} candidates →",
+  "race_list.positions_loaded": "Positions loaded",
+  "race_list.list_only": "Candidate list only",
+  "race_list.candidates": "{count} candidate(s)",
+  "race_list.seats": "{seats} seat(s)",
+  "race_list.acclaimed_suffix": " · acclaimed",
+  "race_list.source_label": "Candidate list source: ",
+  "race_list.filter_label": "Find a race",
+  "race_list.filter_placeholder": "e.g. Mayor, Etobicoke, Ward 1…",
+  "race_list.filter_count": "{count} races · type to filter",
+  "race_list.no_match":
+    "No races match “{query}”. Try a nearby ward or “Mayor”.",
+  "pill.acclaimed": "Acclaimed",
+  "pill.elected": "Elected",
+  "pill.elected_unofficial": "Elected — unofficial result",
+  "pill.elected_official_title": "Elected — official result",
+  "pill.withdrawn": "Withdrawn",
+  "pill.withdrawn_title":
+    "Withdrew after nomination; still on the printed ballot",
+  "results.pill": "Results not available",
+  "results.pill_title": "No result recorded for this race yet",
+} as const;
+
 function RaceEntry({
   race,
   dataLoaded,
   locale = "en",
+  strings,
 }: {
   race: ExpansionRace;
   /** null = the database check failed; render no tag rather than a wrong one. */
   dataLoaded: boolean | null;
   /** Page locale — the race + compare links stay in the page language. */
   locale?: Locale;
+  /** Localised chrome strings (race_list.* + pill.*). Omit for English. */
+  strings?: Record<string, string>;
 }) {
+  const t: Record<string, string> = { ...RACE_LIST_DEFAULTS, ...(strings ?? {}) };
   const count = race.candidates.length;
   const acclaimedCount = race.candidates.filter((c) => c.acclaimed).length;
   // Broad results rule (Andreas, 2026-10-27): a race with no flagged
@@ -85,7 +114,14 @@ function RaceEntry({
             {race.name}
           </Link>
         </h3>
-        {!hasWinner && !fullyAcclaimed && <ResultsNotAvailablePill />}
+        {!hasWinner && !fullyAcclaimed && (
+          <ResultsNotAvailablePill
+            labels={{
+              label: t["results.pill"],
+              title: t["results.pill_title"],
+            }}
+          />
+        )}
         {dataLoaded !== null &&
           (dataLoaded ? (
             contested ? (
@@ -93,20 +129,26 @@ function RaceEntry({
                 href={localizePath(`/races/${race.slug}/compare`, locale)}
                 className="link tap-target text-sm font-medium"
               >
-                Compare the {count} candidates &rarr;
+                {formatUi(t["race_list.compare_link"], { count })}
               </Link>
             ) : (
-              <span className="text-xs text-ink-faint">Positions loaded</span>
+              <span className="text-xs text-ink-faint">
+                {t["race_list.positions_loaded"]}
+              </span>
             )
           ) : (
-            <span className="text-xs text-ink-faint">Candidate list only</span>
+            <span className="text-xs text-ink-faint">
+              {t["race_list.list_only"]}
+            </span>
           ))}
       </div>
       <p className="mt-1 text-sm text-ink-soft">
-        {count} candidate{count === 1 ? "" : "s"}
-        {race.seats ? ` · ${race.seats} seat${race.seats === 1 ? "" : "s"}` : ""}
+        {pluralize(formatUi(t["race_list.candidates"], { count }), count)}
+        {race.seats
+          ? ` · ${pluralize(formatUi(t["race_list.seats"], { seats: race.seats }), race.seats)}`
+          : ""}
         {acclaimedCount > 0 && count === acclaimedCount
-          ? " · acclaimed"
+          ? t["race_list.acclaimed_suffix"]
           : ""}
       </p>
       {count > 0 && (
@@ -153,14 +195,19 @@ function RaceEntry({
               <PartyPill party={c.party} />
               {c.acclaimed && (
                 <span className="ml-1 text-xs font-medium text-flag">
-                  Acclaimed
+                  {t["pill.acclaimed"]}
                 </span>
               )}
               {/* Withdrawn candidates stay on the printed ballot, so they
                   stay listed — struck through with the grey Withdrawn pill. */}
               {c.withdrawn && (
                 <span className="ml-1.5">
-                  <WithdrawnPill />
+                  <WithdrawnPill
+                    labels={{
+                      withdrawn: t["pill.withdrawn"],
+                      title: t["pill.withdrawn_title"],
+                    }}
+                  />
                 </span>
               )}
               {/* Winners get the Elected checkmark (migration 41 data,
@@ -168,7 +215,15 @@ function RaceEntry({
                   overlay). Absent until results are recorded. */}
               {c.winner && (
                 <span className="ml-1.5">
-                  <WinnerPill isWinner resultStatus={c.resultStatus} />
+                  <WinnerPill
+                    isWinner
+                    resultStatus={c.resultStatus}
+                    labels={{
+                      elected: t["pill.elected"],
+                      electedUnofficial: t["pill.elected_unofficial"],
+                      electedOfficialTitle: t["pill.elected_official_title"],
+                    }}
+                  />
                 </span>
               )}
             </li>
@@ -177,7 +232,7 @@ function RaceEntry({
       )}
       {race.sources.length > 0 && (
         <p className="mt-3 text-xs text-ink-faint">
-          Candidate list source:{" "}
+          {t["race_list.source_label"]}
           {race.sources.map((s, i) => (
             <span key={s}>
               {i > 0 && ", "}
@@ -208,11 +263,15 @@ function RaceEntry({
 export default function MunicipalityRaceList({
   groups,
   locale = "en",
+  strings,
 }: {
   groups: MunicipalityRaceGroup[];
   /** Page locale — the race + compare links stay in the page language. */
   locale?: Locale;
+  /** Localised chrome strings (race_list.* + pill.*). Omit for English. */
+  strings?: Record<string, string>;
 }) {
+  const t: Record<string, string> = { ...RACE_LIST_DEFAULTS, ...(strings ?? {}) };
   const [query, setQuery] = useState("");
   const totalRaces = groups.reduce((n, g) => n + g.races.length, 0);
   const showFilter = totalRaces > FILTER_THRESHOLD;
@@ -242,27 +301,26 @@ export default function MunicipalityRaceList({
             htmlFor="race-filter"
             className="block text-sm font-medium text-ink"
           >
-            Find a race
+            {t["race_list.filter_label"]}
           </label>
           <input
             id="race-filter"
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="e.g. Mayor, Etobicoke, Ward 1…"
+            placeholder={t["race_list.filter_placeholder"]}
             autoComplete="off"
             className="mt-2 w-full rounded-md border border-paper-edge bg-paper-warm px-4 py-3 text-base text-ink placeholder:text-ink-faint"
           />
           <p className="mt-2 text-xs text-ink-faint">
-            {totalRaces} races · type to filter
+            {formatUi(t["race_list.filter_count"], { count: totalRaces })}
           </p>
         </div>
       )}
 
       {shown === 0 ? (
         <p className="mt-6 text-sm text-ink-soft">
-          No races match &ldquo;{query.trim()}&rdquo;. Try a nearby ward or
-          “Mayor”.
+          {formatUi(t["race_list.no_match"], { query: query.trim() })}
         </p>
       ) : (
         filtered.map((g) => (
@@ -276,7 +334,13 @@ export default function MunicipalityRaceList({
             </h2>
             <ul className="grid gap-4 sm:grid-cols-2">
               {g.races.map(({ race, dataLoaded }) => (
-                <RaceEntry key={race.slug} race={race} dataLoaded={dataLoaded} locale={locale} />
+                <RaceEntry
+                  key={race.slug}
+                  race={race}
+                  dataLoaded={dataLoaded}
+                  locale={locale}
+                  strings={strings}
+                />
               ))}
             </ul>
           </section>

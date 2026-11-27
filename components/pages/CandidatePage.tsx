@@ -8,6 +8,7 @@ import {
   getPositions,
   getRaceBySlugGlobal,
   getRaces,
+  getUiStrings,
   MUNICIPALITY_SLUG,
 } from "@/lib/queries";
 import CandidateResponse from "@/components/CandidateResponse";
@@ -20,7 +21,8 @@ import WinnerPill from "@/components/WinnerPill";
 import PartyPill from "@/components/PartyPill";
 import CandidateEmail from "@/components/CandidateEmail";
 import { localizePageContent } from "@/components/pages/localize-content";
-import { localizePath, type Locale } from "@/lib/i18n";
+import { formatUi, localizePath, type Locale } from "@/lib/i18n";
+import { splitMarker } from "@/components/pages/chrome";
 
 type Props = { params: Promise<{ race: string; candidate: string }>; locale: Locale };
 
@@ -31,6 +33,16 @@ const SOCIAL_LABELS: Record<string, string> = {
 };
 
 /**
+ * Link-text boundary marker for the "Where they stand" intro. "Why we
+ * do it this way" has no separate row inside that template — it is
+ * split out per locale.
+ */
+const WHY_MARKERS: Record<Locale, string> = {
+  en: "Why we do it this way",
+  fr: "Pourquoi nous procédons ainsi",
+};
+
+/**
  * Candidate page body, shared by the English route and the /fr wrapper.
  *
  * Issue names/questions and position summaries/quotes render in the page
@@ -38,8 +50,7 @@ const SOCIAL_LABELS: Record<string, string> = {
  * translations row — AI with `*`, or the original with a language tag
  * when no row exists yet. Bios never render on candidate pages (compare
  * only), so the bio fetch is skipped and a candidate's AI bio cannot
- * trigger the footnote here. Chrome strings stay English in Phase 1
- * (phase (b)); the chrome pass wires them.
+ * trigger the footnote here.
  *
  * Two fixes carried in: the "with the Town" suffix in the no-website note
  * applies only to Huntsville (it was hard-coded for every municipality),
@@ -97,6 +108,69 @@ export default async function CandidatePage({ params, locale }: Props) {
     `${candidate.name} — ${race.name}`
   )}&page=${encodeURIComponent(localizePath(`/races/${race.slug}/${candidate.slug}`, locale))}`;
 
+  const s = await getUiStrings(locale, {
+    "cand.for_race": "Candidate for {race}",
+    "cand.acclaimed": "Acclaimed — no election for this seat",
+    "cand.own_words_heading": "In their own words",
+    "cand.no_website":
+      "This candidate hasn’t listed a campaign website or social account{town_suffix}. That says nothing about them as a candidate — it just means less of their material is published online for us to summarise.",
+    "cand.stand_heading": "Where they stand",
+    "cand.stand_intro":
+      "Every candidate in this race is shown against the same {count} issues, in the same order, whether or not we’ve found something for each one. Why we do it this way.",
+    "cand.no_issues": "Issue information isn’t available right now.",
+    "cand.full_response": "Read their full response →",
+    "cand.full_response_issue": "Read their full response on {issue} →",
+    "cand.wrong_heading": "Think we got something wrong?",
+    "cand.wrong_body":
+      "Candidates and members of the public can both report a correction. Every one is logged and answered, and corrections about a candidate’s own positions get priority.",
+    "cand.wrong_link": "Report a correction about this page →",
+    "resp.heading": "What {firstName} told us",
+    "resp.sub":
+      "Their reply to our candidate review email, received {date} — published in full and unedited.",
+    "resp.read": "Read the full response",
+    "resp.hide": "Hide the full response",
+    "resp.back": "↑ Back to comparison",
+    "resp.back_issue": "↑ Back to comparison: {issue}",
+    "cell.conflict_pill": "Conflicting Position",
+    "cell.conflict_note":
+      "This candidate has said different things about this issue in different places. Both are shown below, with their sources. We haven’t chosen between them.",
+    "cell.multi_note":
+      "This candidate has spoken about this issue more than once. Each statement is shown with its own source.",
+    "cell.misread_link": "Think we’ve misread this?",
+    "cell.wrong_link": "Think we’ve got this wrong?",
+    "cell.show_words": "Show their words & source",
+    "cell.hide": "Hide",
+    "cell.source_label": "Source: ",
+    "cell.confidence_label": "Confidence:",
+    "cell.empty_asked_replied":
+      "We asked on {date1}. They replied on {date2} but haven’t given a position on this.",
+    "cell.empty_asked": "We asked on {date} — no reply yet.",
+    "cell.empty_looked": "No public statement found as of {date}.",
+    "cell.empty_unreviewed": "Not reviewed yet.",
+    "cell.know_something": "Know something?",
+    "cell.tell_us": "Tell us if we missed it.",
+    "confidence.low": "Low",
+    "confidence.medium": "Medium",
+    "confidence.high": "High",
+    "confidence.title": "Confidence: {level}",
+    "pill.elected": "Elected",
+    "pill.elected_unofficial": "Elected — unofficial result",
+    "pill.elected_official_title": "Elected — official result",
+    "pill.withdrawn": "Withdrawn",
+    "pill.withdrawn_title":
+      "Withdrew after nomination; still on the printed ballot",
+    "weblink.none": "No website or social media listed",
+  });
+  const pillLabels = {
+    elected: s["pill.elected"],
+    electedUnofficial: s["pill.elected_unofficial"],
+    electedOfficialTitle: s["pill.elected_official_title"],
+  };
+  const [standBefore, standAfter, standHasLink] = splitMarker(
+    formatUi(s["cand.stand_intro"], { count: issues.length }),
+    WHY_MARKERS[locale]
+  );
+
   return (
     <div>
       <p className="text-sm">
@@ -118,18 +192,23 @@ export default async function CandidatePage({ params, locale }: Props) {
         <CandidateEmail email={candidate.email} className="mt-1 text-base" />
       )}
       <p className="mt-1 text-ink-soft">
-        Candidate for {race.name}
+        {formatUi(s["cand.for_race"], { race: race.name })}
         {race.ward_group_label ? ` · ${race.ward_group_label}` : ""}
       </p>
 
       {candidate.status === "acclaimed" && (
         <p className="pill mt-3 bg-flag-light text-flag">
-          Acclaimed — no election for this seat
+          {s["cand.acclaimed"]}
         </p>
       )}
       {candidate.status === "withdrawn" && (
         <p className="mt-3">
-          <WithdrawnPill />
+          <WithdrawnPill
+            labels={{
+              withdrawn: s["pill.withdrawn"],
+              title: s["pill.withdrawn_title"],
+            }}
+          />
         </p>
       )}
       {candidate.is_winner && (
@@ -137,6 +216,7 @@ export default async function CandidatePage({ params, locale }: Props) {
           <WinnerPill
             isWinner={candidate.is_winner}
             resultStatus={candidate.result_status}
+            labels={pillLabels}
           />
         </p>
       )}
@@ -144,7 +224,7 @@ export default async function CandidatePage({ params, locale }: Props) {
       {/* The candidate's own words come before ours, deliberately. */}
       <section aria-labelledby="contact-heading" className="mt-6 card">
         <h2 id="contact-heading" className="text-base">
-          In their own words
+          {s["cand.own_words_heading"]}
         </h2>
         {candidate.website || socials.length > 0 ? (
           <p className="mt-3 text-sm">
@@ -153,12 +233,18 @@ export default async function CandidatePage({ params, locale }: Props) {
               socials={candidate.socials}
               verifiedLinks={candidate.verified_links}
               candidateName={candidate.name}
+              labels={{ none: s["weblink.none"] }}
             />
           </p>
         ) : (
           <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-            This candidate hasn&rsquo;t listed a campaign website or social account{isHuntsville ? " with the Town" : ""}. That says nothing about them as a candidate — it just means less of
-            their material is published online for us to summarise.
+            {formatUi(s["cand.no_website"], {
+              town_suffix: isHuntsville
+                ? locale === "fr"
+                  ? " auprès de la Ville"
+                  : " with the Town"
+                : "",
+            })}
           </p>
         )}
 </section>
@@ -173,27 +259,31 @@ export default async function CandidatePage({ params, locale }: Props) {
           raceSlug={race.slug}
           issueNameBySlug={issueNameBySlug}
           locale={locale}
+          strings={s}
         />
       )}
 
-      <h2 className="mt-10 text-xl">Where they stand</h2>
+      <h2 className="mt-10 text-xl">{s["cand.stand_heading"]}</h2>
       {/* issues.length rather than a hard-coded number. It said "the same ten
           issues" for a week after the list grew to twelve, and a page that
           states its own method should not be the thing that is out of date. */}
       <p className="mt-2 max-w-prose text-sm leading-relaxed text-ink-soft">
-        Every candidate in this race is shown against the same {issues.length} issues, in
-        the same order, whether or not we&rsquo;ve found something for each one.{" "}
-        <Link href={localizePath("/methodology", locale)} className="link">
-          Why we do it this way
-        </Link>
-        .
+        {standHasLink ? (
+          <>
+            {standBefore}
+            <Link href={localizePath("/methodology", locale)} className="link">
+              {WHY_MARKERS[locale]}
+            </Link>
+            {standAfter}
+          </>
+        ) : (
+          formatUi(s["cand.stand_intro"], { count: issues.length })
+        )}
       </p>
 
       {issues.length === 0 ? (
         <div className="mt-4 card">
-          <p className="text-sm text-ink-soft">
-            Issue information isn&rsquo;t available right now.
-          </p>
+          <p className="text-sm text-ink-soft">{s["cand.no_issues"]}</p>
         </div>
       ) : (
         <div className="mt-4 space-y-5">
@@ -214,8 +304,10 @@ export default async function CandidatePage({ params, locale }: Props) {
                 ? {
                     href: `#${responseSection ? responseSection.anchor : `resp-${candidate.slug}-top`}`,
                     label: responseSection
-                      ? `Read their full response on ${issueNameBySlug[issue.slug].toLowerCase()} →`
-                      : "Read their full response →",
+                      ? formatUi(s["cand.full_response_issue"], {
+                          issue: issueNameBySlug[issue.slug].toLowerCase(),
+                        })
+                      : s["cand.full_response"],
                   }
                 : null;
 
@@ -262,6 +354,7 @@ export default async function CandidatePage({ params, locale }: Props) {
                     withdrawn={candidate.status === "withdrawn"}
                     localized={content.positions}
                     locale={locale}
+                    strings={s}
                   />
                 </div>
               </article>
@@ -271,15 +364,13 @@ export default async function CandidatePage({ params, locale }: Props) {
       )}
 
       <div className="mt-10 rounded-lg border border-paper-edge bg-paper p-5">
-        <h2 className="text-base">Think we got something wrong?</h2>
+        <h2 className="text-base">{s["cand.wrong_heading"]}</h2>
         <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-          Candidates and members of the public can both report a correction. Every one is
-          logged and answered, and corrections about a candidate&rsquo;s own positions get
-          priority.
+          {s["cand.wrong_body"]}
         </p>
         <p className="mt-3">
           <Link href={correctionHref} className="link tap-target text-sm font-medium">
-            Report a correction about this page &rarr;
+            {s["cand.wrong_link"]}
           </Link>
         </p>
       </div>

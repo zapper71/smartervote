@@ -55,9 +55,24 @@ export default async function ComparePage({ params, searchParams, locale }: Prop
   const sp = await searchParams;
   const found = await getRaceBySlugGlobal(raceSlug);
 
+  // Fetched up front: both early returns below render this notice.
+  const noticeStrings = await getUiStrings(locale, {
+    "notice.unavailable_title": "{what} isn’t available right now",
+    "notice.what_comparison": "This comparison",
+    "notice.body":
+      "Something went wrong loading this page. It’s a problem on our end, not yours. For official candidate and voting information, go straight to the official source for your election — the authority running it.",
+  });
+
   if (!found) {
     const anyRaces = await getRaces();
-    if (anyRaces.length === 0) return <UnavailableNotice what="This comparison" />;
+    if (anyRaces.length === 0)
+      return (
+        <UnavailableNotice
+          what={noticeStrings["notice.what_comparison"]}
+          locale={locale}
+          strings={noticeStrings}
+        />
+      );
     notFound();
   }
 
@@ -73,7 +88,13 @@ export default async function ComparePage({ params, searchParams, locale }: Prop
   ]);
 
   if (allCandidates.length === 0 || issues.length === 0) {
-    return <UnavailableNotice what="This comparison" />;
+    return (
+      <UnavailableNotice
+        what={noticeStrings["notice.what_comparison"]}
+        locale={locale}
+        strings={noticeStrings}
+      />
+    );
   }
 
   // `only` narrows the view. An empty or nonsense value falls back to

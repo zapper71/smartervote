@@ -22,7 +22,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { formatShortDate } from "@/lib/dates";
-import { localizePath, type Locale } from "@/lib/i18n";
+import { formatUi, localizePath, type Locale } from "@/lib/i18n";
 import type {
   CandidateResponse as CandidateResponseData,
   ResponseSection,
@@ -100,6 +100,17 @@ function Para({ text }: { text: string }) {
   );
 }
 
+/** English chrome defaults; `strings` overrides per key when provided. */
+const CAND_DEFAULTS = {
+  "resp.heading": "What {firstName} told us",
+  "resp.sub":
+    "Their reply to our candidate review email, received {date} — published in full and unedited.",
+  "resp.read": "Read the full response",
+  "resp.hide": "Hide the full response",
+  "resp.back": "↑ Back to comparison",
+  "resp.back_issue": "↑ Back to comparison: {issue}",
+} as const;
+
 export default function CandidateResponse({
   response,
   firstName,
@@ -107,6 +118,7 @@ export default function CandidateResponse({
   raceSlug,
   issueNameBySlug,
   locale = "en",
+  strings,
 }: {
   response: CandidateResponseData;
   firstName: string;
@@ -116,12 +128,18 @@ export default function CandidateResponse({
   issueNameBySlug: Record<string, string>;
   /** Page locale — the back-to-comparison link stays in the page language. */
   locale?: Locale;
+  /** Localised chrome strings (cand.*). Omit for English. */
+  strings?: Record<string, string>;
 }) {
+  const t: Record<string, string> = useMemo(
+    () => ({ ...CAND_DEFAULTS, ...(strings ?? {}) }),
+    [strings]
+  );
   const topAnchor = `resp-${candidateSlug}-top`;
   const backHref = localizePath(`/races/${raceSlug}/compare`, locale);
   const detailsRef = useRef<HTMLDetailsElement | null>(null);
   const [pillVisible, setPillVisible] = useState(false);
-  const [backLabel, setBackLabel] = useState("↑ Back to comparison");
+  const [backLabel, setBackLabel] = useState(t["resp.back"]);
 
   const sections = useMemo(
     () =>
@@ -155,10 +173,10 @@ export default function CandidateResponse({
     });
     setBackLabel(
       target.issueName
-        ? `↑ Back to comparison: ${target.issueName}`
-        : "↑ Back to comparison"
+        ? formatUi(t["resp.back_issue"], { issue: target.issueName })
+        : t["resp.back"]
     );
-  }, [sections, refreshPill]);
+  }, [sections, refreshPill, t]);
 
   useEffect(() => {
     openForHash(); // deep link from a comparison-table cell
@@ -176,20 +194,20 @@ export default function CandidateResponse({
   return (
     <section aria-labelledby="response-heading" className="card mt-6">
       <h2 id="response-heading" className="text-base">
-        What {firstName} told us
+        {formatUi(t["resp.heading"], { firstName })}
       </h2>
       <p className="mt-1 text-xs leading-relaxed text-ink-faint">
-        Their reply to our candidate review email, received{" "}
-        {formatShortDate(response.received_at)} — published in full and
-        unedited.
+        {formatUi(t["resp.sub"], {
+          date: formatShortDate(response.received_at, locale),
+        })}
       </p>
 
       <details ref={detailsRef} id={topAnchor} className="group mt-3">
         {/* min-h mirrors the "Show their words & source" toggle: WCAG 2.2
             SC 2.5.8 wants 24px minimum on a standalone control. */}
         <summary className="inline-flex min-h-[24px] cursor-pointer list-none items-center text-sm font-medium text-accent hover:underline">
-          <span className="group-open:hidden">Read the full response</span>
-          <span className="hidden group-open:inline">Hide the full response</span>
+          <span className="group-open:hidden">{t["resp.read"]}</span>
+          <span className="hidden group-open:inline">{t["resp.hide"]}</span>
         </summary>
 
         <div className="mt-4 space-y-8">

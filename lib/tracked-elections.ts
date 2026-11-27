@@ -51,7 +51,7 @@ function parseDate(iso: string): Date {
   return new Date(`${iso}T12:00:00Z`);
 }
 
-const dateFmt = new Intl.DateTimeFormat("en-CA", {
+const dateFmtEn = new Intl.DateTimeFormat("en-CA", {
   weekday: "short",
   month: "short",
   day: "numeric",
@@ -59,9 +59,17 @@ const dateFmt = new Intl.DateTimeFormat("en-CA", {
   timeZone: "UTC",
 });
 
-/** e.g. "Mon Nov 9, 2026". */
-export function formatElectionDate(iso: string): string {
-  return dateFmt.format(parseDate(iso));
+const dateFmtFr = new Intl.DateTimeFormat("fr-CA", {
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+/** e.g. "Mon Nov 9, 2026" / "lun. 9 nov. 2026". */
+export function formatElectionDate(iso: string, locale: "en" | "fr" = "en"): string {
+  return (locale === "fr" ? dateFmtFr : dateFmtEn).format(parseDate(iso));
 }
 
 export interface TrackedElection {
@@ -235,13 +243,31 @@ function cycleSections(
  * claim the Nov 9 listings are live (SK data is published separately).
  * Anything without a verified next date stays "Not yet tracked".
  */
+/**
+ * Localised strings for the province tiles, fetched by the province
+ * page from the ui_string rows and passed in. Omit for the English
+ * defaults — the labels are English data literals in this file, and the
+ * page maps them through `labels` (English label -> localised label).
+ */
+export interface TileStrings {
+  locale?: "en" | "fr";
+  /** Localised "Not yet tracked" (elections.not_tracked). */
+  notTracked?: string;
+  /** Localised "(scheduled)" suffix, parens included (elections.scheduled). */
+  scheduled?: string;
+  /** English tile label -> localised label (elections.tile_* rows). */
+  labels?: Record<string, string>;
+}
+
 export function provinceTiles(
   provinceSlug: string,
   now: Date = new Date(),
+  opts?: TileStrings
 ): ProvinceTiles {
+  const locale = opts?.locale ?? "en";
   const notTracked = (): TileSection => ({
     current: [],
-    next: [{ date: "Not yet tracked" }],
+    next: [{ date: opts?.notTracked ?? "Not yet tracked" }],
     past: [],
   });
   const merge = (sections: TileSection[]): TileSection => ({
@@ -256,12 +282,12 @@ export function provinceTiles(
   };
   /** Display row for a verified ISO date. */
   const dated = (iso: string): TileRow => ({
-    date: formatElectionDate(iso),
+    date: formatElectionDate(iso, locale),
     sortDate: iso,
   });
   /** Display row for a fixed date that is still subject to an early call. */
   const scheduled = (iso: string): TileRow => ({
-    date: `${formatElectionDate(iso)} (scheduled)`,
+    date: `${formatElectionDate(iso, locale)} ${opts?.scheduled ?? "(scheduled)"}`,
     sortDate: iso,
   });
   /** A next-only row: no current race tracked, just the next date. */
@@ -289,13 +315,13 @@ export function provinceTiles(
       {
         row: {
           label: "Federal byelections",
-          date: formatElectionDate("2026-12-07"),
+          date: formatElectionDate("2026-12-07", locale),
           sortDate: "2026-12-07",
         },
         filingDeadline: "2026-11-16",
         allResultsOfficialDate: null,
         next: {
-          date: `${formatElectionDate("2029-10-15")} (scheduled)`,
+          date: `${formatElectionDate("2029-10-15", locale)} ${opts?.scheduled ?? "(scheduled)"}`,
           sortDate: "2029-10-15",
         },
       },
@@ -307,13 +333,13 @@ export function provinceTiles(
       cycleSections(
         {
           row: {
-            date: formatElectionDate("2026-10-24"),
+            date: formatElectionDate("2026-10-24", locale),
             sortDate: "2026-10-24",
           },
           filingDeadline: "2026-10-03",
           allResultsOfficialDate: null,
           next: {
-            date: `${formatElectionDate("2030-10-19")} (scheduled)`,
+            date: `${formatElectionDate("2030-10-19", locale)} ${opts?.scheduled ?? "(scheduled)"}`,
             sortDate: "2030-10-19",
           },
         },
@@ -373,13 +399,13 @@ export function provinceTiles(
       cycleSections(
         {
           row: {
-            date: formatElectionDate("2026-10-26"),
+            date: formatElectionDate("2026-10-26", locale),
             sortDate: "2026-10-26",
           },
           filingDeadline: "2026-08-21",
           allResultsOfficialDate: null,
           next: {
-            date: formatElectionDate("2030-10-28"),
+            date: formatElectionDate("2030-10-28", locale),
             sortDate: "2030-10-28",
           },
         },
@@ -393,7 +419,7 @@ export function provinceTiles(
         {
           row: {
             label: "RM even-division councillors",
-            date: formatElectionDate("2026-11-09"),
+            date: formatElectionDate("2026-11-09", locale),
             sortDate: "2026-11-09",
           },
           filingDeadline: "2026-10-07",
@@ -406,7 +432,7 @@ export function provinceTiles(
         {
           row: {
             label: "RM odd divisions + reeve",
-            date: formatElectionDate("2028-11-08"),
+            date: formatElectionDate("2028-11-08", locale),
             sortDate: "2028-11-08",
           },
           filingDeadline: null,
@@ -419,7 +445,7 @@ export function provinceTiles(
         {
           row: {
             label: "Cities, towns and villages",
-            date: formatElectionDate("2028-11-08"),
+            date: formatElectionDate("2028-11-08", locale),
             sortDate: "2028-11-08",
           },
           filingDeadline: null,
@@ -432,7 +458,7 @@ export function provinceTiles(
         {
           row: {
             label: "Resort villages",
-            date: formatElectionDate("2028-07-29"),
+            date: formatElectionDate("2028-07-29", locale),
             sortDate: "2028-07-29",
           },
           filingDeadline: null,
@@ -482,6 +508,19 @@ export function provinceTiles(
     tile.current.sort(byDateAsc);
     tile.next.sort(byDateAsc);
     tile.past.sort(byDateAsc);
+  }
+  // Localise tile labels through the English-literal -> localised map
+  // the province page fetched (elections.tile_* rows). Labels are data
+  // literals in this file, so the map is applied here, not at the call
+  // site; unmapped labels stay English. "Fall 2028 (exact day TBD)" has
+  // no inventory key and stays English by design.
+  if (opts?.labels) {
+    const mapLabel = (row: TileRow) => {
+      if (row.label) row.label = opts.labels![row.label] ?? row.label;
+    };
+    for (const tile of [tiles.federal, tiles.provincial, tiles.municipal]) {
+      for (const row of [...tile.current, ...tile.next, ...tile.past]) mapLabel(row);
+    }
   }
   return tiles;
 }
