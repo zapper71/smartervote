@@ -25,6 +25,18 @@ export function middleware(request: NextRequest) {
     return res;
   }
 
+  // "/en/..." is not a route — English keeps today's bare URLs. A stale
+  // /en/ link must land on the English page (and set the cookie to en,
+  // so it acts as a working "switch to English" escape hatch), not get
+  // /fr prepended into a /fr/en/... 404.
+  if (pathname === "/en" || pathname.startsWith("/en/")) {
+    const url = request.nextUrl.clone();
+    url.pathname = pathname.slice(3) || "/";
+    const res = NextResponse.redirect(url);
+    res.cookies.set(LOCALE_COOKIE, "en", { path: "/", maxAge: 31536000 });
+    return res;
+  }
+
   if (cookieLocale === "fr" || isQuebecPage(pathname)) {
     const url = request.nextUrl.clone();
     url.pathname = pathname === "/" ? "/fr" : `/fr${pathname}`;
