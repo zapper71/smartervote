@@ -40,32 +40,32 @@ export default function Nav({
       </a>
       <nav
         aria-label="Main"
-        className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3"
+        className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 lg:flex-nowrap"
       >
         <Link
           href={localizePath("/", locale)}
-          className="tap-target items-end font-semibold tracking-tight text-ink no-underline"
+          className="tap-target shrink-0 items-end font-semibold tracking-tight text-ink no-underline"
         >
           <span className="text-lg">Smarter</span>
           <span className="text-lg text-accent">Vote</span>
           <span className="text-lg">.ca</span>
-          <span className="ml-2 hidden pb-0.5 text-sm font-normal text-ink-faint sm:inline">
+          <span className="ml-2 hidden pb-0.5 text-sm font-normal text-ink-faint xl:inline">
             {s["site.tagline"]}
           </span>
         </Link>
-        <ul className="flex flex-wrap items-center gap-1 text-sm">
+        <ul className="flex flex-wrap items-center gap-1 text-sm lg:flex-nowrap">
           {links.map((l) => (
             <li key={l.href}>
               <Link
                 href={localizePath(l.href, locale)}
-                className="tap-target rounded px-3 py-2 text-ink-soft no-underline hover:bg-accent-light hover:text-accent"
+                className="tap-target whitespace-nowrap rounded px-3 py-2 text-ink-soft no-underline hover:bg-accent-light hover:text-accent"
               >
                 {l.label}
               </Link>
             </li>
           ))}
                 </ul>
-        <div className="flex items-center gap-1">
+        <div className="flex shrink-0 items-center gap-1">
           <LanguageSwitcher languages={languages} />
           <a
             href="https://www.gofundme.com/f/smartervoteca-grow-and-cover-more-elections"
