@@ -12,6 +12,7 @@ import {
   MUNICIPALITY_SLUG,
 } from "@/lib/queries";
 import CandidateResponse from "@/components/CandidateResponse";
+import BioCell from "@/components/BioCell";
 import PositionCell from "@/components/PositionCell";
 import TranslatedText from "@/components/TranslatedText";
 import TranslationFootnote from "@/components/TranslationFootnote";
@@ -48,9 +49,8 @@ const WHY_MARKERS: Record<Locale, string> = {
  * Issue names/questions and position summaries/quotes render in the page
  * language (migration 52): native when written in it, else the
  * translations row — AI with `*`, or the original with a language tag
- * when no row exists yet. Bios never render on candidate pages (compare
- * only), so the bio fetch is skipped and a candidate's AI bio cannot
- * trigger the footnote here.
+ * when no row exists yet. The bio renders at the top (compare pages
+ * show it too); a candidate's AI bio can trigger the footnote here.
  *
  * Two fixes carried in: the "with the Town" suffix in the no-website note
  * applies only to Huntsville (it was hard-coded for every municipality),
@@ -79,14 +79,14 @@ export default async function CandidatePage({ params, locale }: Props) {
     !found?.municipality || found.municipality.slug === MUNICIPALITY_SLUG;
 
   // One translations fetch per entity type for the whole page, in parallel.
-  // Bios are skipped: candidate pages never render them.
+  // Bios render at the top of this page, so they are fetched (and an AI
+  // bio counts toward the footnote, like every other shown translation).
   const content = await localizePageContent({
     locale,
     municipalitySlug: found?.municipality?.slug ?? MUNICIPALITY_SLUG,
     issues,
     candidates: [candidate],
     positions,
-    skipBios: true,
   });
   // Resolved issue names, for the response component's back-labels and the
   // full-response link — the same names the page itself shows.
@@ -110,6 +110,7 @@ export default async function CandidatePage({ params, locale }: Props) {
 
   const s = await getUiStrings(locale, {
     "cand.for_race": "Candidate for {race}",
+    "cand.bio_heading": "Bio",
     "cand.acclaimed": "Acclaimed — no election for this seat",
     "cand.own_words_heading": "In their own words",
     "cand.no_website":
@@ -132,6 +133,9 @@ export default async function CandidatePage({ params, locale }: Props) {
     "resp.back": "↑ Back to comparison",
     "resp.back_issue": "↑ Back to comparison: {issue}",
     "cell.conflict_pill": "Conflicting Position",
+    "bio.none": "No bio on record.",
+    "clamp.read_more": "Read more",
+    "clamp.show_less": "Show less",
     "cell.conflict_note":
       "This candidate has said different things about this issue in different places. Both are shown below, with their sources. We haven’t chosen between them.",
     "cell.multi_note":
@@ -220,6 +224,25 @@ export default async function CandidatePage({ params, locale }: Props) {
           />
         </p>
       )}
+
+      {/* Bio at the top, above the positions — the review email points
+          candidates here to check it. Same cell as the compare page, so
+          the two never drift apart. */}
+      <section aria-labelledby="bio-heading" className="mt-6">
+        <h2 id="bio-heading" className="text-base">
+          {s["cand.bio_heading"]}
+        </h2>
+        <div className="mt-2">
+          <BioCell
+            bio={candidate.bio}
+            correctionHref={correctionHref}
+            resolved={content.bios.get(candidate.slug)}
+            nativeLocale={candidate.bio_locale ?? "en"}
+            locale={locale}
+            strings={s}
+          />
+        </div>
+      </section>
 
       {/* The candidate's own words come before ours, deliberately. */}
       <section aria-labelledby="contact-heading" className="mt-6 card">
