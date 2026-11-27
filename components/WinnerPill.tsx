@@ -32,9 +32,19 @@ import type { ResultStatus } from "@/lib/types";
 export default function WinnerPill({
   isWinner,
   resultStatus,
+  labels,
 }: {
   isWinner?: boolean | null;
   resultStatus?: ResultStatus | string | null;
+  /**
+   * Localised labels. Defaults are the English strings; omit for
+   * English-only callers.
+   */
+  labels?: {
+    elected: string;
+    electedUnofficial: string;
+    electedOfficialTitle: string;
+  };
 }) {
   if (!isWinner) return null;
   if (resultStatus !== "unofficial" && resultStatus !== "official")
@@ -44,12 +54,12 @@ export default function WinnerPill({
     return (
       <span
         className="pill bg-green-100 text-green-800"
-        title="Elected — official result"
+        title={labels?.electedOfficialTitle ?? "Elected — official result"}
       >
         <span aria-hidden="true" className="mr-1 font-bold">
           ✓
         </span>
-        Elected
+        {labels?.elected ?? "Elected"}
         <span className="sr-only"> (official result)</span>
       </span>
     );
@@ -58,12 +68,12 @@ export default function WinnerPill({
   return (
     <span
       className="pill bg-amber-100 text-amber-800"
-      title="Elected — unofficial result"
+      title={labels?.electedUnofficial ?? "Elected — unofficial result"}
     >
       <span aria-hidden="true" className="mr-1 font-bold">
         ✓
       </span>
-      Elected — unofficial result
+      {labels?.electedUnofficial ?? "Elected — unofficial result"}
     </span>
   );
 }

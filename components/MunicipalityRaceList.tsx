@@ -7,6 +7,7 @@ import WithdrawnPill from "@/components/WithdrawnPill";
 import WinnerPill from "@/components/WinnerPill";
 import ResultsNotAvailablePill from "@/components/ResultsNotAvailablePill";
 import PartyPill from "@/components/PartyPill";
+import { localizePath, type Locale } from "@/lib/i18n";
 
 export interface MunicipalityRaceGroup {
   key: string;
@@ -53,10 +54,13 @@ function hostnameOf(url: string): string {
 function RaceEntry({
   race,
   dataLoaded,
+  locale = "en",
 }: {
   race: ExpansionRace;
   /** null = the database check failed; render no tag rather than a wrong one. */
   dataLoaded: boolean | null;
+  /** Page locale — the race + compare links stay in the page language. */
+  locale?: Locale;
 }) {
   const count = race.candidates.length;
   const acclaimedCount = race.candidates.filter((c) => c.acclaimed).length;
@@ -75,7 +79,7 @@ function RaceEntry({
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h3 className="text-base">
           <Link
-            href={`/races/${race.slug}`}
+            href={localizePath(`/races/${race.slug}`, locale)}
             className="text-ink no-underline hover:text-accent"
           >
             {race.name}
@@ -86,7 +90,7 @@ function RaceEntry({
           (dataLoaded ? (
             contested ? (
               <Link
-                href={`/races/${race.slug}/compare`}
+                href={localizePath(`/races/${race.slug}/compare`, locale)}
                 className="link tap-target text-sm font-medium"
               >
                 Compare the {count} candidates &rarr;
@@ -203,8 +207,11 @@ function RaceEntry({
  */
 export default function MunicipalityRaceList({
   groups,
+  locale = "en",
 }: {
   groups: MunicipalityRaceGroup[];
+  /** Page locale — the race + compare links stay in the page language. */
+  locale?: Locale;
 }) {
   const [query, setQuery] = useState("");
   const totalRaces = groups.reduce((n, g) => n + g.races.length, 0);
@@ -269,7 +276,7 @@ export default function MunicipalityRaceList({
             </h2>
             <ul className="grid gap-4 sm:grid-cols-2">
               {g.races.map(({ race, dataLoaded }) => (
-                <RaceEntry key={race.slug} race={race} dataLoaded={dataLoaded} />
+                <RaceEntry key={race.slug} race={race} dataLoaded={dataLoaded} locale={locale} />
               ))}
             </ul>
           </section>

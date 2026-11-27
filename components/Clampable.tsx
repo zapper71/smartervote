@@ -23,11 +23,17 @@ export default function Clampable({
   children,
   lines = 5,
   className = "",
+  labels,
 }: {
   children: React.ReactNode;
   /** Preset clamp height in lines. */
   lines?: number;
   className?: string;
+  /**
+   * Localised "Read more" / "Show less". Defaults are the English
+   * strings; omit for English-only callers.
+   */
+  labels?: { readMore: string; showLess: string };
 }) {
   const innerRef = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
@@ -79,7 +85,9 @@ export default function Clampable({
           // the 24px minimum applies.
           className="link mt-2 inline-flex min-h-[24px] cursor-pointer items-center text-xs font-medium"
         >
-          {expanded ? "Show less" : "Read more"}
+          {expanded
+            ? (labels?.showLess ?? "Show less")
+            : (labels?.readMore ?? "Read more")}
         </button>
       )}
     </div>

@@ -22,6 +22,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { formatShortDate } from "@/lib/dates";
+import { localizePath, type Locale } from "@/lib/i18n";
 import type {
   CandidateResponse as CandidateResponseData,
   ResponseSection,
@@ -105,6 +106,7 @@ export default function CandidateResponse({
   candidateSlug,
   raceSlug,
   issueNameBySlug,
+  locale = "en",
 }: {
   response: CandidateResponseData;
   firstName: string;
@@ -112,9 +114,11 @@ export default function CandidateResponse({
   raceSlug: string;
   /** issue slug -> issue name, for the "Back to comparison: X" label. */
   issueNameBySlug: Record<string, string>;
+  /** Page locale — the back-to-comparison link stays in the page language. */
+  locale?: Locale;
 }) {
   const topAnchor = `resp-${candidateSlug}-top`;
-  const backHref = `/races/${raceSlug}/compare`;
+  const backHref = localizePath(`/races/${raceSlug}/compare`, locale);
   const detailsRef = useRef<HTMLDetailsElement | null>(null);
   const [pillVisible, setPillVisible] = useState(false);
   const [backLabel, setBackLabel] = useState("↑ Back to comparison");

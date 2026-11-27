@@ -6,6 +6,7 @@ import type { Candidate } from "@/lib/types";
 import WithdrawnPill from "@/components/WithdrawnPill";
 import WinnerPill from "@/components/WinnerPill";
 import PartyPill from "@/components/PartyPill";
+import { formatUi, localizePath, type Locale } from "@/lib/i18n";
 
 /**
  * Narrowing, not gating.
@@ -23,14 +24,33 @@ export default function CandidatePicker({
   candidates,
   selected,
   raceSlug,
+  locale = "en",
+  strings,
 }: {
   candidates: Candidate[];
   selected: string[];
   raceSlug: string;
+  locale?: Locale;
+  /**
+   * Localised chrome strings (picker.*). Defaults are the English
+   * strings; omit for English-only callers.
+   */
+  strings?: Record<string, string>;
 }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const allSelected = selected.length === candidates.length;
+  const compareHref = localizePath(`/races/${raceSlug}/compare`, locale);
+  const toggleLabel = allSelected
+    ? formatUi(
+        strings?.["picker.toggle_all"] ?? "Comparing all {count} candidates",
+        { count: candidates.length }
+      )
+    : formatUi(
+        strings?.["picker.toggle_some"] ??
+          "Comparing {selected} of {count}",
+        { selected: selected.length, count: candidates.length }
+      );
   // In a crowded race (more than 10 candidates) ticking one checkbox at a
   // time is tedious, so bulk controls appear. Races with 10 or fewer
   // candidates keep exactly the UI they had before — no extra controls.
@@ -49,9 +69,7 @@ export default function CandidatePicker({
         aria-controls="candidate-picker"
         className="tap-target rounded-md border border-paper-edge bg-paper px-4 py-2 text-sm font-medium text-ink hover:border-accent hover:text-accent"
       >
-        {allSelected
-          ? `Comparing all ${candidates.length} candidates`
-          : `Comparing ${selected.length} of ${candidates.length}`}
+        {toggleLabel}
         <span aria-hidden="true" className="ml-2 text-ink-faint">
           {open ? "▲" : "▼"}
         </span>
@@ -61,16 +79,16 @@ export default function CandidatePicker({
         <form
           id="candidate-picker"
           method="GET"
-          action={`/races/${raceSlug}/compare`}
+          action={compareHref}
           className="mt-3 rounded-lg border border-paper-edge bg-paper p-4"
         >
           <fieldset>
             <legend className="text-sm font-medium text-ink">
-              Choose who to compare
+              {strings?.["picker.legend"] ?? "Choose who to compare"}
             </legend>
             <p className="mt-1 text-sm text-ink-faint">
-              All candidates are shown by default. Narrowing is just for
-              readability — it doesn&rsquo;t change anything about the comparison.
+              {strings?.["picker.hint"] ??
+                "All candidates are shown by default. Narrowing is just for readability — it doesn’t change anything about the comparison."}
             </p>
             {showBulkControls && (
               <div className="mt-3 flex flex-wrap gap-2">
@@ -81,14 +99,14 @@ export default function CandidatePicker({
                   }
                   className="tap-target rounded-md border border-paper-edge bg-paper px-3 py-1.5 text-sm font-medium text-ink hover:border-accent hover:text-accent"
                 >
-                  Select all
+                  {strings?.["picker.select_all"] ?? "Select all"}
                 </button>
                 <button
                   type="button"
                   onClick={() => setChecked(new Set())}
                   className="tap-target rounded-md border border-paper-edge bg-paper px-3 py-1.5 text-sm font-medium text-ink hover:border-accent hover:text-accent"
                 >
-                  Deselect all
+                  {strings?.["picker.deselect_all"] ?? "Deselect all"}
                 </button>
               </div>
             )}
@@ -134,17 +152,17 @@ export default function CandidatePicker({
               type="submit"
               className="tap-target rounded-md bg-accent px-4 py-2 text-sm font-medium text-white"
             >
-              Compare selected
+              {strings?.["picker.compare_selected"] ?? "Compare selected"}
             </button>
             <button
               type="button"
               onClick={() => {
-                router.push(`/races/${raceSlug}/compare`);
+                router.push(compareHref);
                 setOpen(false);
               }}
               className="tap-target rounded-md border border-paper-edge px-4 py-2 text-sm"
             >
-              Show everyone
+              {strings?.["picker.show_everyone"] ?? "Show everyone"}
             </button>
           </div>
         </form>

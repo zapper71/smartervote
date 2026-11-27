@@ -10,10 +10,18 @@
  * pages, candidate pages, compare headers, municipality listings, compare
  * picker). The strikethrough says "not running"; the pill says why.
  */
-export default function WithdrawnPill() {
+export default function WithdrawnPill({
+  labels,
+}: {
+  /**
+   * Localised label + title. Defaults are the English strings; omit for
+   * English-only callers.
+   */
+  labels?: { withdrawn: string; title: string };
+}) {
   return (
-    <span className="pill bg-neutral-200 text-neutral-700" title="Withdrew after nomination; still on the printed ballot">
-      Withdrawn
+    <span className="pill bg-neutral-200 text-neutral-700" title={labels?.title ?? "Withdrew after nomination; still on the printed ballot"}>
+      {labels?.withdrawn ?? "Withdrawn"}
     </span>
   );
 }

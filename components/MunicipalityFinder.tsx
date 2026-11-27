@@ -15,6 +15,7 @@ import {
   FINDER_FEDERAL_QC,
   FINDER_FEDERAL_SK,
 } from "@/lib/federal-finder";
+import { localizePath, type Locale } from "@/lib/i18n";
 
 type Province = "ON" | "BC" | "SK" | "QC";
 
@@ -76,6 +77,7 @@ interface OnMatch {
 function onEntries(
   q: string,
   list: FinderMunicipality[],
+  locale: Locale = "en",
 ): { municipalities: FinderEntry[]; raceRows: FinderEntry[] } {
   const matched: OnMatch[] = [];
   const raceRows: FinderEntry[] = [];
@@ -114,7 +116,7 @@ function onEntries(
       entry: {
         key: m.slug,
         name: m.name,
-        href: municipalityHref(m.slug),
+        href: municipalityHref(m.slug, locale),
         sub,
       },
       ownRank: ownRank ?? 3,
@@ -128,7 +130,7 @@ function onEntries(
           key: r.raceSlug,
           name: r.label,
           sub: `${m.name} · ward race`,
-          href: `/races/${r.raceSlug}`,
+          href: localizePath(`/races/${r.raceSlug}`, locale),
           raceSlug: r.raceSlug,
         });
       }
@@ -142,11 +144,11 @@ function onEntries(
   };
 }
 
-function bcEntries(): FinderEntry[] {
+function bcEntries(locale: Locale = "en"): FinderEntry[] {
   return FINDER_DISTRICTS.map((d) => ({
     key: d.raceSlug,
     name: d.name,
-    href: `/races/${d.raceSlug}`,
+    href: localizePath(`/races/${d.raceSlug}`, locale),
   }));
 }
 
@@ -223,10 +225,13 @@ export default function MunicipalityFinder({
   initialProvince,
   entity,
   autoFocus = false,
+  locale = "en",
 }: {
   initialProvince?: Province;
   entity?: "municipality" | "district" | "riding";
   autoFocus?: boolean;
+  /** Page locale — every result link stays in the page language. */
+  locale?: Locale;
 } = {}) {
   const [province, setProvince] = useState<Province>(initialProvince ?? "ON");
   const [query, setQuery] = useState("");
@@ -249,7 +254,7 @@ export default function MunicipalityFinder({
         entity === "riding"
           ? lists.federal
           : [...lists.municipalities, ...lists.federal];
-      const { municipalities, raceRows } = onEntries(q, list);
+      const { municipalities, raceRows } = onEntries(q, list, locale);
       // Browse-all (empty query) renders the whole scrollable list; filtered
       // results are capped with a count so contains matches are never hidden
       // silently.
@@ -260,7 +265,7 @@ export default function MunicipalityFinder({
         listLength: list.length,
       };
     }
-    const matched = bcEntries()
+    const matched = bcEntries(locale)
       .filter((e) => matches(e.name, q))
       .sort((a, b) => rank(a.name, q) - rank(b.name, q));
     const cap = q === "" ? matched.length : FILTER_CAP;
@@ -269,7 +274,7 @@ export default function MunicipalityFinder({
       total: matched.length,
       listLength: matched.length,
     };
-  }, [province, q, entity]);
+  }, [province, q, entity, locale]);
 
   const isRiding = entity === "riding";
   const plural =
@@ -415,6 +420,6 @@ export default function MunicipalityFinder({
 }
 
 /** Every municipality's race list lives at /municipalities/<slug>. */
-function municipalityHref(slug: string): string {
-  return `/municipalities/${slug}`;
+function municipalityHref(slug: string, locale: Locale = "en"): string {
+  return localizePath(`/municipalities/${slug}`, locale);
 }

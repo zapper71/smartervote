@@ -475,3 +475,25 @@ export async function getUiString(
   const rows = await getTranslations("ui_string", [key], locale);
   return rows.get(`${key}:`)?.text ?? fallback;
 }
+
+/**
+ * Many UI strings at once, in the page locale — one translations query
+ * for the whole page, instead of one round trip per string. Each key
+ * falls back to its English text when no row exists. Same asterisk
+ * rule as getUiString: UI strings never render one.
+ *
+ * (Added in the page-refactor phase — the shared page components call
+ * this with their full key list and English fallbacks.)
+ */
+export async function getUiStrings(
+  locale: string,
+  defaults: Record<string, string>
+): Promise<Record<string, string>> {
+  const keys = Object.keys(defaults);
+  const rows = await getTranslations("ui_string", keys, locale);
+  const out: Record<string, string> = {};
+  for (const key of keys) {
+    out[key] = rows.get(`${key}:`)?.text ?? defaults[key];
+  }
+  return out;
+}
