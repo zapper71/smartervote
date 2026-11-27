@@ -68,7 +68,7 @@ function RaceEntry({
   // means the seat was decided without an election, so no
   // "Results not available" tag even before a winner flag lands.
   const fullyAcclaimed = count > 0 && count === acclaimedCount;
-  // Same rule as Huntsville's RaceCard: a one-horse race has nothing to compare.
+  // A one-horse race has nothing to compare — same rule as the race page.
   const contested = count > 1 && (race.seats == null || count > race.seats);
   return (
     <li className="card">
