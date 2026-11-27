@@ -65,8 +65,8 @@ export async function localizePageContent(args: {
   candidates: Candidate[];
   positions: Position[];
   /**
-   * True when the page renders no bios (candidate + race pages — bios
-   * render only on the compare page). Skips the bio fetch AND keeps a
+   * True when the page renders no bios (race pages — bios render on
+   * compare + candidate pages). Skips the bio fetch AND keeps a
    * candidate's AI bio out of hasAi, which must only count content the
    * page actually shows.
    */
