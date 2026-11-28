@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { localizeRaceName } from "@/lib/i18n";
 import RacePage from "@/components/pages/RacePage";
 import {
   getRaceBySlugGlobal,
@@ -32,9 +33,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? "ਹੰਟਸਵਿਲ ਸ਼ਹਿਰ ਦੀ 2026 ਨਗਰਪਾਲਿਕਾ ਚੋਣ"
       : `${municipality?.name ?? "Huntsville"} ਦੀ 2026 ਚੋਣ`;
   return {
-    title: race.name,
+    title: localizeRaceName(race.name, "pa"),
     description:
-      race.description ?? `${race.name} ਦੇ ਉਮੀਦਵਾਰ — ${place}।`,
+      race.description ?? `${localizeRaceName(race.name, "pa")} ਦੇ ਉਮੀਦਵਾਰ — ${place}।`,
     alternates: pageAlternates(`/races/${slug}`),
   };
 }

@@ -19,7 +19,7 @@ import {
   MUNICIPALITY_SLUG,
 } from "@/lib/queries";
 import { contestLabel, formatDate } from "@/lib/dates";
-import { formatUi, localizePath, type Locale } from "@/lib/i18n";
+import { formatUi, localizePath, localizeRaceName, type Locale } from "@/lib/i18n";
 import { splitMarker } from "@/components/pages/chrome";
 
 type Props = { params: Promise<{ race: string }>; locale: Locale };
@@ -182,7 +182,7 @@ export default async function RacePage({ params, locale }: Props) {
         )}
       </p>
 
-      <h1 className="mt-3 text-3xl">{race.name}</h1>
+      <h1 className="mt-3 text-3xl">{localizeRaceName(race.name, locale)}</h1>
       {race.ward_group_label && (
         <p className="mt-1 text-ink-faint">{race.ward_group_label}</p>
       )}
@@ -329,7 +329,7 @@ export default async function RacePage({ params, locale }: Props) {
                   resultStatus={c.result_status}
                   labels={pillLabels}
                 />
-                <PartyPill party={c.party} />
+                <PartyPill party={c.party} locale={locale} />
               </h3>
               {c.email && <CandidateEmail email={c.email} />}
               {c.status === "acclaimed" && (

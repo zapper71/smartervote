@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { localizeRaceName } from "@/lib/i18n";
 import ComparePage from "@/components/pages/ComparePage";
 import {
   getIssues,
@@ -34,8 +35,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? `${issues.length} 個相同議題`
       : "十個相同議題";
   return {
-    title: `比較候選人 — ${race.name}`,
-    description: `所有${race.name}候選人就${issuePhrase}並排比較，每項主張都有來源。`,
+    title: `比較候選人 — ${localizeRaceName(race.name, "zh-Hant")}`,
+    description: `所有${localizeRaceName(race.name, "zh-Hant")}候選人就${issuePhrase}並排比較，每項主張都有來源。`,
     alternates: pageAlternates(`/races/${slug}/compare`),
   };
 }

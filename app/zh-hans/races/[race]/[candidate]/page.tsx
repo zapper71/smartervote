@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { localizeRaceName } from "@/lib/i18n";
 import CandidatePage from "@/components/pages/CandidatePage";
 import {
   getCandidate,
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? "2026年亨茨维尔市市政选举"
       : `2026年${municipality.name}选举`;
   return {
-    title: `${result.candidate.name} — ${result.race.name}`,
+    title: `${result.candidate.name} — ${localizeRaceName(result.race.name, "zh-Hans")}`,
     description: `${result.candidate.name}就${place}各议题的立场，每项主张都有来源。`,
     alternates: pageAlternates(`/races/${race}/${candidate}`),
   };

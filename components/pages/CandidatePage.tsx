@@ -22,7 +22,7 @@ import WinnerPill from "@/components/WinnerPill";
 import PartyPill from "@/components/PartyPill";
 import CandidateEmail from "@/components/CandidateEmail";
 import { localizePageContent } from "@/components/pages/localize-content";
-import { formatUi, localizePath, type Locale } from "@/lib/i18n";
+import { formatUi, localizePath, localizeRaceName, type Locale } from "@/lib/i18n";
 import { splitMarker } from "@/components/pages/chrome";
 
 type Props = { params: Promise<{ race: string; candidate: string }>; locale: Locale };
@@ -111,7 +111,7 @@ export default async function CandidatePage({ params, locale }: Props) {
     byIssue.get(p.issue_id)!.push(p);
   }
   const correctionHref = `${localizePath("/corrections", locale)}?about=${encodeURIComponent(
-    `${candidate.name} — ${race.name}`
+    `${candidate.name} — ${localizeRaceName(race.name, locale)}`
   )}&page=${encodeURIComponent(localizePath(`/races/${race.slug}/${candidate.slug}`, locale))}`;
 
   const s = await getUiStrings(locale, {
@@ -185,7 +185,7 @@ export default async function CandidatePage({ params, locale }: Props) {
     <div>
       <p className="text-sm">
         <Link href={localizePath(`/races/${race.slug}`, locale)} className="link">
-          &larr; {race.name}
+          &larr; {localizeRaceName(race.name, locale)}
         </Link>
       </p>
 
@@ -196,13 +196,13 @@ export default async function CandidatePage({ params, locale }: Props) {
         <span className={candidate.status === "withdrawn" ? "line-through" : undefined}>
           {candidate.name}
         </span>
-        <PartyPill party={candidate.party} />
+        <PartyPill party={candidate.party} locale={locale} />
       </h1>
       {candidate.email && (
         <CandidateEmail email={candidate.email} className="mt-1 text-base" />
       )}
       <p className="mt-1 text-ink-soft">
-        {formatUi(s["cand.for_race"], { race: race.name })}
+        {formatUi(s["cand.for_race"], { race: localizeRaceName(race.name, locale) })}
         {race.ward_group_label ? ` · ${race.ward_group_label}` : ""}
       </p>
 

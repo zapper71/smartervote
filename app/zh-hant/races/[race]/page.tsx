@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { localizeRaceName } from "@/lib/i18n";
 import RacePage from "@/components/pages/RacePage";
 import {
   getRaceBySlugGlobal,
@@ -32,9 +33,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? "2026年亨茨維爾市市政選舉"
       : `2026年${municipality?.name ?? "Huntsville"}選舉`;
   return {
-    title: race.name,
+    title: localizeRaceName(race.name, "zh-Hant"),
     description:
-      race.description ?? `參加${place}的${race.name}候選人。`,
+      race.description ?? `參加${place}的${localizeRaceName(race.name, "zh-Hant")}候選人。`,
     alternates: pageAlternates(`/races/${slug}`),
   };
 }

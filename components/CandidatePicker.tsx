@@ -136,7 +136,7 @@ export default function CandidatePicker({
                     >
                       {c.name}
                     </span>{" "}
-                    <PartyPill party={c.party} />
+                    <PartyPill party={c.party} locale={locale} />
                     {c.status === "withdrawn" && <WithdrawnPill />}
                     <WinnerPill
                       isWinner={c.is_winner}

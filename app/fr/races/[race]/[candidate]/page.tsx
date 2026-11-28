@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { localizeRaceName } from "@/lib/i18n";
 import CandidatePage from "@/components/pages/CandidatePage";
 import {
   getCandidate,
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? "à l'élection municipale de 2026 de la ville de Huntsville"
       : `à l'élection de 2026 à ${municipality.name}`;
   return {
-    title: `${result.candidate.name} — ${result.race.name}`,
+    title: `${result.candidate.name} — ${localizeRaceName(result.race.name, "fr")}`,
     description: `Les positions de ${result.candidate.name} sur les enjeux ${place}, avec une source pour chaque affirmation.`,
     alternates: pageAlternates(`/races/${race}/${candidate}`),
   };

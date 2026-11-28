@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { localizeProvinceName } from "@/lib/i18n";
 import ProvincePage from "@/components/pages/ProvincePage";
 import { getProvince } from "@/lib/tracked-elections";
 import { pageAlternates } from "@/components/pages/locale-meta";
@@ -12,8 +13,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const province = getProvince(slug);
   if (!province) return { title: "未找到该省" };
   return {
-    title: `选举 — ${province.name}`,
-    description: `SmarterVote 跟踪的联邦、省级和市级选举 — ${province.name}。`,
+    title: `选举 — ${localizeProvinceName(province.name, "zh-Hans")}`,
+    description: `SmarterVote 跟踪的联邦、省级和市级选举 — ${localizeProvinceName(province.name, "zh-Hans")}。`,
     alternates: pageAlternates(`/provinces/${slug}`),
   };
 }

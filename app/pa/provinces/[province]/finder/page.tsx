@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { localizeProvinceName } from "@/lib/i18n";
 import FinderPage from "@/components/pages/FinderPage";
 import { getProvince } from "@/lib/tracked-elections";
 import { pageAlternates } from "@/components/pages/locale-meta";
@@ -24,8 +25,8 @@ export async function generateMetadata({
       ? "ਹਲਕਾ"
       : "ਨਗਰਪਾਲਿਕਾ";
   return {
-    title: `ਆਪਣਾ ${noun} ਲੱਭੋ · ${province.name}`,
-    description: `${province.name} ਵਿੱਚ ਆਪਣਾ ${noun} ਲੱਭੋ।`,
+    title: `ਆਪਣਾ ${noun} ਲੱਭੋ · ${localizeProvinceName(province.name, "pa")}`,
+    description: `${localizeProvinceName(province.name, "pa")} ਵਿੱਚ ਆਪਣਾ ${noun} ਲੱਭੋ।`,
     alternates: pageAlternates(`/provinces/${slug}/finder`),
   };
 }

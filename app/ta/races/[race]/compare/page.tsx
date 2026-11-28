@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { localizeRaceName } from "@/lib/i18n";
 import ComparePage from "@/components/pages/ComparePage";
 import {
   getIssues,
@@ -34,8 +35,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? `அதே ${issues.length} பிரச்சினைகள்`
       : "அதே பத்து பிரச்சினைகள்";
   return {
-    title: `வேட்பாளர்களை ஒப்பிடுங்கள் — ${race.name}`,
-    description: `${race.name}-இன் அனைத்து வேட்பாளர்களும் ${issuePhrase} பக்கத்தில் பக்கமாக, ஒவ்வொரு கூற்றுக்கும் மூலத்துடன்.`,
+    title: `வேட்பாளர்களை ஒப்பிடுங்கள் — ${localizeRaceName(race.name, "ta")}`,
+    description: `${localizeRaceName(race.name, "ta")}-இன் அனைத்து வேட்பாளர்களும் ${issuePhrase} பக்கத்தில் பக்கமாக, ஒவ்வொரு கூற்றுக்கும் மூலத்துடன்.`,
     alternates: pageAlternates(`/races/${slug}/compare`),
   };
 }

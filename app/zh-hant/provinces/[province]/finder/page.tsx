@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { localizeProvinceName } from "@/lib/i18n";
 import FinderPage from "@/components/pages/FinderPage";
 import { getProvince } from "@/lib/tracked-elections";
 import { pageAlternates } from "@/components/pages/locale-meta";
@@ -24,8 +25,8 @@ export async function generateMetadata({
       ? "選區"
       : "市鎮";
   return {
-    title: `尋找您的${noun} · ${province.name}`,
-    description: `在${province.name}尋找您的${noun}。`,
+    title: `尋找您的${noun} · ${localizeProvinceName(province.name, "zh-Hant")}`,
+    description: `在${localizeProvinceName(province.name, "zh-Hant")}尋找您的${noun}。`,
     alternates: pageAlternates(`/provinces/${slug}/finder`),
   };
 }

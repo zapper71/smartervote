@@ -256,3 +256,163 @@ const EXTENT_MAPS: Record<Locale, Record<string, string>> = {
 export function localizeExtent(value: string, locale: Locale): string {
   return EXTENT_MAPS[locale]?.[value] ?? value;
 }
+
+/**
+ * Localise a race name (race.name).
+ *
+ * Race names are DATA, not ui_strings: the database stores the English
+ * name and the pages render it verbatim, so there is no translations-row
+ * lookup — this map is the translation. Only "Member of Parliament" has
+ * a translated form (the Dec 7, 2026 federal byelections); every other
+ * race name (Mayor, Councillor, …) passes through unchanged.
+ */
+const RACE_NAME_MAPS: Record<Locale, Record<string, string>> = {
+  en: {},
+  fr: {
+    "Member of Parliament": "Député(e)",
+  },
+  "zh-Hans": {
+    "Member of Parliament": "国会议员",
+  },
+  "zh-Hant": {
+    "Member of Parliament": "國會議員",
+  },
+  ta: {
+    "Member of Parliament": "நாடாளுமன்ற உறுப்பினர்",
+  },
+  pa: {
+    "Member of Parliament": "ਸੰਸਦ ਮੈਂਬਰ",
+  },
+};
+
+export function localizeRaceName(name: string, locale: Locale): string {
+  return RACE_NAME_MAPS[locale]?.[name] ?? name;
+}
+
+/**
+ * Localise a party name.
+ *
+ * Party labels are DATA, not ui_strings: the database stores Elections
+ * Canada's full registered names verbatim (federal) or the recorded
+ * provincial label (BC), and PartyPill renders them verbatim, so there
+ * is no translations-row lookup — this map is the translation. Keys are
+ * the party strings EXACTLY as recorded. "Bloc Québécois" is already
+ * French and stays unchanged in every locale. "Parti Rhinocéros Party"
+ * is EC's label; "Rhinoceros Party" is kept as an alias, both mapping to
+ * "Parti Rhinocéros" in every locale. Parties with no entry (all BC
+ * labels, "Unaffiliated", anything unmapped) fall back to the English
+ * name as recorded.
+ */
+const PARTY_NAME_MAPS: Record<Locale, Record<string, string>> = {
+  en: {},
+  fr: {
+    "Liberal Party of Canada": "Parti libéral du Canada",
+    "Conservative Party of Canada": "Parti conservateur du Canada",
+    "New Democratic Party": "Nouveau Parti démocratique",
+    "Bloc Québécois": "Bloc Québécois",
+    "Green Party of Canada": "Parti vert du Canada",
+    "People's Party of Canada": "Parti populaire du Canada",
+    "Christian Heritage Party of Canada":
+      "Parti de l'héritage chrétien du Canada",
+    "Centrist Party of Canada": "Parti centriste du Canada",
+    "Nationalist Party": "Parti nationaliste",
+    "Parti Rhinocéros Party": "Parti Rhinocéros",
+    "Rhinoceros Party": "Parti Rhinocéros",
+    Independent: "Indépendant(e)",
+    "No Affiliation": "Sans affiliation",
+  },
+  "zh-Hans": {
+    "Liberal Party of Canada": "加拿大自由党",
+    "Conservative Party of Canada": "加拿大保守党",
+    "New Democratic Party": "加拿大新民主党",
+    "Bloc Québécois": "Bloc Québécois",
+    "Green Party of Canada": "加拿大绿党",
+    "People's Party of Canada": "加拿大人民党",
+    "Christian Heritage Party of Canada": "加拿大基督教传统党",
+    "Centrist Party of Canada": "加拿大中间党",
+    "Nationalist Party": "民族主义党",
+    "Parti Rhinocéros Party": "Parti Rhinocéros",
+    "Rhinoceros Party": "Parti Rhinocéros",
+    Independent: "独立候选人",
+    "No Affiliation": "无党派",
+  },
+  "zh-Hant": {
+    "Liberal Party of Canada": "加拿大自由黨",
+    "Conservative Party of Canada": "加拿大保守黨",
+    "New Democratic Party": "加拿大新民主黨",
+    "Bloc Québécois": "Bloc Québécois",
+    "Green Party of Canada": "加拿大綠黨",
+    "People's Party of Canada": "加拿大人民黨",
+    "Christian Heritage Party of Canada": "加拿大基督教傳統黨",
+    "Centrist Party of Canada": "加拿大中間黨",
+    "Nationalist Party": "民族主義黨",
+    "Parti Rhinocéros Party": "Parti Rhinocéros",
+    "Rhinoceros Party": "Parti Rhinocéros",
+    Independent: "獨立候選人",
+    "No Affiliation": "無黨派",
+  },
+  ta: {
+    "Liberal Party of Canada": "கனடா லிபரல் கட்சி",
+    "Conservative Party of Canada": "கனடா கன்சர்வேடிவ் கட்சி",
+    "New Democratic Party": "கனடா புதிய ஜனநாயகக் கட்சி",
+    "Bloc Québécois": "Bloc Québécois",
+    "Green Party of Canada": "கனடா பசுமைக் கட்சி",
+    "People's Party of Canada": "கனடா மக்கள் கட்சி",
+    "Christian Heritage Party of Canada": "கனடா கிறிஸ்தவ பாரம்பரியக் கட்சி",
+    "Centrist Party of Canada": "கனடா மையக் கட்சி",
+    "Nationalist Party": "தேசியவாதக் கட்சி",
+    "Parti Rhinocéros Party": "Parti Rhinocéros",
+    "Rhinoceros Party": "Parti Rhinocéros",
+    Independent: "சுயேச்சை",
+    "No Affiliation": "கட்சி சார்பற்றவர்",
+  },
+  pa: {
+    "Liberal Party of Canada": "ਕੈਨੇਡਾ ਲਿਬਰਲ ਪਾਰਟੀ",
+    "Conservative Party of Canada": "ਕੈਨੇਡਾ ਕੰਜ਼ਰਵੇਟਿਵ ਪਾਰਟੀ",
+    "New Democratic Party": "ਕੈਨੇਡਾ ਨਿਊ ਡੈਮੋਕਰੈਟਿਕ ਪਾਰਟੀ",
+    "Bloc Québécois": "Bloc Québécois",
+    "Green Party of Canada": "ਕੈਨੇਡਾ ਗਰੀਨ ਪਾਰਟੀ",
+    "People's Party of Canada": "ਕੈਨੇਡਾ ਪੀਪਲਜ਼ ਪਾਰਟੀ",
+    "Christian Heritage Party of Canada": "ਕੈਨੇਡਾ ਕ੍ਰਿਸਚੀਅਨ ਹੈਰੀਟੇਜ ਪਾਰਟੀ",
+    "Centrist Party of Canada": "ਕੈਨੇਡਾ ਸੈਂਟਰਿਸਟ ਪਾਰਟੀ",
+    "Nationalist Party": "ਰਾਸ਼ਟਰਵਾਦੀ ਪਾਰਟੀ",
+    "Parti Rhinocéros Party": "Parti Rhinocéros",
+    "Rhinoceros Party": "Parti Rhinocéros",
+    Independent: "ਆਜ਼ਾਦ",
+    "No Affiliation": "ਕਿਸੇ ਪਾਰਟੀ ਨਾਲ ਸਬੰਧਤ ਨਹੀਂ",
+  },
+};
+
+export function localizePartyName(party: string, locale: Locale): string {
+  return PARTY_NAME_MAPS[locale]?.[party] ?? party;
+}
+
+/**
+ * Localise a province name (province.name from lib/tracked-elections).
+ *
+ * Province names are DATA, not ui_strings — same pattern as race and
+ * party names above. Only Quebec has a distinct form in the five
+ * non-English locales; every other province passes through unchanged.
+ */
+const PROVINCE_NAME_MAPS: Record<Locale, Record<string, string>> = {
+  en: {},
+  fr: {
+    Quebec: "Québec",
+  },
+  "zh-Hans": {
+    Quebec: "魁北克",
+  },
+  "zh-Hant": {
+    Quebec: "魁北克",
+  },
+  ta: {
+    Quebec: "கியூபெக்",
+  },
+  pa: {
+    Quebec: "ਕਿਊਬੈਕ",
+  },
+};
+
+export function localizeProvinceName(name: string, locale: Locale): string {
+  return PROVINCE_NAME_MAPS[locale]?.[name] ?? name;
+}
