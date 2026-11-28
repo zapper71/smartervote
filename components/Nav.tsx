@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { localizePath, type Locale } from "@/lib/i18n";
+import { localeFromPath, localizePath, type Locale } from "@/lib/i18n";
 import type { Language } from "@/lib/types";
 
 /**
@@ -22,8 +22,8 @@ export default function Nav({
   strings: Record<Locale, Record<string, string>>;
 }) {
   const pathname = usePathname() ?? "";
-  const locale: Locale = pathname.startsWith("/fr") ? "fr" : "en";
-  const s = strings[locale];
+  const locale: Locale = localeFromPath(pathname);
+  const s = strings[locale] ?? strings.en;
   const links = [
     { href: "/", label: s["nav.home"] },
     { href: "/races", label: s["nav.races"] },

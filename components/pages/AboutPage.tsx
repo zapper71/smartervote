@@ -15,6 +15,13 @@ const LINK_MARKERS: Record<Locale, { correctionsForm: string; methodologyPage: s
     correctionsForm: "le formulaire de correction",
     methodologyPage: "La page de méthodologie",
   },
+  // Phase 2 markers: the Phase 2 translation files must use EXACTLY these
+  // phrases inside about.contact_corrections / about.how_body, or the
+  // links below silently stop splitting (splitMarker degrades to plain text).
+  "zh-Hans": { correctionsForm: "更正表格", methodologyPage: "方法页面" },
+  "zh-Hant": { correctionsForm: "更正表格", methodologyPage: "方法頁面" },
+  ta: { correctionsForm: "திருத்தப் படிவம்", methodologyPage: "முறைமை பக்கம்" },
+  pa: { correctionsForm: "ਸੋਧ ਫਾਰਮ", methodologyPage: "ਵਿਧੀ ਪੰਨਾ" },
 };
 
 /**

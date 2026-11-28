@@ -3,15 +3,24 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import type { Language } from "@/lib/types";
-import { LOCALE_COOKIE, localizePath, type Locale } from "@/lib/i18n";
+import {
+  LOCALE_COOKIE,
+  localeFromPath,
+  localizePath,
+  type Locale,
+} from "@/lib/i18n";
 
 /**
  * Language switcher (Andreas's spec): a drop-down with the British flag
  * for English and the Quebec flag for French, with 'EN' / 'FR' to the
- * right of the flag. Choosing a language sets the sv-locale cookie and
- * navigates to the same page in that locale. Renders nothing when fewer
- * than two languages are enabled, so pre-migration deploys degrade
- * cleanly.
+ * right of the flag. Phase 2 adds Simplified Chinese (China flag +
+ * 'ZH-HANS'), Traditional Chinese, Tamil and Punjabi — those three
+ * have no flag (a flag would be wrong: Traditional spans Hong Kong /
+ * Taiwan, Tamil and Punjabi are languages, not countries), so they
+ * render their native name instead. Choosing a language sets the
+ * sv-locale cookie and navigates to the same page in that locale.
+ * Renders nothing when fewer than two languages are enabled, so
+ * pre-migration deploys degrade cleanly.
  */
 /**
  * Flag image path. The languages table stores the asset WITH its
@@ -20,8 +29,28 @@ import { LOCALE_COOKIE, localizePath, type Locale } from "@/lib/i18n";
  * a 404 and a broken-image icon in the switcher. Strip a leading
  * 'flags/' before prefixing so both shapes resolve.
  */
-function flagSrc(asset: string): string {
+function flagSrc(asset: string | null): string | null {
+  if (!asset) return null;
   return `/flags/${asset.replace(/^flags\//, "")}`;
+}
+
+/** Flag + code, or the native name when the language has no flag. */
+function LangLabel({ lang }: { lang: Language }) {
+  const src = flagSrc(lang.flag_asset);
+  if (!src) return <>{lang.native_name}</>;
+  return (
+    <>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={src}
+        alt=""
+        width={20}
+        height={14}
+        className="rounded-[2px]"
+      />
+      {lang.code.toUpperCase()}
+    </>
+  );
 }
 
 export default function LanguageSwitcher({
@@ -54,8 +83,7 @@ export default function LanguageSwitcher({
 
   if (languages.length < 2) return null;
 
-  const current: Locale =
-    pathname === "/fr" || pathname.startsWith("/fr/") ? "fr" : "en";
+  const current: Locale = localeFromPath(pathname);
   const currentLang =
     languages.find((l) => l.code === current) ?? languages[0];
 
@@ -74,15 +102,7 @@ export default function LanguageSwitcher({
         aria-expanded={open}
         className="tap-target flex items-center gap-2 rounded px-3 py-2 text-sm text-ink-soft no-underline hover:bg-accent-light hover:text-accent"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={flagSrc(currentLang.flag_asset)}
-          alt=""
-          width={20}
-          height={14}
-          className="rounded-[2px]"
-        />
-        {currentLang.code.toUpperCase()}
+        <LangLabel lang={currentLang} />
       </button>
       {open && (
         <ul
@@ -98,15 +118,7 @@ export default function LanguageSwitcher({
                 onClick={() => choose(l.code)}
                 className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-ink-soft hover:bg-accent-light hover:text-accent"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={flagSrc(l.flag_asset)}
-                  alt=""
-                  width={20}
-                  height={14}
-                  className="rounded-[2px]"
-                />
-                {l.code.toUpperCase()}
+                <LangLabel lang={l} />
               </button>
             </li>
           ))}

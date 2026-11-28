@@ -7,7 +7,7 @@ import WithdrawnPill from "@/components/WithdrawnPill";
 import WinnerPill from "@/components/WinnerPill";
 import ResultsNotAvailablePill from "@/components/ResultsNotAvailablePill";
 import PartyPill from "@/components/PartyPill";
-import { formatUi, localizePath, pluralize, type Locale } from "@/lib/i18n";
+import { formatUi, localizePath, localizeRaceName, pluralize, type Locale } from "@/lib/i18n";
 
 export interface MunicipalityRaceGroup {
   key: string;
@@ -111,7 +111,7 @@ function RaceEntry({
             href={localizePath(`/races/${race.slug}`, locale)}
             className="text-ink no-underline hover:text-accent"
           >
-            {race.name}
+            {localizeRaceName(race.name, locale)}
           </Link>
         </h3>
         {!hasWinner && !fullyAcclaimed && (
@@ -192,7 +192,7 @@ function RaceEntry({
                   </span>
                 </span>
               )}
-              <PartyPill party={c.party} />
+              <PartyPill party={c.party} locale={locale} />
               {c.acclaimed && (
                 <span className="ml-1 text-xs font-medium text-flag">
                   {t["pill.acclaimed"]}
@@ -278,18 +278,24 @@ export default function MunicipalityRaceList({
 
   const filtered = useMemo(() => {
     const q = normalise(query.trim());
+    // Match the English name and the localised name alike, so typing
+    // "Député" on a French page finds "Member of Parliament".
+    const bestRank = (name: string) =>
+      Math.min(rank(name, q), rank(localizeRaceName(name, locale), q));
     return groups
       .map((g) => {
         const races = g.races
-          .filter(({ race }) => matches(race.name, q))
-          .sort(
-            (a, b) => rank(a.race.name, q) - rank(b.race.name, q)
+          .filter(
+            ({ race }) =>
+              matches(race.name, q) ||
+              matches(localizeRaceName(race.name, locale), q)
           )
+          .sort((a, b) => bestRank(a.race.name) - bestRank(b.race.name))
           .slice(0, FILTER_CAP);
         return { ...g, races };
       })
       .filter((g) => g.races.length > 0);
-  }, [groups, query]);
+  }, [groups, query, locale]);
 
   const shown = filtered.reduce((n, g) => n + g.races.length, 0);
 

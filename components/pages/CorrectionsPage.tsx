@@ -24,6 +24,12 @@ const FOOTER_MARKERS: Record<
     privacyPage: "page de confidentialité",
     methodologyPage: "page de méthodologie",
   },
+  // Phase 2: corrections.footer_note translations must contain exactly
+  // these phrases, or the links below silently stop splitting.
+  "zh-Hans": { privacyPage: "隐私页面", methodologyPage: "方法页面" },
+  "zh-Hant": { privacyPage: "隱私頁面", methodologyPage: "方法頁面" },
+  ta: { privacyPage: "தனியுரிமை பக்கம்", methodologyPage: "முறைமை பக்கம்" },
+  pa: { privacyPage: "ਗੋਪਨੀਯਤਾ ਪੰਨਾ", methodologyPage: "ਵਿਧੀ ਪੰਨਾ" },
 };
 
 const SUPPORT_EMAIL = "support.smartervote.ca@gmail.com";

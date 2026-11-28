@@ -384,7 +384,8 @@ export interface Language {
   code: string;
   name: string;
   native_name: string;
-  flag_asset: string;
+  /** Null for languages with no flag (zh-Hant, ta, pa — migration 55). */
+  flag_asset: string | null;
   is_default: boolean;
   is_enabled: boolean;
   sort_order: number;

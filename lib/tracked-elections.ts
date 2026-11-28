@@ -19,6 +19,8 @@
  * historical race data soon." (deferred until a Supabase reset).
  */
 
+import type { Locale } from "./i18n";
+
 export interface Province {
   slug: string;
   name: string;
@@ -67,8 +69,8 @@ const dateFmtFr = new Intl.DateTimeFormat("fr-CA", {
   timeZone: "UTC",
 });
 
-/** e.g. "Mon Nov 9, 2026" / "lun. 9 nov. 2026". */
-export function formatElectionDate(iso: string, locale: "en" | "fr" = "en"): string {
+/** e.g. "Mon Nov 9, 2026" / "lun. 9 nov. 2026". Other locales fall back to the English format. */
+export function formatElectionDate(iso: string, locale: Locale = "en"): string {
   return (locale === "fr" ? dateFmtFr : dateFmtEn).format(parseDate(iso));
 }
 
@@ -250,7 +252,7 @@ function cycleSections(
  * page maps them through `labels` (English label -> localised label).
  */
 export interface TileStrings {
-  locale?: "en" | "fr";
+  locale?: Locale;
   /** Localised "Not yet tracked" (elections.not_tracked). */
   notTracked?: string;
   /** Localised "(scheduled)" suffix, parens included (elections.scheduled). */

@@ -32,7 +32,7 @@ import {
 } from "@/lib/queries";
 import { contestLabel } from "@/lib/dates";
 import { localizePageContent } from "@/components/pages/localize-content";
-import { formatUi, localizePath, type Locale } from "@/lib/i18n";
+import { formatUi, localizePath, localizeRaceName, type Locale } from "@/lib/i18n";
 import { splitMarker } from "@/components/pages/chrome";
 
 type Props = {
@@ -262,19 +262,19 @@ export default async function ComparePage({ params, searchParams, locale }: Prop
   }
 
   const correctionFor = (name: string) =>
-    `${localizePath("/corrections", locale)}?about=${encodeURIComponent(`${name} — ${race.name}`)}&page=${encodeURIComponent(localizePath(`/races/${race.slug}/compare`, locale))}`;
+    `${localizePath("/corrections", locale)}?about=${encodeURIComponent(`${name} — ${localizeRaceName(race.name, locale)}`)}&page=${encodeURIComponent(localizePath(`/races/${race.slug}/compare`, locale))}`;
 
   return (
     <div>
       <p className="text-sm">
         <Link href={localizePath(`/races/${race.slug}`, locale)} className="link">
-          &larr; {race.name}
+          &larr; {localizeRaceName(race.name, locale)}
         </Link>
       </p>
 
       <h1 className="mt-3 text-3xl">{s["compare.heading"]}</h1>
       <p className="mt-1 text-ink-soft">
-        {race.name}
+        {localizeRaceName(race.name, locale)}
         {race.ward_group_label ? ` · ${race.ward_group_label}` : ""}
         {/* The race's own municipality, not Huntsville by assumption. */}
         {isExpansion && municipality ? ` · ${municipality.name}` : ""}
@@ -362,7 +362,7 @@ export default async function ComparePage({ params, searchParams, locale }: Prop
               w-48 issue column stays sticky on the left as the scroll anchor. */}
           <table className="w-full table-fixed border-collapse text-left">
             <caption className="sr-only">
-              Candidate positions for {race.name}, by issue
+              Candidate positions for {localizeRaceName(race.name, locale)}, by issue
             </caption>
             <thead>
               <tr>
@@ -386,7 +386,7 @@ export default async function ComparePage({ params, searchParams, locale }: Prop
                         {c.name}
                       </span>
                     </Link>
-                    <PartyPill party={c.party} />
+                    <PartyPill party={c.party} locale={locale} />
                     {isWithdrawn(c) && (
                       <span className="ml-2 inline-block align-middle">
                         <WithdrawnPill labels={withdrawnLabels} />
@@ -621,7 +621,7 @@ export default async function ComparePage({ params, searchParams, locale }: Prop
                           {c.name}
                         </span>
                       </Link>{" "}
-                      <PartyPill party={c.party} />
+                      <PartyPill party={c.party} locale={locale} />
                       {isWithdrawn(c) && <WithdrawnPill labels={withdrawnLabels} />}
                       <WinnerPill
                         isWinner={c.is_winner}

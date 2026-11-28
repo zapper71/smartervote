@@ -15,8 +15,13 @@
  * tooltip and a visually-hidden label (the img itself is alt="" so screen
  * readers announce it once). Parties without a clean logo asset — CWP,
  * Freedom Party of BC, Unaffiliated, Independent, No Affiliation — get a
- * neutral-accent text pill with the party name exactly as recorded (never a
- * party colour, per the site's neutrality rule).
+ * neutral-accent text pill with the party name (never a party colour, per
+ * the site's neutrality rule).
+ *
+ * The displayed name is localised through localizePartyName (lib/i18n.ts):
+ * the tooltip, the screen-reader label and the text pill all show the
+ * party name in the page language. Parties with no map entry (all BC
+ * labels, Unaffiliated) fall back to the name as recorded.
  *
  * Keys are the party strings EXACTLY as recorded in the database. Federal
  * keys use Elections Canada's full registered names, so there is no collision
@@ -51,29 +56,39 @@ const PARTY_LOGOS: Record<string, string> = {
   "Rhinoceros Party": "/parties/rhinoceros-ca.png",
 };
 
-export default function PartyPill({ party }: { party?: string | null }) {
+import { localizePartyName, type Locale } from "@/lib/i18n";
+
+export default function PartyPill({
+  party,
+  locale = "en",
+}: {
+  party?: string | null;
+  /** Page locale — the tooltip, screen-reader label and text pill localise. */
+  locale?: Locale;
+}) {
   if (!party) return null;
 
+  const displayName = localizePartyName(party, locale);
   const logo = PARTY_LOGOS[party];
   if (logo) {
     return (
       <span
         className="pill ml-2 border border-paper-edge bg-white align-middle"
-        title={party}
+        title={displayName}
       >
         <img src={logo} alt="" className="h-4 w-auto" loading="lazy" />
-        <span className="sr-only">{party}</span>
+        <span className="sr-only">{displayName}</span>
       </span>
     );
   }
 
-  // No logo asset: neutral text pill, party name exactly as recorded.
+  // No logo asset: neutral text pill, party name in the page language.
   return (
     <span
       className="pill ml-2 bg-accent-light align-middle text-accent"
-      title={party}
+      title={displayName}
     >
-      {party}
+      {displayName}
     </span>
   );
 }

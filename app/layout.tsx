@@ -7,6 +7,7 @@ import PageViewBeacon from "@/components/PageViewBeacon";
 import LocaleHtmlLang from "@/components/LocaleHtmlLang";
 import { getLanguages, getUiStrings } from "@/lib/queries";
 import { INDEXABLE, SITE_URL } from "@/lib/site";
+import { ALL_LOCALES, type Locale } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -30,10 +31,12 @@ export const metadata: Metadata = {
 };
 
 /**
- * Chrome strings for Nav + Footer, in both locales. The root layout has
- * no locale of its own, so it fetches both and the client Nav/Footer pick
- * by pathname (same pattern as LocaleHtmlLang). A failed read degrades
- * to the English fallbacks — the chrome never blocks a page.
+ * Chrome strings for Nav + Footer, in every enabled locale. The root
+ * layout has no locale of its own, so it fetches each language and the
+ * client Nav/Footer pick by pathname (same pattern as LocaleHtmlLang).
+ * A failed read degrades to the English fallbacks — the chrome never
+ * blocks a page. Locales with no rows yet (a language enabled before
+ * its translations land) render English chrome.
  */
 const CHROME_KEYS = {
   "site.tagline": "Candidates side-by-side on the issues. No BS.",
@@ -58,20 +61,27 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [languages, chromeEn, chromeFr] = await Promise.all([
-    getLanguages(),
-    getUiStrings("en", CHROME_KEYS),
-    getUiStrings("fr", CHROME_KEYS),
-  ]);
+  const languages = await getLanguages();
+  const chromeEn = await getUiStrings("en", CHROME_KEYS);
+  const byLocale: Record<string, Record<string, string>> = { en: chromeEn };
+  await Promise.all(
+    languages
+      .filter((l) => l.code !== "en")
+      .map(async (l) => {
+        byLocale[l.code] = await getUiStrings(l.code, CHROME_KEYS);
+      })
+  );
+  const strings = {} as Record<Locale, Record<string, string>>;
+  for (const loc of ALL_LOCALES) strings[loc] = byLocale[loc] ?? chromeEn;
   return (
     <html lang="en-CA">
       <body className="flex min-h-screen flex-col">
         <LocaleHtmlLang />
-        <Nav languages={languages} strings={{ en: chromeEn, fr: chromeFr }} />
+        <Nav languages={languages} strings={strings} />
         <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
           {children}
         </main>
-        <Footer strings={{ en: chromeEn, fr: chromeFr }} />
+        <Footer strings={strings} />
         <Analytics />
         <PageViewBeacon />
       </body>

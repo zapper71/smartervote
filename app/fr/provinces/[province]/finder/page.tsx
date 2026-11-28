@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { localizeProvinceName } from "@/lib/i18n";
 import FinderPage from "@/components/pages/FinderPage";
 import { getProvince } from "@/lib/tracked-elections";
 import { pageAlternates } from "@/components/pages/locale-meta";
@@ -24,8 +25,8 @@ export async function generateMetadata({
       ? "circonscription"
       : "municipalité";
   return {
-    title: `Trouvez votre ${noun} · ${province.name}`,
-    description: `Trouvez votre ${noun} à ${province.name}.`,
+    title: `Trouvez votre ${noun} · ${localizeProvinceName(province.name, "fr")}`,
+    description: `Trouvez votre ${noun} à ${localizeProvinceName(province.name, "fr")}.`,
     alternates: pageAlternates(`/provinces/${slug}/finder`),
   };
 }
