@@ -41,6 +41,12 @@ const SOCIAL_LABELS: Record<string, string> = {
 const WHY_MARKERS: Record<Locale, string> = {
   en: "Why we do it this way",
   fr: "Pourquoi nous procédons ainsi",
+  // Phase 2: cand.stand_intro translations must contain exactly this
+  // phrase, or the link below silently stops splitting.
+  "zh-Hans": "我们为什么这样做",
+  "zh-Hant": "我們為什麼這樣做",
+  ta: "நாங்கள் ஏன் இப்படிச் செய்கிறோம்",
+  pa: "ਅਸੀਂ ਇਸ ਤਰ੍ਹਾਂ ਕਿਉਂ ਕਰਦੇ ਹਾਂ",
 };
 
 /**

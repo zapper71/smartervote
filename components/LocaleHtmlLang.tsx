@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { localeFromPath, localeTag } from "@/lib/i18n";
 
 /**
  * Sets <html lang> from the URL path. The root layout hardcodes
@@ -12,8 +13,7 @@ import { usePathname } from "next/navigation";
 export default function LocaleHtmlLang() {
   const pathname = usePathname();
   useEffect(() => {
-    const isFr = pathname === "/fr" || pathname.startsWith("/fr/");
-    document.documentElement.lang = isFr ? "fr-CA" : "en-CA";
+    document.documentElement.lang = localeTag(localeFromPath(pathname));
   }, [pathname]);
   return null;
 }

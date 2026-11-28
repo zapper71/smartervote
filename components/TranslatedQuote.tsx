@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Locale } from "@/lib/i18n";
+import { localeName } from "@/lib/i18n";
 
 /**
  * A translated verbatim quote (decision D2): the translation renders
@@ -25,10 +26,13 @@ export default function TranslatedQuote({
   locale: Locale;
 }) {
   const [showOriginal, setShowOriginal] = useState(false);
+  // "Original in <language>" in the page language; French pages use the
+  // French sentence, every other locale the English one (same fallback
+  // as the rest of the chrome: untranslated UI stays English).
   const langLabel =
     locale === "fr"
-      ? `Original en ${originalLocale === "fr" ? "français" : "anglais"}`
-      : `Original in ${originalLocale === "fr" ? "French" : "English"}`;
+      ? `Original en ${localeName(originalLocale, "fr")}`
+      : `Original in ${localeName(originalLocale, "en")}`;
   return (
     <div>
       <p>

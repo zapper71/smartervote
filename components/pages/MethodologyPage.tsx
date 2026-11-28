@@ -47,12 +47,66 @@ const MARKERS: Record<
     case2: "Une personne ici a ouvert la page",
     about: "À propos",
   },
+  // Phase 2: the method.* template translations must contain exactly
+  // these phrases, or the links/bold spans below silently stop
+  // splitting. The `about` marker must equal the nav.about ui_string
+  // translation in each locale.
+  "zh-Hans": {
+    reportIt: "报告",
+    correctionsProcess: "更正流程",
+    tellUs: "告诉我们",
+    pleaseTellUs: "请告诉我们",
+    confidence: "可信度",
+    case1: "候选人自己公布了地址",
+    case2: "本站有人打开过该页面",
+    about: "关于",
+  },
+  "zh-Hant": {
+    reportIt: "報告",
+    correctionsProcess: "更正流程",
+    tellUs: "告訴我們",
+    pleaseTellUs: "請告訴我們",
+    confidence: "可信度",
+    case1: "候選人自己公佈了地址",
+    case2: "本站有人打開過該頁面",
+    about: "關於",
+  },
+  ta: {
+    reportIt: "தெரிவிக்கவும்",
+    correctionsProcess: "திருத்த செயல்முறை",
+    tellUs: "எங்களிடம் சொல்லுங்கள்",
+    pleaseTellUs: "தயவுசெய்து எங்களிடம் சொல்லுங்கள்",
+    confidence: "நம்பிக்கை",
+    case1: "வேட்பாளர் தாமே முகவரியை வெளியிட்டார்",
+    case2: "இங்குள்ள ஒருவர் அந்தப் பக்கத்தைத் திறந்தார்",
+    about: "பற்றி",
+  },
+  pa: {
+    reportIt: "ਰਿਪੋਰਟ ਕਰੋ",
+    correctionsProcess: "ਸੋਧ ਪ੍ਰਕਿਰਿਆ",
+    tellUs: "ਸਾਨੂੰ ਦੱਸੋ",
+    pleaseTellUs: "ਕਿਰਪਾ ਕਰਕੇ ਸਾਨੂੰ ਦੱਸੋ",
+    confidence: "ਭਰੋਸਾ",
+    case1: "ਉਮੀਦਵਾਰ ਨੇ ਖੁਦ ਪਤਾ ਪ੍ਰਕਾਸ਼ਿਤ ਕੀਤਾ",
+    case2: "ਇੱਥੋਂ ਕਿਸੇ ਨੇ ਉਹ ਪੰਨਾ ਖੋਲ੍ਹਿਆ ਸੀ",
+    about: "ਬਾਰੇ",
+  },
 };
 
 /** The three extent examples in the "How much they said" paragraph. */
 const EXTENT_MARKS: Record<Locale, string[]> = {
   en: ["(a page or more)", "(one sentence)", "(reported remarks)"],
   fr: ["(une page ou plus)", "(une phrase)", "(remarques rapportées)"],
+  // Phase 2: method.length_body1 translations must contain exactly these
+  // parenthesised phrases (same strings as lib/i18n.ts EXTENT_MAPS).
+  "zh-Hans": ["(一页或更多)", "(一句话)", "(据报道的言论)"],
+  "zh-Hant": ["(一頁或更多)", "(一句話)", "(據報導的言論)"],
+  ta: [
+    "(ஒரு பக்கம் அல்லது அதற்கு மேல்)",
+    "(ஒரு வாக்கியம்)",
+    "(அறிக்கையிடப்பட்ட கருத்துகள்)",
+  ],
+  pa: ["(ਇੱਕ ਪੰਨਾ ਜਾਂ ਵੱਧ)", "(ਇੱਕ ਵਾਕ)", "(ਰਿਪੋਰਟ ਕੀਤੀਆਂ ਟਿੱਪਣੀਆਂ)"],
 };
 
 /** Render `text` with the `marker` phrase as a link to `href`. */

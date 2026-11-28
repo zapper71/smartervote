@@ -31,6 +31,13 @@ type Props = { params: Promise<{ race: string }>; locale: Locale };
 const HOW_MARKERS: Record<Locale, string> = {
   en: "How this works",
   fr: "Comment ça fonctionne",
+  // Phase 2: race.listing_note translations must contain exactly this
+  // phrase, or the link below silently stops splitting. It must equal
+  // the nav.how_it_works ui_string translation in each locale.
+  "zh-Hans": "运作方式",
+  "zh-Hant": "運作方式",
+  ta: "இது எப்படி இயங்குகிறது",
+  pa: "ਇਹ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ",
 };
 
 /**

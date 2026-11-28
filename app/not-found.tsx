@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { getUiStrings } from "@/lib/queries";
-import { localizePath, type Locale } from "@/lib/i18n";
+import { localizePath, parseLocale, type Locale } from "@/lib/i18n";
 
 /**
  * 404 page. It has no route locale of its own — notFound() can fire from
@@ -11,7 +11,7 @@ import { localizePath, type Locale } from "@/lib/i18n";
  */
 export default async function NotFound() {
   const cookieLocale = (await cookies()).get("sv-locale")?.value;
-  const locale: Locale = cookieLocale === "fr" ? "fr" : "en";
+  const locale: Locale = parseLocale(cookieLocale);
   const s = await getUiStrings(locale, {
     "notfound.title": "Page not found",
     "notfound.body":

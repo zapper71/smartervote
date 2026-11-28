@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { localizePath, type Locale } from "@/lib/i18n";
+import { localeFromPath, localizePath, type Locale } from "@/lib/i18n";
 
 /**
  * Site footer. A client component because the locale comes from the
- * URL — the root layout has no locale of its own, so it passes BOTH
- * locales' chrome strings and this component picks by pathname (the
+ * URL — the root layout has no locale of its own, so it passes every
+ * locale's chrome strings and this component picks by pathname (the
  * same pattern as LocaleHtmlLang). Links stay in the page language
  * via localizePath.
  */
@@ -18,8 +18,8 @@ export default function Footer({
   strings: Record<Locale, Record<string, string>>;
 }) {
   const pathname = usePathname() ?? "";
-  const locale: Locale = pathname.startsWith("/fr") ? "fr" : "en";
-  const s = strings[locale];
+  const locale: Locale = localeFromPath(pathname);
+  const s = strings[locale] ?? strings.en;
   return (
     <footer className="mt-16 border-t border-paper-edge bg-paper">
       <div className="mx-auto max-w-5xl px-4 py-10 text-sm text-ink-soft">

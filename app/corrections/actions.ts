@@ -2,7 +2,7 @@
 
 import { getPublicClient } from "@/lib/supabase";
 import { getUiString } from "@/lib/queries";
-import { formatUi, type Locale } from "@/lib/i18n";
+import { formatUi, localeTag, parseLocale, type Locale } from "@/lib/i18n";
 
 /**
  * Corrections are inserted with the PUBLIC (anon) key, not the secret key.
@@ -50,7 +50,7 @@ export async function submitCorrection(
   const pageUrl = str(formData, "page_url");
   // The form's language, from its hidden locale field — validation errors
   // come back in the same language as the form (form.error_* rows).
-  const locale: Locale = str(formData, "locale") === "fr" ? "fr" : "en";
+  const locale: Locale = parseLocale(str(formData, "locale"));
   const err = (key: string, fallback: string) =>
     getUiString(key, locale, fallback);
 
@@ -74,7 +74,7 @@ export async function submitCorrection(
           "form.error_claim_too_long",
           "That’s longer than we can accept ({max} characters max). Could you trim it?"
         ),
-        { max: MAX.claim.toLocaleString(locale === "fr" ? "fr-CA" : "en-CA") }
+        { max: MAX.claim.toLocaleString(localeTag(locale)) }
       ),
       values,
     };

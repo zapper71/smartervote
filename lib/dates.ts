@@ -2,6 +2,8 @@
 export const VOTING_DAY = "2026-10-26";
 export const ADVANCE_VOTING_OPENS = "2026-10-14";
 
+import { localeTag, type Locale } from "./i18n";
+
 /**
  * Days between today and a date, floored at zero.
  * Uses UTC midnight on both sides so the answer doesn't flicker by one
@@ -17,12 +19,12 @@ export function daysUntil(iso: string | null | undefined, from: Date = new Date(
 
 export function formatDate(
   iso: string | null | undefined,
-  locale: "en" | "fr" = "en"
+  locale: Locale = "en"
 ): string {
   if (!iso) return "";
   const d = new Date(`${iso.slice(0, 10)}T00:00:00Z`);
   if (Number.isNaN(d.getTime())) return "";
-  return d.toLocaleDateString(locale === "fr" ? "fr-CA" : "en-CA", {
+  return d.toLocaleDateString(localeTag(locale), {
     weekday: "long",
     year: "numeric",
     month: "long",
@@ -33,12 +35,12 @@ export function formatDate(
 
 export function formatShortDate(
   iso: string | null | undefined,
-  locale: "en" | "fr" = "en"
+  locale: Locale = "en"
 ): string {
   if (!iso) return "";
   const d = new Date(`${iso.slice(0, 10)}T00:00:00Z`);
   if (Number.isNaN(d.getTime())) return "";
-  return d.toLocaleDateString(locale === "fr" ? "fr-CA" : "en-CA", {
+  return d.toLocaleDateString(localeTag(locale), {
     year: "numeric",
     month: "long",
     day: "numeric",
