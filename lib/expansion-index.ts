@@ -40531,7 +40531,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
       "candidates": [
         {
           "name": "Anna Foat",
-          "acclaimed": null
+          "acclaimed": null,
+          "winner": true,
+          "resultStatus": "unofficial"
         },
         {
           "name": "Drew Craig",
@@ -40539,7 +40541,9 @@ export const RACES_BY_MUNICIPALITY: Record<string, ExpansionRace[]> = {
         },
         {
           "name": "Shauna DiGasparro",
-          "acclaimed": null
+          "acclaimed": null,
+          "winner": true,
+          "resultStatus": "unofficial"
         }
       ],
       "sources": [
